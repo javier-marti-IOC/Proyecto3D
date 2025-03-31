@@ -75,10 +75,6 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
-        // my variables
-
-        private bool isAttackingSoft;
-
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -101,8 +97,6 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
-        private int _animIDSoftAttack;
-        private int _animIDRoll;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -162,24 +156,6 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            if(Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("---> SOFT ATTACK");
-                SoftAttack();
-            }
-
-            if(Input.GetMouseButtonDown(1))
-            {
-                Debug.Log("---> HARD ATTACK");
-                HardAttack();
-            }
-            if(Input.GetKeyDown(KeyCode.H))
-            {
-                Debug.Log("---> DODGING BACKWARD");
-                Roll();
-                DodgeBackward();
-            }
-
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -197,8 +173,6 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-            _animIDSoftAttack = Animator.StringToHash("SoftAttack");
-            _animIDRoll = Animator.StringToHash("Roll");
         }
 
         private void GroundedCheck()
@@ -235,13 +209,6 @@ namespace StarterAssets
             // Cinemachine will follow this target
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
-        }
-
-        private void DodgeBackward()
-        {
-            Vector3 dodgeDirection = Vector3.zero; // Initialize properly
-            dodgeDirection = transform.forward * (-0.1f);
-            _controller.Move(dodgeDirection);
         }
 
         private void Move()
@@ -419,33 +386,6 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            }
-        }
-
-        public void SoftAttack()
-        {
-            _animator.SetTrigger("SoftAttack");
-        }
-        public void Roll()
-        {
-            _animator.SetTrigger("Roll");
-        }
-        public void HardAttack()
-        {
-            _animator.SetTrigger("HardAttack");
-        }
-
-        public void Dying()
-        {
-            _animator.SetTrigger("Dying");
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if(other.CompareTag("DyingZone"))
-            {
-                Debug.Log("---> IM DYING");
-                _animator.SetTrigger("Dying");
             }
         }
     }
