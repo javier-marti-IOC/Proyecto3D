@@ -75,6 +75,11 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        // my variables
+
+        private bool isAttackingSoft;
+        public bool dead;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -151,14 +156,32 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
-
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
+            if (dead == false) 
+            {
+                if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton5))
+                {
+                    SoftAttack();
+                }
+
+                if(Input.GetMouseButtonDown(1))
+                {
+                    HardAttack();
+                }
+                if(Input.GetKeyDown(KeyCode.H))
+                {
+                    Roll();
+                    DodgeBackward();
+                }
+
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+            }
+
         }
 
         private void LateUpdate()
@@ -386,6 +409,34 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        public void SoftAttack()
+        {
+            _animator.SetTrigger("SoftAttack");
+        }
+        public void Roll()
+        {
+            _animator.SetTrigger("Roll");
+        }
+        public void HardAttack()
+        {
+            _animator.SetTrigger("HardAttack");
+        }
+
+        public void Dying()
+        {
+            _animator.SetTrigger("Dying");
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("DyingZone"))
+            {
+                Debug.Log("---> IM DYING");
+                dead = true;
+                _animator.SetTrigger("Dying");
             }
         }
     }
