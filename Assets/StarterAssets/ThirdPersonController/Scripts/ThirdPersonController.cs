@@ -174,7 +174,7 @@ namespace StarterAssets
                 if(Input.GetKeyDown(KeyCode.H))
                 {
                     Roll();
-                    DodgeBackward();
+                    // DodgeBackward();
                 }
 
                 JumpAndGravity();
