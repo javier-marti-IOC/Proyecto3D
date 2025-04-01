@@ -78,6 +78,7 @@ namespace StarterAssets
         // my variables
 
         private bool isAttackingSoft;
+        public bool dead;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -157,32 +158,32 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
-
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            if(Input.GetMouseButtonDown(0))
+            if (dead == false) 
             {
-                Debug.Log("---> SOFT ATTACK");
-                SoftAttack();
+                if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton5))
+                {
+                    SoftAttack();
+                }
+
+                if(Input.GetMouseButtonDown(1))
+                {
+                    HardAttack();
+                }
+                if(Input.GetKeyDown(KeyCode.H))
+                {
+                    Roll();
+                    DodgeBackward();
+                }
+
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
             }
 
-            if(Input.GetMouseButtonDown(1))
-            {
-                Debug.Log("---> HARD ATTACK");
-                HardAttack();
-            }
-            if(Input.GetKeyDown(KeyCode.H))
-            {
-                Debug.Log("---> DODGING BACKWARD");
-                Roll();
-                DodgeBackward();
-            }
-
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
         }
 
         private void LateUpdate()
@@ -445,6 +446,7 @@ namespace StarterAssets
             if(other.CompareTag("DyingZone"))
             {
                 Debug.Log("---> IM DYING");
+                dead = true;
                 _animator.SetTrigger("Dying");
             }
         }
