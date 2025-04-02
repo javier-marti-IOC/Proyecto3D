@@ -102,8 +102,6 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
-        private int _animIDSoftAttack;
-        private int _animIDRoll;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -176,7 +174,7 @@ namespace StarterAssets
                 if(Input.GetKeyDown(KeyCode.H))
                 {
                     Roll();
-                    DodgeBackward();
+                    // DodgeBackward();
                 }
 
                 JumpAndGravity();
@@ -198,8 +196,6 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-            _animIDSoftAttack = Animator.StringToHash("SoftAttack");
-            _animIDRoll = Animator.StringToHash("Roll");
         }
 
         private void GroundedCheck()
@@ -236,13 +232,6 @@ namespace StarterAssets
             // Cinemachine will follow this target
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
-        }
-
-        private void DodgeBackward()
-        {
-            Vector3 dodgeDirection = Vector3.zero; // Initialize properly
-            dodgeDirection = transform.forward * (-0.1f);
-            _controller.Move(dodgeDirection);
         }
 
         private void Move()
