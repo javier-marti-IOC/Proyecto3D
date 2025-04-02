@@ -162,6 +162,7 @@ public class wizardBT : MonoBehaviour
 
     void basicSpellCast()
     {  
+        
         Instantiate(basicSpell, spellExitPoint.position, Quaternion.identity);
     }
 
