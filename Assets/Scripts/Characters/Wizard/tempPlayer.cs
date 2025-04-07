@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class tempPlayer : MonoBehaviour
 {
-    public tempGameManager.Element activeElement;
+    public Element activeElement;
     public bool slowed;
     public bool onAttack;
     // Start is called before the first frame update
