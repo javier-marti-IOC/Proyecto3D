@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class wizardBT : MonoBehaviour
 {
     public tempPlayer player;
     [HideInInspector]
-    public tempGameManager.Element activeElement;
-
+    public Element activeElement;
     //Mana
     private float grassMana;
     private float waterMana;
@@ -31,11 +32,13 @@ public class wizardBT : MonoBehaviour
     public GameObject basicSpell;
     public Transform spellExitPoint;
 
+    private float t = 2; 
+
     // Start is called before the first frame update
     void Start()
     {
         //Inizialize Element
-        activeElement = tempGameManager.Element.None;
+        activeElement = Element.None;
 
         //Inizialize Mana
         grassMana= 100f;
@@ -56,6 +59,7 @@ public class wizardBT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        heavyAttackTimer -= Time.deltaTime;
         if (!onAction)
             {
             //Is player on my action range?
@@ -64,10 +68,19 @@ public class wizardBT : MonoBehaviour
                 //Im in a positive element interaction with the player?
                 if(tempGameManager.PositiveElementInteraction(activeElement,player.activeElement))
                 {
+                    Debug.Log(player.slowed);
                     //Is player Slowed?
                     if(player.slowed)
                     {
-                        //Nav Mesh track point to Action Edge
+                        Vector3 direction = transform.position - player.transform.position;
+                        direction.Normalize(); // Normalize to get only the direction
+
+                        // Calculate the new position in the opposite direction
+                        Vector3 newPosition = transform.position + direction * 100;
+
+                        // Set the new position as the destination
+                        gameObject.GetComponent<NavMeshAgent>().SetDestination(newPosition);
+                        
                     }
                     else
                     {
@@ -108,9 +121,19 @@ public class wizardBT : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log(player.slowed);
                         if(player.slowed)
                         {
+                            Debug.Log("SLOWED");
                             //Nav Mesh track point to Action Edge
+                            Vector3 direction = transform.position - player.transform.position;
+                            direction.Normalize(); // Normalize to get only the direction
+
+                            // Calculate the new position in the opposite direction
+                            Vector3 newPosition = transform.position + direction * 100;
+
+                            // Set the new position as the destination
+                            gameObject.GetComponent<NavMeshAgent>().SetDestination(newPosition);
                         }
                         else
                         {
@@ -126,7 +149,7 @@ public class wizardBT : MonoBehaviour
                             }
                             else
                             {
-                                if (activeElement != tempGameManager.Element.None)
+                                if (activeElement != Element.None)
                                 {                               
                                     if(heavyAttackTimer < 0 || Random.Range(1,300) == 150f)
                                     {
@@ -145,6 +168,7 @@ public class wizardBT : MonoBehaviour
                                 }
                                 else
                                 {
+                                    onAction = true;
                                     basicSpellCast();
                                 }
                             }
@@ -155,25 +179,34 @@ public class wizardBT : MonoBehaviour
             else
             {
                 //Nav Mesh track point to Action Edge
+                gameObject.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
             }
         }
+        else
+        {
+            if ((t -= Time.deltaTime) <= 0) 
+            { 
+                onAction =false;
+                t = 2; 
+            }    
+        }
+        
     }
 
 
     void basicSpellCast()
     {  
-        
         Instantiate(basicSpell, spellExitPoint.position, Quaternion.identity);
     }
 
     void HeavySpellCast()
     {  
-        
+        heavyAttackTimer = heavyAttackTime;
     }
 
-    private bool CounterElementAvailable(tempGameManager.Element element)
+    private bool CounterElementAvailable(Element element)
     {
-        if (element == tempGameManager.Element.None)
+        if (element == Element.None)
         {
             int num = Random.Range(1,5);
             if (num == 1 && fireMana == 100) return true;
@@ -182,17 +215,19 @@ public class wizardBT : MonoBehaviour
             else if (num == 4 && grassMana == 100) return true;
             return false;
         } 
-        else if (element == tempGameManager.Element.Grass && fireMana == 100) return true;
-        else if (element == tempGameManager.Element.Water && electricMana == 100) return true;
-        else if (element == tempGameManager.Element.Fire && waterMana == 100) return true;
-        else if (element == tempGameManager.Element.Electric && grassMana == 100) return true;
+        else if (element == Element.Grass && fireMana == 100) return true;
+        else if (element == Element.Water && electricMana == 100) return true;
+        else if (element == Element.Fire && waterMana == 100) return true;
+        else if (element == Element.Electric && grassMana == 100) return true;
         return false;
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            Debug.Log("ENTER");
             playerInAttackRange = true;
+            gameObject.GetComponent<NavMeshAgent>().SetDestination(transform.position);
         }
     }
 
@@ -200,7 +235,17 @@ public class wizardBT : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            Debug.Log("EXIT");
             playerInAttackRange = false;
         }
+    }
+
+    public void OnInerTriggerEnter()
+    {
+
+    }
+    public void OnInerTriggerExit()
+    {
+        
     }
 }
