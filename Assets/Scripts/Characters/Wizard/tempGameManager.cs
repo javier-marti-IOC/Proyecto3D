@@ -2,28 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+public enum Element
+{
+    None,
+    Grass,
+    Water,
+    Fire,
+    Electric
+};
 public class tempGameManager : MonoBehaviour
 {
-    [HideInInspector]
-    public enum Element
-    {
-        None,
-        Grass,
-        Water,
-        Fire,
-        Electric
-    };
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public static bool PositiveElementInteraction(Element element1,Element element2)
     {
