@@ -15,9 +15,9 @@ NavMeshProjectSettings:
     cost: 1
   - name: Fire
     cost: 1
-  - name: Electricity
+  - name: Electric
     cost: 1
-  - name: Rock
+  - name: Earth
     cost: 1
   - name: 
     cost: 1

@@ -1,12 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum ElementType { Water, Fire, Rock, Electricity }
-
 public class EnemyElementalAI : MonoBehaviour
 {
     [Header("Enemy Settings")]
-    public ElementType enemyElement;
+    public Element enemyElement;
 
     [Header("Movement Settings")]
     public float normalSpeed = 3.5f;
@@ -25,7 +23,7 @@ public class EnemyElementalAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObj = GameObject.FindGameObjectWithTag(Constants.player);
         if (playerObj)
             player = playerObj.transform;
 
@@ -36,26 +34,26 @@ public class EnemyElementalAI : MonoBehaviour
     void ConfigureAreaCosts()
     {
         // Set default area costs
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Walkable"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Water"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Fire"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Rock"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Electricity"), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.walkable), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.water), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.fire), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.earth), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.electric), defaultAreaCost);
 
         // Assign opposite area based on enemy element
         switch (enemyElement)
         {
-            case ElementType.Water:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Electricity");
+            case Element.Water:
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.electric);
                 break;
-            case ElementType.Fire:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Water");
+            case Element.Fire:
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.water);
                 break;
-            case ElementType.Rock:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Fire");
+            case Element.Earth:
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.fire);
                 break;
-            case ElementType.Electricity:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Rock");
+            case Element.Electric:
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.earth);
                 break;
         }
 

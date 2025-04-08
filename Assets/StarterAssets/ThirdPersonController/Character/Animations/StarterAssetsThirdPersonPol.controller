@@ -85,7 +85,7 @@ AnimatorStateMachine:
     m_Position: {x: 700, y: 460, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8354784446669383642}
-    m_Position: {x: 200, y: 200, z: 0}
+    m_Position: {x: 370, y: 100, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -264,8 +264,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 8ef13b8fef4dc3a47acf4bdcbc323be3,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: d313fdc20cacc2641815e361b1f229b8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -341,8 +340,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 664f51225f8586e4f8460921fde31cc7,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 969afed91faedfc459529346e48ae07c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -379,7 +377,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StarterAssetsThirdPerson
+  m_Name: StarterAssetsThirdPersonPol
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Speed
@@ -713,8 +711,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 489eacb325c89e94cbac48f8fc08dbb6,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 36e89fe4b403a614f8b4ef248978d29f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -845,8 +842,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: d1d4e5e2b0d716a4aab1955544d9a58c,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 2ce0590099c9af84fa24f1b924c1b8fd, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
