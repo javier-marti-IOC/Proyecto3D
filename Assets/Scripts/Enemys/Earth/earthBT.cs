@@ -13,8 +13,11 @@ public class earthBT : MonoBehaviour
     //Boolans
     public bool towerCalling;
     private bool onAction;
+    public bool onCombat;
     public bool onHealZone;
-    private bool playerInRange;
+    private bool playerDetected;
+    private bool playerInAttackRange;
+    private bool towerInRange;
 
     // Start is called before the first frame update
     void Start()
@@ -55,13 +58,35 @@ public class earthBT : MonoBehaviour
             else
             {
                 //El enemigo detecta al player
-                if (playerInRange)
+                if (playerDetected)
                 {
-                    
+                    if (/*player.GetComponent<PlayerController>().maxEmemies*/playerDetected)
+                    {
+                        //Funcion quedar a la espera para combate
+                        
+                    }
+                    else
+                    {
+                        if (playerInAttackRange)
+                        {
+                            //Cada enemigo
+                        }
+                        else
+                        {
+                            Patrol();
+                        }
+                    }
                 }
                 else
                 {
-
+                    if (towerInRange)
+                    {
+                        TowerPatrol();
+                    }
+                    else
+                    {
+                        Patrol();
+                    }
                 }
             }
         }
@@ -72,6 +97,16 @@ public class earthBT : MonoBehaviour
     }
 
     public void Heal()
+    {
+
+    }
+
+    public void Patrol()
+    {
+
+    }
+
+    public void TowerPatrol()
     {
 
     }
