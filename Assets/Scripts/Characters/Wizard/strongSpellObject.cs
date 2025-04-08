@@ -24,6 +24,7 @@ public class strongSpellObject : MonoBehaviour
         {
             collider.gameObject.GetComponent<ThirdPersonController>().MoveSpeed = 1;
             collider.gameObject.GetComponent<ThirdPersonController>().SprintSpeed = 2.5f;
+            collider.gameObject.GetComponent<tempPlayer>().slowed = true;
         }       
     }
 
@@ -33,6 +34,7 @@ public class strongSpellObject : MonoBehaviour
         {
             collider.gameObject.GetComponent<ThirdPersonController>().MoveSpeed = 2;
             collider.gameObject.GetComponent<ThirdPersonController>().SprintSpeed = 5f;
+            collider.gameObject.GetComponent<tempPlayer>().slowed = false;
         }       
     }
     
