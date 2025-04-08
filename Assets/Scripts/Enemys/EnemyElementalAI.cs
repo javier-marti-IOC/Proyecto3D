@@ -6,7 +6,7 @@ public enum ElementType { Water, Fire, Rock, Electricity }
 public class EnemyElementalAI : MonoBehaviour
 {
     [Header("Enemy Settings")]
-    public ElementType enemyElement;
+    public Element enemyElement;
 
     [Header("Movement Settings")]
     public float normalSpeed = 3.5f;
@@ -25,7 +25,7 @@ public class EnemyElementalAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObj = GameObject.FindGameObjectWithTag(Constants.player);
         if (playerObj)
             player = playerObj.transform;
 
@@ -45,16 +45,16 @@ public class EnemyElementalAI : MonoBehaviour
         // Assign opposite area based on enemy element
         switch (enemyElement)
         {
-            case ElementType.Water:
+            case Element.Water:
                 oppositeAreaIndex = NavMesh.GetAreaFromName("Electricity");
                 break;
-            case ElementType.Fire:
+            case Element.Fire:
                 oppositeAreaIndex = NavMesh.GetAreaFromName("Water");
                 break;
-            case ElementType.Rock:
+            case Element.Earth:
                 oppositeAreaIndex = NavMesh.GetAreaFromName("Fire");
                 break;
-            case ElementType.Electricity:
+            case Element.Electric:
                 oppositeAreaIndex = NavMesh.GetAreaFromName("Rock");
                 break;
         }
