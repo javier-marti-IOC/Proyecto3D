@@ -215,7 +215,7 @@ public class wizardBT : MonoBehaviour
             else if (num == 4 && grassMana == 100) return true;
             return false;
         } 
-        else if (element == Element.Grass && fireMana == 100) return true;
+        else if (element == Element.Earth && fireMana == 100) return true;
         else if (element == Element.Water && electricMana == 100) return true;
         else if (element == Element.Fire && waterMana == 100) return true;
         else if (element == Element.Electric && grassMana == 100) return true;

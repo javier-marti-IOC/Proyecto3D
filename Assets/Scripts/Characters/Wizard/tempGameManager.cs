@@ -7,7 +7,7 @@ using UnityEngine;
 public enum Element
 {
     None,
-    Grass,
+    Earth,
     Water,
     Fire,
     Electric
@@ -17,7 +17,7 @@ public class tempGameManager : MonoBehaviour
 
     public static bool PositiveElementInteraction(Element element1,Element element2)
     {
-        if (element1 == Element.Grass && element2 == Element.Electric)
+        if (element1 == Element.Earth && element2 == Element.Electric)
         {
             return true;
         }
@@ -25,7 +25,7 @@ public class tempGameManager : MonoBehaviour
         {
             return true;
         }
-        else if (element1 == Element.Fire && element2 == Element.Grass)
+        else if (element1 == Element.Fire && element2 == Element.Earth)
         {
             return true;
         }
@@ -44,9 +44,9 @@ public class tempGameManager : MonoBehaviour
             if (num == 1) return Element.Fire;
             else if (num == 2) return Element.Electric;
             else if (num == 3) return Element.Water;
-            else return Element.Grass;
+            else return Element.Earth;
         } 
-        else if (element == Element.Grass)
+        else if (element == Element.Earth)
         {
             return Element.Fire;
         }
@@ -60,7 +60,7 @@ public class tempGameManager : MonoBehaviour
         }
         else
         {
-            return Element.Grass;
+            return Element.Earth;
         }
     }
 }
