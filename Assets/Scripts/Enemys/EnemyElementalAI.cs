@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum ElementType { Water, Fire, Rock, Electricity }
-
 public class EnemyElementalAI : MonoBehaviour
 {
     [Header("Enemy Settings")]
@@ -36,26 +34,26 @@ public class EnemyElementalAI : MonoBehaviour
     void ConfigureAreaCosts()
     {
         // Set default area costs
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Walkable"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Water"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Fire"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Rock"), defaultAreaCost);
-        agent.SetAreaCost(NavMesh.GetAreaFromName("Electricity"), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.walkable), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.water), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.fire), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.earth), defaultAreaCost);
+        agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.electric), defaultAreaCost);
 
         // Assign opposite area based on enemy element
         switch (enemyElement)
         {
             case Element.Water:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Electricity");
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.electric);
                 break;
             case Element.Fire:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Water");
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.water);
                 break;
             case Element.Earth:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Fire");
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.fire);
                 break;
             case Element.Electric:
-                oppositeAreaIndex = NavMesh.GetAreaFromName("Rock");
+                oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.earth);
                 break;
         }
 

@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     protected GameObject tower;
 
 
-    //Booleans
+    [Header("Booleans")]
     protected bool towerCalling; // Booleana para saber cuando la torre nos esta llamando
     protected bool onAction; // Esta realizando alguna accion
     protected bool onCombat; // El enemigo esta en combate
@@ -21,15 +21,13 @@ public class Enemy : MonoBehaviour
     protected bool playerInAttackRange; // Esta el player en mi zona de ataque
     protected bool towerInRange; // Tengo la torre en rango para patrullar
 
-    // Ranges
-    [SerializeField]
-    protected int minCooldownTimeInclusive; /* Tiempo minimo inclusivo del rango 
+    [Header("Ranges")]
+    [SerializeField] protected int minCooldownTimeInclusive; /* Tiempo minimo inclusivo del rango 
                                             (este numero si entra en el rango)*/
-    [SerializeField]
-    protected int maxCooldownTimeExclusive; /* Tiempo maximo exclusivo del rango 
+    [SerializeField] protected int maxCooldownTimeExclusive; /* Tiempo maximo exclusivo del rango 
                                             (este numero no entra en el rango)*/
 
-    //Cooldowns
+    [Header("Cooldowns")]
     protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
     // Start is called before the first frame update
