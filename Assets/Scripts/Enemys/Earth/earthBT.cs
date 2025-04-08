@@ -3,28 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class earthBT : MonoBehaviour
+public class EarthBT : Enemy
 {
-    public Element activeElement;
-    public int healthPoints;
-    public GameObject player;
-    public GameObject tower;
-
-    //Boolans
-    public bool towerCalling;
-    private bool onAction;
-    public bool onCombat;
-    public bool onHealZone;
-    private bool playerDetected;
-    private bool playerInAttackRange;
-    private bool towerInRange;
 
     // Start is called before the first frame update
     void Start()
     {
+        healthPoints = 200;
         activeElement = Element.Earth;
-        healthPoints = 100;
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     //Update is called once per frame
@@ -63,7 +49,7 @@ public class earthBT : MonoBehaviour
                     if (/*player.GetComponent<PlayerController>().maxEmemies*/playerDetected)
                     {
                         //Funcion quedar a la espera para combate
-                        
+
                     }
                     else
                     {
@@ -94,20 +80,5 @@ public class earthBT : MonoBehaviour
         {
             Destroy(this);
         }
-    }
-
-    public void Heal()
-    {
-
-    }
-
-    public void Patrol()
-    {
-
-    }
-
-    public void TowerPatrol()
-    {
-
     }
 }
