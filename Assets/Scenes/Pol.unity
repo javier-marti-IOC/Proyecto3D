@@ -4671,6 +4671,7 @@ GameObject:
   - component: {fileID: 391503723}
   - component: {fileID: 391503722}
   - component: {fileID: 391503728}
+  - component: {fileID: 391503729}
   m_Layer: 0
   m_Name: Water_Enemy
   m_TagString: Untagged
@@ -4802,6 +4803,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeElement: 2
+  player: {fileID: 0}
+  minCooldownTimeInclusive: 0
+  maxCooldownTimeExclusive: 0
+--- !u!114 &391503729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391503720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bfec398b07f9a4d98bf897f68e917f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeElement: 0
   player: {fileID: 0}
   minCooldownTimeInclusive: 0
   maxCooldownTimeExclusive: 0
