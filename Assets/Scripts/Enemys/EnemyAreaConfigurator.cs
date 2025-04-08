@@ -1,31 +1,17 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyElementalAI : MonoBehaviour
+public class EnemyAreaConfigurator : Enemy
 {
-    [Header("Enemy Settings")]
-    public Element enemyElement;
 
-    [Header("Movement Settings")]
-    public float normalSpeed = 3.5f;
-    public float slowedSpeed = 1.5f;
-
-    [Header("NavMesh Area Costs")]
-    public float defaultAreaCost = 1f;
-    public float oppositeAreaCost = 10f;
-
-    private NavMeshAgent agent;
-    private Transform player;
     private float updateInterval = 0.2f;
     private float timer;
     private int oppositeAreaIndex;
 
     void Start()
     {
+        base.Awake();
         agent = GetComponent<NavMeshAgent>();
-        GameObject playerObj = GameObject.FindGameObjectWithTag(Constants.player);
-        if (playerObj)
-            player = playerObj.transform;
 
         agent.speed = normalSpeed;
         ConfigureAreaCosts();
@@ -41,7 +27,7 @@ public class EnemyElementalAI : MonoBehaviour
         agent.SetAreaCost(NavMesh.GetAreaFromName(Constants.electric), defaultAreaCost);
 
         // Assign opposite area based on enemy element
-        switch (enemyElement)
+        switch (activeElement)
         {
             case Element.Water:
                 oppositeAreaIndex = NavMesh.GetAreaFromName(Constants.electric);
@@ -67,7 +53,7 @@ public class EnemyElementalAI : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.transform.position);
             timer = updateInterval;
         }
 

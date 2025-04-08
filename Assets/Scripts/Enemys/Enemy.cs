@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[System.Serializable]
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
 
-    protected Element activeElement;
+    [SerializeField] protected Element activeElement;
     protected int healthPoints;
-    protected GameObject player;
+    [SerializeField] protected GameObject player;
+    protected NavMeshAgent agent;
     protected GameObject tower;
 
 
@@ -30,30 +29,49 @@ public class Enemy : MonoBehaviour
     [Header("Cooldowns")]
     protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Configuracion movimiento")]
+    protected float normalSpeed = 3.5f;
+    protected float slowedSpeed = 1.5f;
+
+    [Header("NavMesh Area Costs")]
+    protected float defaultAreaCost = 1f;
+    protected float oppositeAreaCost = 10f;
+
+
+    protected virtual void Awake()
     {
         healthPoints = 100;
         player = GameObject.FindGameObjectWithTag(Constants.player);
+
+        agent = GetComponent<NavMeshAgent>();
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
-    protected void Heal()
+    // Metodos comunes
+    // Indicamos virtual para poder sobreescribir el metodo si fuera necesario
+    // O indicamos abstract para que las clases hijas o hereden si o si
+    protected virtual void Heal()
     {
 
     }
 
-    protected void Patrol()
+    protected virtual void Patrol()
     {
 
     }
 
-    protected void TowerPatrol()
+    protected virtual void TowerPatrol()
     {
 
     }
