@@ -1,16 +1,27 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAreaConfigurator : Enemy
+public class EnemyAreaConfigurator : MonoBehaviour
 {
+    [SerializeField] private Element activeElement;
 
     private float updateInterval = 0.2f;
     private float timer;
     private int oppositeAreaIndex;
+    private NavMeshAgent agent;
+    private GameObject player;
+
+    [Header("Configuracion movimiento")]
+    public float normalSpeed = 3.5f;
+    public float slowedSpeed = 1.5f;
+
+    [Header("NavMesh Area Costs")]
+    public float defaultAreaCost = 1f;
+    public float oppositeAreaCost = 10f;
 
     void Start()
     {
-        base.Awake();
+        player = GameObject.FindGameObjectWithTag(Constants.player);
         agent = GetComponent<NavMeshAgent>();
 
         agent.speed = normalSpeed;

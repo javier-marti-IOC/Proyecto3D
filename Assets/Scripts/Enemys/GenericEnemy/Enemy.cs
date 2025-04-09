@@ -7,7 +7,6 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Element activeElement;
     protected int healthPoints;
     [SerializeField] protected GameObject player;
-    protected NavMeshAgent agent;
     protected GameObject tower;
 
 
@@ -29,21 +28,11 @@ public abstract class Enemy : MonoBehaviour
     [Header("Cooldowns")]
     protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
-    [Header("Configuracion movimiento")]
-    protected float normalSpeed = 3.5f;
-    protected float slowedSpeed = 1.5f;
-
-    [Header("NavMesh Area Costs")]
-    protected float defaultAreaCost = 1f;
-    protected float oppositeAreaCost = 10f;
-
 
     protected virtual void Awake()
     {
         healthPoints = 100;
         player = GameObject.FindGameObjectWithTag(Constants.player);
-
-        agent = GetComponent<NavMeshAgent>();
 
     }
 
