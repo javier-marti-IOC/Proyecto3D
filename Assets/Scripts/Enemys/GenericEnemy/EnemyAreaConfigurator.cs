@@ -5,11 +5,8 @@ public class EnemyAreaConfigurator : MonoBehaviour
 {
     [SerializeField] private Element activeElement;
 
-    private float updateInterval = 0.2f;
-    private float timer;
     private int oppositeAreaIndex;
     private NavMeshAgent agent;
-    private GameObject player;
 
     [Header("Configuracion movimiento")]
     public float normalSpeed = 3.5f;
@@ -21,7 +18,6 @@ public class EnemyAreaConfigurator : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag(Constants.player);
         agent = GetComponent<NavMeshAgent>();
 
         agent.speed = normalSpeed;
@@ -59,14 +55,6 @@ public class EnemyAreaConfigurator : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
-
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-            agent.SetDestination(player.transform.position);
-            timer = updateInterval;
-        }
 
         AdjustSpeedBasedOnArea();
     }
