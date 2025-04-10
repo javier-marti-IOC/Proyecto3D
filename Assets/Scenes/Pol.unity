@@ -4823,6 +4823,9 @@ MonoBehaviour:
   player: {fileID: 0}
   minCooldownTimeInclusive: 0
   maxCooldownTimeExclusive: 0
+  wanderTimer: 0
+  wanderRadius: 0
+  mesh: {fileID: 0}
 --- !u!114 &391503730
 MonoBehaviour:
   m_ObjectHideFlags: 0
