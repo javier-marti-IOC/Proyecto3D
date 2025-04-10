@@ -824,6 +824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 501353301}
   - component: {fileID: 501353302}
+  - component: {fileID: 501353303}
   m_Layer: 0
   m_Name: 2
   m_TagString: Untagged
@@ -867,6 +868,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14, y: 1, z: 14}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &501353303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501353300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1493fecffebda844c9d55dfbafacdef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wizardBT: {fileID: 1597394417}
 --- !u!1 &531536699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1304,7 @@ MonoBehaviour:
   activeElement: 0
   playerInAttackRange: 0
   playerOnWizardMeleeRange: 0
+  onAttackEdge: 0
   switchElementTime: 4
   heavyAttackTime: 4
   basicSpell: {fileID: 6184481934479858873, guid: 771ea06139a7e22429df585d0ed05067,
@@ -1336,7 +1351,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 16, y: 1, z: 16}
+  m_Size: {x: 18, y: 1, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1710174638
 PrefabInstance:
