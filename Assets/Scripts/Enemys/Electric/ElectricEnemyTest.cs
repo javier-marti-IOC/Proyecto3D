@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Electr : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Electr : MonoBehaviour
     public float chargeTime = 2.5f;
     public float timeBetweenAttacks = 2f;
     public int damage = 20;
+    public Light attackLight;
 
     //private float attackTimer;
 
@@ -22,6 +24,7 @@ public class Electr : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         lightningLine.enabled = false;
+        attackLight.enabled = false;
         //attackTimer = timeBetweenAttacks + chargeTime;
     }
 
@@ -64,8 +67,10 @@ public class Electr : MonoBehaviour
 
     IEnumerator ChargeAndShoot()
     {
+        attackLight.enabled = true; 
         yield return new WaitForSeconds(chargeTime);
         ShootLightning();
+        attackLight.enabled = false;
     }
 
     void ShootLightning()
