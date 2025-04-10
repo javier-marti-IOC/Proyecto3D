@@ -36,11 +36,11 @@ public class ElementsHUD : MonoBehaviour
     public Image lightningElementIcon; // Icono de rayo
     public Image earthElementIcon; // Icono de tierra
 
-    // Imagenes de los bordes de los elementos.
-    public Image fireElementBorder; // Borde de el fuego
-    public Image waterElementBorder; // Borde de el agua
-    public Image lightningElementBorder; //Borde de el rayo
-    public Image earthElementBorder; // Borde de la tierra
+    // Imagenes de los Selectores de los elementos.
+    public Image fireElementSelector; // Selector de el fuego
+    public Image waterElementSelector; // Selector de el agua
+    public Image lightningElementSelector; //Selector de el rayo
+    public Image earthElementSelector; // Selector de la tierra
 
     // Booleanas que se activan si esta parpadeando el color del elemento, para saber si esta activo o no.
     private bool fireBlink; // Parpadeo Fuego
@@ -72,28 +72,28 @@ public class ElementsHUD : MonoBehaviour
         fireElement.fillAmount = fireElement.fillAmount + quantity / maxBarValue;
         FireStartBlink(); // Llama a la funcion de parpadeo
         fireElementIcon.color = IconColorActive;
-        fireElementBorder.color = BorderColorActive;
+        fireElementSelector.gameObject.SetActive(true);
     }
     // Restar Barra de agua
     public void waterReduce(float quantity) {
         waterElement.fillAmount = waterElement.fillAmount + quantity / maxBarValue;
         WaterStartBlink(); // Llama a la funcion de parpadeo
         waterElementIcon.color = IconColorActive;
-        waterElementBorder.color = BorderColorActive;
+        waterElementSelector.gameObject.SetActive(true);
     }
     // Restar Barra electricidad
     public void lightningReduce(float quantity) {
         lightningElement.fillAmount = lightningElement.fillAmount + quantity / maxBarValue;
         LightningStartBlink();
         lightningElementIcon.color = IconColorActive;
-        lightningElementBorder.color = BorderColorActive;
+        lightningElementSelector.gameObject.SetActive(true);
     }
     // Restar Barra de tierra
     public void earthReduce(float quantity) {
         earthElement.fillAmount = earthElement.fillAmount + quantity / maxBarValue;
         EarthStartBlink();
         earthElementIcon.color = IconColorActive;
-        earthElementBorder.color = BorderColorActive;
+        earthElementSelector.gameObject.SetActive(true);
     }
 
     // Funciones para iniciar/desactivar parpadeo en barra.
@@ -108,7 +108,7 @@ public class ElementsHUD : MonoBehaviour
     public void FireStopBlink() {
         fireBlink = false;
         fireElementIcon.color = IconColorInactive;
-        fireElementBorder.color = BorderColorInactive;
+        fireElementSelector.gameObject.SetActive(false);
     }
 
     // Corrutina para el parpadeo de fuego.
@@ -132,7 +132,7 @@ public class ElementsHUD : MonoBehaviour
     public void WaterStopBlink() {
         waterBlink = false;
         waterElementIcon.color = IconColorInactive;
-        waterElementBorder.color = BorderColorInactive;
+        waterElementSelector.gameObject.SetActive(false);
     }
 
     // Corrutina para el parpadeo de agua.
@@ -156,7 +156,7 @@ public class ElementsHUD : MonoBehaviour
     public void LightningStopBlink() {
         lightningBlink = false;
         lightningElementIcon.color = IconColorInactive;
-        lightningElementBorder.color = BorderColorInactive;
+        lightningElementSelector.gameObject.SetActive(false);
     }
 
     // Corrutina para el parpadeo de electricidad.
@@ -180,7 +180,7 @@ public class ElementsHUD : MonoBehaviour
     public void EarthStopBlink() {
         earthBlink = false;
         earthElementIcon.color = IconColorInactive;
-        earthElementBorder.color = BorderColorInactive;
+        earthElementSelector.gameObject.SetActive(false);
     }
 
     // Corrutina para el parpadeo de tierra.
