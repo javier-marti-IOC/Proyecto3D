@@ -6,11 +6,12 @@ TagManager:
   tags:
   - CinemachineTarget
   - DyingZone
+  - Light
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - No_Navmesh
   - Water
   - UI
   - 
