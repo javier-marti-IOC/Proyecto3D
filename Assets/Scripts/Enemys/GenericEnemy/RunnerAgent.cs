@@ -6,8 +6,6 @@ public class RunnerAgent : MonoBehaviour
     [SerializeField] private float wanderTimer;
     [SerializeField] private float wanderRadius;
     [HideInInspector] public GameObject mesh;
-
-    private Transform target;
     private NavMeshAgent agent;
     private float timer;
 
