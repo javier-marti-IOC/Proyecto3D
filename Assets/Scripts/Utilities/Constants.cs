@@ -6,6 +6,7 @@ using UnityEngine;
 public class Constants : MonoBehaviour
 {
     public const string player = "Player";
+    public const string navMeshSurface = "Plane";
     public const string walkable = "Walkable";
     public const string water = "Water";
     public const string fire = "Fire";
