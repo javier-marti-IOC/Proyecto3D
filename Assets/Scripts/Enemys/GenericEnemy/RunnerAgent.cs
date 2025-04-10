@@ -9,6 +9,8 @@ public class RunnerAgent : MonoBehaviour
     private NavMeshAgent agent;
     private float timer;
 
+    private float proximityThreshold = 0.5f; // Distancia para recalcular el destino
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +23,47 @@ public class RunnerAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Patrol();
+    }
+
+    private void Patrol()
+    {
+        //Sumar segundos
         timer += Time.deltaTime;
 
+        // Verifica si está suficientemente cerca del destino
+        if (!agent.pathPending && agent.remainingDistance <= proximityThreshold)
+        {
+            // 50% de probabilidad de rotar antes de continuar
+            if (Random.Range(1, 3) == 1)
+            {
+                RotateRandomly(); // TODO retocar funcion de rotar
+            }
+            else
+            {
+                SetNewDestination();
+                timer = 0;
+            }
+        }
+
+        // También calcula nuevo destino si ha pasado el tiempo
         if (timer >= wanderTimer)
         {
-            Vector3 newPos = RandomNavSphere(mesh.transform.position, wanderRadius, -1);
-            agent.SetDestination(newPos);
-            // agent.speed = Random.Range(1.0f, 4.0f);
+            SetNewDestination();
             timer = 0;
         }
+    }
+    private void RotateRandomly()
+    {
+        Debug.Log("Rotar posicion");
+        float randomYRotation = Random.Range(0f, 360f);
+        transform.rotation = Quaternion.Euler(0, randomYRotation, 0);
+    }
+
+    private void SetNewDestination()
+    {
+        Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
+        agent.SetDestination(newPos);
     }
 
     private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
