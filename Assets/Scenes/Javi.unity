@@ -8541,7 +8541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 2
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -11392,7 +11392,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 620816105}
     m_Modifications:
     - target: {fileID: 6160229747299904827, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
@@ -11402,17 +11402,17 @@ PrefabInstance:
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 92.27
+      value: -0.11000061
       objectReference: {fileID: 0}
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8629689
+      value: 0.08241224
       objectReference: {fileID: 0}
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.98
+      value: 0.5299988
       objectReference: {fileID: 0}
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
@@ -11422,17 +11422,17 @@ PrefabInstance:
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
         type: 3}
@@ -11459,6 +11459,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f59fdd5feb776e499aa26829d0e479a, type: 3}
+--- !u!4 &512933572 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6160229747300069659, guid: 7f59fdd5feb776e499aa26829d0e479a,
+    type: 3}
+  m_PrefabInstance: {fileID: 512933571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &516968419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13783,6 +13789,7 @@ Transform:
   - {fileID: 1377486846}
   - {fileID: 211303598}
   - {fileID: 2011519661}
+  - {fileID: 512933572}
   m_Father: {fileID: 2081138440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &621415364 stripped
@@ -14126,6 +14133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 630839852}
+  - component: {fileID: 630839853}
   m_Layer: 0
   m_Name: Normal_Terrains
   m_TagString: Untagged
@@ -14149,6 +14157,25 @@ Transform:
   - {fileID: 1015271324}
   m_Father: {fileID: 5783454191380906196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &630839853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630839851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &635676041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25145,7 +25172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 3
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -37108,7 +37135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 4
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -37789,7 +37816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 1
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -42560,7 +42587,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_UseGeometry: 0
-  m_DefaultArea: 0
+  m_DefaultArea: 1
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -42760,5 +42787,4 @@ SceneRoots:
   - {fileID: 8877293315142327124}
   - {fileID: 468601623}
   - {fileID: 444975493}
-  - {fileID: 512933571}
   - {fileID: 15397030}
