@@ -12,9 +12,13 @@ public class RunnerAgent : MonoBehaviour
 
     private float proximityThreshold = 1f; // Distancia para recalcular el destino
     private bool rotating;
+    public bool chase;
+    public GameObject player;
 
 
     // Start is called before the first frame update
+
+
 
     void Start()
     {
@@ -26,8 +30,22 @@ public class RunnerAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Patrol();
+        if (chase)
+        {
+            Chase();
+        }
+        else
+        {
+            Patrol();
+
+        }
     }
+
+    private void Chase()
+    {
+        agent.SetDestination(player.transform.position);
+    }
+
 
     private void Patrol()
     {

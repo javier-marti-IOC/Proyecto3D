@@ -71,7 +71,7 @@ public abstract class Enemy : MonoBehaviour
 
         if (timer >= wanderTimer)
         {
-            Vector3 newPos = RandomNavSphere(mesh.transform.position, wanderRadius, -1);
+            Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
             agent.SetDestination(newPos);
             // agent.speed = Random.Range(1.0f, 4.0f);
             timer = 0;
