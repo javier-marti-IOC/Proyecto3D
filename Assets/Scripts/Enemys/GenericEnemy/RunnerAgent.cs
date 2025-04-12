@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,10 +10,12 @@ public class RunnerAgent : MonoBehaviour
     private NavMeshAgent agent;
     private float timer;
 
-    private float proximityThreshold = 0.5f; // Distancia para recalcular el destino
+    private float proximityThreshold = 1f; // Distancia para recalcular el destino
+    private bool rotating;
 
 
     // Start is called before the first frame update
+
     void Start()
     {
         mesh = GameObject.Find(Constants.navMeshSurface);
@@ -35,7 +38,7 @@ public class RunnerAgent : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance <= proximityThreshold)
         {
             // 50% de probabilidad de rotar antes de continuar
-            if (Random.Range(1, 3) == 1)
+            if (!rotating && Random.Range(1, 3) == 1)
             {
                 RotateRandomly(); // TODO retocar funcion de rotar
             }
@@ -56,8 +59,14 @@ public class RunnerAgent : MonoBehaviour
     private void RotateRandomly()
     {
         Debug.Log("Rotar posicion");
-        float randomYRotation = Random.Range(0f, 360f);
+        rotating = true;
+        float randomYRotation = Random.Range(0f, 180f);
         transform.rotation = Quaternion.Euler(0, randomYRotation, 0);
+        Invoke("StopRotating", wanderTimer);
+    }
+    private void StopRotating()
+    {
+        rotating = false;
     }
 
     private void SetNewDestination()
