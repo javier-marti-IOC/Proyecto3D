@@ -41,6 +41,8 @@ public abstract class Enemy : MonoBehaviour
     {
         healthPoints = 100;
         player = GameObject.FindGameObjectWithTag(Constants.player);
+        mesh = GameObject.Find(Constants.navMeshSurface);
+        agent = GetComponent<NavMeshAgent>();
 
     }
 
