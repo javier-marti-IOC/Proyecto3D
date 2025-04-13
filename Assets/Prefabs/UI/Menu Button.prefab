@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Jugar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 83b30beae8a3c664eb6e563382231d22, type: 2}
-  m_sharedMaterial: {fileID: -5727051750559274291, guid: 83b30beae8a3c664eb6e563382231d22,
+  m_fontAsset: {fileID: 11400000, guid: 865081a3469c03c4bb754de6b5cbe242, type: 2}
+  m_sharedMaterial: {fileID: 6130160459288652671, guid: 865081a3469c03c4bb754de6b5cbe242,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
