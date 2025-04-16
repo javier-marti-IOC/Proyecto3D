@@ -7,14 +7,13 @@ public class ElementsHUD : MonoBehaviour
 {
     // Variables de color para los elementos
     Color32 fireColor = new Color32(194, 83, 83, 255); // #c25353
-    Color32 fireColorBlink = new Color32(199, 58, 58, 255); // #c73a3a
-    Color32 fireColorActive = new Color32(199, 58, 58, 255); //rgb(216, 37, 37)
-    Color32 waterColor = new Color32(63, 130, 194, 255); // #3f82c2
-    Color32 waterColorBlink = new Color32(136, 182, 225, 255); // #88b6e1
-    Color32 lightningColor = new Color32(209, 181, 74, 255); // #d1b54a
-    Color32 lightningColorBlink = new Color32(227, 185, 18, 255); // #e3b912
-    Color32 earthColor = new Color32(106, 158, 88, 255); // #6a9e58
-    Color32 earthColorBlink = new Color32(87, 128, 73, 255); // #578049
+    Color32 fireColorBlink = new Color32(191, 68, 72, 255); // #bf4448
+    Color32 waterColor = new Color32(62, 124, 178, 255); // #3e7cb2
+    Color32 waterColorBlink = new Color32(15, 101, 175, 255); // #0f65af
+    Color32 lightningColor = new Color32(223, 215, 100, 255); // #dfd764
+    Color32 lightningColorBlink = new Color32(221, 209, 47, 255); // #ddd12f
+    Color32 earthColor = new Color32(107, 172, 102, 255); //rgb(107, 172, 102)
+    Color32 earthColorBlink = new Color32(80, 127, 76, 255); //rgb(80, 127, 76)
 
     // Color para opacidad de los iconos
     Color32 IconColorActive = new Color32(255,255,255,255);
