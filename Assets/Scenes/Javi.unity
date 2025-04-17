@@ -8541,7 +8541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 2
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -24553,6 +24553,125 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1138165779}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1142453508
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.452
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1633826427867970123, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1633826427867970123, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1633826427867970123, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1633826427867970123, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_Name
+      value: Mutant Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047552900772034713, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047552900772034713, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047552900772034713, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047552900772034713, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298036564014644879, guid: df17593059b09484f8e7d2947c109a23,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 121681b1b9fde8649becc3a5042c10f4, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: -8339664617137742044, guid: df17593059b09484f8e7d2947c109a23, type: 3}
+    - {fileID: -7454297823963037342, guid: df17593059b09484f8e7d2947c109a23, type: 3}
+    - {fileID: 4432858316680300197, guid: df17593059b09484f8e7d2947c109a23, type: 3}
+    - {fileID: 8196798520224901374, guid: df17593059b09484f8e7d2947c109a23, type: 3}
+    - {fileID: 5994721076960434074, guid: df17593059b09484f8e7d2947c109a23, type: 3}
+    - {fileID: -7881596415080830656, guid: df17593059b09484f8e7d2947c109a23, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df17593059b09484f8e7d2947c109a23, type: 3}
 --- !u!1001 &1142471901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25145,7 +25264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 3
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -37108,7 +37227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 4
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -37789,7 +37908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyElement: 1
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -42762,3 +42881,4 @@ SceneRoots:
   - {fileID: 444975493}
   - {fileID: 512933571}
   - {fileID: 15397030}
+  - {fileID: 1142453508}

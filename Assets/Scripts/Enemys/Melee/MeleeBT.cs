@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EarthBT : Enemy
+public class MeleeBT : Enemy
 {
 
     // Start is called before the first frame update
@@ -55,7 +55,14 @@ public class EarthBT : Enemy
                     {
                         if (playerInAttackRange)
                         {
-                            //Cada enemigo
+                            if (activeElement == Element.Earth)
+                            {
+                                
+                            } 
+                            else if (activeElement == Element.Fire)
+                            {
+
+                            }
                         }
                         else
                         {
