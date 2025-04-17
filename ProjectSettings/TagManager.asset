@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - DyingZone
+  - Tower
+  - Enemy
   layers:
   - Default
   - TransparentFX
