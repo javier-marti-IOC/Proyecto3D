@@ -19,7 +19,7 @@ public class wizardBT : MonoBehaviour
     [HideInInspector]
     public bool playerInAttackRange;
     public bool playerOnWizardMeleeRange;
-    private bool onAttackEdge;
+    public bool onAttackEdge;
     private bool onAction;
 
     //Timers
@@ -121,16 +121,14 @@ public class wizardBT : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log(player.slowed);
-                        if(player.slowed)
+                        if(player.slowed && !onAttackEdge)
                         {
-                            Debug.Log("SLOWED");
                             //Nav Mesh track point to Action Edge
                             Vector3 direction = transform.position - player.transform.position;
-                            direction.Normalize(); // Normalize to get only the direction
+                            //Debug.Log("Player poition: " + player.transform.position + " Wizard position: " + transform.position + " Direction: " + direction );
 
                             // Calculate the new position in the opposite direction
-                            Vector3 newPosition = transform.position + direction * 100;
+                            Vector3 newPosition = transform.position + direction * 0.1f;
 
                             // Set the new position as the destination
                             gameObject.GetComponent<NavMeshAgent>().SetDestination(newPosition);
@@ -184,6 +182,9 @@ public class wizardBT : MonoBehaviour
         }
         else
         {
+            Vector3 direction = player.transform.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 4);
             if ((t -= Time.deltaTime) <= 0) 
             { 
                 onAction =false;
@@ -196,6 +197,9 @@ public class wizardBT : MonoBehaviour
 
     void basicSpellCast()
     {  
+        // Smooth look at the player
+
+        //transform.LookAt(player.transform);
         Instantiate(basicSpell, spellExitPoint.position, Quaternion.identity);
     }
 
@@ -227,6 +231,7 @@ public class wizardBT : MonoBehaviour
         {
             Debug.Log("ENTER");
             playerInAttackRange = true;
+            onAttackEdge = true;
             gameObject.GetComponent<NavMeshAgent>().SetDestination(transform.position);
         }
     }
@@ -237,15 +242,16 @@ public class wizardBT : MonoBehaviour
         {
             Debug.Log("EXIT");
             playerInAttackRange = false;
+            onAttackEdge = false;
         }
     }
 
     public void OnInerTriggerEnter()
     {
-
+        onAttackEdge = false;
     }
     public void OnInerTriggerExit()
     {
-        
+        onAttackEdge = true;
     }
 }
