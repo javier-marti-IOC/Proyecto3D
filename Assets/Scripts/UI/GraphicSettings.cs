@@ -37,48 +37,101 @@ public class GraphicSettings : MonoBehaviour
             return;
         }
 
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-        
-        if (resolutions.Length == 0)
+        // Lista común de resoluciones 16:9 populares
+        List<Vector2Int> desiredResolutions = new List<Vector2Int>
         {
-            Debug.LogError("No se encontraron resoluciones disponibles.");
-            return;
-        }
+            new Vector2Int(1280, 720),
+            new Vector2Int(1366, 768),
+            new Vector2Int(1600, 900),
+            new Vector2Int(1920, 1080),
+            new Vector2Int(2560, 1440),
+            new Vector2Int(3200, 1800),
+            new Vector2Int(3840, 2160)
+        };
 
-        // Usamos un HashSet para almacenar resoluciones únicas
-        HashSet<string> uniqueResolutions = new HashSet<string>();
+        // Obtener resoluciones disponibles
+        resolutions = Screen.resolutions;
+        HashSet<string> usedRes = new HashSet<string>();
         List<string> options = new List<string>();
-        uniqueResolutionsList.Clear(); // Limpiamos la lista antes de llenarla con resoluciones únicas
+        uniqueResolutionsList.Clear();
 
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Length; i++)
+        foreach (var res in desiredResolutions)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
-
-            // Solo agregamos resoluciones únicas
-            if (!uniqueResolutions.Contains(option))
+            Resolution match = System.Array.Find(resolutions, r => r.width == res.x && r.height == res.y);
+            if (match.width != 0 && match.height != 0)
             {
-                uniqueResolutions.Add(option);
-                options.Add(option);
-                uniqueResolutionsList.Add(resolutions[i]); // Añadimos la resolución a la lista de resoluciones únicas
-            }
+                string resString = $"{match.width}x{match.height}";
+                if (!usedRes.Contains(resString))
+                {
+                    usedRes.Add(resString);
+                    options.Add(resString);
+                    uniqueResolutionsList.Add(match);
 
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                // Ajustamos el índice de la resolución actual en la lista filtrada
-                currentResolutionIndex = options.Count - 1;
+                    if (match.width == Screen.currentResolution.width && match.height == Screen.currentResolution.height)
+                        currentResolutionIndex = options.Count - 1;
+                }
             }
         }
 
+        resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.onValueChanged.RemoveAllListeners();  // 🚨 Evita llamadas prematuras
+        resolutionDropdown.onValueChanged.RemoveAllListeners();
         resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionIndex", currentResolutionIndex);
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
     }
+    // void PopulateResolutionDropdown()
+    // {
+    //     if (resolutionDropdown == null)
+    //     {
+    //         Debug.LogError("resolutionDropdown no está asignado en el Inspector.");
+    //         return;
+    //     }
+
+    //     resolutions = Screen.resolutions;
+    //     resolutionDropdown.ClearOptions();
+        
+    //     if (resolutions.Length == 0)
+    //     {
+    //         Debug.LogError("No se encontraron resoluciones disponibles.");
+    //         return;
+    //     }
+
+    //     // Usamos un HashSet para almacenar resoluciones únicas
+    //     HashSet<string> uniqueResolutions = new HashSet<string>();
+    //     List<string> options = new List<string>();
+    //     uniqueResolutionsList.Clear(); // Limpiamos la lista antes de llenarla con resoluciones únicas
+
+    //     int currentResolutionIndex = 0;
+
+    //     for (int i = 0; i < resolutions.Length; i++)
+    //     {
+    //         string option = resolutions[i].width + "x" + resolutions[i].height;
+
+    //         // Solo agregamos resoluciones únicas
+    //         if (!uniqueResolutions.Contains(option))
+    //         {
+    //             uniqueResolutions.Add(option);
+    //             options.Add(option);
+    //             uniqueResolutionsList.Add(resolutions[i]); // Añadimos la resolución a la lista de resoluciones únicas
+    //         }
+
+    //         if (resolutions[i].width == Screen.currentResolution.width &&
+    //             resolutions[i].height == Screen.currentResolution.height)
+    //         {
+    //             // Ajustamos el índice de la resolución actual en la lista filtrada
+    //             currentResolutionIndex = options.Count - 1;
+    //         }
+    //     }
+
+    //     resolutionDropdown.AddOptions(options);
+    //     resolutionDropdown.onValueChanged.RemoveAllListeners();  // 🚨 Evita llamadas prematuras
+    //     resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionIndex", currentResolutionIndex);
+    //     resolutionDropdown.RefreshShownValue();
+    //     resolutionDropdown.onValueChanged.AddListener(SetResolution);
+    // }
 
     void PopulateQualityDropdown()
     {
