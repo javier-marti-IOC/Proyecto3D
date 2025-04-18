@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class MeleeBT : Enemy
 {
+    private bool playerHitted;
+    public int earthBasicAttackBasicDamage;
+    public int earthBasicAttackElementalDamage;
+    public int earthHeavyAttackBasicDamage;
+    public int earthHeavyAttackElementalDamage;
+    public Collider earthBasicAttackCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +72,7 @@ public class MeleeBT : Enemy
                         }
                         else
                         {
-                            Patrol();
+                            //Patrol();
                         }
                     }
                 }
@@ -78,7 +84,7 @@ public class MeleeBT : Enemy
                     }
                     else
                     {
-                        Patrol();
+                        //Patrol();
                     }
                 }
             }
@@ -87,5 +93,27 @@ public class MeleeBT : Enemy
         {
             Destroy(this);
         }
+    }
+
+    public void basicAttackEnter(Collider other)
+    {
+        if (other.tag.Equals(Constants.player) && !playerHitted )
+        {
+            playerHitted = true;
+            Debug.Log("Player hitted with earth basic attack");
+            player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthBasicAttackBasicDamage,earthBasicAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
+        }
+    }
+
+    private void earthBasicAttackActivated()
+    {
+        playerHitted = false;
+        earthBasicAttackCollider.enabled = true;
+    }
+
+    private void earthBasicAttackDisactivated()
+    {
+        playerHitted = false;
+        earthBasicAttackCollider.enabled = false;
     }
 }

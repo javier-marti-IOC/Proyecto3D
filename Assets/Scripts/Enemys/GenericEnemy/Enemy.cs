@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
     protected int healthPoints;
     [SerializeField] protected GameObject player;
     protected GameObject tower;
+    public GameManager gameManager;
 
 
     [Header("Booleans")]
