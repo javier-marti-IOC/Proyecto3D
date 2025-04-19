@@ -75,14 +75,10 @@ public class Tower : MonoBehaviour
 
 
 
-
-
         
         if(life <= 0)
         {
-            Destroy(gameObject); // Destruye la torre si se queda sin vida
-            cameraManager.ActivateFade();
-            changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
+            DestroyTower();
         }
         else
         {
@@ -141,6 +137,19 @@ public class Tower : MonoBehaviour
             }
         }
 
+    }
+
+    public void DestroyTower()
+    {
+        gameObject.SetActive(false);
+        cameraManager.ActivateFade();   
+        Invoke("EraseTower", 1.0f);
+    }
+
+    public void EraseTower()
+    {
+        changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
+        Destroy(gameObject); // Destruye la torre si se queda sin vida
     }
 
     public void IncreaseDecreaseTowerLife(bool increase, int life)
