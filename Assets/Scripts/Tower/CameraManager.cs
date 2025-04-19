@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchCamera : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
     [Header("Cameras")]
     public GameObject main_camera;
@@ -12,10 +12,10 @@ public class SwitchCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        /* if (Input.GetKeyDown(KeyCode.I))
         {
             GetComponent<Animator>().SetTrigger("Change");
-        }
+        } */
     }
 
     // Funcion para switchear las camaras
@@ -31,5 +31,10 @@ public class SwitchCamera : MonoBehaviour
             main_camera.SetActive(true);
             secondary_camera.SetActive(false);
         }
+    }
+
+    public void ActivateFade()
+    {
+        GetComponent<Animator>().SetTrigger("Change");
     }
 }

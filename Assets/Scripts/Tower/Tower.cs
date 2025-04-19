@@ -40,6 +40,9 @@ public class Tower : MonoBehaviour
     public Transform elementalObjects;
     public ChangeAppearence changeAppearence;
     public Color healthyTreeColor = new Color();
+
+    [Header("CameraManager")]
+    public CameraManager cameraManager;
     
     void Start()
     {
@@ -78,6 +81,7 @@ public class Tower : MonoBehaviour
         if(life <= 0)
         {
             Destroy(gameObject); // Destruye la torre si se queda sin vida
+            cameraManager.ActivateFade();
             changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
         }
         else

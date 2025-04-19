@@ -8114,13 +8114,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653448668}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35188413, y: 0.32157415, z: -0.13015765, w: 0.86938286}
-  m_LocalPosition: {x: 62.4, y: 81.3, z: -5.3}
+  m_LocalRotation: {x: 0.050255142, y: 0.7052412, z: 0.0044241273, w: 0.7071702}
+  m_LocalPosition: {x: 39.16, y: 15.94, z: 122.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 44.071, y: 40.598, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.718, y: 89.987, z: 4.434}
 --- !u!1001 &656780275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12975,6 +12975,7 @@ MonoBehaviour:
   elementalObjects: {fileID: 2029949130}
   changeAppearence: {fileID: 1113199430}
   healthyTreeColor: {r: 1, g: 0, b: 0, a: 0}
+  cameraManager: {fileID: 2060498841}
 --- !u!65 &1113199426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21077,8 +21078,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029949129}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.932617, y: 27.494097, z: -20.073898}
+  m_LocalRotation: {x: -0, y: 0.5730316, z: -0, w: 0.81953335}
+  m_LocalPosition: {x: -25.05, y: 39.16, z: -19.12}
   m_LocalScale: {x: 1, y: 2.5761, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21086,7 +21087,7 @@ Transform:
   - {fileID: 548536146}
   - {fileID: 2047009947}
   m_Father: {fileID: 1632894387}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 69.924, z: 0}
 --- !u!1001 &2031846852
 PrefabInstance:
   m_ObjectHideFlags: 0
