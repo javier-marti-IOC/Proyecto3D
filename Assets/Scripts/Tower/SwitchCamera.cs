@@ -12,60 +12,24 @@ public class SwitchCamera : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            FadeIn();
-            /* if(!secondary_camera.activeSelf)
-            {
-                FadeIn();
-                //ToggleCamera(1);
-                Invoke("ActivateSecondaryCam", 1f);
-            } */
-        }
-
-        if(Input.GetKey(KeyCode.U))
-        {
-            FadeOut();
-            /* if(!main_camera.activeSelf)
-            {
-                ToggleCamera(0);
-                FadeOut();
-            } */
+            GetComponent<Animator>().SetTrigger("Change");
         }
     }
 
-    public void ActivateMainCam()
+    // Funcion para switchear las camaras
+    public void ToggleCam()
     {
-        main_camera.SetActive(true);
-        secondary_camera.SetActive(false);
-    }
-
-    public void ActivateSecondaryCam()
-    {
-        main_camera.SetActive(false);
-        secondary_camera.SetActive(true);
-    }
-
-    // Toggle camaras
-    public void ToggleCamera(int cam)
-    {
-        if(cam == 1)
+        if (main_camera.activeSelf)
+        {
+            main_camera.SetActive(false);
+            secondary_camera.SetActive(true);
+        }
+        else if(secondary_camera.activeSelf)
         {
             main_camera.SetActive(true);
             secondary_camera.SetActive(false);
-            return;
         }
-        main_camera.SetActive(false);
-        secondary_camera.SetActive(true);
-    }
-
-    public void FadeOut()
-    {
-       animator.Play("FadeOut"); 
-    }
-
-    public void FadeIn()
-    {
-       animator.Play("FadeIn"); 
     }
 }
