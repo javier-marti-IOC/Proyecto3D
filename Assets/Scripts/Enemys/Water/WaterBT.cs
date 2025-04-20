@@ -5,12 +5,7 @@ using UnityEngine.AI;
 
 public class WaterBT : Enemy
 {
-    private bool playerInFront;
-    private bool rotatePosition;
-    public bool instanciaPrueba = false;
-
     // Start is called before the first frame update
-
     void Start()
     {
         base.Awake();
@@ -20,10 +15,6 @@ public class WaterBT : Enemy
     //Update is called once per frame
     void Update()
     {
-        if (instanciaPrueba)
-        {
-            Patrol();
-        }
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
@@ -56,43 +47,19 @@ public class WaterBT : Enemy
                 {
                     if (playerInAttackRange)
                     {
-                        //Funcionalidad enemigo agua
-                        if (playerInFront)
+                        if (cooldownHeavyAttack < 0) // TODO Comprobar como se calcula 
                         {
-                            if (rotatePosition)
-                            {
-                                // Funcion de rotar la posicion
-                            }
-                            else
-                            {
-                                if (cooldownHeavyAttack < 0) // TODO Comprobar como se calcula 
-                                {
-                                    // Ataque basico
-                                }
-                                else
-                                {
-                                    // Genero cooldown de heavyAttack
-                                    // Ataque fuerte
-                                }
-                            }
+                            // Ataque basico
                         }
-                        // Revisar la duplicidad de codigo en esta parte
                         else
                         {
-                            if (cooldownHeavyAttack < 0) // TODO Comprobar como se calcula 
-                            {
-                                // Ataque basico
-                            }
-                            else
-                            {
-                                // Genero cooldown de heavyAttack
-                                // Ataque fuerte
-                            }
+                            // Genero cooldown de heavyAttack
+                            // Ataque fuerte
                         }
                     }
                     else
                     {
-                        // Funcion de perseguir
+                        Chase();
                     }
 
                 }
@@ -104,7 +71,7 @@ public class WaterBT : Enemy
                     }
                     else
                     {
-                        // Patrol();
+                        Patrol();
                     }
                 }
             }
