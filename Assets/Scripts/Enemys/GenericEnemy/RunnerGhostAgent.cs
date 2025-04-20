@@ -2,11 +2,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RunnerAgent : MonoBehaviour
+public class RunnerGhostAgent : MonoBehaviour
 {
     [SerializeField] private float wanderTimer;
     [SerializeField] private float wanderRadius;
-    [HideInInspector] public GameObject mesh;
     private NavMeshAgent agent;
     private float timer;
 
@@ -22,9 +21,9 @@ public class RunnerAgent : MonoBehaviour
 
     void Start()
     {
-        mesh = GameObject.Find(Constants.navMeshSurface);
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
+        player = GameObject.FindWithTag(Constants.player);
     }
 
     // Update is called once per frame

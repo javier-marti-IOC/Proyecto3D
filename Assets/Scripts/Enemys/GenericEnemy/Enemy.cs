@@ -29,19 +29,18 @@ public abstract class Enemy : MonoBehaviour
     protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
 
-    [Header("Patrol ")]
+    [Header("Patrol")]
     [SerializeField] private float wanderTimer;
     [SerializeField] private float wanderRadius;
-    [HideInInspector] public GameObject mesh;
     private NavMeshAgent agent;
     private float timer;
+    [SerializeField] private GameObject ghost;
 
 
     protected virtual void Awake()
     {
         healthPoints = 100;
         player = GameObject.FindGameObjectWithTag(Constants.player);
-        mesh = GameObject.Find(Constants.navMeshSurface);
         agent = GetComponent<NavMeshAgent>();
 
     }
@@ -67,28 +66,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Patrol()
     {
-        timer += Time.deltaTime;
+        Instantiate(ghost, agent.transform.position, Quaternion.identity);
 
-        if (timer >= wanderTimer)
-        {
-            Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
-            agent.SetDestination(newPos);
-            // agent.speed = Random.Range(1.0f, 4.0f);
-            timer = 0;
-        }
-    }
-
-    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
-    {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
-
-        randDirection += origin;
-
-        NavMeshHit navHit;
-
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-
-        return navHit.position;
+        agent.SetDestination(ghost.transform.position);
+        agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
     }
 
     protected virtual void TowerPatrol()
