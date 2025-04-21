@@ -52,18 +52,38 @@ public class ElementsHUD : MonoBehaviour
     // Funciones para aumentar la imagen de la barra elemental. 
      public void fireAdd(float quantity) {
         fireElement.fillAmount = fireElement.fillAmount + quantity / maxBarValue;
+
+        if (fireElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
+        {
+            fireElement.color = fireColorBlink;
+        }
     }
     // Restar Barra de agua
     public void waterAdd(float quantity) {
         waterElement.fillAmount = waterElement.fillAmount + quantity / maxBarValue;
+
+        if (waterElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
+        {
+            waterElement.color = waterColorBlink;
+        }
     }
     // Restar Barra electricidad
     public void lightningAdd(float quantity) {
         lightningElement.fillAmount = lightningElement.fillAmount + quantity / maxBarValue;
+
+        if (lightningElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
+        {
+            lightningElement.color = lightningColorBlink;
+        }
     }
     // Restar Barra de tierra
     public void earthAdd(float quantity) {
         earthElement.fillAmount = earthElement.fillAmount + quantity / maxBarValue;
+
+        if (earthElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
+        {
+            earthElement.color = earthColorBlink;
+        }
     }
     // Funciones para reducir la imagen de la barra elemental
     // Restar Barra de fuego
