@@ -11,6 +11,7 @@ public class MeleeBT : Enemy
     public int earthHeavyAttackBasicDamage;
     public int earthHeavyAttackElementalDamage;
     public Collider earthBasicAttackCollider;
+    public Collider earthHeavyAttackCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,8 @@ public class MeleeBT : Enemy
     //Update is called once per frame
     void Update()
     {
+        cooldownHeavyAttack -= Time.deltaTime;
+        Debug.Log("C: " + cooldownHeavyAttack);
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
@@ -52,7 +55,7 @@ public class MeleeBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-                    if (/*player.GetComponent<PlayerController>().maxEmemies*/playerDetected)
+                    if (/*player.GetComponent<PlayerController>().maxEmemies*/1==-1)
                     {
                         //Funcion quedar a la espera para combate
 
@@ -63,8 +66,17 @@ public class MeleeBT : Enemy
                         {
                             if (activeElement == Element.Earth)
                             {
-                                
-                            } 
+                                if (cooldownHeavyAttack < 0)
+                                {
+                                    transform.LookAt(player.transform);
+                                    animator.SetInteger("Anim",2);
+                                }
+                                else
+                                {
+                                    transform.LookAt(player.transform);
+                                    animator.SetInteger("Anim",1);
+                                }
+                            }
                             else if (activeElement == Element.Fire)
                             {
 
@@ -72,7 +84,8 @@ public class MeleeBT : Enemy
                         }
                         else
                         {
-                            //Patrol();
+                            animator.SetInteger("Anim",0);
+                            ghostAgent.GetComponent<RunnerAgent>().chase = true;
                         }
                     }
                 }
@@ -84,7 +97,7 @@ public class MeleeBT : Enemy
                     }
                     else
                     {
-                        //Patrol();
+                        Patrol();
                     }
                 }
             }
@@ -101,7 +114,19 @@ public class MeleeBT : Enemy
         {
             playerHitted = true;
             Debug.Log("Player hitted with earth basic attack");
-            player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthBasicAttackBasicDamage,earthBasicAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
+            //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthBasicAttackBasicDamage,earthBasicAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
+            Debug.Log("Player health: " + player.GetComponent<tempPlayer>().healthPoints);
+        }
+    }
+
+    public void heavyAttackEnter(Collider other)
+    {
+        if (other.tag.Equals(Constants.player) && !playerHitted )
+        {
+            playerHitted = true;
+            Debug.Log("Player hitted with earth basic attack");
+            //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthHeavyAttackBasicDamage,earthHeavyAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
+            Debug.Log("Player health: " + player.GetComponent<tempPlayer>().healthPoints);
         }
     }
 
@@ -115,5 +140,34 @@ public class MeleeBT : Enemy
     {
         playerHitted = false;
         earthBasicAttackCollider.enabled = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals(Constants.player))
+        {
+            playerInAttackRange = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag.Equals(Constants.player))
+        {
+            playerInAttackRange = false;
+        }
+    }
+
+    private void earthHeavyAttackActivated()
+    {
+        playerHitted = false;
+        earthHeavyAttackCollider.enabled = true;
+    }
+
+    private void earthHeavyAttackDisactivated()
+    {
+        playerHitted = false;
+        earthHeavyAttackCollider.enabled = false;
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive,maxCooldownTimeExclusive);
     }
 }

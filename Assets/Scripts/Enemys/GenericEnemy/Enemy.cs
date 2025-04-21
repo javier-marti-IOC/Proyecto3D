@@ -9,6 +9,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject player;
     protected GameObject tower;
     public GameManager gameManager;
+    public GameObject ghostAgent;
+    protected Animator animator;
 
 
     [Header("Booleans")]
@@ -16,7 +18,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool onAction; // Esta realizando alguna accion
     protected bool onCombat; // El enemigo esta en combate
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
-    protected bool playerDetected; // Detecto al player
+    /*protected*/public bool playerDetected; // Detecto al player
     protected bool playerInAttackRange; // Esta el player en mi zona de ataque
     protected bool towerInRange; // Tengo la torre en rango para patrullar
 
@@ -44,6 +46,7 @@ public abstract class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag(Constants.player);
         mesh = GameObject.Find(Constants.navMeshSurface);
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
     }
 
@@ -68,7 +71,9 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Patrol()
     {
-        timer += Time.deltaTime;
+        animator.SetInteger("Anim",0);
+        ghostAgent.GetComponent<RunnerAgent>().chase = false;
+        /*timer += Time.deltaTime;
 
         if (timer >= wanderTimer)
         {
@@ -76,7 +81,8 @@ public abstract class Enemy : MonoBehaviour
             agent.SetDestination(newPos);
             // agent.speed = Random.Range(1.0f, 4.0f);
             timer = 0;
-        }
+        }*/
+
     }
 
     private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
