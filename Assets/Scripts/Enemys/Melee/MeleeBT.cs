@@ -85,7 +85,6 @@ public class MeleeBT : Enemy
                         else
                         {
                             animator.SetInteger("Anim",0);
-                            ghostAgent.GetComponent<RunnerGhostAgent>().chase = true;
                         }
                     }
                 }
