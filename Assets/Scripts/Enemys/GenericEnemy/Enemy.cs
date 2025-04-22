@@ -1,13 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
 
-    [SerializeField] protected Element activeElement;
+    protected Element activeElement;
     protected int healthPoints;
-    [SerializeField] protected GameObject player;
+    protected GameObject player;
     protected GameObject tower;
+    public GameManager gameManager;
+    public GameObject ghostAgent;
+    protected Animator animator;
 
 
     [Header("Booleans")]
@@ -15,46 +19,40 @@ public abstract class Enemy : MonoBehaviour
     protected bool onAction; // Esta realizando alguna accion
     protected bool onCombat; // El enemigo esta en combate
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
-    protected bool playerDetected; // Detecto al player
     protected bool playerInAttackRange; // Esta el player en mi zona de ataque
     protected bool towerInRange; // Tengo la torre en rango para patrullar
 
     [Header("Ranges")]
-    [SerializeField] protected int minCooldownTimeInclusive; /* Tiempo minimo inclusivo del rango 
+    protected int minCooldownTimeInclusive; /* Tiempo minimo inclusivo del rango 
                                             (este numero si entra en el rango)*/
-    [SerializeField] protected int maxCooldownTimeExclusive; /* Tiempo maximo exclusivo del rango 
+    protected int maxCooldownTimeExclusive; /* Tiempo maximo exclusivo del rango 
                                             (este numero no entra en el rango)*/
 
     [Header("Cooldowns")]
     protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
 
-    [Header("Patrol ")]
-    [SerializeField] private float wanderTimer;
-    [SerializeField] private float wanderRadius;
-    [HideInInspector] public GameObject mesh;
-    private NavMeshAgent agent;
-    private float timer;
+    [Header("Patrol")]
+    protected NavMeshAgent agent;
+    protected GameObject ghost;
+    [SerializeField] protected GameObject ghostPrefab;
+    [SerializeField] protected float safeDistance = 1f;  // Distancia prudencial que se quiere mantener
+
+    [Header("Chase")]
+    public bool playerDetected; // Detecto al player
+    [SerializeField] protected GameObject playerDetector;
+    [SerializeField] protected GameObject minDistanceChase;
+
 
 
     protected virtual void Awake()
     {
         healthPoints = 100;
         player = GameObject.FindGameObjectWithTag(Constants.player);
-        mesh = GameObject.Find(Constants.navMeshSurface);
         agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = safeDistance;
+        animator = GetComponent<Animator>();
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     // Metodos comunes
@@ -65,9 +63,19 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    protected virtual void Patrol()
+    protected void Patrol()
     {
-        timer += Time.deltaTime;
+        if (ghost == null)
+        {
+            ghost = Instantiate(ghostPrefab, agent.transform.position, Quaternion.identity, agent.transform);
+        }
+
+        agent.SetDestination(ghost.transform.position);
+        agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
+        
+        animator.SetInteger("Anim",0);
+        ghostAgent.GetComponent<RunnerAgent>().chase = false;
+        /*timer += Time.deltaTime;
 
         if (timer >= wanderTimer)
         {
@@ -75,24 +83,28 @@ public abstract class Enemy : MonoBehaviour
             agent.SetDestination(newPos);
             // agent.speed = Random.Range(1.0f, 4.0f);
             timer = 0;
-        }
+        }*/
+
     }
 
-    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    public void Chase()
     {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
-
-        randDirection += origin;
-
-        NavMeshHit navHit;
-
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-
-        return navHit.position;
+        Destroy(ghost);
+        playerDetector.SetActive(false);
+        minDistanceChase.SetActive(false);
+        agent.SetDestination(player.transform.position);
     }
-
+    public void StopChasing()
+    {
+        playerDetector.SetActive(true);
+        minDistanceChase.SetActive(true);
+        playerDetected = false;
+    }
     protected virtual void TowerPatrol()
     {
 
     }
+
+
+
 }

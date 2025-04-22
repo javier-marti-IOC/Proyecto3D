@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class HealthHUD : MonoBehaviour
 {
-    Color32 healthColor = new Color32(166, 24, 22, 255); //rgb(166, 24, 22) Rojo para la vida
-    Color32 healthGhostColor = new Color32(192, 162, 14, 255); //rgb(192, 162, 14) Amarillo para la barra fantasma
+    Color32 healthColor = new Color32(93, 75, 122, 255); //rgb(93, 75, 122)
+    Color32 healthGhostColor = new Color32(138, 93, 170, 255); // #6a4f96
+    //rgb(138, 93, 170)
 
     public Image healthBar; // Barra de vida normal
     public Image healthBarGhost; // Barra fantasma que mantiene por un tiempo la vida anterior respecto a la nueva al recibir daño
