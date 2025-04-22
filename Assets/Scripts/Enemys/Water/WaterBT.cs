@@ -37,7 +37,7 @@ public class WaterBT : Enemy
                 else
                 {
                     //Me acerco
-                    //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
+                    TowerChase();
                 }
             }
             else
@@ -67,7 +67,7 @@ public class WaterBT : Enemy
                 {
                     if (towerInRange)
                     {
-                        TowerPatrol();
+                        TowerChase();
                     }
                     else
                     {

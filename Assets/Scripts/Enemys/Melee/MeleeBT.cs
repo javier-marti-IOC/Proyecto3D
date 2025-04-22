@@ -92,7 +92,7 @@ public class MeleeBT : Enemy
                 {
                     if (towerInRange)
                     {
-                        TowerPatrol();
+                        TowerChase();
                     }
                     else
                     {

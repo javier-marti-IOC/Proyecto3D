@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     public Element activeElement;
     protected int healthPoints;
     protected GameObject player;
-    protected GameObject tower;
+    public Tower tower;
     public GameManager gameManager;
     public GameObject ghostAgent;
     protected Animator animator;
@@ -75,9 +75,9 @@ public abstract class Enemy : MonoBehaviour
         ghost.GetComponent<RunnerGhostAgent>().patrolPoint = pointPatrol;
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
-        
+
         // animator.SetInteger("Anim",0); TODO añadir animator
-        
+
         /*timer += Time.deltaTime;
 
         if (timer >= wanderTimer)
@@ -103,8 +103,12 @@ public abstract class Enemy : MonoBehaviour
         minDistanceChase.SetActive(true);
         playerDetected = false;
     }
-    protected virtual void TowerPatrol()
+    protected virtual void TowerChase()
     {
+        Destroy(ghost);
+        playerDetector.SetActive(false);
+        minDistanceChase.SetActive(false);
+        agent.SetDestination(tower.transform.position);
 
     }
 

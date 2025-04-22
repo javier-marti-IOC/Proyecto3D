@@ -32,6 +32,7 @@ public class Tower : MonoBehaviour
 
     // Escondemos del inspector porque si no, al eliminar el enemigo de la lista, salta error de que no lo encuentra
     public List<GameObject> enemiesInHealRange = new List<GameObject>();
+    public List<GameObject> enemiesInSecondZoneRange = new List<GameObject>();
 
     [Header("Spawner")]
     public Spawner spawner;
@@ -103,7 +104,7 @@ public class Tower : MonoBehaviour
                         if (secondZoneContact) // El enemigo de mi tipo esta en el collider exterior?
                         {
                             Debug.Log("-----> ACERCATE");
-                            CallAllEnemies(secondZone.instantiatedEnemies , secondZone.isCalling);
+                            CallAllEnemies(enemiesInSecondZoneRange);
                         }
                         else
                         {
@@ -176,8 +177,9 @@ public class Tower : MonoBehaviour
     {
         GameObject enemy = enemiesInHealRange[0]; // Creamos referencia del prefab guardado en X posicion del array
         enemiesInHealRange.RemoveAt(0); // Eliminamos ese prefab del array
-        Destroy(enemy); // Destruimos el prefab
-        secondZone.enemyCount = secondZone.enemyCount - 2;
+        enemiesInSecondZoneRange.Remove(enemy.GetComponentInParent<Transform>().gameObject);
+        Destroy(enemy.GetComponentInParent<Transform>().gameObject); // Destruimos el prefab
+        secondZone.enemyCount -= 2;
     }
 
     public void ActivateCooldown()
@@ -203,7 +205,7 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag(Constants.enemy)) // Comparamos el tag 
         {
-            Enemy enemy = other.GetComponent<Enemy>(); // Cogemos su componente enemy
+            Enemy enemy = other.GetComponentInParent<Enemy>(); // Cogemos su componente enemy
             if (enemy != null)
             {
                 if (enemy.activeElement == activeElement) // Verificamos si es del mismo tipo que la torre
@@ -212,7 +214,7 @@ public class Tower : MonoBehaviour
                     // firstZoneContact = true;
                     if (!enemiesInHealRange.Contains(other.gameObject)) // Si el enemigo no esta en el array de enemigos en zona, lo añadimos
                     {
-                        enemiesInHealRange.Add(other.gameObject); // Añadimos el enemigo a la lista de enemigos detectados en la zona de curacion
+                        enemiesInHealRange.Add(other.GetComponentInParent<Transform>().gameObject); // Añadimos el enemigo a la lista de enemigos detectados en la zona de curacion
                     }
                 }
             }
@@ -229,7 +231,7 @@ public class Tower : MonoBehaviour
                 {
                     //secondZoneContact = false;
                     firstZoneContact = false;
-                    enemiesInHealRange.Remove(other.gameObject); // Eliminamos el enemigo que sale de la zona de curacion
+                    enemiesInHealRange.Remove(other.GetComponentInParent<Transform>().gameObject); // Eliminamos el enemigo que sale de la zona de curacion
                 }
             }
         }
@@ -250,18 +252,11 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void CallAllEnemies(List<Enemy> instantiatedEnemies, bool isCalling)
+    public void CallAllEnemies(List<GameObject> instantiatedEnemies)
     {
-        foreach (Enemy enemy in instantiatedEnemies)
-        {
-            if (isCalling)
-            {
-                enemy.towerCalling = true;
-            }
-            else
-            {
-                enemy.towerCalling = false;
-            }
+        foreach (GameObject enemyPrefab in instantiatedEnemies)
+        {            
+            enemyPrefab.GetComponent<Enemy>().towerCalling = true;
         }
     }
 
