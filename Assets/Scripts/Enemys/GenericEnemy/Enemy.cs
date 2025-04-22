@@ -74,7 +74,7 @@ public abstract class Enemy : MonoBehaviour
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
         
         animator.SetInteger("Anim",0);
-        ghostAgent.GetComponent<RunnerAgent>().chase = false;
+        ghostAgent.GetComponent<RunnerGhostAgent>().chase = false;
         /*timer += Time.deltaTime;
 
         if (timer >= wanderTimer)
