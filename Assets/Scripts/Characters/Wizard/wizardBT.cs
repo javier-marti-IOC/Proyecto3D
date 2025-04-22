@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class wizardBT : MonoBehaviour
 {
+    public GameManager gameManager;
     public tempPlayer player;
     [HideInInspector]
     public Element activeElement;
@@ -66,7 +67,7 @@ public class wizardBT : MonoBehaviour
             if(playerInAttackRange)
             {
                 //Im in a positive element interaction with the player?
-                if(tempGameManager.PositiveElementInteraction(activeElement,player.activeElement))
+                if(gameManager.ElementInteraction(activeElement,player.activeElement) > 0)
                 {
                     Debug.Log(player.slowed);
                     //Is player Slowed?
@@ -117,7 +118,7 @@ public class wizardBT : MonoBehaviour
                 {
                     if (switchElementTimer < 0 && CounterElementAvailable(player.activeElement))
                     {
-                        activeElement = tempGameManager.getCounterElement(player.activeElement);
+                        activeElement = gameManager.getCounterElement(player.activeElement);
                     }
                     else
                     {

@@ -9,6 +9,9 @@ public abstract class Enemy : MonoBehaviour
     protected int healthPoints;
     protected GameObject player;
     protected GameObject tower;
+    public GameManager gameManager;
+    public GameObject ghostAgent;
+    protected Animator animator;
 
 
     [Header("Booleans")]
@@ -48,6 +51,7 @@ public abstract class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag(Constants.player);
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = safeDistance;
+        animator = GetComponent<Animator>();
 
     }
 
@@ -68,6 +72,19 @@ public abstract class Enemy : MonoBehaviour
 
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
+        
+        animator.SetInteger("Anim",0);
+        ghostAgent.GetComponent<RunnerAgent>().chase = false;
+        /*timer += Time.deltaTime;
+
+        if (timer >= wanderTimer)
+        {
+            Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
+            agent.SetDestination(newPos);
+            // agent.speed = Random.Range(1.0f, 4.0f);
+            timer = 0;
+        }*/
+
     }
 
     public void Chase()
