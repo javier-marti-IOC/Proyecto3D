@@ -36,6 +36,14 @@ public class Tower : MonoBehaviour
     [Header("Spawner")]
     public Spawner spawner;
 
+    [Header("Elemental Objects Assigned")]
+    public Transform elementalObjects;
+    public ChangeAppearence changeAppearence;
+    public Color healthyTreeColor = new Color();
+
+    [Header("CameraManager")]
+    public CameraManager cameraManager;
+    
     void Start()
     {
         this.life = max_life;
@@ -67,12 +75,10 @@ public class Tower : MonoBehaviour
 
 
 
-
-
         
-        if(life <= 0) // Arbol de comportamiento
+        if(life <= 0)
         {
-            Destroy(gameObject); // Destruye la torre si se queda sin vida
+            DestroyTower();
         }
         else
         {
@@ -131,6 +137,19 @@ public class Tower : MonoBehaviour
             }
         }
 
+    }
+
+    public void DestroyTower()
+    {
+        gameObject.SetActive(false);
+        cameraManager.ActivateFade();   
+        Invoke("EraseTower", 1.0f);
+    }
+
+    public void EraseTower()
+    {
+        changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
+        Destroy(gameObject); // Destruye la torre si se queda sin vida
     }
 
     public void IncreaseDecreaseTowerLife(bool increase, int life)
