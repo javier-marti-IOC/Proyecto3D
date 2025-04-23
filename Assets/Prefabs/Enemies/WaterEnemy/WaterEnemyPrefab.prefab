@@ -512,11 +512,12 @@ MonoBehaviour:
   towerCalling: 0
   minCooldownTimeInclusive: 0
   maxCooldownTimeExclusive: 0
-  ghostPrefab: {fileID: 5997274429968177521}
+  ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
+    type: 3}
   safeDistance: 1
   playerDetected: 0
-  playerDetector: {fileID: 0}
-  minDistanceChase: {fileID: 0}
+  playerDetector: {fileID: 1961920292286216563}
+  minDistanceChase: {fileID: 6769779894073946202}
   basicAttackCollider: {fileID: 0}
   heavyAttackCollider: {fileID: 0}
   basicAttackBasicDamage: 0
@@ -542,7 +543,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &8078066866786851775

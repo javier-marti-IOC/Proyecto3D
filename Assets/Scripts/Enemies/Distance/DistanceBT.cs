@@ -46,7 +46,7 @@ public class DistanceBT : Enemy
                 {
                     if (playerInAttackRange)
                     {
-                        switch (activeElement)
+                        /* switch (activeElement)
                         {
                             case Element.Water:
                                 Debug.Log(cooldownHeavyAttack);
@@ -66,11 +66,11 @@ public class DistanceBT : Enemy
                                 break;
                             default:
                                 break;
-                        }
+                        } */
                     }
                     else
                     {
-                        animator.SetInteger(Constants.state, 0);
+                        // animator.SetInteger(Constants.state, 0);
                         Chase();
                     }
 
