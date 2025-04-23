@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
-    public Element activeElement;
+    [SerializeField] protected Element activeElement;
     protected int healthPoints;
     protected GameObject player;
     public Tower tower;
@@ -45,8 +45,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject minDistanceChase;
 
     [Header("Collider")]
-    protected Collider basicAttackCollider;
-    protected Collider heavyAttackCollider;
+    [SerializeField] protected Collider basicAttackCollider;
+    [SerializeField] protected Collider heavyAttackCollider;
 
     [Header("Damages")]
     [SerializeField] protected int basicAttackBasicDamage;

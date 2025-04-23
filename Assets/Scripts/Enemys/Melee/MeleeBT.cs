@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class MeleeBT : Enemy
 {
-
+    private bool playerInSecurityDistance;
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
@@ -65,7 +65,45 @@ public class MeleeBT : Enemy
                             }
                             else if (activeElement == Element.Fire)
                             {
-                                
+                                // Esta el player usando el elemento de agua
+                                if(player.GetComponent<tempPlayer>().activeElement == Element.Water)
+                                {
+                                    // Esta a una distancia prudencial del player?
+                                    if(playerInSecurityDistance)
+                                    {
+                                        // Tiene cooldown de ataque en area?
+                                        if (cooldownHeavyAttack < 0)
+                                        {
+                                            transform.LookAt(player.transform);
+                                            animator.SetInteger("Anim",2);
+                                        }
+                                        else
+                                        {
+                                            // Se queda mirandolo
+                                            transform.LookAt(player.transform);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Alejarse
+                                        Vector3 direction = transform.position - player.transform.position; // Ir en direccion contraria
+                                        Vector3 newPosition = transform.position + direction * 0.1f; // Calcula la nueva posicion en la direccion opuesta
+                                        agent.SetDestination(newPosition); 
+                                    }
+
+                                } else
+                                { // Tiene cooldown de ataque en area?
+                                    if (cooldownHeavyAttack < 0)
+                                    {
+                                        transform.LookAt(player.transform);
+                                        animator.SetInteger("Anim",2);
+                                    }
+                                    else
+                                    {
+                                        transform.LookAt(player.transform);
+                                        animator.SetInteger("Anim",1);
+                                    }
+                                }
                             }
                         }
                         else
@@ -91,6 +129,34 @@ public class MeleeBT : Enemy
         else
         {
             Destroy(this);
+        }
+    }
+    public void PlayerSecurityMinDistanceColliderEnter(Collider other)
+    {
+        if(other.tag.Equals(Constants.player))
+        {
+            playerInSecurityDistance = false;
+        }
+    }
+    public void PlayerSecurityMinDistanceColliderExit(Collider other)
+    {
+        if(other.tag.Equals(Constants.player))
+        {
+            playerInSecurityDistance = true;
+        }
+    }
+    public void PlayerSecurityMaxDistanceColliderEnter(Collider other)
+    {
+        if(other.tag.Equals(Constants.player))
+        {
+            playerInSecurityDistance = true;
+        }
+    }
+    public void PlayerSecurityMaxDistanceColliderExit(Collider other)
+    {
+        if(other.tag.Equals(Constants.player))
+        {
+            playerInSecurityDistance = false;
         }
     }
 }
