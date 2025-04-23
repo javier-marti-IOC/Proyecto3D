@@ -7,6 +7,9 @@ TagManager:
   - CinemachineTarget
   - DyingZone
   - Light
+  - Enemy
+  - Tower
+  - StonePillar
   layers:
   - Default
   - TransparentFX
