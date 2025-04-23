@@ -52,14 +52,15 @@ public class MeleeBT : Enemy
                             if (activeElement == Element.Earth)
                             {
                                 Debug.Log(cooldownHeavyAttack);
+                                Debug.Log(animator.GetInteger("Anim"));
                                 if (cooldownHeavyAttack < 0)
                                 {
-                                    transform.LookAt(player.transform);
+                                    //transform.LookAt(player.transform);
                                     animator.SetInteger("Anim",2);
                                 }
                                 else
                                 {
-                                    transform.LookAt(player.transform);
+                                    //transform.LookAt(player.transform);
                                     animator.SetInteger("Anim",1);
                                 }
                             }

@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
-    protected Element activeElement;
+    [SerializeField] protected Element activeElement;
     protected int healthPoints;
     protected GameObject player;
     protected GameObject tower;
@@ -43,8 +43,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject minDistanceChase;
 
     [Header("Collider")]
-    protected Collider basicAttackCollider;
-    protected Collider heavyAttackCollider;
+    [SerializeField] protected Collider basicAttackCollider;
+    [SerializeField] protected Collider heavyAttackCollider;
 
     [Header("Damages")]
     [SerializeField] protected int basicAttackBasicDamage;
@@ -113,7 +113,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    public void basicAttackEnter(Collider other)
+    public void BasicAttackEnter(Collider other)
     {
         if (other.tag.Equals(Constants.player) && !playerHitted )
         {
@@ -163,12 +163,16 @@ public abstract class Enemy : MonoBehaviour
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive,maxCooldownTimeExclusive);
     }
 
-    public void heavyAttackEnter(Collider other)
+    public void HeavyAttackEnter(Collider other)
     {
         if (other.tag.Equals(Constants.player) && !playerHitted )
         {
             playerHitted = true;            
             //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthHeavyAttackBasicDamage,earthHeavyAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
         }
+    }
+    public void LookAt()
+    {
+        transform.LookAt(player.transform);
     }
 }

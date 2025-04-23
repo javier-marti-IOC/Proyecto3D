@@ -12,6 +12,6 @@ public class HeavyAttackCollider : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        earthBT.heavyAttackEnter(other);
+        earthBT.HeavyAttackEnter(other);
     }
 }
