@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerInAttackRange : MonoBehaviour
 {
-    public Enemy enemy;
+    private Enemy enemy;
+    void Awake()
+    {
+        enemy = gameObject.GetComponentInParent<Enemy>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {

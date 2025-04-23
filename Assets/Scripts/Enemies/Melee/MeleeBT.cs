@@ -55,12 +55,12 @@ public class MeleeBT : Enemy
                                 if (cooldownHeavyAttack < 0)
                                 {
                                     transform.LookAt(player.transform);
-                                    animator.SetInteger("Anim",2);
+                                    animator.SetInteger(Constants.state,2);
                                 }
                                 else
                                 {
                                     transform.LookAt(player.transform);
-                                    animator.SetInteger("Anim",1);
+                                    animator.SetInteger(Constants.state,1);
                                 }
                             }
                             else if (activeElement == Element.Fire)
@@ -70,7 +70,7 @@ public class MeleeBT : Enemy
                         }
                         else
                         {
-                            animator.SetInteger("Anim",0);
+                            animator.SetInteger(Constants.state,0);
                             Chase();
                         }
                     }

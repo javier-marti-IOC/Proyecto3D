@@ -86,7 +86,7 @@ public abstract class Enemy : MonoBehaviour
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
         
-        animator.SetInteger("Anim",0);
+        animator.SetInteger(Constants.state,0);
         /*timer += Time.deltaTime;
 
         if (timer >= wanderTimer)

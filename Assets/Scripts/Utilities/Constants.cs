@@ -13,6 +13,8 @@ public class Constants : MonoBehaviour
     public const string electric = "Electric";
     public const string pointPatrol = "PointPatrol";
     public const string enemy = "Enemy";
+    public const string state = "State";
+
 }
 
 public enum Element
