@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +11,7 @@ public abstract class Enemy : MonoBehaviour
     public GameManager gameManager;
     public GameObject ghostAgent;
     protected Animator animator;
-
+    protected bool playerHitted;
 
     [Header("Booleans")]
     protected bool towerCalling; // Booleana para saber cuando la torre nos esta llamando
@@ -23,9 +22,9 @@ public abstract class Enemy : MonoBehaviour
     protected bool towerInRange; // Tengo la torre en rango para patrullar
 
     [Header("Ranges")]
-    protected int minCooldownTimeInclusive; /* Tiempo minimo inclusivo del rango 
+    [SerializeField] protected int minCooldownTimeInclusive; /* Tiempo minimo inclusivo del rango 
                                             (este numero si entra en el rango)*/
-    protected int maxCooldownTimeExclusive; /* Tiempo maximo exclusivo del rango 
+    [SerializeField] protected int maxCooldownTimeExclusive; /* Tiempo maximo exclusivo del rango 
                                             (este numero no entra en el rango)*/
 
     [Header("Cooldowns")]
@@ -42,6 +41,16 @@ public abstract class Enemy : MonoBehaviour
     public bool playerDetected; // Detecto al player
     [SerializeField] protected GameObject playerDetector;
     [SerializeField] protected GameObject minDistanceChase;
+
+    [Header("Collider")]
+    protected Collider basicAttackCollider;
+    protected Collider heavyAttackCollider;
+
+    [Header("Damages")]
+    [SerializeField] protected int basicAttackBasicDamage;
+    [SerializeField] protected int basicAttackElementalDamage;
+    [SerializeField] protected int heavyAttackBasicDamage;
+    [SerializeField] protected int heavyAttackElementalDamage;
 
 
 
@@ -74,7 +83,6 @@ public abstract class Enemy : MonoBehaviour
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
         
         animator.SetInteger("Anim",0);
-        ghostAgent.GetComponent<RunnerGhostAgent>().chase = false;
         /*timer += Time.deltaTime;
 
         if (timer >= wanderTimer)
@@ -105,6 +113,62 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
+    public void basicAttackEnter(Collider other)
+    {
+        if (other.tag.Equals(Constants.player) && !playerHitted )
+        {
+            playerHitted = true;
+            //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthBasicAttackBasicDamage,earthBasicAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
+        }
+    }
 
+    public void PlayerInAttackRangeEnter(Collider other)
+    {
+        if (other.tag.Equals(Constants.player))
+        {
+            playerInAttackRange = true;
+        }
+    }
 
+    public void PlayerInAttackRangeExit(Collider other)
+    {
+        if (other.tag.Equals(Constants.player))
+        {
+            playerInAttackRange = false;
+        }
+    }
+
+    private void BasicAttackActivated()
+    {
+        playerHitted = false;
+        basicAttackCollider.enabled = true;
+    }
+
+    private void BasicAttackDisabled()
+    {
+        playerHitted = false;
+        basicAttackCollider.enabled = false;
+    }
+
+    private void HeavyAttackActivated()
+    {
+        playerHitted = false;
+        heavyAttackCollider.enabled = true;
+    }
+
+    private void HeavyAttackDisabled()
+    {
+        playerHitted = false;
+        heavyAttackCollider.enabled = false;
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive,maxCooldownTimeExclusive);
+    }
+
+    public void heavyAttackEnter(Collider other)
+    {
+        if (other.tag.Equals(Constants.player) && !playerHitted )
+        {
+            playerHitted = true;            
+            //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthHeavyAttackBasicDamage,earthHeavyAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
+        }
+    }
 }
