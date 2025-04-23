@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class DistanceBT : Enemy
                 {
                     if (playerInAttackRange)
                     {
-                        /* switch (activeElement)
+                        switch (activeElement)
                         {
                             case Element.Water:
                                 Debug.Log(cooldownHeavyAttack);
@@ -57,7 +58,7 @@ public class DistanceBT : Enemy
                                 }
                                 else
                                 {
-                                    transform.LookAt(player.transform);
+                                    // transform.LookAt(player.transform);
                                     animator.SetInteger(Constants.state, 1);
                                 }
                                 break;
@@ -66,11 +67,10 @@ public class DistanceBT : Enemy
                                 break;
                             default:
                                 break;
-                        } */
+                        }
                     }
                     else
                     {
-                        // animator.SetInteger(Constants.state, 0);
                         Chase();
                     }
 
