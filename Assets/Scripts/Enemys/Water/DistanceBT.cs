@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WaterBT : Enemy
+public class DistanceBT : Enemy
 {
     // Start is called before the first frame update
     void Start()
     {
         base.Awake();
-        activeElement = Element.Water;
     }
 
     //Update is called once per frame
