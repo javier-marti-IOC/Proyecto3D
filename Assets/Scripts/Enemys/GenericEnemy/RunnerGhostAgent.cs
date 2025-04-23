@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,38 +10,23 @@ public class RunnerGhostAgent : MonoBehaviour
 
     private float proximityThreshold = 1f; // Distancia para recalcular el destino
     // private bool rotating;
-    public bool chase;
-    public GameObject player;
+    private GameObject player;
+    public GameObject patrolPoint;
 
 
     // Start is called before the first frame update
-
-
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
-        player = GameObject.FindWithTag(Constants.player);
+        player = GameObject.Find(Constants.player);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (chase)
-        {
-            Chase();
-        }
-        else
-        {
-            Patrol();
-
-        }
-    }
-
-    private void Chase()
-    {
-        agent.SetDestination(player.transform.position);
+        Patrol();
     }
 
 
@@ -61,8 +45,8 @@ public class RunnerGhostAgent : MonoBehaviour
             }
             else
             { */
-                SetNewDestination();
-                timer = 0;
+            SetNewDestination();
+            timer = 0;
             /* } */
         }
 
@@ -88,7 +72,7 @@ public class RunnerGhostAgent : MonoBehaviour
 
     private void SetNewDestination()
     {
-        Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
+        Vector3 newPos = RandomNavSphere(patrolPoint.transform.position, wanderRadius, -1);
         agent.SetDestination(newPos);
     }
 

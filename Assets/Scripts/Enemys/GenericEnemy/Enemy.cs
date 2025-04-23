@@ -4,17 +4,17 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
-    protected Element activeElement;
+    public Element activeElement;
     protected int healthPoints;
     protected GameObject player;
-    protected GameObject tower;
+    public Tower tower;
     public GameManager gameManager;
     public GameObject ghostAgent;
     protected Animator animator;
     protected bool playerHitted;
 
     [Header("Booleans")]
-    protected bool towerCalling; // Booleana para saber cuando la torre nos esta llamando
+    public bool towerCalling; // Booleana para saber cuando la torre nos esta llamando
     protected bool onAction; // Esta realizando alguna accion
     protected bool onCombat; // El enemigo esta en combate
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
@@ -36,6 +36,8 @@ public abstract class Enemy : MonoBehaviour
     protected GameObject ghost;
     [SerializeField] protected GameObject ghostPrefab;
     [SerializeField] protected float safeDistance = 1f;  // Distancia prudencial que se quiere mantener
+    protected GameObject pointPatrol;
+
 
     [Header("Chase")]
     public bool playerDetected; // Detecto al player
@@ -61,6 +63,7 @@ public abstract class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = safeDistance;
         animator = GetComponent<Animator>();
+        pointPatrol = GameObject.Find(Constants.pointPatrol);
 
     }
 
@@ -79,6 +82,7 @@ public abstract class Enemy : MonoBehaviour
             ghost = Instantiate(ghostPrefab, agent.transform.position, Quaternion.identity, agent.transform);
         }
 
+        ghost.GetComponent<RunnerGhostAgent>().patrolPoint = pointPatrol;
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
         
@@ -108,8 +112,12 @@ public abstract class Enemy : MonoBehaviour
         minDistanceChase.SetActive(true);
         playerDetected = false;
     }
-    protected virtual void TowerPatrol()
+    protected virtual void TowerChase()
     {
+        Destroy(ghost);
+        playerDetector.SetActive(false);
+        minDistanceChase.SetActive(false);
+        agent.SetDestination(tower.transform.position);
 
     }
 
