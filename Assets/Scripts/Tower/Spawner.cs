@@ -8,6 +8,15 @@ public class Spawner : MonoBehaviour
     public Tower tower; // Referencia a la torre
 
     public SecondZone secondZone;
+    [Header("Track points")]
+    public GameObject[] trackPoints;  // Array que contiene los track points donde aparecen los enemigos
+    private int rndNum;
+    void Start()
+    {
+        rndNum = Random.Range(0, trackPoints.Length);
+        Debug.Log("TRK POINT: " + trackPoints[rndNum]);
+    }
+    
     public void SpawnEnemy(int pos)
     {
         int spawnPointX = Random.Range(36, 38); // Coordenada X
@@ -28,4 +37,31 @@ public class Spawner : MonoBehaviour
             Debug.Log("NO PUEDO CREAR TANTOS ENEMIGOS");
         }
     }
+
+    /* public void SpawnEnemy(int pos, Collider spawnZone, float y_position)
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        if (spawnZone is BoxCollider box)
+        {
+            Vector3 center = box.center + box.transform.position;
+            Vector3 size = box.size;
+            Vector3 randomPosition = new Vector3(
+                Random.Range(-size.x / 2, size.x / 2),
+                // Random.Range(-size.y / 2, size.y / 2),
+                y_position,
+                Random.Range(-size.z / 2, size.z / 2)
+            );
+            spawnPosition = box.transform.TransformPoint(randomPosition);
+        }
+        Debug.Log("----------> NUMERO DE ENEMIGOS INSTANCIADOS EN ZONA: " + secondZone.instantiatedEnemies.Count);
+        if (secondZone.enemyCount < 6)
+        {
+            Instantiate(enemyPrefabs[pos], spawnPosition, Quaternion.identity);
+            tower.isOnCooldown = true;
+        }
+        else
+        {
+            Debug.Log("NO PUEDO CREAR TANTOS ENEMIGOS");
+        }
+    } */
 }
