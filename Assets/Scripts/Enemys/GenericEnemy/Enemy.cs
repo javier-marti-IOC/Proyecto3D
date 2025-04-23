@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
-    [SerializeField] protected Element activeElement;
+    public Element activeElement;
     protected int healthPoints;
     protected GameObject player;
     public Tower tower;
