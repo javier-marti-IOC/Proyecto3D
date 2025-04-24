@@ -9,7 +9,7 @@ public class MeleeBT : Enemy
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
-        Debug.Log("C: " + cooldownHeavyAttack);
+        Debug.Log("Attacking: "+attacking);
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
@@ -51,15 +51,14 @@ public class MeleeBT : Enemy
                         {
                             if (activeElement == Element.Earth)
                             {
-                                Debug.Log(cooldownHeavyAttack);
                                 if (cooldownHeavyAttack < 0)
                                 {
-                                    transform.LookAt(player.transform);
+                                    //transform.LookAt(player.transform);
                                     animator.SetInteger(Constants.state,2);
                                 }
                                 else
                                 {
-                                    transform.LookAt(player.transform);
+                                    //transform.LookAt(player.transform);
                                     animator.SetInteger(Constants.state,1);
                                 }
                             }
@@ -108,8 +107,11 @@ public class MeleeBT : Enemy
                         }
                         else
                         {
-                            animator.SetInteger(Constants.state,0);
-                            Chase();
+                            if (!attacking)
+                            {
+                                animator.SetInteger(Constants.state,0);
+                                Chase();
+                            }
                         }
                     }
                 }

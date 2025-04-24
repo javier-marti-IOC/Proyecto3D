@@ -8,6 +8,6 @@ public class BasicAttackCollider : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        earthBT.basicAttackEnter(other);
+        earthBT.BasicAttackEnter(other);
     }
 }
