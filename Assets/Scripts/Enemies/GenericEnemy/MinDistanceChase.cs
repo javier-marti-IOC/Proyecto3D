@@ -12,12 +12,9 @@ public class MinDistanceChase : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-                    Debug.Log(other.name);
-
         if (other.CompareTag(Constants.player))
         {
-            Debug.Log("perseguir por cercania");
-            enemy.Chase();
+            enemy.playerDetected = true;
         }
     }
 }
