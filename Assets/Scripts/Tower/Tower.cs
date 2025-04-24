@@ -95,6 +95,7 @@ public class Tower : MonoBehaviour
                     {
                         IncreaseDecreaseTowerLife(true, life); // Incremento vida
                         DestroyEnemy(); // Sacrificamos enemigo
+                        UncallAllEnemies(enemiesInSecondZoneRange);
                         secondZoneContact = false;
                         firstZoneContact = false;
                         ActivateCooldown();
@@ -251,12 +252,21 @@ public class Tower : MonoBehaviour
             }
         }
     }
-
+    // Activamos el towerCalling para todos los enemigos instanciados y dentro de la segunda zona
     public void CallAllEnemies(List<GameObject> instantiatedEnemies)
     {
         foreach (GameObject enemyPrefab in instantiatedEnemies)
         {            
             enemyPrefab.GetComponent<Enemy>().towerCalling = true;
+        }
+    }
+
+    // Desactivamos el towerCalling para todos los enemigos instanciados y dentro de la segunda zona, para que vuelvan a patrullar
+    public void UncallAllEnemies(List<GameObject> instantiatedEnemies)
+    {
+        foreach (GameObject enemyPrefab in instantiatedEnemies)
+        {            
+            enemyPrefab.GetComponent<Enemy>().towerCalling = false;
         }
     }
 
