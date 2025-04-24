@@ -11,7 +11,6 @@ public abstract class Enemy : MonoBehaviour
     public GameManager gameManager;
     public GameObject ghostAgent;
     protected Animator animator;
-    protected bool playerHitted;
 
     [Header("Booleans")]
     public bool towerCalling; // Booleana para saber cuando la torre nos esta llamando
@@ -20,6 +19,8 @@ public abstract class Enemy : MonoBehaviour
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
     protected bool playerInAttackRange; // Esta el player en mi zona de ataque
     protected bool towerInRange; // Tengo la torre en rango para patrullar
+    protected bool playerHitted;
+    protected bool attacking;
 
     [Header("Ranges")]
     [SerializeField] protected int minCooldownTimeInclusive; /* Tiempo minimo inclusivo del rango 
@@ -105,6 +106,7 @@ public abstract class Enemy : MonoBehaviour
         playerDetector.SetActive(false);
         minDistanceChase.SetActive(false);
         agent.SetDestination(player.transform.position);
+        //transform.LookAt(player.transform);
     }
     public void StopChasing()
     {
@@ -121,7 +123,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    public void basicAttackEnter(Collider other)
+    public void BasicAttackEnter(Collider other)
     {
         if (other.tag.Equals(Constants.player) && !playerHitted )
         {
@@ -146,37 +148,47 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    private void BasicAttackActivated()
+    public void BasicAttackActivated()
     {
         playerHitted = false;
         basicAttackCollider.enabled = true;
     }
 
-    private void BasicAttackDisabled()
+    public void BasicAttackDisabled()
     {
         playerHitted = false;
         basicAttackCollider.enabled = false;
     }
 
-    private void HeavyAttackActivated()
+    public void HeavyAttackActivated()
     {
         playerHitted = false;
         heavyAttackCollider.enabled = true;
     }
 
-    private void HeavyAttackDisabled()
+    public void HeavyAttackDisabled()
     {
         playerHitted = false;
         heavyAttackCollider.enabled = false;
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive,maxCooldownTimeExclusive);
     }
 
-    public void heavyAttackEnter(Collider other)
+    public void HeavyAttackEnter(Collider other)
     {
         if (other.tag.Equals(Constants.player) && !playerHitted )
         {
             playerHitted = true;            
             //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthHeavyAttackBasicDamage,earthHeavyAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
         }
+    }
+    public void StartAttack()
+    {
+        attacking = true;
+    }
+
+    public void EndAttack()
+    {
+        attacking = false;
+
     }
 }
