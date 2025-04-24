@@ -13,11 +13,46 @@ public class Spawner : MonoBehaviour
     private int rndNum;
     void Start()
     {
-        rndNum = Random.Range(0, trackPoints.Length);
-        Debug.Log("TRK POINT: " + trackPoints[rndNum]);
+        /* if(trackPoints.Length > 0)
+        {
+            rndNum = Random.Range(0, trackPoints.Length);
+
+            Debug.Log("TRK POINT NAME: " + trackPoints[rndNum].name); 
+            Debug.Log("TRK POINT X POSITION: " + trackPoints[rndNum].transform.localPosition.x); 
+        }
+        else
+        {
+            Debug.Log("No hay track points");
+        } */
     }
     
     public void SpawnEnemy(int pos)
+    {
+        if(trackPoints.Length > 0)
+        {
+            rndNum = Random.Range(0, trackPoints.Length);
+            
+            int spawnPointX = (int) trackPoints[rndNum].transform.position.x; // Coordenada X
+            int spawnPointY = (int) trackPoints[rndNum].transform.position.y; // Coordenada Y
+            int spawnPointZ = (int) trackPoints[rndNum].transform.position.z; // Coordenada Z
+
+            Vector3 spawnPosition = new Vector3(spawnPointX, spawnPointY, spawnPointZ); // Posicion
+
+            // Debug.Log("NUEVA POSICION DE RESPAWN: " + spawnPointX + " " + spawnPointY + " " + spawnPointZ);
+            // Debug.Log("----------> NUMERO DE ENEMIGOS INSTANCIADOS EN ZONA: " + secondZone.instantiatedEnemies.Count);
+            
+            if(secondZone.enemyCount < 6)
+            {
+                Instantiate(enemyPrefabs[pos], spawnPosition, Quaternion.identity); // Instanciamos el enemigo
+                tower.isOnCooldown = true; // Activamos el cooldown
+            }
+            else
+            {
+                Debug.Log("NO PUEDO CREAR TANTOS ENEMIGOS");
+            }
+        }
+    }
+    /* public void SpawnEnemy(int pos)
     {
         int spawnPointX = Random.Range(36, 38); // Coordenada X
         int spawnPointY = 5; // Coordenada Y
@@ -36,7 +71,7 @@ public class Spawner : MonoBehaviour
         {
             Debug.Log("NO PUEDO CREAR TANTOS ENEMIGOS");
         }
-    }
+    } */
 
     /* public void SpawnEnemy(int pos, Collider spawnZone, float y_position)
     {

@@ -110,7 +110,7 @@ public class Tower : MonoBehaviour
                         {
                             if (/* life > (life - invoke_cost) */ (life - invoke_cost) > 0)
                             {
-                                spawner.SpawnEnemy(0); // Invocamos
+                                spawner.SpawnEnemy(1); // Invocamos
                                 IncreaseDecreaseTowerLife(false, life); // Aplicamos coste de invocacion
                             }
                             else
@@ -126,7 +126,7 @@ public class Tower : MonoBehaviour
                     {
                         if (/* life > (life - invoke_cost) */ (life - invoke_cost) > 0)
                         {
-                            spawner.SpawnEnemy(0); // Invoco en el collider exterior, no en el de contacto
+                            spawner.SpawnEnemy(1); // Invoco en el collider exterior, no en el de contacto
                             IncreaseDecreaseTowerLife(false, life);
                         }
                         else

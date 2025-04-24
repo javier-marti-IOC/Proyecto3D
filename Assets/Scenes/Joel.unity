@@ -3726,7 +3726,7 @@ PrefabInstance:
     - target: {fileID: 2741559699287078300, guid: 4dd0191767df0914dac938cfca1affcc,
         type: 3}
       propertyPath: m_Name
-      value: TrackPoint
+      value: TrackPoint2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11890,6 +11890,12 @@ Transform:
   - {fileID: 44681886}
   m_Father: {fileID: 60459104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &973658364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2741559699287078300, guid: 4dd0191767df0914dac938cfca1affcc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2066630565806820940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &974214116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12800,6 +12806,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1031015488}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1037726385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2741559699287078300, guid: 4dd0191767df0914dac938cfca1affcc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2015751598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1038849943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13382,9 +13394,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 5997274429968177521, guid: 89126174ddcda454f9bb9c4264e26609, type: 3}
+  - {fileID: 3603403763503387647, guid: 9f85ab4d35b72e64a85807f9192e5c2b, type: 3}
   tower: {fileID: 1113199425}
   secondZone: {fileID: 2106299201}
-  trackPoints: []
+  trackPoints:
+  - {fileID: 973658364}
+  - {fileID: 1685810872}
+  - {fileID: 1037726385}
 --- !u!114 &1113199425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18502,6 +18518,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1679487582}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1685810872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2741559699287078300, guid: 4dd0191767df0914dac938cfca1affcc,
+    type: 3}
+  m_PrefabInstance: {fileID: 300024365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1696616921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21925,7 +21947,7 @@ PrefabInstance:
     - target: {fileID: 2741559699287078300, guid: 4dd0191767df0914dac938cfca1affcc,
         type: 3}
       propertyPath: m_Name
-      value: TrackPoint
+      value: TrackPoint3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23578,7 +23600,7 @@ PrefabInstance:
     - target: {fileID: 2741559699287078300, guid: 4dd0191767df0914dac938cfca1affcc,
         type: 3}
       propertyPath: m_Name
-      value: TrackPoint
+      value: TrackPoint1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
