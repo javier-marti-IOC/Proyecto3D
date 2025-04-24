@@ -6,35 +6,41 @@ using UnityEngine;
 public class SecondZone : MonoBehaviour
 {
     public Tower tower;
-    public List<GameObject> instantiatedEnemies = new List<GameObject>();
+    public Enemy enemy;
+    public List<Enemy> instantiatedEnemies = new List<Enemy>();
     public int enemyCount;
+    public bool isCalling;
 
-    public void OnTriggerStay(Collider other)
+
+    /* public void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Enemy"))
-        {   
-            TowerEnemy enemy = other.GetComponent<TowerEnemy>();
-            if(enemy != null)
+        if (other.CompareTag(Constants.enemy))
+        {
+            enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                if (enemy.selectedType == tower.selectedType)
+                if (enemy.activeElement == tower.activeElement)
                 {
                     tower.secondZoneContact = true;
                     // Debug.Log("CONTACTO ENEMIGO DE MI ELEMENTO");
                 }
             }
         }
-    }
+    } */
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
-        {   
-            TowerEnemy enemy = other.GetComponent<TowerEnemy>();
-            if(enemy != null)
+        if (other.CompareTag(Constants.enemy))
+        {
+            enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                if (enemy.selectedType == tower.selectedType)
+                if (enemy.activeElement == tower.activeElement)
                 {
-                    enemyCount = enemyCount + 1;
+                    tower.enemiesInSecondZoneRange.Add(enemy.GetComponentInParent<Transform>().gameObject);
+                    tower.secondZoneContact = true;
+                    enemy.tower = tower;
+                    enemyCount++;
                 }
             }
         }
@@ -42,15 +48,17 @@ public class SecondZone : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Enemy"))
-        {   
-            TowerEnemy enemy = other.GetComponent<TowerEnemy>();
-            if(enemy != null)
+        if (other.CompareTag(Constants.enemy))
+        {
+            enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                if (enemy.selectedType == tower.selectedType)
+                if (enemy.activeElement == tower.activeElement)
                 {
-                    enemyCount = enemyCount - 1;
+                    enemyCount--;
                     tower.secondZoneContact = false;
+                    tower.enemiesInSecondZoneRange.Remove(enemy.GetComponentInParent<Transform>().gameObject);
+
                 }
             }
         }

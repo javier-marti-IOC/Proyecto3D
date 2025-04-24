@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TowerEnemy : MonoBehaviour
 {
-    public elementType selectedType;
+    public Element selectedType;
 
     void Update()
     {
