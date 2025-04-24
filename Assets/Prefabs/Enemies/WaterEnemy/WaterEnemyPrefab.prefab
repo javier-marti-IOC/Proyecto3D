@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 6127873753904418742}
   m_Layer: 0
   m_Name: WaterEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bfec398b07f9a4d98bf897f68e917f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeElement: 0
+  activeElement: 2
   tower: {fileID: 0}
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}

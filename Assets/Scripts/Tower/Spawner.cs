@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
 
     public SecondZone secondZone;
     [Header("Track points")]
-    public GameObject[] trackPoints;  // Array que contiene los track points donde aparecen los enemigos
+    public Transform[] trackPoints;  // Array que contiene los track points donde aparecen los enemigos
     private int rndNum;
     void Start()
     {
@@ -30,20 +30,18 @@ public class Spawner : MonoBehaviour
     {
         if(trackPoints.Length > 0)
         {
-            rndNum = Random.Range(0, trackPoints.Length);
+            rndNum = Random.Range(0, trackPoints.Length); // Seleccionamos un track point aleatorio dentro del array
             
-            int spawnPointX = (int) trackPoints[rndNum].transform.position.x; // Coordenada X
-            int spawnPointY = (int) trackPoints[rndNum].transform.position.y; // Coordenada Y
-            int spawnPointZ = (int) trackPoints[rndNum].transform.position.z; // Coordenada Z
+            // Vector3 spawnPoint = trackPoints[rndNum].transform.position; // Coordenada X,Y,Z
 
-            Vector3 spawnPosition = new Vector3(spawnPointX, spawnPointY, spawnPointZ); // Posicion
+            // Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z); // Determinamos la posicion de spawn
 
             // Debug.Log("NUEVA POSICION DE RESPAWN: " + spawnPointX + " " + spawnPointY + " " + spawnPointZ);
             // Debug.Log("----------> NUMERO DE ENEMIGOS INSTANCIADOS EN ZONA: " + secondZone.instantiatedEnemies.Count);
             
             if(secondZone.enemyCount < 6)
             {
-                Instantiate(enemyPrefabs[pos], spawnPosition, Quaternion.identity); // Instanciamos el enemigo
+                Instantiate(enemyPrefabs[pos], trackPoints[rndNum].transform.position, Quaternion.identity); // Instanciamos el enemigo
                 tower.isOnCooldown = true; // Activamos el cooldown
             }
             else
