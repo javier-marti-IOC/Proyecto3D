@@ -77,6 +77,8 @@ public class Tower : MonoBehaviour
 
         if(ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
+            int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
+            Debug.Log("POSITION EN EL ARRAY: " + position);
             Destroy(gameObject);
         }
 
