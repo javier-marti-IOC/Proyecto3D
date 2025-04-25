@@ -45,6 +45,10 @@ public class Tower : MonoBehaviour
     [Header("CameraManager")]
     public CameraManager cameraManager;
 
+    [Header("Progress Manager")]
+    public ProgressManager progressManager;
+    public ProgressData progressData;
+
     void Start()
     {
         this.life = max_life;
@@ -52,8 +56,6 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-
-
         if (life_text != null) // Mostrar la vida de la torre por pantalla
         {
             life_text.text = "T.Life: " + life;
@@ -73,9 +75,10 @@ public class Tower : MonoBehaviour
             }
         }
 
-
-
-
+        if(ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
+        {
+            Destroy(gameObject);
+        }
 
         if (life <= 0)
         {
@@ -153,6 +156,8 @@ public class Tower : MonoBehaviour
     {
         changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
         Destroy(gameObject); // Destruye la torre si se queda sin vida
+        ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
+        Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
     }
 
     public void IncreaseDecreaseTowerLife(bool increase, int life)

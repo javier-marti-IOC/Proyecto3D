@@ -7,17 +7,6 @@ public class CameraManager : MonoBehaviour
     [Header("Cameras")]
     public GameObject main_camera;
     public GameObject secondary_camera;
-    [Header("FadeIn / FadeOut")]
-    public Animator animator;
-
-    void Update()
-    {
-        /* if (Input.GetKeyDown(KeyCode.I))
-        {
-            GetComponent<Animator>().SetTrigger("Change");
-        } */
-    }
-
     // Funcion para switchear las camaras
     public void ToggleCam()
     {
@@ -32,7 +21,6 @@ public class CameraManager : MonoBehaviour
             secondary_camera.SetActive(false);
         }
     }
-
     public void ActivateFade()
     {
         GetComponent<Animator>().SetTrigger("Change");
