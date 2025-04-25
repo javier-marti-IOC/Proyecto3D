@@ -128,14 +128,17 @@ public class ElementsHUD : MonoBehaviour
         fireBlink = false;
         fireElementIcon.color = IconColorInactive;
         fireElementSelector.gameObject.SetActive(false);
+        fireElement.color = fireColor;
     }
 
     // Corrutina para el parpadeo de fuego.
     private IEnumerator BlinkFireImage() {
         while (fireBlink) {
-            fireElement.color = fireColorBlink;
+            //fireElement.color = fireColorBlink;
+            fireElementSelector.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            fireElement.color = fireColor;
+            //fireElement.color = fireColor;
+            fireElementSelector.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -152,14 +155,17 @@ public class ElementsHUD : MonoBehaviour
         waterBlink = false;
         waterElementIcon.color = IconColorInactive;
         waterElementSelector.gameObject.SetActive(false);
+        waterElement.color = waterColor;
     }
 
     // Corrutina para el parpadeo de agua.
     private IEnumerator BlinkWaterImage() {
         while (waterBlink) {
-            waterElement.color = waterColorBlink;
+            //waterElement.color = waterColorBlink;
+            waterElementSelector.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            waterElement.color = waterColor;
+            //waterElement.color = waterColor;
+            waterElementSelector.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -176,14 +182,17 @@ public class ElementsHUD : MonoBehaviour
         lightningBlink = false;
         lightningElementIcon.color = IconColorInactive;
         lightningElementSelector.gameObject.SetActive(false);
+        lightningElement.color = lightningColor;
     }
 
     // Corrutina para el parpadeo de electricidad.
     private IEnumerator BlinkLightningImage() {
         while (lightningBlink) {
-            lightningElement.color = lightningColorBlink;
+            //lightningElement.color = lightningColorBlink;
+            lightningElementSelector.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            lightningElement.color = lightningColor;
+            //lightningElement.color = lightningColor;
+            lightningElementSelector.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -200,14 +209,17 @@ public class ElementsHUD : MonoBehaviour
         earthBlink = false;
         earthElementIcon.color = IconColorInactive;
         earthElementSelector.gameObject.SetActive(false);
+        earthElement.color = earthColor;
     }
 
     // Corrutina para el parpadeo de tierra.
     private IEnumerator BlinkEarthImage() {
         while (earthBlink) {
-            earthElement.color = earthColorBlink;
+            //earthElement.color = earthColorBlink;
+            earthElementSelector.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            earthElement.color = earthColor;
+            //earthElement.color = earthColor;
+            earthElementSelector.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
     }

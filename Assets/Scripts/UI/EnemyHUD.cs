@@ -17,12 +17,12 @@ public class EnemyHUD : MonoBehaviour
     public Image waterIcon; // Icono de Agua
     public Image fireIcon; // Icono de fuego
 
-    [Header("Levels")]
+    [Header("Level")]
     public TextMeshProUGUI levelText; // TextMeshPro del HUD que indica el nivel.
-    public Image levelFill1; // Primera barra de nivel
-    public Image levelFill2; // Segunda barra de nivel
-    public Image levelFill3; // Tercera barra de nivel
-    public Image levelFill4; // Cuarta barra de nivel
+    // public Image levelFill1; // Primera barra de nivel
+    // public Image levelFill2; // Segunda barra de nivel
+    // public Image levelFill3; // Tercera barra de nivel
+    // public Image levelFill4; // Cuarta barra de nivel
 
     [Header("Health")]
     public Image healthBar; // Barra de vida
@@ -72,37 +72,37 @@ public class EnemyHUD : MonoBehaviour
         if (enemyScript != null) {
 
             // Asignar nivel
-            levelText.text = "LVL " + enemyScript.level.ToString(); // Texto del nivel
+            levelText.text = "" + enemyScript.level.ToString(); // Texto del nivel
 
             // Icono del nivel
-            if(enemyScript.level == 4)
-            {
-                levelFill1.gameObject.SetActive(true);
-                levelFill2.gameObject.SetActive(true);
-                levelFill3.gameObject.SetActive(true);
-                levelFill4.gameObject.SetActive(true);
+            // if(enemyScript.level == 4)
+            // {
+            //     levelFill1.gameObject.SetActive(true);
+            //     levelFill2.gameObject.SetActive(true);
+            //     levelFill3.gameObject.SetActive(true);
+            //     levelFill4.gameObject.SetActive(true);
 
-            } else if(enemyScript.level == 3)
-            {
-                levelFill1.gameObject.SetActive(true);
-                levelFill2.gameObject.SetActive(true);
-                levelFill3.gameObject.SetActive(true);
-                levelFill4.gameObject.SetActive(false);
+            // } else if(enemyScript.level == 3)
+            // {
+            //     levelFill1.gameObject.SetActive(true);
+            //     levelFill2.gameObject.SetActive(true);
+            //     levelFill3.gameObject.SetActive(true);
+            //     levelFill4.gameObject.SetActive(false);
 
-            } else if(enemyScript.level == 2)
-            {
-                levelFill1.gameObject.SetActive(true);
-                levelFill2.gameObject.SetActive(true);
-                levelFill3.gameObject.SetActive(false);
-                levelFill4.gameObject.SetActive(false);
+            // } else if(enemyScript.level == 2)
+            // {
+            //     levelFill1.gameObject.SetActive(true);
+            //     levelFill2.gameObject.SetActive(true);
+            //     levelFill3.gameObject.SetActive(false);
+            //     levelFill4.gameObject.SetActive(false);
 
-            } else
-            {
-                levelFill1.gameObject.SetActive(true);
-                levelFill2.gameObject.SetActive(false);
-                levelFill3.gameObject.SetActive(false);
-                levelFill4.gameObject.SetActive(false);
-            }
+            // } else
+            // {
+            //     levelFill1.gameObject.SetActive(true);
+            //     levelFill2.gameObject.SetActive(false);
+            //     levelFill3.gameObject.SetActive(false);
+            //     levelFill4.gameObject.SetActive(false);
+            // }
         }
 
         // Asignar elemento
