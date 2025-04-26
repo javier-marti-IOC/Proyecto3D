@@ -4,105 +4,100 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 {
     public Transform target;
     public Vector3 offset = new Vector3(0, 2, -4);
-    public float mouseSensitivity = 2f;
-    public float rotationSmoothTime = 0.1f;
+
+    [Header("Sensitivity Settings")]
+    [Range(0.1f, 10f)] public float mouseSensitivity = 2f;
+    [Range(1f, 500f)] public float joystickSensitivity = 50f;
+
+    [Header("Invert Axis Settings")]
+    public bool invertMouseY = false;
+    public bool invertJoystickY = false;
+
+    [Header("Other Settings")]
     public float distanceDamping = 5f;
-    public float recentreDelay = 1.0f;
-    public float recentreSpeed = 2.0f;
 
     [Header("Camera Collision")]
-    public LayerMask collisionMask = ~0; // Por defecto todas las capas
-    public float collisionBuffer = 0.2f; // Distancia para no pegarse tanto
+    public LayerMask collisionMask = ~0;
+    public float collisionBuffer = 0.2f;
+
+    [SerializeField] private StarterAssets.StarterAssetsInputs playerInputs;
 
     private Vector2 rotation = Vector2.zero;
-    private Vector3 currentVelocity = Vector3.zero;
     private Vector3 currentPosition;
-
-    private float lastMouseInputTime;
-    private bool isRecentering = false;
-
-    [Header("Vertical Recentering")]
-    [SerializeField] private float verticalRecentreDelay = 1f;
-    [SerializeField] private float verticalRecentreSpeed = 2f;
-    [SerializeField] private float defaultVerticalAngle = 20f;
-
-    private float verticalRecentreTimer = 0f;
 
     void Start()
     {
         if (target == null)
-            Debug.LogWarning("¡Falta asignar el target de la cámara!");
+        {
+            Debug.LogWarning("Falta asignar el target de la cámara.");
+            return;
+        }
 
-        rotation.x = transform.eulerAngles.y;
-        rotation.y = transform.eulerAngles.x;
-        currentPosition = transform.position;
+        rotation.x = target.eulerAngles.y;
+        rotation.y = target.eulerAngles.x;
+
+        Quaternion initialRotation = Quaternion.Euler(rotation.y, rotation.x, 0);
+        currentPosition = target.position + initialRotation * offset;
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        // Colocar cámara al inicio
+        Vector3 origin = target.position + Vector3.up * 1.5f;
+        Vector3 direction = (currentPosition - origin).normalized;
+        float maxDistance = offset.magnitude;
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance + collisionBuffer, collisionMask))
+        {
+            currentPosition = hit.point - direction * collisionBuffer;
+        }
+
+        transform.position = currentPosition;
+        transform.LookAt(target.position + Vector3.up * 1.5f);
     }
 
     void LateUpdate()
     {
         if (target == null) return;
 
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-        bool hasMouseInput = Mathf.Abs(mouseX) > 0.01f || Mathf.Abs(mouseY) > 0.01f;
+        float inputX = playerInputs.look.x;
+        float inputY = playerInputs.look.y;
 
-        if (hasMouseInput)
+        bool hasLookInput = Mathf.Abs(inputX) > 0.01f || Mathf.Abs(inputY) > 0.01f;
+        bool isUsingMouse = playerInputs.cursorInputForLook;
+
+        if (hasLookInput)
         {
-            lastMouseInputTime = Time.time;
-            isRecentering = false;
-            rotation.x += mouseX * mouseSensitivity;
-            rotation.y -= mouseY * mouseSensitivity;
+            if (isUsingMouse)
+            {
+                float mouseY = invertMouseY ? -inputY : inputY;
+                rotation.x += inputX * mouseSensitivity;
+                rotation.y += mouseY * mouseSensitivity;
+            }
+            else
+            {
+                float joyY = invertJoystickY ? inputY : -inputY;
+                rotation.x += inputX * joystickSensitivity * Time.deltaTime;
+                rotation.y += joyY * joystickSensitivity * Time.deltaTime;
+            }
+
             rotation.y = Mathf.Clamp(rotation.y, -35f, 70f);
         }
 
-        // Vertical auto recentre
-        if (Mathf.Abs(mouseY) > 0.01f)
-        {
-            verticalRecentreTimer = 0f;
-        }
-        else
-        {
-            verticalRecentreTimer += Time.deltaTime;
-            if (verticalRecentreTimer > verticalRecentreDelay)
-            {
-                rotation.y = Mathf.Lerp(rotation.y, defaultVerticalAngle, Time.deltaTime * verticalRecentreSpeed);
-            }
-        }
-
-        // Recentrado horizontal
-        bool isPlayerMoving = Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f;
-
-        if (isPlayerMoving || (!hasMouseInput && Time.time - lastMouseInputTime > recentreDelay))
-        {
-            isRecentering = true;
-        }
-
-        if (isRecentering)
-        {
-            float targetYaw = target.eulerAngles.y;
-            rotation.x = Mathf.LerpAngle(rotation.x, targetYaw, Time.deltaTime * recentreSpeed);
-        }
-
-        // Cálculo de posición
+        // Posicionamiento de la cámara
         Quaternion targetRotation = Quaternion.Euler(rotation.y, rotation.x, 0);
         Vector3 desiredPosition = target.position + targetRotation * offset;
 
-        // 🔍 DETECCIÓN DE PAREDES
-        Vector3 origin = target.position + Vector3.up * 1.5f; // punto de origen del raycast
+        Vector3 origin = target.position + Vector3.up * 1.5f;
         Vector3 direction = (desiredPosition - origin).normalized;
         float maxDistance = offset.magnitude;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance + collisionBuffer, collisionMask))
         {
-            // Si golpea algo, colocamos la cámara justo delante del obstáculo
             desiredPosition = hit.point - direction * collisionBuffer;
         }
 
         currentPosition = Vector3.Lerp(currentPosition, desiredPosition, Time.deltaTime * distanceDamping);
         transform.position = currentPosition;
-
         transform.LookAt(target.position + Vector3.up * 1.5f);
     }
 }
