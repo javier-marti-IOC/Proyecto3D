@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -26,23 +27,25 @@ public class Spawner : MonoBehaviour
         } */
     }
     
-    public void SpawnEnemy(int pos)
+    public void SpawnEnemy(Element activeElement)
     {
         if(trackPoints.Length > 0)
         {
             rndNum = Random.Range(0, trackPoints.Length); // Seleccionamos un track point aleatorio dentro del array
-            
-            // Vector3 spawnPoint = trackPoints[rndNum].transform.position; // Coordenada X,Y,Z
 
-            // Vector3 spawnPosition = new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z); // Determinamos la posicion de spawn
-
-            // Debug.Log("NUEVA POSICION DE RESPAWN: " + spawnPointX + " " + spawnPointY + " " + spawnPointZ);
-            // Debug.Log("----------> NUMERO DE ENEMIGOS INSTANCIADOS EN ZONA: " + secondZone.instantiatedEnemies.Count);
-            
-            if(secondZone.enemyCount < 6)
+            if(secondZone.enemyCount < 6) // Verificamos los enemigos instanciados en la zona 
             {
-                Instantiate(enemyPrefabs[pos], trackPoints[rndNum].transform.position, Quaternion.identity); // Instanciamos el enemigo
-                tower.isOnCooldown = true; // Activamos el cooldown
+                foreach (GameObject enemy in enemyPrefabs) // Recorremos el array que contiene los 4 tipos de enemigos
+                {
+                    if(enemy.transform)
+                    {
+                        if(enemy.transform.GetChild(0).transform.GetComponent<DistanceBT>().activeElement == activeElement) // Verificamos que el activeElement del enemigo concuerde con el de la funcion
+                        {
+                            Instantiate(enemy, trackPoints[rndNum].transform.position, Quaternion.identity); // Instanciamos el enemigo
+                            tower.isOnCooldown = true; // Activamos el cooldown    
+                        }
+                    }
+                }
             }
             else
             {
@@ -50,6 +53,37 @@ public class Spawner : MonoBehaviour
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     /* public void SpawnEnemy(int pos)
     {
         int spawnPointX = Random.Range(36, 38); // Coordenada X
