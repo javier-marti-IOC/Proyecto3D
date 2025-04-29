@@ -39,6 +39,13 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float safeDistance = 1f;  // Distancia prudencial que se quiere mantener
     protected GameObject pointPatrol;
 
+    /* [Header("Rotacion")]
+    protected Enemy enemy;
+    protected bool rotating = false;
+    protected Quaternion startRotation;
+    protected Quaternion targetRotation;
+    [SerializeField] protected float rotationTimer = 0f;
+    [SerializeField] protected float wanderRotationTimer = 2f; // tiempo que debe durar la rotación */
 
     [Header("Chase")]
     public bool playerDetected; // Detecto al player
@@ -86,19 +93,35 @@ public abstract class Enemy : MonoBehaviour
         ghost.GetComponent<RunnerGhostAgent>().patrolPoint = pointPatrol;
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
-        
-        animator.SetInteger(Constants.state,0);
-        /*timer += Time.deltaTime;
 
-        if (timer >= wanderTimer)
-        {
-            Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
-            agent.SetDestination(newPos);
-            // agent.speed = Random.Range(1.0f, 4.0f);
-            timer = 0;
-        }*/
+        animator.SetInteger(Constants.state, 1);
 
     }
+
+    // No se implementa
+    /* public void RotateRandomly()
+    {
+        float randomYRotation = Random.Range(0f, 180f);
+        startRotation = transform.rotation;
+        targetRotation = Quaternion.Euler(0, randomYRotation, 0);
+        rotationTimer = 0f;
+        rotating = true;
+    }
+    protected void Rotate()
+    {
+        animator.SetInteger(Constants.state, 0);
+        Destroy(ghost);
+        rotationTimer += Time.deltaTime;
+        float t = rotationTimer / wanderRotationTimer;
+        t = Mathf.Clamp01(t); // asegurar que no pase de 1
+
+        transform.rotation = Quaternion.Lerp(startRotation, targetRotation, t);
+
+        if (t >= 1f)
+        {
+            rotating = false;
+        }
+    } */
 
     public void Chase()
     {
@@ -125,7 +148,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void BasicAttackEnter(Collider other)
     {
-        if (other.tag.Equals(Constants.player) && !playerHitted )
+        if (other.CompareTag(Constants.player) && !playerHitted)
         {
             playerHitted = true;
             //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthBasicAttackBasicDamage,earthBasicAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
@@ -134,7 +157,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void PlayerInAttackRangeEnter(Collider other)
     {
-        if (other.tag.Equals(Constants.player))
+        if (other.CompareTag(Constants.player))
         {
             playerInAttackRange = true;
         }
@@ -142,7 +165,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void PlayerInAttackRangeExit(Collider other)
     {
-        if (other.tag.Equals(Constants.player))
+        if (other.CompareTag(Constants.player))
         {
             playerInAttackRange = false;
         }
@@ -170,14 +193,14 @@ public abstract class Enemy : MonoBehaviour
     {
         playerHitted = false;
         heavyAttackCollider.enabled = false;
-        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive,maxCooldownTimeExclusive);
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
 
     public void HeavyAttackEnter(Collider other)
     {
-        if (other.tag.Equals(Constants.player) && !playerHitted )
+        if (other.CompareTag(Constants.player) && !playerHitted)
         {
-            playerHitted = true;            
+            playerHitted = true;
             //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthHeavyAttackBasicDamage,earthHeavyAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
         }
     }
