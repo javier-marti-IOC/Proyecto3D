@@ -1454,7 +1454,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 84.989
+      value: -27.7
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -1464,7 +1464,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.195
+      value: -86.9
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -1587,27 +1587,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 545803261370594853, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1199264834638009538, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1456546481428417274, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759760103104210419, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: e8848e6b55c5a6f469e49846b1bb4484,
-        type: 2}
     - target: {fileID: 3863578781731793210, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_Name
