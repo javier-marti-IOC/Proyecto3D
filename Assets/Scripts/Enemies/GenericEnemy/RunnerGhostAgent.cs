@@ -3,11 +3,11 @@ using UnityEngine.AI;
 
 public class RunnerGhostAgent : MonoBehaviour
 {
+    [Header("Patrulla")]
     [SerializeField] private float wanderTimer;
     [SerializeField] private float wanderRadius;
     private NavMeshAgent agent;
     private float timer;
-
     private float proximityThreshold = 1f; // Distancia para recalcular el destino
     // private bool rotating;
     private GameObject player;
@@ -15,6 +15,7 @@ public class RunnerGhostAgent : MonoBehaviour
 
 
     // Start is called before the first frame update
+
 
     void Start()
     {
@@ -39,14 +40,14 @@ public class RunnerGhostAgent : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance <= proximityThreshold)
         {
             // 50% de probabilidad de rotar antes de continuar
-            /* if (!rotating && Random.Range(1, 3) == 1)
+            /* if (Random.Range(1, 3) == 1)
             {
-                RotateRandomly(); // TODO retocar funcion de rotar
+                
             }
             else
             { */
-            SetNewDestination();
-            timer = 0;
+                SetNewDestination();
+                timer = 0;
             /* } */
         }
 
@@ -57,35 +58,24 @@ public class RunnerGhostAgent : MonoBehaviour
             timer = 0;
         }
     }
-    /* private void RotateRandomly()
-    {
-        Debug.Log("Rotar posicion");
-        rotating = true;
-        float randomYRotation = Random.Range(0f, 180f);
-        transform.rotation = Quaternion.Euler(0, randomYRotation, 0);
-        Invoke("StopRotating", wanderTimer);
-    } */
-    /* private void StopRotating()
-    {
-        rotating = false;
-    } */
 
-    private void SetNewDestination()
-    {
-        Vector3 newPos = RandomNavSphere(patrolPoint.transform.position, wanderRadius, -1);
-        agent.SetDestination(newPos);
-    }
 
-    private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
-    {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
+private void SetNewDestination()
+{
+    Vector3 newPos = RandomNavSphere(patrolPoint.transform.position, wanderRadius, -1);
+    agent.SetDestination(newPos);
+}
 
-        randDirection += origin;
+private Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+{
+    Vector3 randDirection = Random.insideUnitSphere * dist;
 
-        NavMeshHit navHit;
+    randDirection += origin;
 
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+    NavMeshHit navHit;
 
-        return navHit.position;
-    }
+    NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+
+    return navHit.position;
+}
 }

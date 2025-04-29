@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class DistanceBT : Enemy
 {
@@ -61,12 +62,12 @@ public class DistanceBT : Enemy
                                 if (cooldownHeavyAttack < 0)
                                 {
                                     transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state, 2);
+                                    animator.SetInteger(Constants.state, 3);
                                 }
                                 else
                                 {
                                     // transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state, 1);
+                                    animator.SetInteger(Constants.state, 2);
                                 }
                                 break;
                             case Element.Electric:
@@ -103,7 +104,10 @@ public class DistanceBT : Enemy
                     {
                         TowerChase();
                     }
-                    else
+                    else /* if (rotating)
+                    {
+                        Rotate();
+                    } */
                     {
                         Patrol();
                     }
