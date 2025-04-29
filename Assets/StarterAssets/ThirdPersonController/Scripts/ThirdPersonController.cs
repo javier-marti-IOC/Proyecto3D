@@ -93,7 +93,7 @@ namespace StarterAssets
         private float _terminalVelocity = 53.0f;
 
         // timeout deltatime
-        private float _jumpTimeoutDelta;
+        //private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
 
         // animation IDs
@@ -153,7 +153,7 @@ namespace StarterAssets
             AssignAnimationIDs();
 
             // reset our timeouts on start
-            _jumpTimeoutDelta = JumpTimeout;
+            //_jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
         private void Update()
@@ -167,21 +167,38 @@ namespace StarterAssets
                     SoftAttack();
                 }
 
-                if(Input.GetMouseButtonDown(1))
+                if(Input.GetMouseButtonDown(1) /*|| Input.GetAxis("RT") > 0.5f*/)
                 {
                     HardAttack();
                 }
-                if(Input.GetKeyDown(KeyCode.H))
+                if(Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Joystick1Button1))
                 {
                     Roll();
                     // DodgeBackward();
                 }
+                /*
+                if (Input.GetAxis("DPAD_h") > 0.5f)
+                {
+                    //ChangeElement(Element.Earth)
+                }
+                if (Input.GetAxis("DPAD_h") < 0.5f)
+                {
+                    //ChangeElement(Element.Electric)
+                }
+                if (Input.GetAxis("DPAD_v") > 0.5f)
+                {
+                    //ChangeElement(Element.Fire)
+                }
+                if (Input.GetAxis("DPAD_v") < 0.5f)
+                {
+                    //ChangeElement(Element.Water)
+                }
+                */
 
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
             }
-
         }
 
         private void LateUpdate()
@@ -313,7 +330,7 @@ private void Move()
                 {
                     _verticalVelocity = -2f;
                 }
-
+                /*
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
@@ -332,11 +349,12 @@ private void Move()
                 {
                     _jumpTimeoutDelta -= Time.deltaTime;
                 }
+                */
             }
             else
             {
                 // reset the jump timeout timer
-                _jumpTimeoutDelta = JumpTimeout;
+                //_jumpTimeoutDelta = JumpTimeout;
 
                 // fall timeout
                 if (_fallTimeoutDelta >= 0.0f)
@@ -353,7 +371,7 @@ private void Move()
                 }
 
                 // if we are not grounded, do not jump
-                _input.jump = false;
+                //_input.jump = false;
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
