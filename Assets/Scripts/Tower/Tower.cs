@@ -45,6 +45,10 @@ public class Tower : MonoBehaviour
     [Header("CameraManager")]
     public CameraManager cameraManager;
 
+    [Header("Progress Manager")]
+    public ProgressManager progressManager;
+    public ProgressData progressData;
+
     void Start()
     {
         this.life = max_life;
@@ -52,8 +56,6 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-
-
         if (life_text != null) // Mostrar la vida de la torre por pantalla
         {
             life_text.text = "T.Life: " + life;
@@ -73,9 +75,12 @@ public class Tower : MonoBehaviour
             }
         }
 
-
-
-
+        if(ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
+        {
+            int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
+            Debug.Log("POSITION EN EL ARRAY: " + position);
+            Destroy(gameObject);
+        }
 
         if (life <= 0)
         {
@@ -95,6 +100,7 @@ public class Tower : MonoBehaviour
                     {
                         IncreaseDecreaseTowerLife(true, life); // Incremento vida
                         DestroyEnemy(); // Sacrificamos enemigo
+                        UncallAllEnemies(enemiesInSecondZoneRange);
                         secondZoneContact = false;
                         firstZoneContact = false;
                         ActivateCooldown();
@@ -110,7 +116,7 @@ public class Tower : MonoBehaviour
                         {
                             if (/* life > (life - invoke_cost) */ (life - invoke_cost) > 0)
                             {
-                                spawner.SpawnEnemy(0); // Invocamos
+                                spawner.SpawnEnemy(activeElement); // Invocamos
                                 IncreaseDecreaseTowerLife(false, life); // Aplicamos coste de invocacion
                             }
                             else
@@ -126,7 +132,7 @@ public class Tower : MonoBehaviour
                     {
                         if (/* life > (life - invoke_cost) */ (life - invoke_cost) > 0)
                         {
-                            spawner.SpawnEnemy(0); // Invoco en el collider exterior, no en el de contacto
+                            spawner.SpawnEnemy(activeElement); // Invoco en el collider exterior, no en el de contacto
                             IncreaseDecreaseTowerLife(false, life);
                         }
                         else
@@ -152,6 +158,8 @@ public class Tower : MonoBehaviour
     {
         changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
         Destroy(gameObject); // Destruye la torre si se queda sin vida
+        ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
+        Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
     }
 
     public void IncreaseDecreaseTowerLife(bool increase, int life)
@@ -251,12 +259,21 @@ public class Tower : MonoBehaviour
             }
         }
     }
-
+    // Activamos el towerCalling para todos los enemigos instanciados y dentro de la segunda zona
     public void CallAllEnemies(List<GameObject> instantiatedEnemies)
     {
         foreach (GameObject enemyPrefab in instantiatedEnemies)
         {            
             enemyPrefab.GetComponent<Enemy>().towerCalling = true;
+        }
+    }
+
+    // Desactivamos el towerCalling para todos los enemigos instanciados y dentro de la segunda zona, para que vuelvan a patrullar
+    public void UncallAllEnemies(List<GameObject> instantiatedEnemies)
+    {
+        foreach (GameObject enemyPrefab in instantiatedEnemies)
+        {            
+            enemyPrefab.GetComponent<Enemy>().towerCalling = false;
         }
     }
 
