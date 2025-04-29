@@ -10,7 +10,7 @@ TagManager:
   - Enemy
   - Tower
   - StonePillar
-  - TrackPoint
+  - TeleportZone
   layers:
   - Default
   - TransparentFX
