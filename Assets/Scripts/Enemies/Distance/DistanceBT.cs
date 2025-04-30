@@ -77,7 +77,7 @@ public class DistanceBT : Enemy
                                     bool cooldownReady = teleportCooldownTimer <= 0;
                                     bool luckyTeleport = UnityEngine.Random.Range(0, 100) < teleportChance;
 
-                                    if (cooldownReady && luckyTeleport)
+                                    if (cooldownReady || luckyTeleport)
                                     {
                                         TeleportToSafeZone();
                                         teleportCooldownTimer = teleportCooldownTime;
@@ -132,6 +132,7 @@ public class DistanceBT : Enemy
         if(other.tag.Equals(Constants.player))
         {
             isPlayerInTeleportZone = false;
+            Debug.Log("Player out teleportZone");
         }
     }
 
