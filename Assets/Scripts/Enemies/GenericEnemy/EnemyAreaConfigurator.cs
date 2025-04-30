@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyAreaConfigurator : MonoBehaviour
 {
-    [SerializeField] private Element activeElement;
+    [SerializeField] public Element activeElement;
 
     private int oppositeAreaIndex;
     private NavMeshAgent agent;
