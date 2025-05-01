@@ -49,6 +49,17 @@ public class Tower : MonoBehaviour
     public ProgressManager progressManager;
     public ProgressData progressData;
 
+
+    /* ORDEN DE LAS TORRES (Constants.cs) */
+    /* 
+        None ===== [0]
+        Earth ==== [1]
+        Water ==== [2]
+        Fire ===== [3]
+        Electric = [4]
+    */
+
+
     void Start()
     {
         this.life = max_life;
@@ -78,7 +89,8 @@ public class Tower : MonoBehaviour
         if(ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
             int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
-            Debug.Log("POSITION EN EL ARRAY: " + position);
+            //Debug.Log("POSITION EN EL ARRAY: " + position);
+            changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
             Destroy(gameObject);
         }
 
@@ -159,7 +171,8 @@ public class Tower : MonoBehaviour
         changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
         Destroy(gameObject); // Destruye la torre si se queda sin vida
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
-        Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
+        //Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
+        progressManager.SaveGame();
     }
 
     public void IncreaseDecreaseTowerLife(bool increase, int life)
