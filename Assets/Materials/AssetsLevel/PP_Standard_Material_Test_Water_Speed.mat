@@ -11,18 +11,15 @@ Material:
   m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 2000
   stringTagMap:
-    RenderType: Transparent
-  disabledShaderPasses:
-  - SHADOWCASTER
-  - DepthOnly
+    RenderType: Opaque
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -30,7 +27,7 @@ Material:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 53dc3d93dfdd7b042934d2a8708d2fb6, type: 3}
         m_Scale: {x: 2, y: 2}
-        m_Offset: {x: -0.30463266, y: -0.1075238}
+        m_Offset: {x: -0.23181486, y: -0.20756829}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -78,7 +75,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 53dc3d93dfdd7b042934d2a8708d2fb6, type: 3}
         m_Scale: {x: 2, y: 2}
-        m_Offset: {x: -0.35483158, y: -0.10878456}
+        m_Offset: {x: 0.12798932, y: -0.24327113}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -127,15 +124,15 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 0
     - _DetailNormalMapScale: 1
     - _DiffuseStep: 0
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
-    - _DstBlend: 10
-    - _DstBlendAlpha: 10
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _EnabledHairSpec: 0
     - _EnvironmentReflections: 1
     - _FaceShadowMapEnabled: 0
@@ -198,16 +195,16 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularSize: 0.25
     - _SpherizeNormalEnabled: 0
-    - _SrcBlend: 5
+    - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _StencilComp: 0
     - _StencilRef: 0
     - _StepViaRampTexture: 0
-    - _Surface: 1
+    - _Surface: 0
     - _UVSec: 0
     - _UseRampColor: 0
     - _WorkflowMode: 1
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.2733179, g: 0.5091292, b: 0.6981132, a: 1}
     - _Color: {r: 0.27331787, g: 0.5091292, b: 0.6981132, a: 1}
