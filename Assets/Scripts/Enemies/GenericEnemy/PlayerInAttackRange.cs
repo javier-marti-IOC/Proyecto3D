@@ -12,11 +12,17 @@ public class PlayerInAttackRange : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        enemy.PlayerInAttackRangeEnter(other);
+        if (other.CompareTag(Constants.player))
+        {
+            enemy.playerInAttackRange = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        enemy.PlayerInAttackRangeExit(other);
+        if (other.CompareTag(Constants.player))
+        {
+            enemy.playerInAttackRange = false;
+        }
     }
 }
