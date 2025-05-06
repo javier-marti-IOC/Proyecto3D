@@ -93,7 +93,7 @@ namespace StarterAssets
         private float _terminalVelocity = 53.0f;
 
         // timeout deltatime
-        private float _jumpTimeoutDelta;
+        //private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
 
         // animation IDs
@@ -153,7 +153,7 @@ namespace StarterAssets
             AssignAnimationIDs();
 
             // reset our timeouts on start
-            _jumpTimeoutDelta = JumpTimeout;
+            //_jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
         private void Update()
@@ -167,21 +167,38 @@ namespace StarterAssets
                     SoftAttack();
                 }
 
-                if(Input.GetMouseButtonDown(1))
+                if(Input.GetMouseButtonDown(1) /*|| Input.GetAxis("RT") > 0.5f*/)
                 {
                     HardAttack();
                 }
-                if(Input.GetKeyDown(KeyCode.H))
+                if(Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Joystick1Button1))
                 {
                     Roll();
                     // DodgeBackward();
                 }
+                /*
+                if (Input.GetAxis("DPAD_h") > 0.5f)
+                {
+                    //ChangeElement(Element.Earth)
+                }
+                if (Input.GetAxis("DPAD_h") < 0.5f)
+                {
+                    //ChangeElement(Element.Electric)
+                }
+                if (Input.GetAxis("DPAD_v") > 0.5f)
+                {
+                    //ChangeElement(Element.Fire)
+                }
+                if (Input.GetAxis("DPAD_v") < 0.5f)
+                {
+                    //ChangeElement(Element.Water)
+                }
+                */
 
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
             }
-
         }
 
         private void LateUpdate()
@@ -234,73 +251,65 @@ namespace StarterAssets
                 _cinemachineTargetYaw, 0.0f);
         }
 
-        private void Move()
-        {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+private void Move()
+{
+    float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
-            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+    if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+    float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
-            // a reference to the players current horizontal velocity
-            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+    float speedOffset = 0.1f;
+    float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
-            float speedOffset = 0.1f;
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+    if (currentHorizontalSpeed < targetSpeed - speedOffset ||
+        currentHorizontalSpeed > targetSpeed + speedOffset)
+    {
+        _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
+            Time.deltaTime * SpeedChangeRate);
 
-            // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                currentHorizontalSpeed > targetSpeed + speedOffset)
-            {
-                // creates curved result rather than a linear one giving a more organic speed change
-                // note T in Lerp is clamped, so we don't need to clamp our speed
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * SpeedChangeRate);
+        _speed = Mathf.Round(_speed * 1000f) / 1000f;
+    }
+    else
+    {
+        _speed = targetSpeed;
+    }
 
-                // round speed to 3 decimal places
-                _speed = Mathf.Round(_speed * 1000f) / 1000f;
-            }
-            else
-            {
-                _speed = targetSpeed;
-            }
+    _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+    if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-            if (_animationBlend < 0.01f) _animationBlend = 0f;
+    // 🔥 NUEVO: Calculamos la dirección basándonos en la cámara actualizada
+    Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-            // normalise input direction
-            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+    Vector3 cameraForward = _mainCamera.transform.forward;
+    cameraForward.y = 0f;
+    cameraForward.Normalize();
 
-            // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is a move input rotate player when the player is moving
-            if (_input.move != Vector2.zero)
-            {
-                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                                  _mainCamera.transform.eulerAngles.y;
-                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                    RotationSmoothTime);
+    Vector3 cameraRight = _mainCamera.transform.right;
+    cameraRight.y = 0f;
+    cameraRight.Normalize();
 
-                // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-            }
+    Vector3 moveDirection = (cameraForward * inputDirection.z + cameraRight * inputDirection.x).normalized;
 
+    if (moveDirection.sqrMagnitude > 0.01f) // Solo rotamos si nos estamos moviendo
+    {
+        _targetRotation = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+        float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+            RotationSmoothTime);
 
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+        transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+    }
 
-            // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+    _controller.Move(moveDirection * (_speed * Time.deltaTime) +
+                     new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-            }
-        }
+    if (_hasAnimator)
+    {
+        _animator.SetFloat(_animIDSpeed, _animationBlend);
+        _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+    }
+}
+
 
         private void JumpAndGravity()
         {
@@ -321,7 +330,7 @@ namespace StarterAssets
                 {
                     _verticalVelocity = -2f;
                 }
-
+                /*
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
@@ -340,11 +349,12 @@ namespace StarterAssets
                 {
                     _jumpTimeoutDelta -= Time.deltaTime;
                 }
+                */
             }
             else
             {
                 // reset the jump timeout timer
-                _jumpTimeoutDelta = JumpTimeout;
+                //_jumpTimeoutDelta = JumpTimeout;
 
                 // fall timeout
                 if (_fallTimeoutDelta >= 0.0f)
@@ -361,7 +371,7 @@ namespace StarterAssets
                 }
 
                 // if we are not grounded, do not jump
-                _input.jump = false;
+                //_input.jump = false;
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)

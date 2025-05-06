@@ -9,7 +9,6 @@ public class MeleeBT : Enemy
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
-        Debug.Log("Attacking: "+attacking);
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {

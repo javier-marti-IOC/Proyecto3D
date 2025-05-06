@@ -145,6 +145,9 @@ Material:
     - _Glossiness: 0.2
     - _GlossinessSource: 0
     - _GlossyReflections: 1
+    - _GrassHeightInfluence: 1
+    - _GrassWindSpeed: 1
+    - _GrassWindStrength: 0.1
     - _HairSpecExponent: 128
     - _HairSpecNoiseStrength: 1
     - _HairSpecularSize: 0.8

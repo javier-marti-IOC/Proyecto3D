@@ -53,48 +53,49 @@ public class DistanceBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-                    if (playerInAttackRange)
+                    Debug.Log("WaterEnemy esta: " + agent.isStopped);
+                    switch (activeElement)
                     {
-                        switch (activeElement)
-                        {
-                            case Element.Water:
-                                Debug.Log(cooldownHeavyAttack);
-                                if (cooldownHeavyAttack < 0)
-                                {
-                                    transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state, 3);
-                                }
-                                else
-                                {
-                                    // transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state, 2);
-                                }
-                                break;
-                            case Element.Electric:
+                        case Element.Water:
+                            if (cooldownHeavyAttack < 0)
+                            {
+                                transform.LookAt(player.transform);
+                                animator.SetInteger(Constants.state, 3);
+                            }
+                            else if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+                            {
+                                // agent.isStopped = true;
+                                // Invoke(nameof(ResumeWalking), 2f);
+                                animator.SetInteger(Constants.state, 2);
+
+                            }
+                            else
+                            {
+
+                                Chase();
+
+                            }
+                            break;
+                        case Element.Electric:
                             //Funcionalidad enemigo electrico
-                                if (isPlayerInTeleportZone)
-                                {
-                                    bool cooldownReady = teleportCooldownTimer <= 0;
-                                    bool luckyTeleport = UnityEngine.Random.Range(0, 100) < teleportChance;
+                            if (isPlayerInTeleportZone)
+                            {
+                                bool cooldownReady = teleportCooldownTimer <= 0;
+                                bool luckyTeleport = UnityEngine.Random.Range(0, 100) < teleportChance;
 
-                                    if (cooldownReady && luckyTeleport)
-                                    {
-                                        TeleportToSafeZone();
-                                        teleportCooldownTimer = teleportCooldownTime;
-                                    }
-                                }
-                                else
+                                if (cooldownReady && luckyTeleport)
                                 {
-
+                                    TeleportToSafeZone();
+                                    teleportCooldownTimer = teleportCooldownTime;
                                 }
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        Chase();
+                            }
+                            else
+                            {
+
+                            }
+                            break;
+                        default:
+                            break;
                     }
 
                 }
@@ -121,7 +122,7 @@ public class DistanceBT : Enemy
     }
     public void TeleportZoneEnter(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             isPlayerInTeleportZone = true;
             Debug.Log("Player in teleportZone");
@@ -129,7 +130,7 @@ public class DistanceBT : Enemy
     }
     public void TeleportZoneExit(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             isPlayerInTeleportZone = false;
         }
@@ -150,5 +151,10 @@ public class DistanceBT : Enemy
         {
             Debug.Log("No se encontró una zona segura para teletransportar.");
         }
+    }
+
+    private void ResumeWalking()
+    {
+        agent.isStopped = false;
     }
 }

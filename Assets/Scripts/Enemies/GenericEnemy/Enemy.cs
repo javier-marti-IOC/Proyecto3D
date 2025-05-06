@@ -17,9 +17,9 @@ public abstract class Enemy : MonoBehaviour
     protected bool onAction; // Esta realizando alguna accion
     protected bool onCombat; // El enemigo esta en combate
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
-    protected bool playerInAttackRange; // Esta el player en mi zona de ataque
+    public bool playerInAttackRange; // Esta el player en mi zona de ataque
     protected bool towerInRange; // Tengo la torre en rango para patrullar
-    protected bool playerHitted;
+    public bool playerHitted;
     protected bool attacking;
 
     [Header("Ranges")]
@@ -36,7 +36,7 @@ public abstract class Enemy : MonoBehaviour
     protected NavMeshAgent agent;
     protected GameObject ghost;
     [SerializeField] protected GameObject ghostPrefab;
-    [SerializeField] protected float safeDistance = 1f;  // Distancia prudencial que se quiere mantener
+    [SerializeField] protected float safeDistance = 2f;  // Distancia prudencial que se quiere mantener
     protected GameObject pointPatrol;
 
     /* [Header("Rotacion")]
@@ -49,7 +49,8 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("Chase")]
     public bool playerDetected; // Detecto al player
-    [SerializeField] protected GameObject playerDetector;
+    [SerializeField] protected GameObject playerDetectorDown;
+    [SerializeField] protected GameObject playerDetectorUp;
     [SerializeField] protected GameObject minDistanceChase;
 
     [Header("Collider")]
@@ -126,49 +127,28 @@ public abstract class Enemy : MonoBehaviour
     public void Chase()
     {
         Destroy(ghost);
-        playerDetector.SetActive(false);
+        playerDetectorDown.SetActive(false);
+        playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
         agent.SetDestination(player.transform.position);
+        agent.stoppingDistance = 8;
         //transform.LookAt(player.transform);
     }
     public void StopChasing()
     {
-        playerDetector.SetActive(true);
+        playerDetectorDown.SetActive(true);
+        playerDetectorUp.SetActive(true);
         minDistanceChase.SetActive(true);
         playerDetected = false;
     }
     protected virtual void TowerChase()
     {
         Destroy(ghost);
-        playerDetector.SetActive(false);
+        playerDetectorDown.SetActive(false);
+        playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
         agent.SetDestination(tower.transform.position);
 
-    }
-
-    public void BasicAttackEnter(Collider other)
-    {
-        if (other.CompareTag(Constants.player) && !playerHitted)
-        {
-            playerHitted = true;
-            //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthBasicAttackBasicDamage,earthBasicAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
-        }
-    }
-
-    public void PlayerInAttackRangeEnter(Collider other)
-    {
-        if (other.CompareTag(Constants.player))
-        {
-            playerInAttackRange = true;
-        }
-    }
-
-    public void PlayerInAttackRangeExit(Collider other)
-    {
-        if (other.CompareTag(Constants.player))
-        {
-            playerInAttackRange = false;
-        }
     }
 
     public void BasicAttackActivated()
@@ -194,15 +174,6 @@ public abstract class Enemy : MonoBehaviour
         playerHitted = false;
         heavyAttackCollider.enabled = false;
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
-    }
-
-    public void HeavyAttackEnter(Collider other)
-    {
-        if (other.CompareTag(Constants.player) && !playerHitted)
-        {
-            playerHitted = true;
-            //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthHeavyAttackBasicDamage,earthHeavyAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
-        }
     }
     public void StartAttack()
     {

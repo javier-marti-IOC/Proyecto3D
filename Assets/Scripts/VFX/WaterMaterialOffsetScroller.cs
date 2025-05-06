@@ -1,8 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Mueve el offset del material con una dirección que cambia suavemente gracias a Perlin Noise.
-/// </summary>
 [ExecuteAlways]
 public class WaterMaterialSmoothFlow : MonoBehaviour
 {
@@ -11,6 +8,13 @@ public class WaterMaterialSmoothFlow : MonoBehaviour
 
     [Tooltip("Velocidad de desplazamiento.")]
     public float movementSpeed = 0.05f;
+
+    [Tooltip("Ángulo base de dirección del flujo en grados (0 = derecha, 90 = arriba, 180 = izquierda, 270 = abajo).")]
+    [Range(0, 360)]
+    public float baseDirectionAngle = 270f;
+
+    [Tooltip("Intensidad del desvío generado por el Perlin Noise (en grados).")]
+    public float deviationAngle = 15f;
 
     [Tooltip("Escala del ruido Perlin para la dirección.")]
     public float noiseScale = 0.2f;
@@ -23,16 +27,17 @@ public class WaterMaterialSmoothFlow : MonoBehaviour
 
         float time = Time.time;
 
-        // Usamos Perlin para generar una dirección suave
-        float angle = Mathf.PerlinNoise(time * noiseScale, 0f) * Mathf.PI * 2f;
+        // Dirección suavemente variada con Perlin
+        float noiseValue = Mathf.PerlinNoise(time * noiseScale, 0f);
+        float angleInRadians = (baseDirectionAngle + (noiseValue - 0.5f) * 2f * deviationAngle) * Mathf.Deg2Rad;
 
-        // Convertimos ese ángulo en una dirección
-        Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-
-        // Avanzamos el offset de forma continua en esa dirección
+        Vector2 direction = new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
         offset += direction * movementSpeed * Time.deltaTime;
 
-        // Aplicamos el offset al material
+        // Limita el offset al rango [0,1] para evitar acumulación infinita
+        offset.x %= 1f;
+        offset.y %= 1f;
+
         targetMaterial.mainTextureOffset = offset;
     }
 }

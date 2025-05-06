@@ -10,7 +10,7 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
-		public bool jump;
+		//public bool jump;
 		public bool sprint;
 
 		[Header("Movement Settings")]
@@ -20,6 +20,10 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		[Header("Joystick Settings")]
+		[Range(100f, 2000f)]
+		public float joystickLookDivisor = 500f; // 🎮 Ahora puedes tocarlo en Inspector
+
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
@@ -28,15 +32,28 @@ namespace StarterAssets
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			if (cursorInputForLook)
 			{
-				LookInput(value.Get<Vector2>());
+				Vector2 input = value.Get<Vector2>();
+
+		#if ENABLE_INPUT_SYSTEM
+				if (GetComponent<PlayerInput>().currentControlScheme == "KeyboardMouse")
+				{
+					look = input; // 🖱 Ratón: el input es delta real
+				}
+				else
+				{
+					look = input / joystickLookDivisor; // 🎮 Usamos la variable del Inspector
+				}
+		#else
+				look = input;
+		#endif
 			}
 		}
 
 		public void OnJump(InputValue value)
 		{
-			JumpInput(value.isPressed);
+			//JumpInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
@@ -45,11 +62,10 @@ namespace StarterAssets
 		}
 #endif
 
-
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -58,7 +74,7 @@ namespace StarterAssets
 
 		public void JumpInput(bool newJumpState)
 		{
-			jump = newJumpState;
+			//jump = newJumpState;
 		}
 
 		public void SprintInput(bool newSprintState)
@@ -76,5 +92,4 @@ namespace StarterAssets
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
-	
 }
