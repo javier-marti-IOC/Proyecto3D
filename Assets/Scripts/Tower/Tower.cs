@@ -151,7 +151,7 @@ public class Tower : MonoBehaviour
     {
         gameObject.SetActive(false);
         cameraManager.ActivateFade();
-        Invoke("EraseTower", 1.0f);
+        Invoke(nameof(EraseTower), 1.0f);
     }
 
     public void EraseTower()
