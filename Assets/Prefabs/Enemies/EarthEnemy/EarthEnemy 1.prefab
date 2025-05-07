@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3970327730972968166}
   m_Layer: 0
   m_Name: EarthEnemy 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +162,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3970327730972968166}
     m_Modifications:
+    - target: {fileID: 5469390958254676769, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
         type: 3}
       propertyPath: ghostAgent
