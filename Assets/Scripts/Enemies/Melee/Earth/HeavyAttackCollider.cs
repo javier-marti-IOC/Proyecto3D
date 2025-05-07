@@ -5,13 +5,17 @@ using UnityEngine;
 public class HeavyAttackCollider : MonoBehaviour
 {
     public MeleeBT earthBT;
-
-    void Update()
+    private Enemy enemy;
+    void Awake()
     {
-        //Debug.Log(gameObject.GetComponent<BoxCollider>().enabled);
+        enemy = gameObject.GetComponentInParent<Enemy>();
     }
     public void OnTriggerEnter(Collider other)
     {
-        earthBT.HeavyAttackEnter(other);
+        if (other.CompareTag(Constants.player) && !enemy.playerHitted)
+        {
+            enemy.playerHitted = true;
+            //player.GetComponent<tempPlayer>().healthPoints -= gameManager.DamageCalulator(activeElement,earthHeavyAttackBasicDamage,earthHeavyAttackElementalDamage,player.GetComponent<tempPlayer>().activeElement);
+        }
     }
 }
