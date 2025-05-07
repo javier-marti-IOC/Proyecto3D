@@ -95,7 +95,7 @@ public abstract class Enemy : MonoBehaviour
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
 
-        animator.SetInteger(Constants.state, 1);
+        animator.SetInteger(Constants.state,1);
 
     }
 
@@ -131,7 +131,7 @@ public abstract class Enemy : MonoBehaviour
         playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
         agent.SetDestination(player.transform.position);
-        agent.stoppingDistance = 8;
+        agent.stoppingDistance = 1;
         //transform.LookAt(player.transform);
     }
     public void StopChasing()
