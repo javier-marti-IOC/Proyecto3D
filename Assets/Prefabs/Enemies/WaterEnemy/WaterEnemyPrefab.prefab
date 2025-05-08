@@ -565,11 +565,14 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}
   towerCalling: 0
+  playerInAttackRange: 0
+  playerHitted: 0
   minCooldownTimeInclusive: 0
   maxCooldownTimeExclusive: 0
   ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
     type: 3}
   safeDistance: 1
+  pointPatrol: {fileID: 5444669361826954513}
   playerDetected: 0
   playerDetectorDown: {fileID: 1961920292286216563}
   playerDetectorUp: {fileID: 437362043903965274}

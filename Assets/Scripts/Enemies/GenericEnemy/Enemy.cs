@@ -37,7 +37,7 @@ public abstract class Enemy : MonoBehaviour
     protected GameObject ghost;
     [SerializeField] protected GameObject ghostPrefab;
     [SerializeField] protected float safeDistance = 2f;  // Distancia prudencial que se quiere mantener
-    protected GameObject pointPatrol;
+    [SerializeField] protected GameObject pointPatrol;
 
     /* [Header("Rotacion")]
     protected Enemy enemy;
@@ -72,8 +72,6 @@ public abstract class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = safeDistance;
         animator = GetComponent<Animator>();
-        pointPatrol = GameObject.Find(Constants.pointPatrol);
-
     }
 
     // Metodos comunes

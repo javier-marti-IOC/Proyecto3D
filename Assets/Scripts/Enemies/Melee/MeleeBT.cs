@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MeleeBT : Enemy
 {
     private bool playerInSecurityDistance;
+    
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
@@ -32,6 +33,7 @@ public class MeleeBT : Enemy
                 {
                     //Me acerco
                     //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
+                    TowerChase();
                 }
             }
             else
