@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &231240459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5650908164629410398, guid: 0d38f1019ba150e47a405d48f2e301f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7291994362007132693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &520017697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1261,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: pointPatrol
+      value: 
+      objectReference: {fileID: 231240459}
     - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
         type: 3}
       propertyPath: teleportChance
