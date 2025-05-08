@@ -14,6 +14,7 @@ public class DistanceBT : Enemy
     private float teleportCooldownTimer = 0f;
     public int teleportChance;
     public float teleportDistance;
+    private float timerTeleportFunction = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,17 +80,27 @@ public class DistanceBT : Enemy
                         case Element.Electric:
                             //Funcionalidad enemigo electrico
                             if (isPlayerInTeleportZone)
-                            {
-                                transform.LookAt(player.transform);
-                                bool cooldownReady = teleportCooldownTimer <= 0;
-                                bool luckyTeleport = UnityEngine.Random.Range(0, 1000) < teleportChance;
-
-                                if (cooldownReady || luckyTeleport)
                                 {
-                                    TeleportToSafeZone();
-                                    teleportCooldownTimer = teleportCooldownTime;
+                                    transform.LookAt(player.transform);
+                                    teleportCooldownTimer -= Time.deltaTime;
+                                    timerTeleportFunction += Time.deltaTime;
+
+                                    if (timerTeleportFunction >= 1f)
+                                    {
+                                        timerTeleportFunction = 0f;
+                                        int tp = TeleportProbability();
+                                        Debug.Log("Teleport Probability: " + tp);
+
+                                        bool cooldownReady = teleportCooldownTimer <= 0;
+                                        bool luckyTeleport = tp <= teleportChance;
+
+                                        if (cooldownReady || luckyTeleport)
+                                        {
+                                            TeleportToSafeZone();
+                                            teleportCooldownTimer = teleportCooldownTime;
+                                        }
+                                    }
                                 }
-                            }
                             else
                             {
 
@@ -136,6 +147,12 @@ public class DistanceBT : Enemy
             isPlayerInTeleportZone = false;
             Debug.Log("Player out teleportZone");
         }
+    }
+
+    private int TeleportProbability ()
+    {
+        int tp = UnityEngine.Random.Range(0, 100);
+        return tp;
     }
 
     private void TeleportToSafeZone()
