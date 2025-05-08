@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    private DistanceBT distanceBT;
+    public DistanceBT distanceBT;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TeleportZone"))
-        {
-            distanceBT.TeleportZoneEnter(other);
-        }
+        distanceBT.TeleportZoneEnter(other);
     }
 
-    void OiggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("TeleportZone"))
-        {
-            distanceBT.TeleportZoneExit(other);
-        }
+        distanceBT.TeleportZoneExit(other);
     }
 }

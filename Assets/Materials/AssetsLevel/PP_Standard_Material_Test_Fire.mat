@@ -181,7 +181,7 @@ Material:
     - _MBPhase: 1
     - _MBWindDir: 0
     - _MBWindDirOffset: 20
-    - _Metallic: 0.4028418
+    - _Metallic: 0.4854151
     - _Mode: 0
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
