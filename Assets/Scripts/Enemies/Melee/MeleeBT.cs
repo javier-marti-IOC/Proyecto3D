@@ -32,6 +32,7 @@ public class MeleeBT : Enemy
                 {
                     //Me acerco
                     //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
+                    TowerChase();
                 }
             }
             else
