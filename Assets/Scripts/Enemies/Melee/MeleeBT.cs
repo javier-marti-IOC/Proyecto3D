@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MeleeBT : Enemy
 {
     private bool playerInSecurityDistance;
+    
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
@@ -32,6 +33,7 @@ public class MeleeBT : Enemy
                 {
                     //Me acerco
                     //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
+                    TowerChase();
                 }
             }
             else
@@ -53,12 +55,12 @@ public class MeleeBT : Enemy
                                 if (cooldownHeavyAttack < 0)
                                 {
                                     //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,2);
+                                    animator.SetInteger(Constants.state,3);
                                 }
                                 else
                                 {
                                     //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,1);
+                                    animator.SetInteger(Constants.state,2);
                                 }
                             }
                             else if (activeElement == Element.Fire)
@@ -73,7 +75,7 @@ public class MeleeBT : Enemy
                                         if (cooldownHeavyAttack < 0)
                                         {
                                             transform.LookAt(player.transform);
-                                            animator.SetInteger("Anim",2);
+                                            animator.SetInteger(Constants.state,3);
                                         }
                                         else
                                         {
@@ -94,12 +96,12 @@ public class MeleeBT : Enemy
                                     if (cooldownHeavyAttack < 0)
                                     {
                                         transform.LookAt(player.transform);
-                                        animator.SetInteger("Anim",2);
+                                        animator.SetInteger(Constants.state,3);
                                     }
                                     else
                                     {
                                         transform.LookAt(player.transform);
-                                        animator.SetInteger("Anim",1);
+                                        animator.SetInteger(Constants.state,2);
                                     }
                                 }
                             }
@@ -108,7 +110,7 @@ public class MeleeBT : Enemy
                         {
                             if (!attacking)
                             {
-                                animator.SetInteger(Constants.state,0);
+                                animator.SetInteger(Constants.state,1);
                                 Chase();
                             }
                         }

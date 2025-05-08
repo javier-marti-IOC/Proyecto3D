@@ -115,6 +115,9 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        private Vector2 dpadValues;
+        private InputAction dpadAction;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -155,6 +158,7 @@ namespace StarterAssets
             // reset our timeouts on start
             //_jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            // dpadAction = _input.FindActionMap("Gameplay").FindAction("DPAD");
         }
         private void Update()
         {
@@ -176,6 +180,7 @@ namespace StarterAssets
                     Roll();
                     // DodgeBackward();
                 }
+                // Debug.Log(dpadAction.ReadValue<Vector2>());
                 /*
                 if (Input.GetAxis("DPAD_h") > 0.5f)
                 {

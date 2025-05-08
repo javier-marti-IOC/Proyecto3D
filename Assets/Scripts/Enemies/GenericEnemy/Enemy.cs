@@ -36,8 +36,8 @@ public abstract class Enemy : MonoBehaviour
     protected NavMeshAgent agent;
     protected GameObject ghost;
     [SerializeField] protected GameObject ghostPrefab;
-    [SerializeField] protected float safeDistance = 2f;  // Distancia prudencial que se quiere mantener
-    protected GameObject pointPatrol;
+    [SerializeField] protected float safeDistance = 1f;  // Distancia prudencial que se quiere mantener
+    [SerializeField] protected GameObject pointPatrol;
 
     /* [Header("Rotacion")]
     protected Enemy enemy;
@@ -72,8 +72,6 @@ public abstract class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = safeDistance;
         animator = GetComponent<Animator>();
-        pointPatrol = GameObject.Find(Constants.pointPatrol);
-
     }
 
     // Metodos comunes
@@ -90,6 +88,8 @@ public abstract class Enemy : MonoBehaviour
         {
             ghost = Instantiate(ghostPrefab, agent.transform.position, Quaternion.identity, agent.transform);
         }
+
+        agent.stoppingDistance = safeDistance;
 
         ghost.GetComponent<RunnerGhostAgent>().patrolPoint = pointPatrol;
         agent.SetDestination(ghost.transform.position);
@@ -131,8 +131,15 @@ public abstract class Enemy : MonoBehaviour
         playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
         agent.SetDestination(player.transform.position);
-        agent.stoppingDistance = 8;
-        //transform.LookAt(player.transform);
+    }
+    public void Chase(float stoppingDistance)
+    {
+        Destroy(ghost);
+        playerDetectorDown.SetActive(false);
+        playerDetectorUp.SetActive(false);
+        minDistanceChase.SetActive(false);
+        agent.SetDestination(player.transform.position);
+        agent.stoppingDistance = stoppingDistance;
     }
     public void StopChasing()
     {
