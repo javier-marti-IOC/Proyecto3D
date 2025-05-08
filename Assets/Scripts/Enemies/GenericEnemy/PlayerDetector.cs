@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-    [SerializeField] private float rayDistance = 10f;
+    [SerializeField] private float rayDistance;
     private Vector3 forward;
     private Enemy enemy;
 
@@ -28,8 +28,7 @@ public class PlayerDetector : MonoBehaviour
     {
 
         // Raycast central
-        RaycastHit hitCenter;
-        if (Physics.Raycast(transform.position, forward, out hitCenter, rayDistance))
+        if (Physics.Raycast(transform.position, forward, out RaycastHit hitCenter, rayDistance))
         {
             if (hitCenter.collider.CompareTag(Constants.player))
             {
@@ -51,8 +50,7 @@ public class PlayerDetector : MonoBehaviour
         Vector3 leftSoftDir = leftSoftRotation * forward;
 
         // Raycast izquierdo
-        RaycastHit hitLeft;
-        if (Physics.Raycast(transform.position, leftDir, out hitLeft, rayDistance))
+        if (Physics.Raycast(transform.position, leftDir, out RaycastHit hitLeft, rayDistance))
         {
             if (hitLeft.collider.CompareTag(Constants.player))
             {
@@ -62,8 +60,7 @@ public class PlayerDetector : MonoBehaviour
         }
 
         // Raycast izquierdo pequeño
-        RaycastHit hitSoftLeft;
-        if (Physics.Raycast(transform.position, leftSoftDir, out hitSoftLeft, rayDistance))
+        if (Physics.Raycast(transform.position, leftSoftDir, out RaycastHit hitSoftLeft, rayDistance))
         {
             if (hitSoftLeft.collider.CompareTag(Constants.player))
             {
@@ -90,8 +87,7 @@ public class PlayerDetector : MonoBehaviour
         Vector3 rightSoftDir = rightSoftRotation * forward;
 
         // Raycast derecho
-        RaycastHit hitRight;
-        if (Physics.Raycast(transform.position, rightDir, out hitRight, rayDistance))
+        if (Physics.Raycast(transform.position, rightDir, out RaycastHit hitRight, rayDistance))
         {
             if (hitRight.collider.CompareTag(Constants.player))
             {
@@ -99,8 +95,7 @@ public class PlayerDetector : MonoBehaviour
             }
         }
         // Raycast derecho pequeño
-        RaycastHit hitSoftRight;
-        if (Physics.Raycast(transform.position, rightSoftDir, out hitSoftRight, rayDistance))
+        if (Physics.Raycast(transform.position, rightSoftDir, out RaycastHit hitSoftRight, rayDistance))
         {
             if (hitSoftRight.collider.CompareTag(Constants.player))
             {
