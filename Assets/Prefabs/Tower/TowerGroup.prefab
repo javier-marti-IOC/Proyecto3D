@@ -649,7 +649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 5997274429968177521, guid: 89126174ddcda454f9bb9c4264e26609, type: 3}
-  - {fileID: 3603403763503387647, guid: 9f85ab4d35b72e64a85807f9192e5c2b, type: 3}
+  - {fileID: 3837763967345271107, guid: 15ee454afb8051549af8b36f9917a845, type: 3}
   tower: {fileID: 5247410923028487526}
   secondZone: {fileID: 8828021864728922453}
   trackPoints:

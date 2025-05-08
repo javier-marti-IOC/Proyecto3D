@@ -57,11 +57,12 @@ public class ProgressManager : MonoBehaviour
 
     void Update()
     {
+        // Guardar data
         if(Input.GetKeyDown(KeyCode.X))
         {
             SaveGame();
         }
-
+        // Cargar data
         if(Input.GetKeyDown(KeyCode.Z))
         {
             if (File.Exists(saveFilePath))
@@ -73,6 +74,14 @@ public class ProgressManager : MonoBehaviour
             else
             {
                 Debug.Log("There is no save files to load!");
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if (File.Exists(saveFilePath))
+            {
+                DeleteSavedFile();
             }
         }
     }
@@ -107,7 +116,7 @@ public class ProgressManager : MonoBehaviour
         }
     }
     // Funcion para iniciar nueva partida
-    public void DeleteSaveFile()
+    public void DeleteSavedFile()
     {
         if (File.Exists(saveFilePath))
         {

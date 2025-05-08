@@ -21,10 +21,10 @@ public class GraphicSettings : MonoBehaviour
     void Start()
     {
         PopulateResolutionDropdown();
-        PopulateQualityDropdown();
+        //PopulateQualityDropdown();
         PopulateScreenModeDropdown();
-        PopulateShadowsDropdown();
-        PopulateDrawDistanceDropdown();
+        // PopulateShadowsDropdown();
+        // PopulateDrawDistanceDropdown();
         PopulateFPSLimitDropdown();
         LoadSettings();
     }
@@ -133,24 +133,24 @@ public class GraphicSettings : MonoBehaviour
     //     resolutionDropdown.onValueChanged.AddListener(SetResolution);
     // }
 
-    void PopulateQualityDropdown()
-    {
-        if (qualityDropdown == null)
-        {
-            Debug.LogError("qualityDropdown no está asignado en el Inspector.");
-            return;
-        }
+    // void PopulateQualityDropdown()
+    // {
+    //     if (qualityDropdown == null)
+    //     {
+    //         Debug.LogError("qualityDropdown no está asignado en el Inspector.");
+    //         return;
+    //     }
 
-        // Obtener las opciones de calidad desde los nombres de los niveles de calidad.
-        List<string> options = new List<string>(QualitySettings.names);
+    //     // Obtener las opciones de calidad desde los nombres de los niveles de calidad.
+    //     List<string> options = new List<string>(QualitySettings.names);
 
-        qualityDropdown.ClearOptions();
-        qualityDropdown.AddOptions(options);
-        qualityDropdown.onValueChanged.RemoveAllListeners();
-        qualityDropdown.value = PlayerPrefs.GetInt("Quality", 2);
-        qualityDropdown.RefreshShownValue();
-        qualityDropdown.onValueChanged.AddListener(SetQuality);
-    }
+    //     qualityDropdown.ClearOptions();
+    //     qualityDropdown.AddOptions(options);
+    //     qualityDropdown.onValueChanged.RemoveAllListeners();
+    //     qualityDropdown.value = PlayerPrefs.GetInt("Quality", 2);
+    //     qualityDropdown.RefreshShownValue();
+    //     qualityDropdown.onValueChanged.AddListener(SetQuality);
+    // }
     void PopulateScreenModeDropdown()
     {
         if (screenModeDropdown == null)
@@ -174,53 +174,55 @@ public class GraphicSettings : MonoBehaviour
         screenModeDropdown.RefreshShownValue();
         screenModeDropdown.onValueChanged.AddListener(SetScreenMode);
     }
-    void PopulateShadowsDropdown()
-    {
-        if (shadowsDropdown == null)
-        {
-            Debug.LogError("shadowsDropdown no está asignado en el Inspector.");
-            return;
-        }
+    // void PopulateShadowsDropdown()
+    // {
+    //     if (shadowsDropdown == null)
+    //     {
+    //         Debug.LogError("shadowsDropdown no está asignado en el Inspector.");
+    //         return;
+    //     }
 
-        // Obtener las opciones de sombras desde ShadowQuality
-        List<string> options = new List<string>
-        {
-            "Ninguna", // ShadowQuality.Disable
-            "Baja",    // ShadowQuality.HardOnly
-            "Media",   // ShadowQuality.All
-            "Alta"     // ShadowQuality.All
-        };
+    //     // Obtener las opciones de sombras desde ShadowQuality
+    //     List<string> options = new List<string>
+    //     {
+    //         "Ninguna", // ShadowQuality.Disable
+    //         "Baja",    // ShadowQuality.HardOnly
+    //         "Media",   // ShadowQuality.All
+    //         "Alta"     // ShadowQuality.All
+    //     };
 
-        shadowsDropdown.ClearOptions();
-        shadowsDropdown.AddOptions(options);
-        shadowsDropdown.onValueChanged.RemoveAllListeners();
-        shadowsDropdown.value = PlayerPrefs.GetInt("Shadows", 2);
-        shadowsDropdown.RefreshShownValue();
-        shadowsDropdown.onValueChanged.AddListener(SetShadows);
-    }
-    void PopulateDrawDistanceDropdown()
-    {
-        if (drawDistanceDropdown == null)
-        {
-            Debug.LogError("drawDistanceDropdown no está asignado en el Inspector.");
-            return;
-        }
+    //     shadowsDropdown.ClearOptions();
+    //     shadowsDropdown.AddOptions(options);
+    //     shadowsDropdown.onValueChanged.RemoveAllListeners();
+    //     shadowsDropdown.value = PlayerPrefs.GetInt("Shadows", 2);
+    //     shadowsDropdown.RefreshShownValue();
+    //     shadowsDropdown.onValueChanged.AddListener(SetShadows);
+    // }
+    // void PopulateDrawDistanceDropdown()
+    // {
+    //     if (drawDistanceDropdown == null)
+    //     {
+    //         Debug.LogError("drawDistanceDropdown no está asignado en el Inspector.");
+    //         return;
+    //     }
 
-        // Opciones predefinidas para la distancia de dibujo
-        List<string> options = new List<string>
-        {
-            "50m", 
-            "100m", 
-            "200m"
-        };
+    //     // Opciones predefinidas para la distancia de dibujo
+    //     List<string> options = new List<string>
+    //     {
+    //         "300m", 
+    //         "500m", 
+    //         "750m",
+    //         "1000m",
+    //         "2000m"
+    //     };
 
-        drawDistanceDropdown.ClearOptions();
-        drawDistanceDropdown.AddOptions(options);
-        drawDistanceDropdown.onValueChanged.RemoveAllListeners();
-        drawDistanceDropdown.value = PlayerPrefs.GetInt("DrawDistance", 1);
-        drawDistanceDropdown.RefreshShownValue();
-        drawDistanceDropdown.onValueChanged.AddListener(SetDrawDistance);
-    }
+    //     drawDistanceDropdown.ClearOptions();
+    //     drawDistanceDropdown.AddOptions(options);
+    //     drawDistanceDropdown.onValueChanged.RemoveAllListeners();
+    //     drawDistanceDropdown.value = PlayerPrefs.GetInt("DrawDistance", 1);
+    //     drawDistanceDropdown.RefreshShownValue();
+    //     drawDistanceDropdown.onValueChanged.AddListener(SetDrawDistance);
+    // }
     void PopulateFPSLimitDropdown()
     {
         if (fpsLimitDropdown == null)
@@ -248,12 +250,12 @@ public class GraphicSettings : MonoBehaviour
         fpsLimitDropdown.onValueChanged.AddListener(SetFPSLimit);
     }
 
-    public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-        PlayerPrefs.SetInt("Quality", qualityIndex);
-        PlayerPrefs.Save();
-    }
+    // public void SetQuality(int qualityIndex)
+    // {
+    //     QualitySettings.SetQualityLevel(qualityIndex);
+    //     PlayerPrefs.SetInt("Quality", qualityIndex);
+    //     PlayerPrefs.Save();
+    // }
 
     public void SetResolution(int resolutionIndex)
     {
@@ -302,26 +304,26 @@ public class GraphicSettings : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void SetShadows(int shadowIndex)
-    {
-        QualitySettings.shadows = (ShadowQuality)shadowIndex;
-        PlayerPrefs.SetInt("Shadows", shadowIndex);
-        PlayerPrefs.Save();
-    }
+    // public void SetShadows(int shadowIndex)
+    // {
+    //     QualitySettings.shadows = (ShadowQuality)shadowIndex;
+    //     PlayerPrefs.SetInt("Shadows", shadowIndex);
+    //     PlayerPrefs.Save();
+    // }
 
-    public void SetDrawDistance(int distanceIndex)
-    {
-        float[] distances = { 50f, 100f, 200f };
-        if (distanceIndex < 0 || distanceIndex >= distances.Length)
-        {
-            Debug.LogWarning("Índice de distancia de dibujo inválido.");
-            return;
-        }
+    // public void SetDrawDistance(int distanceIndex)
+    // {
+    //     float[] distances = { 300f, 500f, 750f, 1000f, 2000f };
+    //     if (distanceIndex < 0 || distanceIndex >= distances.Length)
+    //     {
+    //         Debug.LogWarning("Índice de distancia de dibujo inválido.");
+    //         return;
+    //     }
 
-        Camera.main.farClipPlane = distances[distanceIndex];
-        PlayerPrefs.SetInt("DrawDistance", distanceIndex);
-        PlayerPrefs.Save();
-    }
+    //     Camera.main.farClipPlane = distances[distanceIndex];
+    //     PlayerPrefs.SetInt("DrawDistance", distanceIndex);
+    //     PlayerPrefs.Save();
+    // }
 
     public void SetFPSLimit(int index)
     {
@@ -340,18 +342,18 @@ public class GraphicSettings : MonoBehaviour
     public void LoadSettings()
     {
 
-        if (qualityDropdown == null || resolutionDropdown == null || screenModeDropdown == null || 
-            vsyncToggle == null || shadowsDropdown == null || drawDistanceDropdown == null || fpsLimitDropdown == null)
+        if (/*qualityDropdown == null ||*/ resolutionDropdown == null || screenModeDropdown == null || 
+            vsyncToggle == null || fpsLimitDropdown == null) //|| shadowsDropdown == null || drawDistanceDropdown == null)
         {
             Debug.LogError("Uno o más elementos UI no están asignados en el Inspector.");
             return;
         }
 
-        qualityDropdown.value = PlayerPrefs.GetInt("Quality", 2);
+        //qualityDropdown.value = PlayerPrefs.GetInt("Quality", 2);
         screenModeDropdown.value = PlayerPrefs.GetInt("ScreenMode", 0);
         vsyncToggle.isOn = PlayerPrefs.GetInt("VSync", 1) == 1;
-        shadowsDropdown.value = PlayerPrefs.GetInt("Shadows", 2);
-        drawDistanceDropdown.value = PlayerPrefs.GetInt("DrawDistance", 1);
+        // shadowsDropdown.value = PlayerPrefs.GetInt("Shadows", 2);
+        // drawDistanceDropdown.value = PlayerPrefs.GetInt("DrawDistance", 1);
         fpsLimitDropdown.value = PlayerPrefs.GetInt("FPSLimit", 1);
 
         resolutionDropdown.onValueChanged.RemoveAllListeners();
@@ -359,10 +361,10 @@ public class GraphicSettings : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
 
-        qualityDropdown.RefreshShownValue();
+        //qualityDropdown.RefreshShownValue();
         screenModeDropdown.RefreshShownValue();
-        shadowsDropdown.RefreshShownValue();
-        drawDistanceDropdown.RefreshShownValue();
+        // shadowsDropdown.RefreshShownValue();
+        // drawDistanceDropdown.RefreshShownValue();
         fpsLimitDropdown.RefreshShownValue();
     }
 }

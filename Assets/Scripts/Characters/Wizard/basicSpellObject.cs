@@ -12,7 +12,7 @@ public class basicSpellObject : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.Find("PlayerAgent");
+        target = GameObject.Find(Constants.player);
         spellRB = gameObject.GetComponent<Rigidbody>();
         transform.LookAt(target.transform);
     }

@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour
                 {
                     if(enemy.transform)
                     {
-                        if(enemy.transform.GetChild(0).transform.GetComponent<DistanceBT>().activeElement == activeElement) // Verificamos que el activeElement del enemigo concuerde con el de la funcion
+                        if(enemy.transform.GetChild(0).transform.GetComponent<EnemyAreaConfigurator>().activeElement == activeElement) // Verificamos que el activeElement del enemigo concuerde con el de la funcion
                         {
                             Instantiate(enemy, trackPoints[rndNum].transform.position, Quaternion.identity); // Instanciamos el enemigo
                             tower.isOnCooldown = true; // Activamos el cooldown    
