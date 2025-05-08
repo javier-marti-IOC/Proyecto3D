@@ -158,7 +158,7 @@ namespace StarterAssets
             // reset our timeouts on start
             //_jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-            dpadAction = _input.FindActionMap("Gameplay").FindAction("DPAD");
+            // dpadAction = _input.FindActionMap("Gameplay").FindAction("DPAD");
         }
         private void Update()
         {
@@ -180,7 +180,7 @@ namespace StarterAssets
                     Roll();
                     // DodgeBackward();
                 }
-                Debug.Log(dpadAction.ReadValue<Vector2>());
+                // Debug.Log(dpadAction.ReadValue<Vector2>());
                 /*
                 if (Input.GetAxis("DPAD_h") > 0.5f)
                 {

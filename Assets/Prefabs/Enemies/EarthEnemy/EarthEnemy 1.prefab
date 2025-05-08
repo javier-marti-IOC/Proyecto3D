@@ -200,6 +200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
         type: 3}
+      propertyPath: pointPatrol
+      value: 
+      objectReference: {fileID: 8762913460150602555}
+    - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
       propertyPath: playerDetectorUp
       value: 
       objectReference: {fileID: 7643601675000999225}
@@ -276,6 +281,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5350482097477910554, guid: e8111fd7eb823104aad59b99379b18a5, type: 3}
+    - {fileID: 2729533608745911626, guid: e8111fd7eb823104aad59b99379b18a5, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8823865990805623799, guid: e8111fd7eb823104aad59b99379b18a5,
         type: 3}
@@ -289,7 +295,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3701033624028855557}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8160377332304890189, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7334634630726591581}
   m_SourcePrefab: {fileID: 100100000, guid: e8111fd7eb823104aad59b99379b18a5, type: 3}
 --- !u!4 &6079005999889995694 stripped
 Transform:
@@ -297,3 +307,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3326010448892380249}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6851988321168067860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8160377332304890189, guid: e8111fd7eb823104aad59b99379b18a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3326010448892380249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &7334634630726591581
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851988321168067860}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
