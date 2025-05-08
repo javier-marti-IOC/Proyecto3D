@@ -1559,10 +1559,10 @@ RectTransform:
   - {fileID: 6803192989165982958}
   - {fileID: 3424606028343575012}
   - {fileID: 17282994383255593}
+  - {fileID: 1540363403745224938}
   - {fileID: 7630783852325547500}
   - {fileID: 5172768217033772359}
   - {fileID: 8141795657242482131}
-  - {fileID: 1540363403745224938}
   - {fileID: 7555594841102855588}
   - {fileID: 5423534737566577345}
   - {fileID: 4064515941381854341}
@@ -3030,7 +3030,7 @@ PrefabInstance:
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 50.21
       objectReference: {fileID: 0}
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
@@ -3075,7 +3075,7 @@ PrefabInstance:
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -220
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
@@ -3876,7 +3876,7 @@ PrefabInstance:
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
@@ -3897,6 +3897,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Quality - Dropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518831722969765525, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5315896724025566688, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
@@ -4359,6 +4364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DrawDistance - Dropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518831722969765525, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5315896724025566688, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
@@ -4869,7 +4879,7 @@ PrefabInstance:
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2681595610181306150, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
@@ -4890,6 +4900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shadows - Dropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518831722969765525, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5315896724025566688, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}

@@ -6,15 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject hudPanel;
+    public GameObject optionsPanel;
     [Header("Panel del menú de pausa")]
     public GameObject pausePanel;
+
     public Button selectedButton; 
     private bool isPaused = false;
 
     void Update()
     {
         // Botón Start de mando Xbox o tecla Escape
-        if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
         {
             TogglePause();
         }
@@ -29,11 +32,13 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             pausePanel.SetActive(true);
             selectedButton.Select();
+            hudPanel.SetActive(false);
         }
         else
         {
             Time.timeScale = 1f;
             pausePanel.SetActive(false);
+            hudPanel.SetActive(true);
            
         }
     }
