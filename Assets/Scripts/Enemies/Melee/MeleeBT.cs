@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class MeleeBT : Enemy
 {
     private bool playerInSecurityDistance;
+    
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;

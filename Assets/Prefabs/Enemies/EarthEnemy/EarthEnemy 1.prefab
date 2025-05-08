@@ -175,6 +175,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
         type: 3}
+      propertyPath: pointPatrol
+      value: 
+      objectReference: {fileID: 8762913460150602555}
+    - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
       propertyPath: playerDetectorUp
       value: 
       objectReference: {fileID: 7643601675000999225}
