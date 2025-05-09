@@ -94196,7 +94196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: 4ac53b5192562bd4a85423d05635fe74, type: 2}
-  movementSpeed: 3
+  movementSpeed: 2
   baseDirectionAngle: 270
   deviationAngle: 15
   noiseScale: 0.1
