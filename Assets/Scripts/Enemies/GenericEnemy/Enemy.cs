@@ -154,8 +154,10 @@ public abstract class Enemy : MonoBehaviour
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
-        agent.SetDestination(tower.transform.position);
-
+        if(tower != null)
+        {
+            agent.SetDestination(tower.transform.position);
+        }
     }
 
     public void BasicAttackActivated()

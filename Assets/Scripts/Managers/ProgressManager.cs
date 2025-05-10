@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 // Objeto a guardar en el JSON y que contiene todas la data
 public class ProgressData
@@ -109,6 +110,8 @@ public class ProgressManager : MonoBehaviour
         {
             string loadProgressData = File.ReadAllText(saveFilePath);
             progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+            SceneManager.LoadScene(1);
+            Debug.Log("Partida cargada con exito!");
         }
         else
         {
@@ -122,10 +125,12 @@ public class ProgressManager : MonoBehaviour
         {
             File.Delete(saveFilePath);  
             Debug.Log("Save file deleted!");
+            SceneManager.LoadScene(1);        
         }
         else
         {
             Debug.Log("There is nothing to delete!");
+            SceneManager.LoadScene(1);
         }
     }
 }
