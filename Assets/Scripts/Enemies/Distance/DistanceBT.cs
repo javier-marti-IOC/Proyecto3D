@@ -85,13 +85,17 @@ public class DistanceBT : Enemy
                                 else
                                 {
                                     // agent.radius = 5f;
-                                    CheckAgentSpeed();
+                                    // CheckAgentSpeed();
+                                    animator.SetInteger(Constants.state, 1);
+
                                     Chase(3f);
                                 }
                             }
                             else
                             {
-                                CheckAgentSpeed();
+                                // CheckAgentSpeed();
+                                animator.SetInteger(Constants.state, 1);
+
                                 Chase(stoppingDistance);
 
                             }

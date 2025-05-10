@@ -82,21 +82,21 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    protected void CheckAgentSpeed()
-    {
-        if (agent.velocity.magnitude <= 0.2f)
-        {
-            animator.SetInteger(Constants.state, 0);
-        }
-        else
-        {
-            animator.SetInteger(Constants.state, 1);
-        }
-    }
+    // protected void CheckAgentSpeed()
+    // {
+    //     if (agent.velocity.magnitude <= 0.2f)
+    //     {
+    //         animator.SetInteger(Constants.state, 0);
+    //     }
+    //     else
+    //     {
+    //         animator.SetInteger(Constants.state, 1);
+    //     }
+    // }
 
     protected void Patrol()
     {
-        CheckAgentSpeed();
+        // CheckAgentSpeed();
 
         if (ghost == null)
         {
@@ -109,7 +109,7 @@ public abstract class Enemy : MonoBehaviour
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
 
-        // animator.SetInteger(Constants.state, 1);
+        animator.SetInteger(Constants.state, 1);
 
     }
 
