@@ -31,6 +31,7 @@ public class DistanceBT : Enemy
     //Update is called once per frame
     void Update()
     {
+        cooldownHeavyAttack -= Time.deltaTime;
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
@@ -117,11 +118,33 @@ public class DistanceBT : Enemy
                                             TeleportToSafeZone();
                                             teleportCooldownTimer = teleportCooldownTime;
                                         }
+                                        else
+                                        {
+                                            if (cooldownHeavyAttack < 0)
+                                            {
+                                                //transform.LookAt(player.transform);
+                                                animator.SetInteger(Constants.state,3);
+                                            }
+                                            else
+                                            {
+                                                //transform.LookAt(player.transform);
+                                                animator.SetInteger(Constants.state,2);
+                                            }
+                                        }
                                     }
                                 }
                             else
                             {
-
+                                if (cooldownHeavyAttack < 0)
+                                {
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state,3);
+                                }
+                                else
+                                {
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state,2);
+                                }
                             }
                             break;
                         default:

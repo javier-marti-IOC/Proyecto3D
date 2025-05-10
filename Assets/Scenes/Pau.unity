@@ -1296,6 +1296,16 @@ PrefabInstance:
       propertyPath: teleportCooldownTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: maxCooldownTimeExclusive
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: minCooldownTimeInclusive
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
