@@ -22,6 +22,24 @@ public class DistanceBT : Enemy
     public GameObject[] lookAtPlayers;
     private bool foundLookingPlayer = false;
 
+    [Header("Electric Basic Attack")]
+    public Transform hand;
+    public LineRenderer lightningLine;
+    public Light attackLight;
+    public float electricAttackRange = 10f;
+    public int electricDamage = 20;
+
+    [Header("Electric Heavy Attack")]
+    public ParticleSystem lightningArea;
+    public float heavyAttackDelay = 2f;
+    public float heavyAttackRadius = 2f;
+    public int heavyAttackDamage = 40;
+    public float lightningHeight = 10f;
+    private Vector3 pendingHeavyAttackPosition;
+    private ParticleSystem activeHeavyParticles;
+
+
+
     // Start is called before the first frame update
 
 
@@ -103,30 +121,52 @@ public class DistanceBT : Enemy
                         case Element.Electric:
                             //Funcionalidad enemigo electrico
                             if (isPlayerInTeleportZone)
-                            {
-                                transform.LookAt(player.transform);
-                                teleportCooldownTimer -= Time.deltaTime;
-                                timerTeleportFunction += Time.deltaTime;
-
-                                if (timerTeleportFunction >= 1f)
                                 {
-                                    timerTeleportFunction = 0f;
-                                    int tp = TeleportProbability();
-                                    Debug.Log("Teleport Probability: " + tp);
+                                    transform.LookAt(player.transform); // igual substituir per -> Utils.RotatePositionToTarget(transform, player.transform, 15f);
+                                    teleportCooldownTimer -= Time.deltaTime;
+                                    timerTeleportFunction += Time.deltaTime;
 
-                                    bool cooldownReady = teleportCooldownTimer <= 0;
-                                    bool luckyTeleport = tp <= teleportChance;
-
-                                    if (cooldownReady || luckyTeleport)
+                                    if (timerTeleportFunction >= 1f)
                                     {
-                                        TeleportToSafeZone();
-                                        teleportCooldownTimer = teleportCooldownTime;
+                                        timerTeleportFunction = 0f;
+                                        int tp = TeleportProbability();
+                                        Debug.Log("Teleport Probability: " + tp);
+
+                                        bool cooldownReady = teleportCooldownTimer <= 0;
+                                        bool luckyTeleport = tp <= teleportChance;
+
+                                        if (cooldownReady || luckyTeleport)
+                                        {
+                                            TeleportToSafeZone();
+                                            teleportCooldownTimer = teleportCooldownTime;
+                                        }
+                                        else
+                                        {
+                                            if (cooldownHeavyAttack < 0)
+                                            {
+                                                //transform.LookAt(player.transform);
+                                                animator.SetInteger(Constants.state,3);
+                                            }
+                                            else
+                                            {
+                                                //transform.LookAt(player.transform);
+                                                animator.SetInteger(Constants.state,3);
+                                            }
+                                        }
                                     }
                                 }
-                            }
                             else
                             {
-
+                                if (cooldownHeavyAttack < 0)
+                                {
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state,3);
+                                }
+                                else
+                                {
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state,3);
+                                }
                             }
                             break;
                         default:
@@ -200,7 +240,7 @@ public class DistanceBT : Enemy
         }
     }
 
-    private int TeleportProbability()
+    private int TeleportProbability ()
     {
         int tp = UnityEngine.Random.Range(0, 100);
         return tp;
@@ -221,4 +261,83 @@ public class DistanceBT : Enemy
             Debug.Log("No se encontró una zona segura para teletransportar.");
         }
     }
+
+    public void ShootLightning()
+    {
+        if (player == null) return;
+
+        Vector3 direction = (player.transform.position - hand.position).normalized;
+        RaycastHit hit;
+
+        Vector3 endPoint;
+
+        if (Physics.Raycast(hand.position, direction, out hit, electricAttackRange))
+        {
+            endPoint = hit.point;
+            Debug.DrawRay(hand.position, direction * electricAttackRange, Color.red, 1f);
+
+            if (hit.collider.CompareTag(Constants.player))
+            {
+                // Fer pupa al player
+                Debug.Log("Player hit with electric basic attack");
+            }
+        }
+        else
+        {
+            endPoint = hand.position + direction * electricAttackRange;
+        }
+
+        lightningLine.SetPosition(0, hand.position);
+        lightningLine.SetPosition(1, endPoint);
+        lightningLine.enabled = true;
+
+        attackLight.enabled = true;
+
+        Invoke(nameof(DisableLightningVisuals), 0.1f);
+    }
+
+    public void StartHeavyAttack()
+    {
+        if (player == null) return;
+
+        pendingHeavyAttackPosition = player.transform.position;
+
+        activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
+        activeHeavyParticles.Play();
+
+        Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
+    }
+
+
+    private void ExecuteHeavyAttack()
+    {
+        if (activeHeavyParticles != null)
+        {
+            Destroy(activeHeavyParticles.gameObject);
+        }
+
+        Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
+        Vector3 end = pendingHeavyAttackPosition;
+
+        lightningLine.SetPosition(0, start);
+        lightningLine.SetPosition(1, end);
+        lightningLine.enabled = true;
+
+        attackLight.enabled = true;
+        Invoke(nameof(DisableLightningVisuals), 0.1f);
+
+        if (Vector3.Distance(player.transform.position, end) <= heavyAttackRadius)
+        {
+            // Player rep pupa
+            Debug.Log("Player hit by heavy electric attack");
+        }
+}
+
+
+    private void DisableLightningVisuals()
+    {
+        lightningLine.enabled = false;
+        attackLight.enabled = false;
+    }
+
 }
