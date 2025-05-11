@@ -37,7 +37,7 @@ public class BasicSpellObject : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationThisFrame);
 
         // Movimiento hacia adelante
-        spellRB.velocity = direction * speed;
+        spellRB.velocity = transform.forward * speed;
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
