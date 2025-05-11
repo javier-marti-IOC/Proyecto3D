@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicAttackCollider : MonoBehaviour
+public class AttackEnter : MonoBehaviour
 {
-    public MeleeBT meleeBT;
+    public VikingController vikingController;
     public void OnTriggerEnter(Collider other)
     {
-        meleeBT.AttackEnter(other);
+        vikingController.AttackEnter(other);
     }
 }

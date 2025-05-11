@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,8 +26,17 @@ public class VikingController : MonoBehaviour
     public Element activeElement;
     public Animator animator;
     public int healthPoints;
+    public GameObject swordCollider;
+    private bool isBasicAttack;
+    public int basicAttackBasicDamage;
+    public int basicAttackMagicDamage;
+    public int heavyAttackBasicDamage;
+    public int heavyAttackMagicDamage;
+    public GameManager gameManager;
 
     public bool OnAction;
+    public bool isRolling;
+    public float rollCooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,17 +55,17 @@ public class VikingController : MonoBehaviour
         rollAction = inputActions.FindAction("Roll");
         heavyAttackAction.Enable();
         OnAction = false;
+        swordCollider.SetActive(false);
+        isBasicAttack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(basicAttackAction.WasPerformedThisFrame());
-        Debug.Log("Heavy: "+heavyAttackAction.ReadValue<float>());
         dpadValue = dpadAction.ReadValue<Vector2>();
+        rollCooldown -= Time.deltaTime;
         if (!OnAction && healthPoints > 0)
         {
-            Debug.Log(dpadValue);
             if (dpadValue.x > 0.5f)
             {
                 ChangeElement(Element.Earth);
@@ -72,21 +82,25 @@ public class VikingController : MonoBehaviour
             {
                 ChangeElement(Element.Water);
             }
-            if (basicAttackAction.WasPerformedThisFrame())
+            if (basicAttackAction.WasPerformedThisFrame() && !isRolling)
             {
                 BasicAttack();
             }
-            if (heavyAttackAction.ReadValue<float>() > 0.5f)
+            if (heavyAttackAction.ReadValue<float>() > 0.5f && !isRolling)
             {
                 HeavyAttack();
             }
-            if (rollAction.WasPerformedThisFrame())
+            if (rollAction.WasPerformedThisFrame() && rollCooldown < 0f)
             {
+                rollCooldown = 1.2f;
                 Roll();
+            }
+            if (healthPoints <= 0)
+            {
+                Dying();
             }
         }
     }
-
 
     private void ChangeElement(Element element)
     {
@@ -114,16 +128,17 @@ public class VikingController : MonoBehaviour
     {
         animator.SetTrigger("SoftAttack");
         OnAction = true;
+        isBasicAttack = true;
     }
     public void Roll()
     {
         animator.SetTrigger("Roll");
-        OnAction = true;
     }
     public void HeavyAttack()
     {
         animator.SetTrigger("HardAttack");
         OnAction = true;
+        isBasicAttack = false;
     }
     public void Dying()
     {
@@ -131,12 +146,54 @@ public class VikingController : MonoBehaviour
         OnAction = true;
     }
 
-    public void BasickAttackEnter(Collider other)
+    public void AttackEnter(Collider other)
     {
-
+        if (other.tag.Equals(Constants.enemy))
+        {
+            int damageDeal;
+            if (isBasicAttack)
+            {
+                damageDeal = gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackMagicDamage,other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                Debug.Log("Basic Attack Damage Deal: " + damageDeal);
+            }
+            else
+            {
+                damageDeal = gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackMagicDamage,other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
+            }
+        }
     }
     public void EndAction()
     {
         OnAction = false;
+    }
+
+    public void ColliderAttackEnable()
+    {
+        swordCollider.SetActive(true);
+    }
+
+    public void ColliderAttackDisable()
+    {
+        swordCollider.SetActive(false);
+    }
+
+    public void InmunityEnable()
+    {
+        isRolling = true;
+    }
+
+    public void InmunityDisable()
+    {
+        isRolling = false;
+    }
+    public void HealthTaken(int healthTaken)
+    {
+        if (!isRolling)
+        {
+            healthPoints -= healthTaken;
+        }
     }
 }
