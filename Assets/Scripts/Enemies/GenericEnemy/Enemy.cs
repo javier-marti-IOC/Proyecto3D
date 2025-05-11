@@ -4,8 +4,13 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
+    public GameObject drop;
+    public Transform dropPosition;
+    public EnemyHUD enemyHUD;
     public Element activeElement;
-    protected int healthPoints;
+    public int healthPoints;
+    public int maxHealthPoints = 100;
+    public int enemyLevel = 1;
     protected GameObject player;
     public Tower tower;
     public GameManager gameManager;
@@ -182,5 +187,12 @@ public abstract class Enemy : MonoBehaviour
     public void HealthTaken(int damageTaken)
     {
         healthPoints -= damageTaken;
+        enemyHUD.UpdateHealth(healthPoints);
+    }
+    public void Dying()
+    {
+        Debug.Log("Muelto");
+        Instantiate(drop,dropPosition.position,Quaternion.identity,null);
+        Destroy(this);
     }
 }

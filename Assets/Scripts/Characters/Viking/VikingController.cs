@@ -95,10 +95,10 @@ public class VikingController : MonoBehaviour
                 rollCooldown = 1.2f;
                 Roll();
             }
-            if (healthPoints <= 0)
-            {
-                Dying();
-            }
+        }
+        if (healthPoints <= 0)
+        {
+            Dying();
         }
     }
 

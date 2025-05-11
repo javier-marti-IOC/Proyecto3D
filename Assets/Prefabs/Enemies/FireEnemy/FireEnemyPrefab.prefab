@@ -1173,6 +1173,7 @@ GameObject:
   - component: {fileID: 8761287664093615416}
   - component: {fileID: 1871423876827958751}
   - component: {fileID: 79780363703065823}
+  - component: {fileID: 295525356915081866}
   m_Layer: 0
   m_Name: FireEnemy
   m_TagString: Enemy
@@ -1282,6 +1283,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeElement: 3
+  healthPoints: 0
+  maxHealthPoints: 100
+  enemyLevel: 1
   tower: {fileID: 0}
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}
@@ -1298,12 +1302,12 @@ MonoBehaviour:
   playerDetectorDown: {fileID: 2912064289879657469}
   playerDetectorUp: {fileID: 7113069356314719712}
   minDistanceChase: {fileID: 1728276217441479041}
-  basicAttackCollider: {fileID: 4202588707592247184}
-  heavyAttackCollider: {fileID: 4202588707592247184}
   basicAttackBasicDamage: 0
   basicAttackElementalDamage: 0
   heavyAttackBasicDamage: 0
   heavyAttackElementalDamage: 0
+  basicAttackCollider: {fileID: 4202588707592247184}
+  heavyAttackCollider: {fileID: 4202588707592247184}
 --- !u!195 &8761287664093615416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1366,6 +1370,33 @@ MonoBehaviour:
   slowedSpeed: 1.5
   defaultAreaCost: 1
   oppositeAreaCost: 10
+--- !u!54 &295525356915081866
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174401350437304416}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7438437337933173516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c2b8be1a186f643a2eecc17fff630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  earthBT: {fileID: 5073826984564960317}
+  meleeBT: {fileID: 5073826984564960317}
 --- !u!1 &9112077109406638651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,6 +1739,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2930473188395620805}
     m_Modifications:
+    - target: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: enemyScript
+      value: 
+      objectReference: {fileID: 5073826984564960317}
     - target: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1747,6 +1783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
         type: 3}
@@ -1812,6 +1853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy HUD - Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678441645492434153, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

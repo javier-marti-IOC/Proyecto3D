@@ -281,6 +281,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6127873753904418742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5468001031296598196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5732543632236977345}
+  m_Layer: 0
+  m_Name: Drops
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5732543632236977345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5468001031296598196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 917795614414523819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5997274429968177521
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +850,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
         type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 5732543632236977345}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423913955446511639}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
@@ -935,7 +970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9001474cea1ba04381276e0fba97132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drop: {fileID: 4280553628134071422, guid: 82410f60f44de304baedaf7c930bdd9a, type: 3}
+  dropPosition: {fileID: 5732543632236977345}
+  enemyHUD: {fileID: 5731537666881477339}
   activeElement: 2
+  healthPoints: 0
+  maxHealthPoints: 100
+  enemyLevel: 1
   tower: {fileID: 0}
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}
@@ -952,8 +993,6 @@ MonoBehaviour:
   playerDetectorDown: {fileID: 1961920292286216563}
   playerDetectorUp: {fileID: 437362043903965274}
   minDistanceChase: {fileID: 6769779894073946202}
-  basicAttackCollider: {fileID: 0}
-  heavyAttackCollider: {fileID: 0}
   basicAttackBasicDamage: 0
   basicAttackElementalDamage: 0
   heavyAttackBasicDamage: 0
@@ -1071,6 +1110,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 917795614414523819}
     m_Modifications:
+    - target: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: enemyScript
+      value: 
+      objectReference: {fileID: 3131711946875568981}
     - target: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1186,6 +1230,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb5242eaff695744941ef457daf9ead, type: 3}
+--- !u!114 &5731537666881477339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 5010329428883250640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a22d713e7f08e646a7d50513ca478a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5845786056133051409 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
