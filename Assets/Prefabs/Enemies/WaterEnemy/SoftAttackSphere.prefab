@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallValue: 0
-  speed: 8
-  rotationSpeed: 3
+  speed: 15
+  maxRotationAnglePerSecond: 30

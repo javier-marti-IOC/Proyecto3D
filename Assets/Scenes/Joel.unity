@@ -1330,10 +1330,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 13946888540176817, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3863578781731793210, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_Name
       value: Assets
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072122090062512413, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5206674548401870801, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
@@ -15312,11 +15322,6 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 133921449}
-    - target: {fileID: 5247410923028487526, guid: 2a7a84affd227b844a396183d2c320e1,
-        type: 3}
-      propertyPath: activeElement
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5247410923028487526, guid: 2a7a84affd227b844a396183d2c320e1,
         type: 3}
       propertyPath: cameraManager
