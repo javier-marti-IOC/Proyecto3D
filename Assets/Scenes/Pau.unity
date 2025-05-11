@@ -563,6 +563,18 @@ MonoBehaviour:
   timeBetweenAttacks: 2
   damage: 20
   attackLight: {fileID: 0}
+--- !u!1 &1120236789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 52742501774014017, guid: 0d38f1019ba150e47a405d48f2e301f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7291994362007132693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1120236792 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1313441290781597271, guid: 0d38f1019ba150e47a405d48f2e301f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7291994362007132693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1139278173 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8854419116388159353, guid: 0d38f1019ba150e47a405d48f2e301f1,
@@ -1295,6 +1307,11 @@ PrefabInstance:
       objectReference: {fileID: 231240459}
     - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
         type: 3}
+      propertyPath: lightningArea
+      value: 
+      objectReference: {fileID: 1120236792}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
       propertyPath: lightningLine
       value: 
       objectReference: {fileID: 7291994362007132695}
@@ -1328,6 +1345,11 @@ PrefabInstance:
       propertyPath: playerDetectorDown
       value: 
       objectReference: {fileID: 1139278173}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: lightningAreaPrefab
+      value: 
+      objectReference: {fileID: 1120236789}
     - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
         type: 3}
       propertyPath: teleportCooldownTime

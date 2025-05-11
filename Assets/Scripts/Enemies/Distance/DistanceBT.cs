@@ -22,12 +22,23 @@ public class DistanceBT : Enemy
     public GameObject[] lookAtPlayers;
     private bool foundLookingPlayer = false;
 
-    [Header("Electric Attack")]
+    [Header("Electric Basic Attack")]
     public Transform hand;
     public LineRenderer lightningLine;
     public Light attackLight;
     public float electricAttackRange = 10f;
     public int electricDamage = 20;
+
+    [Header("Electric Heavy Attack")]
+    public ParticleSystem lightningArea;
+    public float heavyAttackDelay = 2f;
+    public float heavyAttackRadius = 2f;
+    public int heavyAttackDamage = 40;
+    public float lightningHeight = 10f;
+    private Vector3 pendingHeavyAttackPosition;
+    private ParticleSystem activeHeavyParticles;
+
+
 
     // Start is called before the first frame update
 
@@ -139,7 +150,7 @@ public class DistanceBT : Enemy
                                             else
                                             {
                                                 //transform.LookAt(player.transform);
-                                                animator.SetInteger(Constants.state,2);
+                                                animator.SetInteger(Constants.state,3);
                                             }
                                         }
                                     }
@@ -154,7 +165,7 @@ public class DistanceBT : Enemy
                                 else
                                 {
                                     //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,2);
+                                    animator.SetInteger(Constants.state,3);
                                 }
                             }
                             break;
@@ -268,7 +279,7 @@ public class DistanceBT : Enemy
             if (hit.collider.CompareTag(Constants.player))
             {
                 // Fer pupa al player
-                Debug.Log("Player hit with electric attack");
+                Debug.Log("Player hit with electric basic attack");
             }
         }
         else
@@ -284,6 +295,44 @@ public class DistanceBT : Enemy
 
         Invoke(nameof(DisableLightningVisuals), 0.1f);
     }
+
+    public void StartHeavyAttack()
+    {
+        if (player == null) return;
+
+        pendingHeavyAttackPosition = player.transform.position;
+
+        activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
+        activeHeavyParticles.Play();
+
+        Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
+    }
+
+
+    private void ExecuteHeavyAttack()
+    {
+        if (activeHeavyParticles != null)
+        {
+            Destroy(activeHeavyParticles.gameObject);
+        }
+
+        Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
+        Vector3 end = pendingHeavyAttackPosition;
+
+        lightningLine.SetPosition(0, start);
+        lightningLine.SetPosition(1, end);
+        lightningLine.enabled = true;
+
+        attackLight.enabled = true;
+        Invoke(nameof(DisableLightningVisuals), 0.1f);
+
+        if (Vector3.Distance(player.transform.position, end) <= heavyAttackRadius)
+        {
+            // Player rep pupa
+            Debug.Log("Player hit by heavy electric attack");
+        }
+}
+
 
     private void DisableLightningVisuals()
     {
