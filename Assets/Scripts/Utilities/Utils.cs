@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public static class Utils
@@ -11,4 +12,13 @@ public static class Utils
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         source.rotation = Quaternion.Slerp(source.rotation, lookRotation, Time.deltaTime * velocity); // 15 es la velocidad de giro
     }
+
+    public static void ReplaceMaterials(Material [] sources, Color [] target)
+    {
+        for (int i = 0; i < sources.Length; i++)
+        {
+            sources[i].SetColor("_BaseColor", target[i]);
+        }
+    }
+    
 }

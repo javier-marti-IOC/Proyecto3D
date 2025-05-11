@@ -23,20 +23,21 @@ public class BasicSpellObject : MonoBehaviour
     {
         if (target == null) return;
 
-        // Direccion deseada con caida vertical
-        Vector3 direction = (new Vector3(target.transform.position.x, transform.position.y - fallValue, target.transform.position.z) - transform.position).normalized;
+        // Elevar un poco el punto de mira para que apunte "ligeramente por encima" del objetivo
+        Vector3 targetPosition = target.transform.position + new Vector3(0f, 1f, 0f); // Eleva 1 unidad en Y
+        Vector3 direction = (targetPosition - transform.position).normalized;
 
-        // Calculamos rotacion hacia el objetivo
+        // Calculamos rotación hacia el objetivo elevado
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        // Angulo maximo por frame
+        // Ángulo máximo por frame
         float maxRotationThisFrame = maxRotationAnglePerSecond * Time.fixedDeltaTime;
 
-        // Rotacion limitada
+        // Rotación limitada
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationThisFrame);
 
         // Movimiento hacia adelante
-        spellRB.velocity = transform.forward * speed;
+        spellRB.velocity = direction * speed;
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
