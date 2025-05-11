@@ -68,18 +68,19 @@ public class Tower : MonoBehaviour
     }
 
     void Update()
-    {
-        if (life_text != null) // Mostrar la vida de la torre por pantalla
+    {        
+        // Mostrar la vida de la torre por pantalla
+        if (life_text != null)
         {
             life_text.text = "T.Life: " + life;
         }
-
-        if (Input.GetKeyDown(KeyCode.L)) // Restar vida
+        // Restar vida
+        if (Input.GetKeyDown(KeyCode.L)) 
         {
             life = life - 5;
         }
-
-        if (Input.GetKeyDown(KeyCode.P)) // Restar vida
+        // Sumar vida
+        if (Input.GetKeyDown(KeyCode.P)) 
         {
             life += 5;
             if (life > max_life)
@@ -87,15 +88,21 @@ public class Tower : MonoBehaviour
                 life = max_life;
             }
         }
+        // Volver a poner los colores en corrupto
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Utils.ReplaceMaterials(materials, colors);
+            Debug.Log("-----> CAMBIANDO COLOR");
+        }
 
+        // Si el JSON contiene la torre, se pone el material sano
         if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
             int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
-                                                                                                     //Debug.Log("POSITION EN EL ARRAY: " + position);
             Utils.ReplaceMaterials(materials, corruptedColors);
             Destroy(gameObject);
         }
-
+        // Maquina de estados de la torre
         if (life <= 0)
         {
             DestroyTower();
@@ -160,14 +167,14 @@ public class Tower : MonoBehaviour
         }
 
     }
-
+    // Destruir la torre
     public void DestroyTower()
     {
         gameObject.SetActive(false);
         cameraManager.ActivateFade();
         Invoke(nameof(EraseTower), 1.0f);
     }
-
+    // Borrar torre
     public void EraseTower()
     {
         Utils.ReplaceMaterials(materials, corruptedColors);
@@ -176,7 +183,7 @@ public class Tower : MonoBehaviour
         //Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
         progressManager.SaveGame();
     }
-
+    // Restar/Sumar vida a la torre
     public void IncreaseDecreaseTowerLife(bool increase, int life)
     {
         if (increase)
@@ -195,7 +202,7 @@ public class Tower : MonoBehaviour
             Debug.Log("---> Coste aplicado");
         }
     }
-
+    // Destruir enemigo
     private void DestroyEnemy()
     {
         GameObject enemy = enemiesInHealRange[0]; // Creamos referencia del prefab guardado en X posicion del array
@@ -204,12 +211,12 @@ public class Tower : MonoBehaviour
         Destroy(enemy.GetComponentInParent<Transform>().gameObject); // Destruimos el prefab
         secondZone.enemyCount -= 2;
     }
-
+    // Activar cooldown
     public void ActivateCooldown()
     {
         isOnCooldown = true;
     }
-
+    // Calcular tiempo de cooldown
     private void CalculateCooldown() // Funcion para el cooldown
     {
         remainingTime -= Time.deltaTime;
