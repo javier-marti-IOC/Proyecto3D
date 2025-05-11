@@ -553,9 +553,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 953020156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23def2a009f28f42bc65082a3c72919, type: 3}
+  m_Script: {fileID: 11500000, guid: 44c9bfda10c34364e80677737a76a75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hand: {fileID: 0}
+  lightningLine: {fileID: 0}
+  attackRange: 10
+  chargeTime: 2.5
+  timeBetweenAttacks: 2
+  damage: 20
+  attackLight: {fileID: 0}
 --- !u!1 &1139278173 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8854419116388159353, guid: 0d38f1019ba150e47a405d48f2e301f1,
@@ -1256,6 +1263,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8080643471213852533, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Spot Light Hand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 7291994362007132696}
     - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
         type: 3}
       propertyPath: m_Enabled
@@ -1263,9 +1280,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
         type: 3}
+      propertyPath: attackLight
+      value: 
+      objectReference: {fileID: 7291994362007132694}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
       propertyPath: pointPatrol
       value: 
       objectReference: {fileID: 231240459}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: lightningLine
+      value: 
+      objectReference: {fileID: 7291994362007132695}
+    - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
+        type: 3}
+      propertyPath: electricDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8681468830171557077, guid: 0d38f1019ba150e47a405d48f2e301f1,
         type: 3}
       propertyPath: teleportChance
@@ -1311,6 +1343,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d38f1019ba150e47a405d48f2e301f1, type: 3}
+--- !u!108 &7291994362007132694 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2974825571194375057, guid: 0d38f1019ba150e47a405d48f2e301f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7291994362007132693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!120 &7291994362007132695 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 2079345269033839256, guid: 0d38f1019ba150e47a405d48f2e301f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7291994362007132693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7291994362007132696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5286382714903435891, guid: 0d38f1019ba150e47a405d48f2e301f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7291994362007132693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

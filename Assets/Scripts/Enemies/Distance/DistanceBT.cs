@@ -16,9 +16,21 @@ public class DistanceBT : Enemy
     public int teleportChance;
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
+
+    [Header("Chase")]
     public float stoppingDistance = 8f;
     public GameObject[] lookAtPlayers;
     private bool foundLookingPlayer = false;
+
+    [Header("Electric Attack")]
+    public Transform hand;
+    public LineRenderer lightningLine;
+    public Light attackLight;
+    public float electricAttackRange = 10f;
+    public float chargeTime = 2.5f;
+    public float timeBetweenAttacks = 2f;
+    public int electricDamage = 20;
+    private bool isCharging = false;
 
     // Start is called before the first frame update
 
@@ -31,7 +43,6 @@ public class DistanceBT : Enemy
     //Update is called once per frame
     void Update()
     {
-        cooldownHeavyAttack -= Time.deltaTime;
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
@@ -66,13 +77,12 @@ public class DistanceBT : Enemy
                     switch (activeElement)
                     {
                         case Element.Water:
-                            /* if (cooldownHeavyAttack < 0)
+                            if (cooldownHeavyAttack < 0)
                             {
-                                transform.LookAt(player.transform);
+                                // transform.LookAt(player.transform);
                                 animator.SetInteger(Constants.state, 3);
                             }
-                            else */
-                            if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+                            else if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                             {
                                 CheckLookingPlayer();
 
@@ -85,13 +95,17 @@ public class DistanceBT : Enemy
                                 else
                                 {
                                     // agent.radius = 5f;
-                                    animator.SetInteger(Constants.state, 1);
+                                    CheckAgentSpeed();
+                                    // animator.SetInteger(Constants.state, 1);
+
                                     Chase(3f);
                                 }
                             }
                             else
                             {
-                                animator.SetInteger(Constants.state, 1);
+                                CheckAgentSpeed();
+                                // animator.SetInteger(Constants.state, 1);
+
                                 Chase(stoppingDistance);
 
                             }
@@ -100,7 +114,7 @@ public class DistanceBT : Enemy
                             //Funcionalidad enemigo electrico
                             if (isPlayerInTeleportZone)
                                 {
-                                    transform.LookAt(player.transform);
+                                    transform.LookAt(player.transform); // igual substituir per -> Utils.RotatePositionToTarget(transform, player.transform, 15f);
                                     teleportCooldownTimer -= Time.deltaTime;
                                     timerTeleportFunction += Time.deltaTime;
 
@@ -239,4 +253,44 @@ public class DistanceBT : Enemy
             Debug.Log("No se encontró una zona segura para teletransportar.");
         }
     }
+
+    public void ShootLightning()
+    {
+        if (!isCharging) return; // Evita disparar si no estaba cargando
+        if (player == null) return;
+
+        Vector3 direction = (player.transform.position - hand.position).normalized;
+        RaycastHit hit;
+
+        Vector3 endPoint;
+
+        if (Physics.Raycast(hand.position, direction, out hit, electricAttackRange))
+        {
+            endPoint = hit.point;
+
+            if (hit.collider.CompareTag(Constants.player))
+            {
+                // Quitar vida
+            }
+        }
+        else
+        {
+            endPoint = hand.position + direction * electricAttackRange;
+        }
+
+        lightningLine.SetPosition(0, hand.position);
+        lightningLine.SetPosition(1, endPoint);
+        lightningLine.enabled = true;
+
+        Invoke(nameof(DisableLightningVisuals), 0.1f);
+
+        attackLight.enabled = false;
+        cooldownHeavyAttack = timeBetweenAttacks;
+        isCharging = false;
+    }
+    private void DisableLightningVisuals()
+    {
+        lightningLine.enabled = false;
+    }
+
 }
