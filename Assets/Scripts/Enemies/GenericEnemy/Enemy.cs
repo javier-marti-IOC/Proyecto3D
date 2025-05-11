@@ -53,10 +53,6 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject playerDetectorUp;
     [SerializeField] protected GameObject minDistanceChase;
 
-    [Header("Collider")]
-    [SerializeField] protected Collider basicAttackCollider;
-    [SerializeField] protected Collider heavyAttackCollider;
-
     [Header("Damages")]
     [SerializeField] protected int basicAttackBasicDamage;
     [SerializeField] protected int basicAttackElementalDamage;
@@ -156,31 +152,6 @@ public abstract class Enemy : MonoBehaviour
         minDistanceChase.SetActive(false);
         agent.SetDestination(tower.transform.position);
 
-    }
-
-    public void BasicAttackActivated()
-    {
-        playerHitted = false;
-        basicAttackCollider.enabled = true;
-    }
-
-    public void BasicAttackDisabled()
-    {
-        playerHitted = false;
-        basicAttackCollider.enabled = false;
-    }
-
-    public void HeavyAttackActivated()
-    {
-        playerHitted = false;
-        heavyAttackCollider.enabled = true;
-    }
-
-    public void HeavyAttackDisabled()
-    {
-        playerHitted = false;
-        heavyAttackCollider.enabled = false;
-        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
     public void StartAttack()
     {

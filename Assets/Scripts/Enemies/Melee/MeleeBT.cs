@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class MeleeBT : Enemy
 {
     private bool playerInSecurityDistance;
+    [Header("Collider")]
+    [SerializeField] protected Collider basicAttackCollider;
+    [SerializeField] protected Collider heavyAttackCollider;
     
     void Update()
     {
@@ -161,5 +164,30 @@ public class MeleeBT : Enemy
         {
             playerInSecurityDistance = false;
         }
+    }
+
+        public void BasicAttackActivated()
+    {
+        playerHitted = false;
+        basicAttackCollider.enabled = true;
+    }
+
+    public void BasicAttackDisabled()
+    {
+        playerHitted = false;
+        basicAttackCollider.enabled = false;
+    }
+
+    public void HeavyAttackActivated()
+    {
+        playerHitted = false;
+        heavyAttackCollider.enabled = true;
+    }
+
+    public void HeavyAttackDisabled()
+    {
+        playerHitted = false;
+        heavyAttackCollider.enabled = false;
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
 }
