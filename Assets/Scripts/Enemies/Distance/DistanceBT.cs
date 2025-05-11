@@ -81,97 +81,100 @@ public class DistanceBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-
-                    switch (activeElement)
+                    if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                     {
-                        case Element.Water:
-                            if (cooldownHeavyAttack < 0)
+                        CheckLookingPlayer();
+
+                        if (foundLookingPlayer)
+                        {
+                            // SetLookingPlayersActive(false);
+                            Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
+                            switch (activeElement)
                             {
-                                // transform.LookAt(player.transform);
-                                animator.SetInteger(Constants.state, 3);
-                            }
-                            else if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
-                            {
-                                CheckLookingPlayer();
-
-                                if (foundLookingPlayer)
-                                {
-                                    // SetLookingPlayersActive(false);
-                                    Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
-                                    animator.SetInteger(Constants.state, 2);
-                                }
-                                else
-                                {
-                                    // agent.radius = 5f;
-                                    CheckAgentSpeed();
-                                    // animator.SetInteger(Constants.state, 1);
-
-                                    Chase(3f);
-                                }
-                            }
-                            else
-                            {
-                                CheckAgentSpeed();
-                                // animator.SetInteger(Constants.state, 1);
-
-                                Chase(stoppingDistance);
-
-                            }
-                            break;
-                        case Element.Electric:
-                            //Funcionalidad enemigo electrico
-                            if (isPlayerInTeleportZone)
-                                {
-                                    transform.LookAt(player.transform); // igual substituir per -> Utils.RotatePositionToTarget(transform, player.transform, 15f);
-                                    teleportCooldownTimer -= Time.deltaTime;
-                                    timerTeleportFunction += Time.deltaTime;
-
-                                    if (timerTeleportFunction >= 1f)
+                                case Element.Water:
+                                    if (cooldownHeavyAttack < 0)
                                     {
-                                        timerTeleportFunction = 0f;
-                                        int tp = TeleportProbability();
-                                        Debug.Log("Teleport Probability: " + tp);
+                                        // transform.LookAt(player.transform);
+                                        animator.SetInteger(Constants.state, 3);
+                                    }
+                                    else
+                                    {
+                                        animator.SetInteger(Constants.state, 2);
+                                    }
+                                    break;
+                                case Element.Electric:
+                                    //Funcionalidad enemigo electrico
+                                    if (isPlayerInTeleportZone)
+                                    {
+                                        transform.LookAt(player.transform); // igual substituir per -> Utils.RotatePositionToTarget(transform, player.transform, 15f);
+                                        teleportCooldownTimer -= Time.deltaTime;
+                                        timerTeleportFunction += Time.deltaTime;
 
-                                        bool cooldownReady = teleportCooldownTimer <= 0;
-                                        bool luckyTeleport = tp <= teleportChance;
+                                        if (timerTeleportFunction >= 1f)
+                                        {
+                                            timerTeleportFunction = 0f;
+                                            int tp = TeleportProbability();
+                                            Debug.Log("Teleport Probability: " + tp);
 
-                                        if (cooldownReady || luckyTeleport)
-                                        {
-                                            TeleportToSafeZone();
-                                            teleportCooldownTimer = teleportCooldownTime;
-                                        }
-                                        else
-                                        {
-                                            if (cooldownHeavyAttack < 0)
+                                            bool cooldownReady = teleportCooldownTimer <= 0;
+                                            bool luckyTeleport = tp <= teleportChance;
+
+                                            if (cooldownReady || luckyTeleport)
                                             {
-                                                //transform.LookAt(player.transform);
-                                                animator.SetInteger(Constants.state,3);
+                                                TeleportToSafeZone();
+                                                teleportCooldownTimer = teleportCooldownTime;
                                             }
                                             else
                                             {
-                                                //transform.LookAt(player.transform);
-                                                animator.SetInteger(Constants.state,3);
+                                                if (cooldownHeavyAttack < 0)
+                                                {
+                                                    //transform.LookAt(player.transform);
+                                                    animator.SetInteger(Constants.state, 3);
+                                                }
+                                                else
+                                                {
+                                                    //transform.LookAt(player.transform);
+                                                    animator.SetInteger(Constants.state, 3);
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            else
-                            {
-                                if (cooldownHeavyAttack < 0)
-                                {
-                                    //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,3);
-                                }
-                                else
-                                {
-                                    //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,3);
-                                }
+                                    else
+                                    {
+                                        if (cooldownHeavyAttack < 0)
+                                        {
+                                            //transform.LookAt(player.transform);
+                                            animator.SetInteger(Constants.state, 3);
+                                        }
+                                        else
+                                        {
+                                            //transform.LookAt(player.transform);
+                                            animator.SetInteger(Constants.state, 3);
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
                             }
-                            break;
-                        default:
-                            break;
+                        }
+                        else
+                        {
+                            // agent.radius = 5f;
+                            CheckAgentSpeed();
+                            // animator.SetInteger(Constants.state, 1);
+
+                            Chase(3f);
+                        }
                     }
+                    else
+                    {
+                        CheckAgentSpeed();
+                        // animator.SetInteger(Constants.state, 1);
+
+                        Chase(stoppingDistance);
+
+                    }
+
 
                 }
                 else
@@ -240,7 +243,7 @@ public class DistanceBT : Enemy
         }
     }
 
-    private int TeleportProbability ()
+    private int TeleportProbability()
     {
         int tp = UnityEngine.Random.Range(0, 100);
         return tp;
@@ -331,7 +334,7 @@ public class DistanceBT : Enemy
             // Player rep pupa
             Debug.Log("Player hit by heavy electric attack");
         }
-}
+    }
 
 
     private void DisableLightningVisuals()
