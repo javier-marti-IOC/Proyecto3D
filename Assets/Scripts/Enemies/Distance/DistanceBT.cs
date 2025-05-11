@@ -16,6 +16,8 @@ public class DistanceBT : Enemy
     public int teleportChance;
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
+
+    [Header("Chase")]
     public float stoppingDistance = 8f;
     public GameObject[] lookAtPlayers;
     private bool foundLookingPlayer = false;
@@ -65,13 +67,12 @@ public class DistanceBT : Enemy
                     switch (activeElement)
                     {
                         case Element.Water:
-                            /* if (cooldownHeavyAttack < 0)
+                            if (cooldownHeavyAttack < 0)
                             {
-                                transform.LookAt(player.transform);
+                                // transform.LookAt(player.transform);
                                 animator.SetInteger(Constants.state, 3);
                             }
-                            else */
-                            if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+                            else if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                             {
                                 CheckLookingPlayer();
 
@@ -84,13 +85,17 @@ public class DistanceBT : Enemy
                                 else
                                 {
                                     // agent.radius = 5f;
+                                    // CheckAgentSpeed();
                                     animator.SetInteger(Constants.state, 1);
+
                                     Chase(3f);
                                 }
                             }
                             else
                             {
+                                // CheckAgentSpeed();
                                 animator.SetInteger(Constants.state, 1);
+
                                 Chase(stoppingDistance);
 
                             }
@@ -98,27 +103,27 @@ public class DistanceBT : Enemy
                         case Element.Electric:
                             //Funcionalidad enemigo electrico
                             if (isPlayerInTeleportZone)
+                            {
+                                transform.LookAt(player.transform);
+                                teleportCooldownTimer -= Time.deltaTime;
+                                timerTeleportFunction += Time.deltaTime;
+
+                                if (timerTeleportFunction >= 1f)
                                 {
-                                    transform.LookAt(player.transform);
-                                    teleportCooldownTimer -= Time.deltaTime;
-                                    timerTeleportFunction += Time.deltaTime;
+                                    timerTeleportFunction = 0f;
+                                    int tp = TeleportProbability();
+                                    Debug.Log("Teleport Probability: " + tp);
 
-                                    if (timerTeleportFunction >= 1f)
+                                    bool cooldownReady = teleportCooldownTimer <= 0;
+                                    bool luckyTeleport = tp <= teleportChance;
+
+                                    if (cooldownReady || luckyTeleport)
                                     {
-                                        timerTeleportFunction = 0f;
-                                        int tp = TeleportProbability();
-                                        Debug.Log("Teleport Probability: " + tp);
-
-                                        bool cooldownReady = teleportCooldownTimer <= 0;
-                                        bool luckyTeleport = tp <= teleportChance;
-
-                                        if (cooldownReady || luckyTeleport)
-                                        {
-                                            TeleportToSafeZone();
-                                            teleportCooldownTimer = teleportCooldownTime;
-                                        }
+                                        TeleportToSafeZone();
+                                        teleportCooldownTimer = teleportCooldownTime;
                                     }
                                 }
+                            }
                             else
                             {
 
@@ -195,7 +200,7 @@ public class DistanceBT : Enemy
         }
     }
 
-    private int TeleportProbability ()
+    private int TeleportProbability()
     {
         int tp = UnityEngine.Random.Range(0, 100);
         return tp;

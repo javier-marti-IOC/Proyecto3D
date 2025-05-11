@@ -82,8 +82,22 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
+    // protected void CheckAgentSpeed()
+    // {
+    //     if (agent.velocity.magnitude <= 0.2f)
+    //     {
+    //         animator.SetInteger(Constants.state, 0);
+    //     }
+    //     else
+    //     {
+    //         animator.SetInteger(Constants.state, 1);
+    //     }
+    // }
+
     protected void Patrol()
     {
+        // CheckAgentSpeed();
+
         if (ghost == null)
         {
             ghost = Instantiate(ghostPrefab, agent.transform.position, Quaternion.identity, agent.transform);
@@ -154,7 +168,7 @@ public abstract class Enemy : MonoBehaviour
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
-        if(tower != null)
+        if (tower != null)
         {
             agent.SetDestination(tower.transform.position);
         }

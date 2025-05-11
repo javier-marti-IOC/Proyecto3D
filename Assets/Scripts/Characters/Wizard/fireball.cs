@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fireball : basicSpellObject
+public class Fireball : BasicSpellObject
 {
 
-    protected override private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         base.OnCollisionEnter(collision);     
     }
