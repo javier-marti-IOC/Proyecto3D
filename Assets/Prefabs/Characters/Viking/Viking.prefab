@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &126554037317453137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6577771443561475689}
+  - component: {fileID: 1053238006340951725}
+  m_Layer: 0
+  m_Name: SwordCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6577771443561475689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126554037317453137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2827733054762747722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1053238006340951725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126554037317453137}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 1.4496597, z: 0.07449485}
+  m_Center: {x: -0.000977591, y: -0.5778452, z: 0.00031744372}
 --- !u!1 &143528488757707836
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +128,6 @@ GameObject:
   - component: {fileID: 2827733054762747722}
   - component: {fileID: 4803420567356887932}
   - component: {fileID: 2771150540517159151}
-  - component: {fileID: 713442760446119194}
   m_Layer: 0
   m_Name: PP_Sword_Used_01
   m_TagString: Untagged
@@ -98,6 +150,7 @@ Transform:
   m_Children:
   - {fileID: 2822028879255738123}
   - {fileID: 5670567386655032054}
+  - {fileID: 6577771443561475689}
   m_Father: {fileID: 7464510092456519154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.25}
 --- !u!33 &4803420567356887932
@@ -150,28 +203,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &713442760446119194
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233964949830750534}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1309114987087855243, guid: c9dfb294e6fe236428f08e5a2b7d22a5, type: 3}
 --- !u!1 &401643409183318713
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,6 +6175,7 @@ GameObject:
   - component: {fileID: 6455240357015228509}
   - component: {fileID: 897027238711889753}
   - component: {fileID: 2905455835062671263}
+  - component: {fileID: 3023389732709961547}
   m_Layer: 8
   m_Name: Viking
   m_TagString: Player
@@ -6260,6 +6292,7 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   dead: 0
+  vikingController: {fileID: 3023389732709961547}
 --- !u!114 &6455240357015228509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6395,6 +6428,29 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3023389732709961547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113744238655452588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57e3633691c8824c8a86d0a73bc2430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e,
+    type: 3}
+  earthMana: 100
+  fireMana: 100
+  waterMana: 100
+  electricMana: 100
+  activeElement: 0
+  animator: {fileID: 8620253860425985851}
+  healthPoints: 100
+  swordCollider: {fileID: 0}
+  OnAction: 0
 --- !u!1001 &1622288981137436283
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -193,6 +193,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3970327730972968166}
     m_Modifications:
+    - target: {fileID: 58147238796258125, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
+      propertyPath: meleeBT
+      value: 
+      objectReference: {fileID: 8581431020734570392}
     - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
         type: 3}
       propertyPath: ghostAgent
@@ -213,6 +218,26 @@ PrefabInstance:
       propertyPath: playerDetectorDown
       value: 
       objectReference: {fileID: 8655614486691839718}
+    - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
+      propertyPath: basicAttackBasicDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
+      propertyPath: heavyAttackBasicDamage
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
+      propertyPath: basicAttackElementalDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
+        type: 3}
+      propertyPath: heavyAttackElementalDamage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7562803251412725392, guid: e8111fd7eb823104aad59b99379b18a5,
         type: 3}
       propertyPath: m_Acceleration
@@ -340,3 +365,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8581431020734570392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6430862012423674817, guid: e8111fd7eb823104aad59b99379b18a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3326010448892380249}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851988321168067860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774a69988b761d040a713bae02426b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

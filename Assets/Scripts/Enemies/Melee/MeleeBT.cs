@@ -190,4 +190,13 @@ public class MeleeBT : Enemy
         heavyAttackCollider.enabled = false;
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
+
+    public void AttackEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player) && !playerHitted)
+        {
+            playerHitted = true;
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
+        }
+    }
 }
