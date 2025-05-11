@@ -204,9 +204,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.3301887, g: 0.16197936, b: 0.11058207, a: 1}
+    - _BaseColor: {r: 0.5943396, g: 0.3424762, b: 0.26633143, a: 1}
     - _Color: {r: 0.46666658, g: 0.3490196, b: 0.25490195, a: 1}
-    - _EmissionColor: {r: 0, g: 0.33442447, b: 0.015447153, a: 0.6564628}
+    - _EmissionColor: {r: 0, g: 2.0029309, b: 0.0925159, a: 3.9316788}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
