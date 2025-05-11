@@ -134,7 +134,7 @@ public class DistanceBT : Enemy
                                                 else
                                                 {
                                                     //transform.LookAt(player.transform);
-                                                    animator.SetInteger(Constants.state, 3);
+                                                    animator.SetInteger(Constants.state, 2);
                                                 }
                                             }
                                         }
@@ -144,12 +144,12 @@ public class DistanceBT : Enemy
                                         if (cooldownHeavyAttack < 0)
                                         {
                                             //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 3);
+                                            animator.SetInteger(Constants.state, 2);
                                         }
                                         else
                                         {
                                             //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 3);
+                                            animator.SetInteger(Constants.state, 2);
                                         }
                                     }
                                     break;
