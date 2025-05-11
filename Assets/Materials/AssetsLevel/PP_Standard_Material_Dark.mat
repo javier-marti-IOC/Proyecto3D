@@ -210,7 +210,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.4666667, g: 0.34901962, b: 0.25490198, a: 1}
     - _Color: {r: 0.46666664, g: 0.3490196, b: 0.25490195, a: 1}
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 0}
+    - _EmissionColor: {r: 0.42627132, g: 0.118632115, b: 0.118632115, a: 0.8367548}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}

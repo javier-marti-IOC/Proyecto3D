@@ -61488,6 +61488,55 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &2331670039141763950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5811882235040990925}
+  - component: {fileID: 6821938452623947872}
+  m_Layer: 0
+  m_Name: VFX_Emissive_Pulse_Fire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5811882235040990925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2331670039141763950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1194227487271163418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6821938452623947872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2331670039141763950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff9df6de19af2f40b9bfc6aa69186f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: 6d5f6499c40fffb41abf71febc8e7384, type: 2}
+  emissiveColor: {r: 0.50980395, g: 0, b: 0, a: 1}
+  minIntensity: 0.5
+  maxIntensity: 4
+  speed: 4
 --- !u!1 &2390192109465633839
 GameObject:
   m_ObjectHideFlags: 0
@@ -94196,7 +94245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: 4ac53b5192562bd4a85423d05635fe74, type: 2}
-  movementSpeed: 3
+  movementSpeed: 2
   baseDirectionAngle: 270
   deviationAngle: 15
   noiseScale: 0.1
@@ -94248,6 +94297,55 @@ MonoBehaviour:
   pulseSpeed: 2
   pulseAmplitude: 0.2
   baseMetallic: 0.5
+--- !u!1 &5301046880345288132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4519961964696277988}
+  - component: {fileID: 5116001647766415154}
+  m_Layer: 0
+  m_Name: VFX_Emissive_Pulse_Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4519961964696277988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5301046880345288132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1194227487271163418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5116001647766415154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5301046880345288132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff9df6de19af2f40b9bfc6aa69186f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: 7189a5b14b566714dac250d404fe43c8, type: 2}
+  emissiveColor: {r: 0, g: 0.6848593, b: 1, a: 1}
+  minIntensity: 0.5
+  maxIntensity: 4
+  speed: 4
 --- !u!1 &6273227755449587125
 GameObject:
   m_ObjectHideFlags: 0
@@ -103657,6 +103755,9 @@ Transform:
   - {fileID: 8254551335174974548}
   - {fileID: 6462875661741419108}
   - {fileID: 2264569658068977374}
+  - {fileID: 4519961964696277988}
+  - {fileID: 4209807525712747115}
+  - {fileID: 5811882235040990925}
   - {fileID: 218238954706574887}
   - {fileID: 3656530605386708261}
   - {fileID: 1256607625309620292}
@@ -108495,6 +108596,55 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &8804551990381891954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4209807525712747115}
+  - component: {fileID: 2629697315069323898}
+  m_Layer: 0
+  m_Name: VFX_Emissive_Pulse_Electric
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4209807525712747115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804551990381891954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1194227487271163418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2629697315069323898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804551990381891954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff9df6de19af2f40b9bfc6aa69186f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: 927ca6aaaf9c98448a8eba6cd9ea53d7, type: 2}
+  emissiveColor: {r: 0.9245283, g: 0.8713169, b: 0, a: 1}
+  minIntensity: 0.5
+  maxIntensity: 4
+  speed: 4
 --- !u!1 &8869132603145544975
 GameObject:
   m_ObjectHideFlags: 0

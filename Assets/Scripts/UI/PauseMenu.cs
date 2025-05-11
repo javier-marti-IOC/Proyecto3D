@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsPanel;
     [Header("Panel del menú de pausa")]
     public GameObject pausePanel;
+    public GameObject exitPanel;
 
     public Button selectedButton; 
     private bool isPaused = false;
@@ -39,6 +40,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1f;
             pausePanel.SetActive(false);
             hudPanel.SetActive(true);
+            exitPanel.SetActive(false);
            
         }
     }
