@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6577771443561475689}
   - component: {fileID: 1053238006340951725}
+  - component: {fileID: 5546922886871438127}
   m_Layer: 0
   m_Name: SwordCollider
   m_TagString: Untagged
@@ -47,12 +48,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.4496597, z: 0.07449485}
   m_Center: {x: -0.000977591, y: -0.5778452, z: 0.00031744372}
+--- !u!114 &5546922886871438127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126554037317453137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c2d2481107ed544abf10b368d37480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vikingController: {fileID: 3023389732709961547}
 --- !u!1 &143528488757707836
 GameObject:
   m_ObjectHideFlags: 0
@@ -6449,8 +6463,15 @@ MonoBehaviour:
   activeElement: 0
   animator: {fileID: 8620253860425985851}
   healthPoints: 100
-  swordCollider: {fileID: 0}
+  swordCollider: {fileID: 126554037317453137}
+  basicAttackBasicDamage: 2
+  basicAttackMagicDamage: 5
+  heavyAttackBasicDamage: 3
+  heavyAttackMagicDamage: 8
+  gameManager: {fileID: 0}
   OnAction: 0
+  isRolling: 0
+  rollCooldown: 0
 --- !u!1001 &1622288981137436283
 PrefabInstance:
   m_ObjectHideFlags: 0
