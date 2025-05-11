@@ -27,10 +27,7 @@ public class DistanceBT : Enemy
     public LineRenderer lightningLine;
     public Light attackLight;
     public float electricAttackRange = 10f;
-    public float chargeTime = 2.5f;
-    public float timeBetweenAttacks = 2f;
     public int electricDamage = 20;
-    private bool isCharging = false;
 
     // Start is called before the first frame update
 
@@ -256,7 +253,6 @@ public class DistanceBT : Enemy
 
     public void ShootLightning()
     {
-        if (!isCharging) return; // Evita disparar si no estaba cargando
         if (player == null) return;
 
         Vector3 direction = (player.transform.position - hand.position).normalized;
@@ -267,10 +263,12 @@ public class DistanceBT : Enemy
         if (Physics.Raycast(hand.position, direction, out hit, electricAttackRange))
         {
             endPoint = hit.point;
+            Debug.DrawRay(hand.position, direction * electricAttackRange, Color.red, 1f);
 
             if (hit.collider.CompareTag(Constants.player))
             {
-                // Quitar vida
+                // Fer pupa al player
+                Debug.Log("Player hit with electric attack");
             }
         }
         else
@@ -282,15 +280,15 @@ public class DistanceBT : Enemy
         lightningLine.SetPosition(1, endPoint);
         lightningLine.enabled = true;
 
-        Invoke(nameof(DisableLightningVisuals), 0.1f);
+        attackLight.enabled = true;
 
-        attackLight.enabled = false;
-        cooldownHeavyAttack = timeBetweenAttacks;
-        isCharging = false;
+        Invoke(nameof(DisableLightningVisuals), 0.1f);
     }
+
     private void DisableLightningVisuals()
     {
         lightningLine.enabled = false;
+        attackLight.enabled = false;
     }
 
 }
