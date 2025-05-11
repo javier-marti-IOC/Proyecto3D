@@ -53,10 +53,6 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject playerDetectorUp;
     [SerializeField] protected GameObject minDistanceChase;
 
-    [Header("Collider")]
-    [SerializeField] protected Collider basicAttackCollider;
-    [SerializeField] protected Collider heavyAttackCollider;
-
     [Header("Damages")]
     [SerializeField] protected int basicAttackBasicDamage;
     [SerializeField] protected int basicAttackElementalDamage;
@@ -82,8 +78,22 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
+    protected void CheckAgentSpeed()
+    {
+        if (agent.velocity.magnitude <= 0.2f)
+        {
+            animator.SetInteger(Constants.state, 0);
+        }
+        else
+        {
+            animator.SetInteger(Constants.state, 1);
+        }
+    }
+
     protected void Patrol()
     {
+        CheckAgentSpeed();
+
         if (ghost == null)
         {
             ghost = Instantiate(ghostPrefab, agent.transform.position, Quaternion.identity, agent.transform);
@@ -95,7 +105,7 @@ public abstract class Enemy : MonoBehaviour
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
 
-        animator.SetInteger(Constants.state, 1);
+        // animator.SetInteger(Constants.state, 1);
 
     }
 
@@ -154,33 +164,10 @@ public abstract class Enemy : MonoBehaviour
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
-        agent.SetDestination(tower.transform.position);
-
-    }
-
-    public void BasicAttackActivated()
-    {
-        playerHitted = false;
-        basicAttackCollider.enabled = true;
-    }
-
-    public void BasicAttackDisabled()
-    {
-        playerHitted = false;
-        basicAttackCollider.enabled = false;
-    }
-
-    public void HeavyAttackActivated()
-    {
-        playerHitted = false;
-        heavyAttackCollider.enabled = true;
-    }
-
-    public void HeavyAttackDisabled()
-    {
-        playerHitted = false;
-        heavyAttackCollider.enabled = false;
-        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
+        if (tower != null)
+        {
+            agent.SetDestination(tower.transform.position);
+        }
     }
     public void StartAttack()
     {

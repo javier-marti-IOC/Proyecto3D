@@ -623,6 +623,15 @@ MonoBehaviour:
   firstZoneContact: 0
   secondZoneContact: 0
   secondZone: {fileID: 8828021864728922453}
+  materials:
+  - {fileID: 2100000, guid: c0c80634cc4dec749a342ccee69aeab9, type: 2}
+  - {fileID: 2100000, guid: 4ac53b5192562bd4a85423d05635fe74, type: 2}
+  corruptedColors:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0, a: 0}
+  colors:
+  - {r: 0.6039216, g: 0.63529414, b: 0.7058824, a: 0}
+  - {r: 0.27450982, g: 0.50980395, b: 0.69803923, a: 0}
   life_text: {fileID: 0}
   timerText: {fileID: 0}
   remainingTime: 10

@@ -19,7 +19,10 @@ public class Tower : MonoBehaviour
     public bool secondZoneContact;
     public SecondZone secondZone;
 
-
+    [Header("Materiales y colores")]
+    public Material[] materials;
+    public Color[] corruptedColors;
+    public Color[] colors;
 
 
 
@@ -59,7 +62,6 @@ public class Tower : MonoBehaviour
         Electric = [4]
     */
 
-
     void Start()
     {
         this.life = max_life;
@@ -79,18 +81,18 @@ public class Tower : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P)) // Restar vida
         {
-            life = life + 5;
+            life += 5;
             if (life > max_life)
             {
                 life = max_life;
             }
         }
 
-        if(ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
+        if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
             int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
-            //Debug.Log("POSITION EN EL ARRAY: " + position);
-            changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
+                                                                                                     //Debug.Log("POSITION EN EL ARRAY: " + position);
+            Utils.ReplaceMaterials(materials, corruptedColors);
             Destroy(gameObject);
         }
 
@@ -168,7 +170,7 @@ public class Tower : MonoBehaviour
 
     public void EraseTower()
     {
-        changeAppearence.ToggleColor(elementalObjects, healthyTreeColor);
+        Utils.ReplaceMaterials(materials, corruptedColors);
         Destroy(gameObject); // Destruye la torre si se queda sin vida
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         //Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
@@ -276,7 +278,7 @@ public class Tower : MonoBehaviour
     public void CallAllEnemies(List<GameObject> instantiatedEnemies)
     {
         foreach (GameObject enemyPrefab in instantiatedEnemies)
-        {            
+        {
             enemyPrefab.GetComponent<Enemy>().towerCalling = true;
         }
     }
@@ -285,7 +287,7 @@ public class Tower : MonoBehaviour
     public void UncallAllEnemies(List<GameObject> instantiatedEnemies)
     {
         foreach (GameObject enemyPrefab in instantiatedEnemies)
-        {            
+        {
             enemyPrefab.GetComponent<Enemy>().towerCalling = false;
         }
     }
