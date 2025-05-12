@@ -73,6 +73,7 @@ public abstract class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = safeDistance;
         animator = GetComponent<Animator>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Metodos comunes
@@ -193,6 +194,6 @@ public abstract class Enemy : MonoBehaviour
     {
         Debug.Log("Muelto");
         Instantiate(drop,dropPosition.position,Quaternion.identity,null);
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

@@ -315,6 +315,37 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1916953621946550322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191675823690572866}
+  m_Layer: 0
+  m_Name: Drops
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &191675823690572866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916953621946550322}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2930473188395620805}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2415126538512530105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 191675823690572866}
   - {fileID: 5760396644733243591}
   - {fileID: 5946871995845535922}
   - {fileID: 8909045096696944355}
@@ -1282,6 +1314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774a69988b761d040a713bae02426b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drop: {fileID: 8518313805689136268, guid: 0608f8e5e64414f46ac3d5c0126c20cb, type: 3}
+  dropPosition: {fileID: 191675823690572866}
+  enemyHUD: {fileID: 9214985350115137338}
   activeElement: 3
   healthPoints: 0
   maxHealthPoints: 100
@@ -1292,8 +1327,8 @@ MonoBehaviour:
   towerCalling: 0
   playerInAttackRange: 0
   playerHitted: 0
-  minCooldownTimeInclusive: 14
-  maxCooldownTimeExclusive: 20
+  minCooldownTimeInclusive: 10
+  maxCooldownTimeExclusive: 16
   ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
     type: 3}
   safeDistance: 1
@@ -1870,3 +1905,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8494056557828558897}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9214985350115137338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 8494056557828558897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a22d713e7f08e646a7d50513ca478a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

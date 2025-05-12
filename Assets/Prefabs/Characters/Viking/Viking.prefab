@@ -6461,6 +6461,8 @@ MonoBehaviour:
   fireMana: 100
   waterMana: 100
   electricMana: 100
+  vikingElementsHUD: {fileID: 0}
+  vikingHealthHUD: {fileID: 0}
   activeElement: 0
   animator: {fileID: 8620253860425985851}
   healthPoints: 100
