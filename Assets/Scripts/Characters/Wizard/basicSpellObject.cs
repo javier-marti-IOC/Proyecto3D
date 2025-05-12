@@ -46,6 +46,7 @@ public class BasicSpellObject : MonoBehaviour
         if (collision.gameObject.CompareTag(Constants.player))
         {
             Debug.Log("Proyectil agua colisiona con: " + collision.gameObject.name);
+            collision.gameObject.GetComponent<VikingController>().HealthTaken(5);
         }
         Destroy(gameObject);
     }

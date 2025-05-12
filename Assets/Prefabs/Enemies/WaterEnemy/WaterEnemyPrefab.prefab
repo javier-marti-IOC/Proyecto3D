@@ -983,8 +983,8 @@ MonoBehaviour:
   towerCalling: 0
   playerInAttackRange: 0
   playerHitted: 0
-  minCooldownTimeInclusive: 0
-  maxCooldownTimeExclusive: 0
+  minCooldownTimeInclusive: 10
+  maxCooldownTimeExclusive: 11
   ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
     type: 3}
   safeDistance: 1
@@ -993,10 +993,10 @@ MonoBehaviour:
   playerDetectorDown: {fileID: 1961920292286216563}
   playerDetectorUp: {fileID: 437362043903965274}
   minDistanceChase: {fileID: 6769779894073946202}
-  basicAttackBasicDamage: 0
-  basicAttackElementalDamage: 0
-  heavyAttackBasicDamage: 0
-  heavyAttackElementalDamage: 0
+  basicAttackBasicDamage: 2
+  basicAttackElementalDamage: 4
+  heavyAttackBasicDamage: 3
+  heavyAttackElementalDamage: 7
   teleportCooldownTime: 5
   teleportChance: 15
   teleportDistance: 5
@@ -1004,6 +1004,17 @@ MonoBehaviour:
   lookAtPlayers:
   - {fileID: 993764451183703474}
   - {fileID: 222972871648877456}
+  hand: {fileID: 0}
+  lightningLine: {fileID: 0}
+  attackLight: {fileID: 0}
+  electricAttackRange: 10
+  electricDamage: 20
+  impactPosition: {fileID: 0}
+  lightningArea: {fileID: 0}
+  heavyAttackDelay: 2
+  heavyAttackRadius: 2
+  heavyAttackDamage: 40
+  lightningHeight: 10
 --- !u!195 &258517528031875190
 NavMeshAgent:
   m_ObjectHideFlags: 0

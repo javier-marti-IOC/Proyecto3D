@@ -1337,10 +1337,10 @@ MonoBehaviour:
   playerDetectorDown: {fileID: 2912064289879657469}
   playerDetectorUp: {fileID: 7113069356314719712}
   minDistanceChase: {fileID: 1728276217441479041}
-  basicAttackBasicDamage: 0
-  basicAttackElementalDamage: 0
-  heavyAttackBasicDamage: 0
-  heavyAttackElementalDamage: 0
+  basicAttackBasicDamage: 4
+  basicAttackElementalDamage: 2
+  heavyAttackBasicDamage: 1
+  heavyAttackElementalDamage: 15
   basicAttackCollider: {fileID: 4202588707592247184}
   heavyAttackCollider: {fileID: 4202588707592247184}
 --- !u!195 &8761287664093615416
