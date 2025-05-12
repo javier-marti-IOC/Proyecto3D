@@ -94,8 +94,6 @@ public class DistanceBT : Enemy
                             switch (activeElement)
                             {
                                 case Element.Water:
-                                                                            animator.SetInteger(Constants.state, 2);
-// if (cooldownHeavyAttack < 0)
                                     /*  if (cooldownHeavyAttack < 0)
                                      {
                                          animator.SetInteger(Constants.state, 3);
