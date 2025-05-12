@@ -908,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 5381914217605898780, guid: 1d505d40a3c9ac4448b494dc85ab9e35,
         type: 3}
       propertyPath: m_text
-      value: "Sortir al m\xE9nu"
+      value: "Sortir al men\xFA"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1205,7 +1205,7 @@ PrefabInstance:
     - target: {fileID: 894867053767175057, guid: 4ed32a3803feca642883491af6524bf6,
         type: 3}
       propertyPath: m_text
-      value: "Segur que vols sortir al m\xE9nu?"
+      value: "Segur que vols sortir al men\xFA?"
       objectReference: {fileID: 0}
     - target: {fileID: 894867053767175057, guid: 4ed32a3803feca642883491af6524bf6,
         type: 3}
