@@ -4,8 +4,13 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
+    public GameObject drop;
+    public Transform dropPosition;
+    public EnemyHUD enemyHUD;
     public Element activeElement;
-    protected int healthPoints;
+    public int healthPoints;
+    public int maxHealthPoints = 100;
+    public int enemyLevel = 1;
     protected GameObject player;
     public Tower tower;
     public GameManager gameManager;
@@ -53,10 +58,6 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject playerDetectorUp;
     [SerializeField] protected GameObject minDistanceChase;
 
-    [Header("Collider")]
-    [SerializeField] protected Collider basicAttackCollider;
-    [SerializeField] protected Collider heavyAttackCollider;
-
     [Header("Damages")]
     [SerializeField] protected int basicAttackBasicDamage;
     [SerializeField] protected int basicAttackElementalDamage;
@@ -72,6 +73,7 @@ public abstract class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = safeDistance;
         animator = GetComponent<Animator>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Metodos comunes
@@ -173,31 +175,6 @@ public abstract class Enemy : MonoBehaviour
             agent.SetDestination(tower.transform.position);
         }
     }
-
-    public void BasicAttackActivated()
-    {
-        playerHitted = false;
-        basicAttackCollider.enabled = true;
-    }
-
-    public void BasicAttackDisabled()
-    {
-        playerHitted = false;
-        basicAttackCollider.enabled = false;
-    }
-
-    public void HeavyAttackActivated()
-    {
-        playerHitted = false;
-        heavyAttackCollider.enabled = true;
-    }
-
-    public void HeavyAttackDisabled()
-    {
-        playerHitted = false;
-        heavyAttackCollider.enabled = false;
-        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
-    }
     public void StartAttack()
     {
         attacking = true;
@@ -207,5 +184,16 @@ public abstract class Enemy : MonoBehaviour
     {
         attacking = false;
 
+    }
+    public void HealthTaken(int damageTaken)
+    {
+        healthPoints -= damageTaken;
+        enemyHUD.UpdateHealth(healthPoints);
+    }
+    public void Dying()
+    {
+        Debug.Log("Muelto");
+        Instantiate(drop,dropPosition.position,Quaternion.identity,null);
+        Destroy(gameObject);
     }
 }

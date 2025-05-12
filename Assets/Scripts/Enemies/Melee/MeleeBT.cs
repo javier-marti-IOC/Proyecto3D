@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class MeleeBT : Enemy
 {
     private bool playerInSecurityDistance;
+    [Header("Collider")]
+    [SerializeField] protected Collider basicAttackCollider;
+    [SerializeField] protected Collider heavyAttackCollider;
     
     void Update()
     {
@@ -66,7 +69,7 @@ public class MeleeBT : Enemy
                             else if (activeElement == Element.Fire)
                             {
                                 // Esta el player usando el elemento de agua
-                                if(player.GetComponent<tempPlayer>().activeElement == Element.Water)
+                                if(player.GetComponent<VikingController>().activeElement == Element.Water)
                                 {
                                     // Esta a una distancia prudencial del player?
                                     if(playerInSecurityDistance)
@@ -74,7 +77,7 @@ public class MeleeBT : Enemy
                                         // Tiene cooldown de ataque en area?
                                         if (cooldownHeavyAttack < 0)
                                         {
-                                            transform.LookAt(player.transform);
+                                            //transform.LookAt(player.transform);
                                             animator.SetInteger(Constants.state,3);
                                         }
                                         else
@@ -95,12 +98,12 @@ public class MeleeBT : Enemy
                                 { // Tiene cooldown de ataque en area?
                                     if (cooldownHeavyAttack < 0)
                                     {
-                                        transform.LookAt(player.transform);
+                                        //transform.LookAt(player.transform);
                                         animator.SetInteger(Constants.state,3);
                                     }
                                     else
                                     {
-                                        transform.LookAt(player.transform);
+                                        //transform.LookAt(player.transform);
                                         animator.SetInteger(Constants.state,2);
                                     }
                                 }
@@ -131,7 +134,7 @@ public class MeleeBT : Enemy
         }
         else
         {
-            Destroy(this);
+            Dying();
         }
     }
     public void PlayerSecurityMinDistanceColliderEnter(Collider other)
@@ -160,6 +163,40 @@ public class MeleeBT : Enemy
         if(other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = false;
+        }
+    }
+
+        public void BasicAttackActivated()
+    {
+        playerHitted = false;
+        basicAttackCollider.enabled = true;
+    }
+
+    public void BasicAttackDisabled()
+    {
+        playerHitted = false;
+        basicAttackCollider.enabled = false;
+    }
+
+    public void HeavyAttackActivated()
+    {
+        playerHitted = false;
+        heavyAttackCollider.enabled = true;
+    }
+
+    public void HeavyAttackDisabled()
+    {
+        playerHitted = false;
+        heavyAttackCollider.enabled = false;
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
+    }
+
+    public void AttackEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player) && !playerHitted)
+        {
+            playerHitted = true;
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
         }
     }
 }

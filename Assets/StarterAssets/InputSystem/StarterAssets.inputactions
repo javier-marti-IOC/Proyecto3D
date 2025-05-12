@@ -60,10 +60,19 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": " BasicAttack",
+                    "name": "BasicAttack",
                     "type": "Value",
                     "id": "9dfc06c4-3f2c-4de5-81b6-14da337d6a25",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Roll",
+                    "type": "Value",
+                    "id": "e5139b1d-3983-4ffc-ab3a-0068586652a2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -174,7 +183,7 @@
                     "id": "e2f9aa65-db06-4c5b-a2e9-41bc8acb9517",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "StickDeadzone",
+                    "processors": "StickDeadzone(min=0.2)",
                     "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
@@ -319,7 +328,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": " BasicAttack",
+                    "action": "BasicAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c466c35-fada-4b33-b5cc-a07c6782ce89",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

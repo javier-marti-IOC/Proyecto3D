@@ -1,8 +1,5 @@
 ﻿ using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
-using UnityEngine.InputSystem;
-#endif
-
+ using UnityEngine.InputSystem;
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
 
@@ -114,9 +111,8 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        public VikingController vikingController;
 
-        private Vector2 dpadValues;
-        private InputAction dpadAction;
 
         private bool IsCurrentDeviceMouse
         {
@@ -158,50 +154,14 @@ namespace StarterAssets
             // reset our timeouts on start
             //_jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-            // dpadAction = _input.FindActionMap("Gameplay").FindAction("DPAD");
         }
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
-            if (dead == false) 
-            {
-                if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton5))
-                {
-                    SoftAttack();
-                }
-
-                if(Input.GetMouseButtonDown(1) /*|| Input.GetAxis("RT") > 0.5f*/)
-                {
-                    HardAttack();
-                }
-                if(Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.Joystick1Button1))
-                {
-                    Roll();
-                    // DodgeBackward();
-                }
-                // Debug.Log(dpadAction.ReadValue<Vector2>());
-                /*
-                if (Input.GetAxis("DPAD_h") > 0.5f)
-                {
-                    //ChangeElement(Element.Earth)
-                }
-                if (Input.GetAxis("DPAD_h") < 0.5f)
-                {
-                    //ChangeElement(Element.Electric)
-                }
-                if (Input.GetAxis("DPAD_v") > 0.5f)
-                {
-                    //ChangeElement(Element.Fire)
-                }
-                if (Input.GetAxis("DPAD_v") < 0.5f)
-                {
-                    //ChangeElement(Element.Water)
-                }
-                */
-
-                JumpAndGravity();
+            if (dead == false && !vikingController.OnAction) 
+            {  
                 GroundedCheck();
+                JumpAndGravity();
                 Move();
             }
         }
@@ -255,7 +215,6 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
-
 private void Move()
 {
     float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -429,20 +388,20 @@ private void Move()
 
         public void SoftAttack()
         {
-            _animator.SetTrigger("SoftAttack");
+            //_animator.SetTrigger("SoftAttack");
         }
         public void Roll()
         {
-            _animator.SetTrigger("Roll");
+            //_animator.SetTrigger("Roll");
         }
         public void HardAttack()
         {
-            _animator.SetTrigger("HardAttack");
+            //_animator.SetTrigger("HardAttack");
         }
 
         public void Dying()
         {
-            _animator.SetTrigger("Dying");
+            //_animator.SetTrigger("Dying");
         }
 
         void OnTriggerEnter(Collider other)

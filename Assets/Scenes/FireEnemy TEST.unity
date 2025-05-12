@@ -1133,26 +1133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireEnemyPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 2847586178182013168, guid: 4fcce1c4b293d164b8d300f1d177dfad,
+    - target: {fileID: 5073826984564960317, guid: 4fcce1c4b293d164b8d300f1d177dfad,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3822951953714554072, guid: 4fcce1c4b293d164b8d300f1d177dfad,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512317412547072316, guid: 4fcce1c4b293d164b8d300f1d177dfad,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7010081571361868272, guid: 4fcce1c4b293d164b8d300f1d177dfad,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1733365897}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
