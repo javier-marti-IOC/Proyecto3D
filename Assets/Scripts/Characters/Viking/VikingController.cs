@@ -42,10 +42,10 @@ public class VikingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        earthMana = 0;
-        fireMana = 0;
-        waterMana = 0;
-        electricMana = 0;
+        // earthMana = 0;
+        // fireMana = 0;
+        // waterMana = 0;
+        // electricMana = 0;
         healthPoints = 100;
         activeElement = Element.None;
         dpadAction =  inputActions.FindAction("DPAD");
