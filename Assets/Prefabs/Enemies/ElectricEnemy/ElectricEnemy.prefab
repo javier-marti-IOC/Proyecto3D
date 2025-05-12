@@ -166,7 +166,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0c1f59f6cdf520c4cbe11dbdc030aa51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -235,7 +235,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -5453,6 +5453,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 8
+--- !u!1 &7502418797208486070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 577511609567146528}
+  m_Layer: 0
+  m_Name: Drops
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577511609567146528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502418797208486070}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.041381817, y: -0.019895427, z: -0.014106895, w: 0.9988457}
+  m_LocalPosition: {x: 0.008244647, y: 1.795011, z: -0.0032268278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1467614840131460633}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8854642197891656260
 GameObject:
   m_ObjectHideFlags: 0
@@ -5617,6 +5648,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7319875993449619131}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff07983191433cc4db54dc5874976db0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 577511609567146528}
     - targetCorrespondingSourceObject: {fileID: 2563496969622287784, guid: ff07983191433cc4db54dc5874976db0,
         type: 3}
       insertIndex: -1
@@ -5706,8 +5741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9001474cea1ba04381276e0fba97132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 0}
-  dropPosition: {fileID: 0}
+  drop: {fileID: 2555196290468789356, guid: 2372f370c4f221a4599f8692a9e20d70, type: 3}
+  dropPosition: {fileID: 577511609567146528}
   enemyHUD: {fileID: 0}
   activeElement: 4
   healthPoints: 0
@@ -5743,6 +5778,7 @@ MonoBehaviour:
   attackLight: {fileID: 0}
   electricAttackRange: 10
   electricDamage: 20
+  impactPosition: {fileID: 0}
   lightningArea: {fileID: 0}
   heavyAttackDelay: 2
   heavyAttackRadius: 2

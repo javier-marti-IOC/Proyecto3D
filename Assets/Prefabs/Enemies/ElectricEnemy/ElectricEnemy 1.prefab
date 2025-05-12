@@ -204,6 +204,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
         type: 3}
+      propertyPath: basicAttackBasicDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
+        type: 3}
+      propertyPath: heavyAttackBasicDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
+        type: 3}
       propertyPath: lookAtPlayers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -215,6 +225,16 @@ PrefabInstance:
     - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
         type: 3}
       propertyPath: minCooldownTimeInclusive
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
+        type: 3}
+      propertyPath: basicAttackElementalDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
+        type: 3}
+      propertyPath: heavyAttackElementalDamage
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
