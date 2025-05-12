@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BasicSpellObject : MonoBehaviour
 {
+    public Enemy enemy;
     private GameObject target;
     private Rigidbody spellRB;
     public float fallValue;
@@ -45,8 +46,10 @@ public class BasicSpellObject : MonoBehaviour
         //Esto se eliminara en un futuro
         if (collision.gameObject.CompareTag(Constants.player))
         {
-            Debug.Log("Proyectil agua colisiona con: " + collision.gameObject.name);
-            collision.gameObject.GetComponent<VikingController>().HealthTaken(5);
+            if (enemy != null)
+            {
+                enemy.GetComponent<DistanceBT>().PlayerHitted();
+            }
         }
         Destroy(gameObject);
     }

@@ -86,7 +86,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected void CheckAgentSpeed()
     {
-        if (agent.velocity.magnitude <= 0.2f)
+        if (agent.velocity.magnitude <= 0.4f)
         {
             animator.SetInteger(Constants.state, 0);
         }

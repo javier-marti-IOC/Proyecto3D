@@ -8,6 +8,10 @@ public class WaterSoftAttackGenerator : MonoBehaviour
     public Transform rightHand;
 
     public void ShootBullet(){
-        Instantiate(bullet , rightHand.transform.position, Quaternion.identity);
+        // Instanciar la bala y guardar la referencia
+        GameObject spawnedBullet = Instantiate(bullet, rightHand.position, Quaternion.identity);
+
+        // Obtener el componente Enemy de este mismo objeto (enemigo que dispara)
+        spawnedBullet.GetComponent<BasicSpellObject>().enemy = GetComponent<Enemy>();
     }
 }

@@ -94,17 +94,14 @@ public class DistanceBT : Enemy
                             switch (activeElement)
                             {
                                 case Element.Water:
-                                                                            animator.SetInteger(Constants.state, 2);
-// if (cooldownHeavyAttack < 0)
-                                    // {
-                                    //     // transform.LookAt(player.transform);
-                                    //     animator.SetInteger(Constants.state, 3);
-
-                                    // }
-                                    // else
-                                    // {
-                                    //     animator.SetInteger(Constants.state, 2);
-                                    // }
+                                    /*  if (cooldownHeavyAttack < 0)
+                                     {
+                                         animator.SetInteger(Constants.state, 3);
+                                     }
+                                     else
+                                     { */
+                                    animator.SetInteger(Constants.state, 2);
+                                    /* } */
                                     break;
                                 case Element.Electric:
                                     //Funcionalidad enemigo electrico
@@ -289,7 +286,7 @@ public class DistanceBT : Enemy
             if (hit.collider.CompareTag(Constants.player))
             {
                 // Fer pupa al player
-                player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackElementalDamage,player.GetComponent<VikingController>().activeElement));
+                PlayerHitted();
                 Debug.Log("Player hit with electric basic attack");
             }
         }
@@ -341,8 +338,8 @@ public class DistanceBT : Enemy
         {
             // Player rep pupa
             Debug.Log("Player hit by heavy electric attack");
-            player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackElementalDamage,player.GetComponent<VikingController>().activeElement));
-               
+            player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
+
         }
     }
 
@@ -359,4 +356,9 @@ public class DistanceBT : Enemy
         cooldownHeavyAttack = UnityEngine.Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
 
+    public void PlayerHitted()
+    {
+        player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
+
+    }
 }
