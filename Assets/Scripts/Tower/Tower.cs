@@ -88,6 +88,12 @@ public class Tower : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.M)) // Restar vida
+        {
+            Utils.ReplaceMaterials(materials, colors);
+            Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
+        }
+
         if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
             int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
@@ -290,6 +296,11 @@ public class Tower : MonoBehaviour
         {
             enemyPrefab.GetComponent<Enemy>().towerCalling = false;
         }
+    }
+
+    public void HealthTaken(int damage)
+    {
+        life -= damage;
     }
 
 }
