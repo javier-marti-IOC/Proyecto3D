@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         // Botón Start de mando Xbox o tecla Escape
-        if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
+        if (/*Input.GetKeyDown(KeyCode.JoystickButton1) ||*/ Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
         {
             TogglePause();
         }

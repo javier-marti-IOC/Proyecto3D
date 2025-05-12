@@ -131,6 +131,10 @@ public class ElementsHUD : MonoBehaviour
         fireElement.color = fireColor;
     }
 
+    public void ElementBlink(Element element) {
+
+    }
+
     // Corrutina para el parpadeo de fuego.
     private IEnumerator BlinkFireImage() {
         while (fireBlink) {
