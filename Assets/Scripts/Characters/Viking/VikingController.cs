@@ -165,7 +165,7 @@ public class VikingController : MonoBehaviour
 
     public void AttackEnter(Collider other)
     {
-        if (other.tag.Equals(Constants.enemy))
+        if (other.CompareTag(Constants.enemy))
         {
             int damageDeal;
             if (isBasicAttack)
@@ -180,6 +180,11 @@ public class VikingController : MonoBehaviour
                 other.GetComponent<Enemy>().HealthTaken(damageDeal);
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
+        }
+        if (other.CompareTag(Constants.tower))
+        {
+            Debug.Log("TowerHit");
+            other.GetComponent<Tower>().HealthTaken(5);
         }
     }
     public void EndAction()
