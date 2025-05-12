@@ -45,8 +45,8 @@ public class Tower : MonoBehaviour
     public ChangeAppearence changeAppearence;
     public Color healthyTreeColor = new Color();
 
-    [Header("CameraManager")]
-    public CameraManager cameraManager;
+    //[Header("CameraManager")]
+    //public CameraManager cameraManager;
 
     [Header("Progress Manager")]
     public ProgressManager progressManager;
@@ -164,7 +164,7 @@ public class Tower : MonoBehaviour
     public void DestroyTower()
     {
         gameObject.SetActive(false);
-        cameraManager.ActivateFade();
+        //cameraManager.ActivateFade();
         Invoke(nameof(EraseTower), 1.0f);
     }
 
