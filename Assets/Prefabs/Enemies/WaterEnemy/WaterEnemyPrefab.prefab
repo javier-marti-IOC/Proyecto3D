@@ -994,9 +994,9 @@ MonoBehaviour:
   playerDetectorUp: {fileID: 437362043903965274}
   minDistanceChase: {fileID: 6769779894073946202}
   basicAttackBasicDamage: 2
-  basicAttackElementalDamage: 4
+  basicAttackElementalDamage: 3
   heavyAttackBasicDamage: 3
-  heavyAttackElementalDamage: 7
+  heavyAttackElementalDamage: 4
   teleportCooldownTime: 5
   teleportChance: 15
   teleportDistance: 5
@@ -1004,6 +1004,7 @@ MonoBehaviour:
   lookAtPlayers:
   - {fileID: 993764451183703474}
   - {fileID: 222972871648877456}
+  foundLookingPlayer: 0
   hand: {fileID: 0}
   lightningLine: {fileID: 0}
   attackLight: {fileID: 0}
@@ -1052,7 +1053,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1083,7 +1084,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

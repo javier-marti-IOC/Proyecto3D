@@ -52,6 +52,9 @@ public class Tower : MonoBehaviour
     public ProgressManager progressManager;
     public ProgressData progressData;
 
+    [Header("TowerHud")]
+    public TowerHUD towerHUD;
+
 
     /* ORDEN DE LAS TORRES (Constants.cs) */
     /* 
@@ -77,11 +80,13 @@ public class Tower : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) // Restar vida
         {
             life = life - 5;
+            towerHUD.UpdateHealth(life);
         }
 
         if (Input.GetKeyDown(KeyCode.P)) // Restar vida
         {
             life += 5;
+            towerHUD.UpdateHealth(life);
             if (life > max_life)
             {
                 life = max_life;
@@ -119,6 +124,7 @@ public class Tower : MonoBehaviour
                     if (firstZoneContact)  // Toca el collider interno?
                     {
                         IncreaseDecreaseTowerLife(true, life); // Incremento vida
+                        towerHUD.UpdateHealth(life);
                         DestroyEnemy(); // Sacrificamos enemigo
                         UncallAllEnemies(enemiesInSecondZoneRange);
                         secondZoneContact = false;
@@ -138,6 +144,7 @@ public class Tower : MonoBehaviour
                             {
                                 spawner.SpawnEnemy(activeElement); // Invocamos
                                 IncreaseDecreaseTowerLife(false, life); // Aplicamos coste de invocacion
+                                towerHUD.UpdateHealth(life);
                             }
                             else
                             {
@@ -154,6 +161,7 @@ public class Tower : MonoBehaviour
                         {
                             spawner.SpawnEnemy(activeElement); // Invoco en el collider exterior, no en el de contacto
                             IncreaseDecreaseTowerLife(false, life);
+                            towerHUD.UpdateHealth(life);
                         }
                         else
                         {
