@@ -34,7 +34,7 @@ public class VikingController : MonoBehaviour
     public int basicAttackMagicDamage;
     public int heavyAttackBasicDamage;
     public int heavyAttackMagicDamage;
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     public bool OnAction;
     public bool isRolling;
@@ -60,6 +60,7 @@ public class VikingController : MonoBehaviour
         swordCollider.SetActive(false);
         isBasicAttack = true;
         vikingHealthHUD.SetHealth(healthPoints);
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
