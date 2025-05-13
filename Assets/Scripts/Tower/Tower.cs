@@ -40,10 +40,10 @@ public class Tower : MonoBehaviour
     [Header("Spawner")]
     public Spawner spawner;
 
-    [Header("Elemental Objects Assigned")]
-    public Transform elementalObjects;
-    public ChangeAppearence changeAppearence;
-    public Color healthyTreeColor = new Color();
+    //[Header("Elemental Objects Assigned")]
+    //public Transform elementalObjects;
+    //public ChangeAppearence changeAppearence;
+    //public Color healthyTreeColor = new Color();
 
     //[Header("CameraManager")]
     //public CameraManager cameraManager;
