@@ -7,17 +7,16 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PP_Standard_Material_Test_Water
+  m_Name: PP_Standard_Material_Emmissive_Vip
   m_Shader: {fileID: 4800000, guid: e88aeddd2ef1f934d805981244872e27, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _EMISSION
   - _HALFTONESHAPE_DOT
   - _OUTLINE
-  - _SPECULAR_COLOR
-  m_InvalidKeywords:
-  - _SPECULARHIGHLIGHTS_OFF
-  m_LightmapFlags: 4
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2050
@@ -29,9 +28,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: dd8a111ceccfb20409d7c2d858021035, type: 3}
-        m_Scale: {x: 10, y: 10}
-        m_Offset: {x: -0.7548712, y: -0.16908062}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -77,9 +76,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: dd8a111ceccfb20409d7c2d858021035, type: 3}
-        m_Scale: {x: 10, y: 10}
-        m_Offset: {x: -0.002617677, y: -0.37655756}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -122,7 +121,6 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _BlendOp: 0
     - _BrushLowerCut: 0
     - _BrushSize: 0.8
     - _BumpScale: 1
@@ -130,7 +128,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DetailAlbedoMapScale: 0
+    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DiffuseStep: 0
     - _DitherTexelSize: 1
@@ -147,9 +145,6 @@ Material:
     - _Glossiness: 0.2
     - _GlossinessSource: 0
     - _GlossyReflections: 1
-    - _GrassHeightInfluence: 1
-    - _GrassWindSpeed: 1
-    - _GrassWindStrength: 0.1
     - _HairSpecExponent: 128
     - _HairSpecNoiseStrength: 1
     - _HairSpecularSize: 0.8
@@ -185,10 +180,9 @@ Material:
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
-    - _SampleGI: 0
     - _Shininess: 0
     - _SizeFalloff: 0
-    - _Smoothness: 0.657
+    - _Smoothness: 0.2
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
@@ -196,7 +190,7 @@ Material:
     - _SpecSource: 0
     - _SpecularClipStrength: 0
     - _SpecularFalloff: 0.5
-    - _SpecularHighlights: 0
+    - _SpecularHighlights: 1
     - _SpecularSize: 0.25
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
@@ -210,9 +204,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.6040851, g: 0.6367659, b: 0.7075472, a: 1}
-    - _Color: {r: 0.604085, g: 0.6367659, b: 0.7075471, a: 1}
-    - _EmissionColor: {r: 0, g: 0.049456675, b: 0.49056602, a: 0}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.75471693, g: 0.2954788, b: 0.2954788, a: 1}
+    - _EmissionColor: {r: 0.5, g: 0, b: 0.43193725, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
@@ -222,10 +216,10 @@ Material:
     - _OutlineDistancFade: {r: -200, g: 200, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.19999993, g: 0.19999993, b: 0.19999993, a: 0.657}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &7375998194154685662
+--- !u!114 &7465092581333085259
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
