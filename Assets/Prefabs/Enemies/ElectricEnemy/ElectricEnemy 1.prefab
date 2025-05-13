@@ -225,7 +225,7 @@ PrefabInstance:
     - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
         type: 3}
       propertyPath: maxCooldownTimeExclusive
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3243528110954948512, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
         type: 3}
@@ -256,6 +256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6720320501327632597, guid: 2e294a8bd1badcd468c4e9f9afb218c9,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
