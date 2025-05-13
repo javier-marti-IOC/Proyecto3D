@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BasicSpellObject : MonoBehaviour
 {
+    public Enemy enemy;
     private GameObject target;
     private Rigidbody spellRB;
     public float fallValue;
@@ -37,7 +38,7 @@ public class BasicSpellObject : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxRotationThisFrame);
 
         // Movimiento hacia adelante
-        spellRB.velocity = direction * speed;
+        spellRB.velocity = transform.forward * speed;
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
@@ -45,7 +46,10 @@ public class BasicSpellObject : MonoBehaviour
         //Esto se eliminara en un futuro
         if (collision.gameObject.CompareTag(Constants.player))
         {
-            Debug.Log("Proyectil agua colisiona con: " + collision.gameObject.name);
+            if (enemy != null)
+            {
+                enemy.GetComponent<DistanceBT>().PlayerHitted();
+            }
         }
         Destroy(gameObject);
     }

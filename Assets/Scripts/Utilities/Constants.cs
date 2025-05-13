@@ -14,6 +14,7 @@ public class Constants : MonoBehaviour
     public const string pointPatrol = "PointPatrol";
     public const string enemy = "Enemy";
     public const string state = "State";
+    public const string tower = "Tower";
 
 }
 

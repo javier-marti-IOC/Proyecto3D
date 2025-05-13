@@ -29,7 +29,7 @@ public class EnemyHUD : MonoBehaviour
     public Image healthBarGhost; // Barra de vida fantasma
 
     // VARIABLES PRIVADAS
-    private EnemyTEMPORAL enemyScript; // Variable que permite el acceso al script del enemigo
+    public Enemy enemyScript; // Variable que permite el acceso al script del enemigo
     private float actualHealth; // Vida actual
     private float reductionSpeed = 2f; // Velocidad de reduccion de la barra de vida.
     private float ghostDelay = 0.5f;      // Tiempo antes de que la barra fantasma empiece a bajar
@@ -43,8 +43,8 @@ public class EnemyHUD : MonoBehaviour
 
     void Start()
     {
-        enemyScript = GetComponent<EnemyTEMPORAL>(); // Obtiene la referencia al enemigo.
-        maxHealth = enemyScript.maxHealth;
+        //enemyScript = GetComponent<Enemy>(); // Obtiene la referencia al enemigo.
+        maxHealth = enemyScript.maxHealthPoints;
         healthBar.color = healthColor; // Se asigna el color de la vida
         healthBarGhost.color = healthGhostColor; // Se asigna el color de la vida fantasma
         healthBar.fillAmount = 1f;
@@ -72,7 +72,7 @@ public class EnemyHUD : MonoBehaviour
         if (enemyScript != null) {
 
             // Asignar nivel
-            levelText.text = "" + enemyScript.level.ToString(); // Texto del nivel
+            levelText.text = "" + enemyScript.enemyLevel.ToString(); // Texto del nivel
 
             // Icono del nivel
             // if(enemyScript.level == 4)
@@ -106,26 +106,26 @@ public class EnemyHUD : MonoBehaviour
         }
 
         // Asignar elemento
-        if (enemyScript.elementType == "Fire")
+        if (enemyScript.activeElement == Element.Fire)
         {
             waterIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             fireIcon.gameObject.SetActive(true);
-        } else if (enemyScript.elementType == "Water")
+        } else if (enemyScript.activeElement == Element.Water)
         {
             fireIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(true);
-        } else if (enemyScript.elementType == "Earth")
+        } else if (enemyScript.activeElement == Element.Earth)
         {
             fireIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(true);
         }
-        else if (enemyScript.elementType == "Lightning")
+        else if (enemyScript.activeElement == Element.Electric)
         {
             fireIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(false);
@@ -134,13 +134,14 @@ public class EnemyHUD : MonoBehaviour
         }
 
         // Asignar vida
-        UpdateHealth(enemyScript.currentHealth);
+        UpdateHealth(enemyScript.healthPoints);
     }
     
 
     // Actualiza solo la vida del enemigo
     public void UpdateHealth(float newHealth)
     {
+        hudPanelCanvas.SetActive(true);
         newHealth = Mathf.Clamp(newHealth, 0f, maxHealth);
         float newFill = newHealth / maxHealth;
         float currentFill = actualHealth / maxHealth;

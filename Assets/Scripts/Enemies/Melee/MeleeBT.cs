@@ -69,7 +69,7 @@ public class MeleeBT : Enemy
                             else if (activeElement == Element.Fire)
                             {
                                 // Esta el player usando el elemento de agua
-                                if(player.GetComponent<tempPlayer>().activeElement == Element.Water)
+                                if(player.GetComponent<VikingController>().activeElement == Element.Water)
                                 {
                                     // Esta a una distancia prudencial del player?
                                     if(playerInSecurityDistance)
@@ -77,7 +77,7 @@ public class MeleeBT : Enemy
                                         // Tiene cooldown de ataque en area?
                                         if (cooldownHeavyAttack < 0)
                                         {
-                                            transform.LookAt(player.transform);
+                                            //transform.LookAt(player.transform);
                                             animator.SetInteger(Constants.state,3);
                                         }
                                         else
@@ -98,12 +98,12 @@ public class MeleeBT : Enemy
                                 { // Tiene cooldown de ataque en area?
                                     if (cooldownHeavyAttack < 0)
                                     {
-                                        transform.LookAt(player.transform);
+                                        //transform.LookAt(player.transform);
                                         animator.SetInteger(Constants.state,3);
                                     }
                                     else
                                     {
-                                        transform.LookAt(player.transform);
+                                        //transform.LookAt(player.transform);
                                         animator.SetInteger(Constants.state,2);
                                     }
                                 }
@@ -134,7 +134,7 @@ public class MeleeBT : Enemy
         }
         else
         {
-            Destroy(this);
+            Dying();
         }
     }
     public void PlayerSecurityMinDistanceColliderEnter(Collider other)

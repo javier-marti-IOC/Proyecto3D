@@ -15,6 +15,7 @@ public class VikingController : MonoBehaviour
     private InputAction heavyAttackAction;
     private InputAction rollAction;
     private Vector2 dpadValue;
+    
 
     //Mana Bars
     public int earthMana;
@@ -22,7 +23,8 @@ public class VikingController : MonoBehaviour
     public int waterMana;
     public int electricMana;
 
-
+    public ElementsHUD vikingElementsHUD;
+    public HealthHUD vikingHealthHUD;
     public Element activeElement;
     public Animator animator;
     public int healthPoints;
@@ -40,10 +42,10 @@ public class VikingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        earthMana = 0;
-        fireMana = 0;
-        waterMana = 0;
-        electricMana = 0;
+        // earthMana = 0;
+        // fireMana = 0;
+        // waterMana = 0;
+        // electricMana = 0;
         healthPoints = 100;
         activeElement = Element.None;
         dpadAction =  inputActions.FindAction("DPAD");
@@ -57,6 +59,7 @@ public class VikingController : MonoBehaviour
         OnAction = false;
         swordCollider.SetActive(false);
         isBasicAttack = true;
+        vikingHealthHUD.SetHealth(healthPoints);
     }
 
     // Update is called once per frame
@@ -95,33 +98,47 @@ public class VikingController : MonoBehaviour
                 rollCooldown = 1.2f;
                 Roll();
             }
-            if (healthPoints <= 0)
-            {
-                Dying();
-            }
+        }
+        if (healthPoints <= 0)
+        {
+            Dying();
         }
     }
 
     private void ChangeElement(Element element)
     {
-        activeElement = element;
-        /*
         if (element == Element.Earth && earthMana == 100)
         {
             activeElement = Element.Earth;
+            vikingElementsHUD.earthReduce(0);
+            vikingElementsHUD.FireStopBlink();
+            vikingElementsHUD.WaterStopBlink();
+            vikingElementsHUD.LightningStopBlink();
         }
         else if (element == Element.Water && waterMana == 100)
         {
-            activeElement = Element.Earth;
+            activeElement = Element.Water;
+            vikingElementsHUD.waterReduce(0);
+            vikingElementsHUD.FireStopBlink();
+            vikingElementsHUD.EarthStopBlink();
+            vikingElementsHUD.LightningStopBlink();
         }
         else if (element == Element.Fire && fireMana == 100)
         {
-            activeElement = Element.Earth;
+            activeElement = Element.Fire;
+            vikingElementsHUD.fireReduce(0);
+            vikingElementsHUD.WaterStopBlink();
+            vikingElementsHUD.EarthStopBlink();
+            vikingElementsHUD.LightningStopBlink();
         }
         else if (element == Element.Electric && electricMana == 100)
         {
             activeElement = Element.Electric;
-        }*/
+            vikingElementsHUD.lightningReduce(0);
+            vikingElementsHUD.FireStopBlink();
+            vikingElementsHUD.EarthStopBlink();
+            vikingElementsHUD.WaterStopBlink();
+        }
     }
 
     public void BasicAttack()
@@ -148,7 +165,7 @@ public class VikingController : MonoBehaviour
 
     public void AttackEnter(Collider other)
     {
-        if (other.tag.Equals(Constants.enemy))
+        if (other.CompareTag(Constants.enemy))
         {
             int damageDeal;
             if (isBasicAttack)
@@ -163,6 +180,11 @@ public class VikingController : MonoBehaviour
                 other.GetComponent<Enemy>().HealthTaken(damageDeal);
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
+        }
+        if (other.CompareTag(Constants.tower))
+        {
+            Debug.Log("TowerHit");
+            other.GetComponent<Tower>().HealthTaken(5);
         }
     }
     public void EndAction()
@@ -194,6 +216,7 @@ public class VikingController : MonoBehaviour
         if (!isRolling)
         {
             healthPoints -= healthTaken;
+            vikingHealthHUD.SetHealth(healthPoints);
         }
     }
 }

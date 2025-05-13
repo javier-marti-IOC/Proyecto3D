@@ -45,12 +45,15 @@ public class Tower : MonoBehaviour
     public ChangeAppearence changeAppearence;
     public Color healthyTreeColor = new Color();
 
-    [Header("CameraManager")]
-    public CameraManager cameraManager;
+    //[Header("CameraManager")]
+    //public CameraManager cameraManager;
 
     [Header("Progress Manager")]
     public ProgressManager progressManager;
     public ProgressData progressData;
+
+    [Header("TowerHud")]
+    public TowerHUD towerHUD;
 
 
     /* ORDEN DE LAS TORRES (Constants.cs) */
@@ -68,41 +71,42 @@ public class Tower : MonoBehaviour
     }
 
     void Update()
-    {        
-        // Mostrar la vida de la torre por pantalla
-        if (life_text != null)
+    {
+        if (life_text != null) // Mostrar la vida de la torre por pantalla
         {
             life_text.text = "T.Life: " + life;
         }
-        // Restar vida
-        if (Input.GetKeyDown(KeyCode.L)) 
+
+        if (Input.GetKeyDown(KeyCode.L)) // Restar vida
         {
             life = life - 5;
+            towerHUD.UpdateHealth(life);
         }
-        // Sumar vida
-        if (Input.GetKeyDown(KeyCode.P)) 
+
+        if (Input.GetKeyDown(KeyCode.P)) // Restar vida
         {
             life += 5;
+            towerHUD.UpdateHealth(life);
             if (life > max_life)
             {
                 life = max_life;
             }
         }
-        // Volver a poner los colores en corrupto
-        if (Input.GetKeyDown(KeyCode.M))
+
+        if (Input.GetKeyDown(KeyCode.M)) // Restar vida
         {
             Utils.ReplaceMaterials(materials, colors);
-            Debug.Log("-----> CAMBIANDO COLOR");
+            Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
         }
 
-        // Si el JSON contiene la torre, se pone el material sano
         if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
             int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
+                                                                                                     //Debug.Log("POSITION EN EL ARRAY: " + position);
             Utils.ReplaceMaterials(materials, corruptedColors);
             Destroy(gameObject);
         }
-        // Maquina de estados de la torre
+
         if (life <= 0)
         {
             DestroyTower();
@@ -120,6 +124,7 @@ public class Tower : MonoBehaviour
                     if (firstZoneContact)  // Toca el collider interno?
                     {
                         IncreaseDecreaseTowerLife(true, life); // Incremento vida
+                        towerHUD.UpdateHealth(life);
                         DestroyEnemy(); // Sacrificamos enemigo
                         UncallAllEnemies(enemiesInSecondZoneRange);
                         secondZoneContact = false;
@@ -139,6 +144,7 @@ public class Tower : MonoBehaviour
                             {
                                 spawner.SpawnEnemy(activeElement); // Invocamos
                                 IncreaseDecreaseTowerLife(false, life); // Aplicamos coste de invocacion
+                                towerHUD.UpdateHealth(life);
                             }
                             else
                             {
@@ -155,6 +161,7 @@ public class Tower : MonoBehaviour
                         {
                             spawner.SpawnEnemy(activeElement); // Invoco en el collider exterior, no en el de contacto
                             IncreaseDecreaseTowerLife(false, life);
+                            towerHUD.UpdateHealth(life);
                         }
                         else
                         {
@@ -167,14 +174,14 @@ public class Tower : MonoBehaviour
         }
 
     }
-    // Destruir la torre
+
     public void DestroyTower()
     {
         gameObject.SetActive(false);
-        cameraManager.ActivateFade();
+        //cameraManager.ActivateFade();
         Invoke(nameof(EraseTower), 1.0f);
     }
-    // Borrar torre
+
     public void EraseTower()
     {
         Utils.ReplaceMaterials(materials, corruptedColors);
@@ -183,7 +190,7 @@ public class Tower : MonoBehaviour
         //Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
         progressManager.SaveGame();
     }
-    // Restar/Sumar vida a la torre
+
     public void IncreaseDecreaseTowerLife(bool increase, int life)
     {
         if (increase)
@@ -202,7 +209,7 @@ public class Tower : MonoBehaviour
             Debug.Log("---> Coste aplicado");
         }
     }
-    // Destruir enemigo
+
     private void DestroyEnemy()
     {
         GameObject enemy = enemiesInHealRange[0]; // Creamos referencia del prefab guardado en X posicion del array
@@ -211,12 +218,12 @@ public class Tower : MonoBehaviour
         Destroy(enemy.GetComponentInParent<Transform>().gameObject); // Destruimos el prefab
         secondZone.enemyCount -= 2;
     }
-    // Activar cooldown
+
     public void ActivateCooldown()
     {
         isOnCooldown = true;
     }
-    // Calcular tiempo de cooldown
+
     private void CalculateCooldown() // Funcion para el cooldown
     {
         remainingTime -= Time.deltaTime;
@@ -297,6 +304,11 @@ public class Tower : MonoBehaviour
         {
             enemyPrefab.GetComponent<Enemy>().towerCalling = false;
         }
+    }
+
+    public void HealthTaken(int damage)
+    {
+        life -= damage;
     }
 
 }

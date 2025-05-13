@@ -6190,6 +6190,7 @@ GameObject:
   - component: {fileID: 897027238711889753}
   - component: {fileID: 2905455835062671263}
   - component: {fileID: 3023389732709961547}
+  - component: {fileID: 5119653336814344007}
   m_Layer: 8
   m_Name: Viking
   m_TagString: Player
@@ -6460,6 +6461,8 @@ MonoBehaviour:
   fireMana: 100
   waterMana: 100
   electricMana: 100
+  vikingElementsHUD: {fileID: 0}
+  vikingHealthHUD: {fileID: 0}
   activeElement: 0
   animator: {fileID: 8620253860425985851}
   healthPoints: 100
@@ -6472,6 +6475,29 @@ MonoBehaviour:
   OnAction: 0
   isRolling: 0
   rollCooldown: 0
+--- !u!136 &5119653336814344007
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113744238655452588}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.28990555
+  m_Height: 2.3205884
+  m_Direction: 1
+  m_Center: {x: 0.0021247864, y: 0.6602942, z: 0}
 --- !u!1001 &1622288981137436283
 PrefabInstance:
   m_ObjectHideFlags: 0

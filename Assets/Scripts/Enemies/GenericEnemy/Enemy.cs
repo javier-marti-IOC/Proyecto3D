@@ -4,8 +4,13 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
+    public GameObject drop;
+    public Transform dropPosition;
+    public EnemyHUD enemyHUD;
     public Element activeElement;
-    protected int healthPoints;
+    public int healthPoints;
+    public int maxHealthPoints = 100;
+    public int enemyLevel = 1;
     protected GameObject player;
     public Tower tower;
     public GameManager gameManager;
@@ -68,6 +73,7 @@ public abstract class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = safeDistance;
         animator = GetComponent<Animator>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Metodos comunes
@@ -80,7 +86,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected void CheckAgentSpeed()
     {
-        if (agent.velocity.magnitude <= 0.2f)
+        if (agent.velocity.magnitude <= 0.4f)
         {
             animator.SetInteger(Constants.state, 0);
         }
@@ -182,5 +188,12 @@ public abstract class Enemy : MonoBehaviour
     public void HealthTaken(int damageTaken)
     {
         healthPoints -= damageTaken;
+        enemyHUD.UpdateHealth(healthPoints);
+    }
+    public void Dying()
+    {
+        Debug.Log("Muelto");
+        Instantiate(drop,dropPosition.position,Quaternion.identity,null);
+        Destroy(gameObject);
     }
 }

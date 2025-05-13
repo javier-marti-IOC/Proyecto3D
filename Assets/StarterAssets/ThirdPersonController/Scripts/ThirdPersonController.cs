@@ -158,16 +158,11 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
             if (dead == false && !vikingController.OnAction) 
             {  
-                JumpAndGravity();
                 GroundedCheck();
+                JumpAndGravity();
                 Move();
-            }
-            else 
-            {
-                
             }
         }
 
