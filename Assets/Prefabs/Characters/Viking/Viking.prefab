@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 2827733054762747722}
   - component: {fileID: 4803420567356887932}
   - component: {fileID: 2771150540517159151}
-  - component: {fileID: 3350456356267011186}
+  - component: {fileID: 2953335718404235937}
   m_Layer: 0
   m_Name: PP_Sword_Used_01
   m_TagString: Untagged
@@ -218,7 +218,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &3350456356267011186
+--- !u!54 &2953335718404235937
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6336,6 +6336,7 @@ MonoBehaviour:
   LockCameraPosition: 0
   dead: 0
   vikingController: {fileID: 3023389732709961547}
+  progressManager: {fileID: 0}
 --- !u!114 &6455240357015228509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6499,7 +6500,6 @@ MonoBehaviour:
   basicAttackMagicDamage: 5
   heavyAttackBasicDamage: 3
   heavyAttackMagicDamage: 8
-  gameManager: {fileID: 0}
   OnAction: 0
   isRolling: 0
   rollCooldown: 0
