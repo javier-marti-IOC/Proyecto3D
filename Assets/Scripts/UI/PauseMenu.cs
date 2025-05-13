@@ -62,5 +62,6 @@ public class PauseMenu : MonoBehaviour
     public void backToMenu() { // Script para volver al menu principal
         SceneManager.LoadScene(0); 
         Debug.Log("Sortir al ménu");
+        Time.timeScale = 1f;
     }
 }
