@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class BasicAttackCollider : MonoBehaviour
 {
-    public MeleeBT meleeBT;
+    private MeleeBT meleeBT;
+    void Awake()
+    {
+        meleeBT = gameObject.GetComponentInParent<MeleeBT>();
+    }
     public void OnTriggerEnter(Collider other)
     {
         meleeBT.AttackEnter(other);

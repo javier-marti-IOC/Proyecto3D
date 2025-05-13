@@ -272,6 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1402182027827430383}
   - component: {fileID: 8686525104484734206}
+  - component: {fileID: 1629814200497548328}
   m_Layer: 0
   m_Name: MinDistanceChase
   m_TagString: Untagged
@@ -314,7 +315,19 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1629814200497548328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728276217441479041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0888190031ec0c49be8eb0651a809e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1916953621946550322
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +448,7 @@ Transform:
   m_GameObject: {fileID: 2912064289879657469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.19499981, z: 0}
+  m_LocalPosition: {x: 0, y: -0.19499981, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -569,8 +582,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 1}
 --- !u!114 &390274906638197574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,7 +1151,7 @@ Transform:
   m_GameObject: {fileID: 7113069356314719712}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1050001, z: 0}
+  m_LocalPosition: {x: 0, y: 1.1050001, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1317,6 +1330,7 @@ MonoBehaviour:
   drop: {fileID: 8518313805689136268, guid: 0608f8e5e64414f46ac3d5c0126c20cb, type: 3}
   dropPosition: {fileID: 191675823690572866}
   enemyHUD: {fileID: 9214985350115137338}
+  hudPanelCanvas: {fileID: 4927724937117680421}
   activeElement: 3
   healthPoints: 0
   maxHealthPoints: 100
@@ -1385,7 +1399,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.8642994
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9767135, z: 0}
 --- !u!114 &79780363703065823
@@ -1428,7 +1442,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1701,7 +1715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c2b8be1a186f643a2eecc17fff630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeBT: {fileID: 5073826984564960317}
 --- !u!1 &9112077109406638651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,6 +1912,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb5242eaff695744941ef457daf9ead, type: 3}
+--- !u!1 &4927724937117680421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3567476352188224276, guid: 2bb5242eaff695744941ef457daf9ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 8494056557828558897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7010081571361868272 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
