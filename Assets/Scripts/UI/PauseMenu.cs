@@ -11,20 +11,24 @@ public class PauseMenu : MonoBehaviour
     [Header("Panel del menú de pausa")]
     public GameObject pausePanel;
     public GameObject exitPanel;
+    public GameObject deathPanel;
 
     public Button selectedButton; 
     private bool isPaused = false;
 
     void Update()
     {
-        if(pausePanel.activeInHierarchy && Input.GetKeyDown(KeyCode.JoystickButton1))
+        if(deathPanel.activeInHierarchy == false)
         {
-            TogglePause();
-        }
-        // Botón Start de mando Xbox o tecla Escape
-        if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
-        {
-            TogglePause();
+            if(pausePanel.activeInHierarchy && Input.GetKeyDown(KeyCode.JoystickButton1))
+                {
+                    TogglePause();
+                }
+                // Botón Start de mando Xbox o tecla Escape
+                if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
+                {
+                    TogglePause();
+                }
         }
     }
 

@@ -44,8 +44,14 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+            s.source.playOnAwake = s.playOnAwake;
+            s.source.spatialize = s.spatialize;
+            s.source.spatialBlend = s.spatialBlend;
             s.source.outputAudioMixerGroup = s.outputGroup;
-            s.source.playOnAwake = false;
+
+            if (s.playOnAwake)
+                s.source.Play();
 
             if (!soundDictionary.ContainsKey(s.name))
                 soundDictionary.Add(s.name, s);

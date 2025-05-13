@@ -32,7 +32,7 @@ public class PlayerDetector : MonoBehaviour
         {
             if (hitCenter.collider.CompareTag(Constants.player))
             {
-                enemy.playerDetected = true;
+                enemy.PlayerDetected();
             }
         }
 
@@ -54,7 +54,7 @@ public class PlayerDetector : MonoBehaviour
         {
             if (hitLeft.collider.CompareTag(Constants.player))
             {
-                enemy.playerDetected = true;
+                enemy.PlayerDetected();
             }
 
         }
@@ -64,7 +64,7 @@ public class PlayerDetector : MonoBehaviour
         {
             if (hitSoftLeft.collider.CompareTag(Constants.player))
             {
-                enemy.playerDetected = true;
+                enemy.PlayerDetected();
             }
 
         }
@@ -91,7 +91,7 @@ public class PlayerDetector : MonoBehaviour
         {
             if (hitRight.collider.CompareTag(Constants.player))
             {
-                enemy.playerDetected = true;
+                enemy.PlayerDetected();
             }
         }
         // Raycast derecho pequeño
@@ -99,7 +99,7 @@ public class PlayerDetector : MonoBehaviour
         {
             if (hitSoftRight.collider.CompareTag(Constants.player))
             {
-                enemy.playerDetected = true;
+                enemy.PlayerDetected();
             }
         }
 

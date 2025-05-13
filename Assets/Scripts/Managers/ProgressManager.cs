@@ -21,17 +21,37 @@ public class ProgressManager : MonoBehaviour
     private string saveFilePath;
 
     private void Awake()
+{
+    if(Instance == null)
     {
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Aseguramos que el gameobject no se destruye al cargar la escena
-        }
-        else
-        {
-            Destroy(gameObject); // Destruimos la nueva instancia si ya existe
-        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
+    else
+    {
+        Destroy(gameObject);
+        return;
+    }
+
+    // Mueve la inicialización del progreso aquí
+    saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+
+    if (!File.Exists(saveFilePath))
+    {
+        progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
+    }
+    else
+    {
+        string loadProgressData = File.ReadAllText(saveFilePath);
+        progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+    }
+
+    if (progressData == null)
+    {
+        progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
+    }
+}
+
 
     void Start()
     {

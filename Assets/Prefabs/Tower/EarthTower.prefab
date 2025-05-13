@@ -247,16 +247,11 @@ MonoBehaviour:
   - {r: 0.46666667, g: 0.34901962, b: 0.25490198, a: 0}
   - {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 0}
   - {r: 1, g: 1, b: 1, a: 0}
-  life_text: {fileID: 0}
-  timerText: {fileID: 0}
   remainingTime: 10
   cooldownTime: 10
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 6345072037025999113}
-  elementalObjects: {fileID: 0}
-  changeAppearence: {fileID: 5525810060883575964}
-  healthyTreeColor: {r: 1, g: 0, b: 0, a: 0}
   progressManager: {fileID: 0}
   towerHUD: {fileID: 7156551494617196604}
 --- !u!114 &6345072037025999113
@@ -273,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 5997274429968177521, guid: 89126174ddcda454f9bb9c4264e26609, type: 3}
-  - {fileID: 3837763967345271107, guid: 15ee454afb8051549af8b36f9917a845, type: 3}
+  - {fileID: 5426825163228388641, guid: 15ee454afb8051549af8b36f9917a845, type: 3}
   tower: {fileID: 7397270228724885841}
   secondZone: {fileID: 8594170063425425463}
   trackPoints:

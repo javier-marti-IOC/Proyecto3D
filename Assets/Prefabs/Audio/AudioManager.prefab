@@ -45,13 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 36176d1c6022c4d4aa572482508b761b, type: 2}
-  music:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    outputGroup: {fileID: 0}
-    source: {fileID: 0}
+  music: []
   sfx: []
   ui: []
   ambience: []

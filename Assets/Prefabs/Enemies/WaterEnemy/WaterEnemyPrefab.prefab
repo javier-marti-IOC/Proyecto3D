@@ -973,6 +973,7 @@ MonoBehaviour:
   drop: {fileID: 4280553628134071422, guid: 82410f60f44de304baedaf7c930bdd9a, type: 3}
   dropPosition: {fileID: 5732543632236977345}
   enemyHUD: {fileID: 5731537666881477339}
+  hudPanelCanvas: {fileID: 8361632850504355524}
   activeElement: 2
   healthPoints: 0
   maxHealthPoints: 100
@@ -1004,7 +1005,6 @@ MonoBehaviour:
   lookAtPlayers:
   - {fileID: 993764451183703474}
   - {fileID: 222972871648877456}
-  foundLookingPlayer: 0
   hand: {fileID: 0}
   lightningLine: {fileID: 0}
   attackLight: {fileID: 0}
@@ -1035,7 +1035,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.7
-  m_BaseOffset: 0
+  m_BaseOffset: -0.15
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &8078066866786851775
@@ -1257,6 +1257,12 @@ MonoBehaviour:
 --- !u!224 &5845786056133051409 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 5010329428883250640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8361632850504355524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3567476352188224276, guid: 2bb5242eaff695744941ef457daf9ead,
     type: 3}
   m_PrefabInstance: {fileID: 5010329428883250640}
   m_PrefabAsset: {fileID: 0}

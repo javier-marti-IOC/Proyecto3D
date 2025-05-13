@@ -34,7 +34,7 @@ public class VikingController : MonoBehaviour
     public int basicAttackMagicDamage;
     public int heavyAttackBasicDamage;
     public int heavyAttackMagicDamage;
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     public bool OnAction;
     public bool isRolling;
@@ -42,10 +42,10 @@ public class VikingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // earthMana = 0;
-        // fireMana = 0;
-        // waterMana = 0;
-        // electricMana = 0;
+        earthMana = 0;
+        fireMana = 0;
+        waterMana = 0;
+        electricMana = 0;
         healthPoints = 100;
         activeElement = Element.None;
         dpadAction =  inputActions.FindAction("DPAD");
@@ -60,6 +60,7 @@ public class VikingController : MonoBehaviour
         swordCollider.SetActive(false);
         isBasicAttack = true;
         vikingHealthHUD.SetHealth(healthPoints);
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -170,14 +171,14 @@ public class VikingController : MonoBehaviour
             int damageDeal;
             if (isBasicAttack)
             {
-                damageDeal = gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackMagicDamage,other.GetComponent<Enemy>().activeElement);
-                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                damageDeal = gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackMagicDamage,other.GetComponentInParent<Enemy>().activeElement);
+                other.GetComponentInParent<Enemy>().HealthTaken(damageDeal);
                 Debug.Log("Basic Attack Damage Deal: " + damageDeal);
             }
             else
             {
-                damageDeal = gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackMagicDamage,other.GetComponent<Enemy>().activeElement);
-                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                damageDeal = gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackMagicDamage,other.GetComponentInParent<Enemy>().activeElement);
+                other.GetComponentInParent<Enemy>().HealthTaken(damageDeal);
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
         }

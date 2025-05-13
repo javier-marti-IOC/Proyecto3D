@@ -27,8 +27,8 @@ public class Tower : MonoBehaviour
 
 
     [Header("Texto del canva")]
-    public TextMeshProUGUI life_text;
-    [SerializeField] TextMeshProUGUI timerText;
+    //public TextMeshProUGUI life_text;
+    //[SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     public float cooldownTime;
 
@@ -40,10 +40,10 @@ public class Tower : MonoBehaviour
     [Header("Spawner")]
     public Spawner spawner;
 
-    [Header("Elemental Objects Assigned")]
-    public Transform elementalObjects;
-    public ChangeAppearence changeAppearence;
-    public Color healthyTreeColor = new Color();
+    //[Header("Elemental Objects Assigned")]
+    //public Transform elementalObjects;
+    //public ChangeAppearence changeAppearence;
+    //public Color healthyTreeColor = new Color();
 
     //[Header("CameraManager")]
     //public CameraManager cameraManager;
@@ -72,10 +72,10 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (life_text != null) // Mostrar la vida de la torre por pantalla
+        /* if (life_text != null) // Mostrar la vida de la torre por pantalla
         {
             life_text.text = "T.Life: " + life;
-        }
+        } */
 
         if (Input.GetKeyDown(KeyCode.L)) // Restar vida
         {
@@ -175,19 +175,27 @@ public class Tower : MonoBehaviour
 
     }
 
-    public void DestroyTower()
+    /* public void DestroyTower()
     {
         gameObject.SetActive(false);
         //cameraManager.ActivateFade();
         Invoke(nameof(EraseTower), 1.0f);
-    }
+    } */
 
-    public void EraseTower()
+    /* public void EraseTower()
     {
         Utils.ReplaceMaterials(materials, corruptedColors);
         Destroy(gameObject); // Destruye la torre si se queda sin vida
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         //Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
+        progressManager.SaveGame();
+    } */
+
+    public void DestroyTower()
+    {
+        Utils.ReplaceMaterials(materials, corruptedColors);
+        Destroy(transform.root.gameObject); // Destruye la torre si se queda sin vida
+        ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         progressManager.SaveGame();
     }
 
@@ -214,8 +222,8 @@ public class Tower : MonoBehaviour
     {
         GameObject enemy = enemiesInHealRange[0]; // Creamos referencia del prefab guardado en X posicion del array
         enemiesInHealRange.RemoveAt(0); // Eliminamos ese prefab del array
-        enemiesInSecondZoneRange.Remove(enemy.GetComponentInParent<Transform>().gameObject);
-        Destroy(enemy.GetComponentInParent<Transform>().gameObject); // Destruimos el prefab
+        enemiesInSecondZoneRange.Remove(enemy.GetComponent<Transform>().gameObject);
+        Destroy(enemy.transform.root.gameObject); // Destruimos el prefab
         secondZone.enemyCount -= 2;
     }
 
@@ -229,7 +237,7 @@ public class Tower : MonoBehaviour
         remainingTime -= Time.deltaTime;
         int min = Mathf.FloorToInt(remainingTime / 60);
         int sec = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", min, sec);
+        //timerText.text = string.Format("{0:00}:{1:00}", min, sec);
 
         if (sec == 0)
         {
@@ -242,18 +250,21 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag(Constants.enemy)) // Comparamos el tag 
         {
-            Enemy enemy = other.GetComponentInParent<Enemy>(); // Cogemos su componente enemy
+            Enemy enemy = other.GetComponent<Enemy>(); // Cogemos su componente enemy
             if (enemy != null)
             {
                 if (enemy.activeElement == activeElement) // Verificamos si es del mismo tipo que la torre
                 {
-                    //secondZoneContact = true;
-                    // firstZoneContact = true;
+                    Debug.Log("----->>>>>>>>>> DETECTO ALGO DE ENEMY");
                     if (!enemiesInHealRange.Contains(other.gameObject)) // Si el enemigo no esta en el array de enemigos en zona, lo añadimos
                     {
-                        enemiesInHealRange.Add(other.GetComponentInParent<Transform>().gameObject); // Añadimos el enemigo a la lista de enemigos detectados en la zona de curacion
+                        enemiesInHealRange.Add(other.GetComponent<Transform>().gameObject); // Añadimos el enemigo a la lista de enemigos detectados en la zona de curacion
                     }
                 }
+            }
+            else
+            {
+                Debug.Log("---->>>>> NO ENTRA EN ZONA CURA");
             }
         }
     }
@@ -266,9 +277,9 @@ public class Tower : MonoBehaviour
             {
                 if (enemy.activeElement == activeElement)
                 {
-                    //secondZoneContact = false;
                     firstZoneContact = false;
-                    enemiesInHealRange.Remove(other.GetComponentInParent<Transform>().gameObject); // Eliminamos el enemigo que sale de la zona de curacion
+                    enemiesInHealRange.Remove(other.GetComponent<Transform>().gameObject); // Eliminamos el enemigo que sale de la zona de curacion
+                    Debug.Log("---->>>>> SALE EL ENEMIGO");
                 }
             }
         }
@@ -291,20 +302,44 @@ public class Tower : MonoBehaviour
     // Activamos el towerCalling para todos los enemigos instanciados y dentro de la segunda zona
     public void CallAllEnemies(List<GameObject> instantiatedEnemies)
     {
-        foreach (GameObject enemyPrefab in instantiatedEnemies)
+        for (int i = instantiatedEnemies.Count - 1; i >= 0; i--)
         {
-            enemyPrefab.GetComponent<Enemy>().towerCalling = true;
+            if (instantiatedEnemies[i] == null)
+            {
+                instantiatedEnemies.RemoveAt(i); // Limpiamos la lista de referencias destruidas
+            }
+            else
+            {
+                Enemy enemy = instantiatedEnemies[i].GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.towerCalling = true;
+                }
+            }
         }
     }
+
 
     // Desactivamos el towerCalling para todos los enemigos instanciados y dentro de la segunda zona, para que vuelvan a patrullar
     public void UncallAllEnemies(List<GameObject> instantiatedEnemies)
     {
-        foreach (GameObject enemyPrefab in instantiatedEnemies)
+        for (int i = instantiatedEnemies.Count - 1; i >= 0; i--)
         {
-            enemyPrefab.GetComponent<Enemy>().towerCalling = false;
+            if (instantiatedEnemies[i] == null)
+            {
+                instantiatedEnemies.RemoveAt(i);
+            }
+            else
+            {
+                Enemy enemy = instantiatedEnemies[i].GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.towerCalling = false;
+                }
+            }
         }
     }
+
 
     public void HealthTaken(int damage)
     {

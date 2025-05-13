@@ -107,7 +107,6 @@ public class DistanceBT : Enemy
                                     //Funcionalidad enemigo electrico
                                     if (isPlayerInTeleportZone)
                                     {
-                                        transform.LookAt(player.transform); // igual substituir per -> Utils.RotatePositionToTarget(transform, player.transform, 15f);
                                         teleportCooldownTimer -= Time.deltaTime;
                                         timerTeleportFunction += Time.deltaTime;
 

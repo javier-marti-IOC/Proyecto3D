@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 126554037317453137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.387, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,7 +52,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 1.4496597, z: 0.07449485}
+  m_Size: {x: 1, y: 3, z: 0.5}
   m_Center: {x: -0.000977591, y: -0.5778452, z: 0.00031744372}
 --- !u!114 &5546922886871438127
 MonoBehaviour:
@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2827733054762747722}
   - component: {fileID: 4803420567356887932}
   - component: {fileID: 2771150540517159151}
+  - component: {fileID: 2953335718404235937}
   m_Layer: 0
   m_Name: PP_Sword_Used_01
   m_TagString: Untagged
@@ -217,6 +218,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2953335718404235937
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233964949830750534}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &401643409183318713
 GameObject:
   m_ObjectHideFlags: 0
@@ -6274,8 +6302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  SprintSpeed: 5.335
+  MoveSpeed: 4
+  SprintSpeed: 10
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
@@ -6308,6 +6336,7 @@ MonoBehaviour:
   LockCameraPosition: 0
   dead: 0
   vikingController: {fileID: 3023389732709961547}
+  progressManager: {fileID: 0}
 --- !u!114 &6455240357015228509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6471,7 +6500,6 @@ MonoBehaviour:
   basicAttackMagicDamage: 5
   heavyAttackBasicDamage: 3
   heavyAttackMagicDamage: 8
-  gameManager: {fileID: 0}
   OnAction: 0
   isRolling: 0
   rollCooldown: 0
@@ -6494,8 +6522,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.28990555
-  m_Height: 2.3205884
+  m_Radius: 0.2
+  m_Height: 2.3
   m_Direction: 1
   m_Center: {x: 0.0021247864, y: 0.6602942, z: 0}
 --- !u!1001 &1622288981137436283
