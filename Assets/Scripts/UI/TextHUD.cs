@@ -11,22 +11,22 @@ public class TextHUD : MonoBehaviour
 
     public void Start()
     {
-        hideBoxText(); // Al iniciar se desactiva el BoxText
+        HideBoxText(); // Al iniciar se desactiva el BoxText
     }
 
     // Cambiar solo texto
-    public void changeText(string newText)
+    public void ChangeText(string newText)
     {
         objectTMP.text = newText;
     }
     
     // Mostrar solo el BoxText
-    public void showBoxText()
+    public void ShowBoxText()
     {
         boxText.SetActive(true);
     }
     // Ocultar el BoxText
-    public void hideBoxText()
+    public void HideBoxText()
     {
         boxText.SetActive(false);
     }

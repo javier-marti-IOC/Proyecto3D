@@ -7,25 +7,23 @@ public class StonePillar : MonoBehaviour
 {
     public int tower_id;
     public string[] stonePillarPhrases = new string[] {};
-
-
-    public GameObject panel;
-    public FadePanel fadePanel;
-    public bool readingPillar;
-
+    public TextHUD textHUD;
 
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            fadePanel.ShowPanel(stonePillarPhrases[tower_id]);
+            textHUD.ChangeText(stonePillarPhrases[tower_id]);
+            textHUD.ShowBoxText();
+            // fadePanel.ShowPanel(stonePillarPhrases[tower_id]);
         }
     }
     void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            fadePanel.HidePanel();
+            textHUD.HideBoxText();
+            //fadePanel.HidePanel();
         }
     }
 }
