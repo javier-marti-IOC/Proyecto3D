@@ -126,18 +126,35 @@ namespace StarterAssets
             }
         }
 
-
+        public ProgressManager progressManager;
+        public ProgressData progressData;
         private void Awake()
         {
             // get a reference to our main camera
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            }
+            } 
         }
 
         private void Start()
         {
+            if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
+            {
+                if (ProgressManager.Instance.Data.tutorial == false)
+                {
+                    PlacePlayerOnTutorialZone();
+                }
+                else 
+                {
+                    PlacePlayerOnSafeZone();
+                }
+            }
+            else
+            {
+                Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
+            }
+
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -169,6 +186,17 @@ namespace StarterAssets
         private void LateUpdate()
         {
             CameraRotation();
+        }
+
+        // Colocar el player en el tunel inicial
+        public void PlacePlayerOnTutorialZone()
+        {
+            transform.position = new Vector3(73, 5, -112);
+        }
+        // Colocar el player en la zona azucar
+        public void PlacePlayerOnSafeZone()
+        {
+            transform.position = new Vector3(96, 0, 21);
         }
 
         private void AssignAnimationIDs()
