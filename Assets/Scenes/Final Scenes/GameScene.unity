@@ -1700,6 +1700,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterEnemyPrefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5997274429968177521, guid: 89126174ddcda454f9bb9c4264e26609,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6127873753904418742, guid: 89126174ddcda454f9bb9c4264e26609,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5524,6 +5529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireEnemyPrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 642475818589842153, guid: 4fcce1c4b293d164b8d300f1d177dfad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9944,6 +9954,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterEnemyPrefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5997274429968177521, guid: 89126174ddcda454f9bb9c4264e26609,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6127873753904418742, guid: 89126174ddcda454f9bb9c4264e26609,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10969,6 +10984,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659263091}
   m_CullTransparentMesh: 1
+--- !u!1001 &1693983184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 97.82703
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7071729
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.777472
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77d6b8ff531763e479e4bece6e3c5f4a,
+        type: 3}
+      propertyPath: m_Name
+      value: CHARACTER_SKIN_CORREGIDO
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77d6b8ff531763e479e4bece6e3c5f4a, type: 3}
 --- !u!1 &1711767060
 GameObject:
   m_ObjectHideFlags: 0
@@ -11903,6 +11986,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireEnemyPrefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 642475818589842153, guid: 4fcce1c4b293d164b8d300f1d177dfad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14067,3 +14155,4 @@ SceneRoots:
   - {fileID: 1986936595}
   - {fileID: 1538265175}
   - {fileID: 833009268}
+  - {fileID: 1693983184}
