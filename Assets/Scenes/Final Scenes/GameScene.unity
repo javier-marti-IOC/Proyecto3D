@@ -13449,6 +13449,11 @@ PrefabInstance:
       propertyPath: vikingElementsHUD
       value: 
       objectReference: {fileID: 434484316}
+    - target: {fileID: 6067303905638269387, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: progressManager
+      value: 
+      objectReference: {fileID: 608557183}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.x

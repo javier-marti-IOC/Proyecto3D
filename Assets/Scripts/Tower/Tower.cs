@@ -27,8 +27,8 @@ public class Tower : MonoBehaviour
 
 
     [Header("Texto del canva")]
-    public TextMeshProUGUI life_text;
-    [SerializeField] TextMeshProUGUI timerText;
+    //public TextMeshProUGUI life_text;
+    //[SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     public float cooldownTime;
 
@@ -72,10 +72,10 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (life_text != null) // Mostrar la vida de la torre por pantalla
+        /* if (life_text != null) // Mostrar la vida de la torre por pantalla
         {
             life_text.text = "T.Life: " + life;
-        }
+        } */
 
         if (Input.GetKeyDown(KeyCode.L)) // Restar vida
         {
@@ -229,7 +229,7 @@ public class Tower : MonoBehaviour
         remainingTime -= Time.deltaTime;
         int min = Mathf.FloorToInt(remainingTime / 60);
         int sec = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", min, sec);
+        //timerText.text = string.Format("{0:00}:{1:00}", min, sec);
 
         if (sec == 0)
         {

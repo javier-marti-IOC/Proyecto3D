@@ -11,6 +11,8 @@ TagManager:
   - Tower
   - StonePillar
   - TeleportZone
+  - TrackPoint
+  - ProgressManager
   layers:
   - Default
   - TransparentFX
