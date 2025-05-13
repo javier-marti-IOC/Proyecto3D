@@ -27,8 +27,8 @@ public class Tower : MonoBehaviour
 
 
     [Header("Texto del canva")]
-    public TextMeshProUGUI life_text;
-    [SerializeField] TextMeshProUGUI timerText;
+    //public TextMeshProUGUI life_text;
+    //[SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     public float cooldownTime;
 
@@ -40,10 +40,10 @@ public class Tower : MonoBehaviour
     [Header("Spawner")]
     public Spawner spawner;
 
-    [Header("Elemental Objects Assigned")]
-    public Transform elementalObjects;
-    public ChangeAppearence changeAppearence;
-    public Color healthyTreeColor = new Color();
+    //[Header("Elemental Objects Assigned")]
+    //public Transform elementalObjects;
+    //public ChangeAppearence changeAppearence;
+    //public Color healthyTreeColor = new Color();
 
     //[Header("CameraManager")]
     //public CameraManager cameraManager;
@@ -51,6 +51,9 @@ public class Tower : MonoBehaviour
     [Header("Progress Manager")]
     public ProgressManager progressManager;
     public ProgressData progressData;
+
+    [Header("TowerHud")]
+    public TowerHUD towerHUD;
 
 
     /* ORDEN DE LAS TORRES (Constants.cs) */
@@ -69,19 +72,21 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (life_text != null) // Mostrar la vida de la torre por pantalla
+        /* if (life_text != null) // Mostrar la vida de la torre por pantalla
         {
             life_text.text = "T.Life: " + life;
-        }
+        } */
 
         if (Input.GetKeyDown(KeyCode.L)) // Restar vida
         {
             life = life - 5;
+            towerHUD.UpdateHealth(life);
         }
 
         if (Input.GetKeyDown(KeyCode.P)) // Restar vida
         {
             life += 5;
+            towerHUD.UpdateHealth(life);
             if (life > max_life)
             {
                 life = max_life;
@@ -119,6 +124,7 @@ public class Tower : MonoBehaviour
                     if (firstZoneContact)  // Toca el collider interno?
                     {
                         IncreaseDecreaseTowerLife(true, life); // Incremento vida
+                        towerHUD.UpdateHealth(life);
                         DestroyEnemy(); // Sacrificamos enemigo
                         UncallAllEnemies(enemiesInSecondZoneRange);
                         secondZoneContact = false;
@@ -138,6 +144,7 @@ public class Tower : MonoBehaviour
                             {
                                 spawner.SpawnEnemy(activeElement); // Invocamos
                                 IncreaseDecreaseTowerLife(false, life); // Aplicamos coste de invocacion
+                                towerHUD.UpdateHealth(life);
                             }
                             else
                             {
@@ -154,6 +161,7 @@ public class Tower : MonoBehaviour
                         {
                             spawner.SpawnEnemy(activeElement); // Invoco en el collider exterior, no en el de contacto
                             IncreaseDecreaseTowerLife(false, life);
+                            towerHUD.UpdateHealth(life);
                         }
                         else
                         {
@@ -221,7 +229,7 @@ public class Tower : MonoBehaviour
         remainingTime -= Time.deltaTime;
         int min = Mathf.FloorToInt(remainingTime / 60);
         int sec = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", min, sec);
+        //timerText.text = string.Format("{0:00}:{1:00}", min, sec);
 
         if (sec == 0)
         {

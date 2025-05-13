@@ -141,7 +141,6 @@ public class EnemyHUD : MonoBehaviour
     // Actualiza solo la vida del enemigo
     public void UpdateHealth(float newHealth)
     {
-        hudPanelCanvas.SetActive(true);
         newHealth = Mathf.Clamp(newHealth, 0f, maxHealth);
         float newFill = newHealth / maxHealth;
         float currentFill = actualHealth / maxHealth;

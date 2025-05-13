@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
     public GameObject drop;
     public Transform dropPosition;
     public EnemyHUD enemyHUD;
+    public GameObject hudPanelCanvas;
     public Element activeElement;
     public int healthPoints;
     public int maxHealthPoints = 100;
@@ -86,7 +87,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected void CheckAgentSpeed()
     {
-        if (agent.velocity.magnitude <= 0.2f)
+        if (agent.velocity.magnitude <= 0.4f)
         {
             animator.SetInteger(Constants.state, 0);
         }
@@ -140,7 +141,7 @@ public abstract class Enemy : MonoBehaviour
         }
     } */
 
-    public void Chase()
+    public void     Chase()
     {
         Destroy(ghost);
         playerDetectorDown.SetActive(false);
@@ -159,6 +160,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public void StopChasing()
     {
+        hudPanelCanvas.SetActive(false);
         playerDetectorDown.SetActive(true);
         playerDetectorUp.SetActive(true);
         minDistanceChase.SetActive(true);
@@ -183,17 +185,23 @@ public abstract class Enemy : MonoBehaviour
     public void EndAttack()
     {
         attacking = false;
-
     }
     public void HealthTaken(int damageTaken)
     {
         healthPoints -= damageTaken;
         enemyHUD.UpdateHealth(healthPoints);
+        PlayerDetected();
     }
     public void Dying()
     {
         Debug.Log("Muelto");
         Instantiate(drop,dropPosition.position,Quaternion.identity,null);
         Destroy(gameObject);
+    }
+
+    public void PlayerDetected()
+    {
+        playerDetected = true;
+        hudPanelCanvas.SetActive(true);
     }
 }

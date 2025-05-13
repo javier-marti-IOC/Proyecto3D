@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 2, z: -8}
+  offset: {x: 0, y: 2, z: -12}
   mouseSensitivity: 2
   joystickSensitivity: 1
   invertMouseY: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   distanceDamping: 5
   collisionMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 4294967295
   collisionBuffer: 0.2
   playerInputs: {fileID: 0}
 --- !u!114 &1829239549439841662
