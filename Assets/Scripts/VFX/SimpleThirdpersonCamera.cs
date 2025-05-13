@@ -25,6 +25,8 @@ public class SimpleThirdPersonCamera : MonoBehaviour
     private Vector2 rotation = Vector2.zero;
     private Vector3 currentPosition;
 
+    private Vector3 velocity = Vector3.zero;
+
     void Start()
     {
         if (target == null)
@@ -96,7 +98,8 @@ public class SimpleThirdPersonCamera : MonoBehaviour
             desiredPosition = hit.point - direction * collisionBuffer;
         }
 
-        currentPosition = Vector3.Lerp(currentPosition, desiredPosition, Time.deltaTime * distanceDamping);
+        //currentPosition = Vector3.Lerp(currentPosition, desiredPosition, Time.deltaTime * distanceDamping);
+        currentPosition = Vector3.SmoothDamp(currentPosition, desiredPosition, ref velocity, 1f / distanceDamping);
         transform.position = currentPosition;
         transform.LookAt(target.position + Vector3.up * 1.5f);
     }
