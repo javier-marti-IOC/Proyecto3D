@@ -20,11 +20,15 @@ public class SecondZone : MonoBehaviour
             {
                 if (enemy.activeElement == tower.activeElement)
                 {
-                    tower.enemiesInSecondZoneRange.Add(enemy.GetComponentInParent<Transform>().gameObject);
+                    tower.enemiesInSecondZoneRange.Add(enemy.GetComponent<Transform>().gameObject);
                     tower.secondZoneContact = true;
                     enemy.tower = tower;
                     enemyCount++;
                 }
+            }
+            else 
+            {
+                Debug.Log("---->>>> NO EXISTE EL COMPONENTE ENEMY");
             }
         }
     }
@@ -40,7 +44,7 @@ public class SecondZone : MonoBehaviour
                 {
                     enemyCount--;
                     tower.secondZoneContact = false;
-                    tower.enemiesInSecondZoneRange.Remove(enemy.GetComponentInParent<Transform>().gameObject);
+                    tower.enemiesInSecondZoneRange.Remove(enemy.GetComponent<Transform>().gameObject);
 
                 }
             }
