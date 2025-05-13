@@ -5371,6 +5371,8 @@ GameObject:
   - component: {fileID: 4202229995022419378}
   - component: {fileID: 1172041278854369866}
   - component: {fileID: 7555710485095693851}
+  - component: {fileID: 6885549336117905088}
+  - component: {fileID: 3815266105894961466}
   m_Layer: 0
   m_Name: Drop_Electric
   m_TagString: Untagged
@@ -5510,3 +5512,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &6885549336117905088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555196290468789356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af3c22604e520e41a2352f276deb4a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 4
+--- !u!135 &3815266105894961466
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555196290468789356}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.12322235
+  m_Center: {x: 0.009963933, y: 0.11808339, z: 0.030541517}

@@ -166,7 +166,7 @@ public class MeleeBT : Enemy
         }
     }
 
-        public void BasicAttackActivated()
+    public void BasicAttackActivated()
     {
         playerHitted = false;
         basicAttackCollider.enabled = true;

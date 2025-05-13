@@ -14,7 +14,7 @@ public class MinDistanceChase : MonoBehaviour
     {
         if (other.CompareTag(Constants.player))
         {
-            enemy.playerDetected = true;
+            enemy.PlayerDetected();
         }
     }
 }
