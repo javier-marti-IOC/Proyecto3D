@@ -15,12 +15,12 @@ public class SecondZone : MonoBehaviour
     {
         if (other.CompareTag(Constants.enemy))
         {
-            enemy = other.GetComponent<Enemy>();
+            enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
                 if (enemy.activeElement == tower.activeElement)
                 {
-                    tower.enemiesInSecondZoneRange.Add(enemy.GetComponent<Transform>().gameObject);
+                    tower.enemiesInSecondZoneRange.Add(enemy.gameObject);
                     tower.secondZoneContact = true;
                     enemy.tower = tower;
                     enemyCount++;
@@ -37,14 +37,14 @@ public class SecondZone : MonoBehaviour
     {
         if (other.CompareTag(Constants.enemy))
         {
-            enemy = other.GetComponent<Enemy>();
+            enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
                 if (enemy.activeElement == tower.activeElement)
                 {
                     enemyCount--;
                     tower.secondZoneContact = false;
-                    tower.enemiesInSecondZoneRange.Remove(enemy.GetComponent<Transform>().gameObject);
+                    tower.enemiesInSecondZoneRange.Remove(enemy.gameObject);
 
                 }
             }
