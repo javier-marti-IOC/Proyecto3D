@@ -51,7 +51,7 @@ public class ElementsHUD : MonoBehaviour
 
     // Funciones para aumentar la imagen de la barra elemental. 
      public void fireAdd(float quantity) {
-        fireElement.fillAmount = fireElement.fillAmount + quantity / maxBarValue;
+        fireElement.fillAmount = quantity / maxBarValue;
 
         if (fireElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
         {
@@ -60,7 +60,7 @@ public class ElementsHUD : MonoBehaviour
     }
     // Restar Barra de agua
     public void waterAdd(float quantity) {
-        waterElement.fillAmount = waterElement.fillAmount + quantity / maxBarValue;
+        waterElement.fillAmount = quantity / maxBarValue;
 
         if (waterElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
         {
@@ -69,7 +69,7 @@ public class ElementsHUD : MonoBehaviour
     }
     // Restar Barra electricidad
     public void lightningAdd(float quantity) {
-        lightningElement.fillAmount = lightningElement.fillAmount + quantity / maxBarValue;
+        lightningElement.fillAmount = quantity / maxBarValue;
 
         if (lightningElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
         {
@@ -78,7 +78,7 @@ public class ElementsHUD : MonoBehaviour
     }
     // Restar Barra de tierra
     public void earthAdd(float quantity) {
-        earthElement.fillAmount = earthElement.fillAmount + quantity / maxBarValue;
+        earthElement.fillAmount = quantity / maxBarValue;
 
         if (earthElement.fillAmount >= 1f) // Si se llena el color del elemento cambia al color blink
         {
@@ -88,28 +88,28 @@ public class ElementsHUD : MonoBehaviour
     // Funciones para reducir la imagen de la barra elemental
     // Restar Barra de fuego
     public void fireReduce(float quantity) {
-        fireElement.fillAmount = fireElement.fillAmount + quantity / maxBarValue;
+        fireElement.fillAmount = quantity / maxBarValue;
         FireStartBlink(); // Llama a la funcion de parpadeo
         fireElementIcon.color = IconColorActive;
         fireElementSelector.gameObject.SetActive(true);
     }
     // Restar Barra de agua
     public void waterReduce(float quantity) {
-        waterElement.fillAmount = waterElement.fillAmount + quantity / maxBarValue;
+        waterElement.fillAmount = quantity / maxBarValue;
         WaterStartBlink(); // Llama a la funcion de parpadeo
         waterElementIcon.color = IconColorActive;
         waterElementSelector.gameObject.SetActive(true);
     }
     // Restar Barra electricidad
     public void lightningReduce(float quantity) {
-        lightningElement.fillAmount = lightningElement.fillAmount + quantity / maxBarValue;
+        lightningElement.fillAmount = quantity / maxBarValue;
         LightningStartBlink();
         lightningElementIcon.color = IconColorActive;
         lightningElementSelector.gameObject.SetActive(true);
     }
     // Restar Barra de tierra
     public void earthReduce(float quantity) {
-        earthElement.fillAmount = earthElement.fillAmount + quantity / maxBarValue;
+        earthElement.fillAmount = quantity / maxBarValue;
         EarthStartBlink();
         earthElementIcon.color = IconColorActive;
         earthElementSelector.gameObject.SetActive(true);
