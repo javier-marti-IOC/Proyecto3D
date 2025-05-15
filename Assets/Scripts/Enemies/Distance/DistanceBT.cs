@@ -360,4 +360,11 @@ public class DistanceBT : Enemy
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
 
     }
+
+    public override void Dying()
+    {
+        Debug.Log("Muelto");
+        Instantiate(drop, dropPosition.position, Quaternion.identity, null);
+        Utils.DestroyParent(gameObject);
+    }
 }

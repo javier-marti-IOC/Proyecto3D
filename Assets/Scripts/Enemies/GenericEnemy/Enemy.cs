@@ -192,7 +192,7 @@ public abstract class Enemy : MonoBehaviour
         enemyHUD.UpdateHealth(healthPoints);
         PlayerDetected();
     }
-    public void Dying()
+    public virtual void Dying()
     {
         Debug.Log("Muelto");
         Instantiate(drop,dropPosition.position,Quaternion.identity,null);
