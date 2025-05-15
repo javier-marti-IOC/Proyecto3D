@@ -11,14 +11,8 @@ public class HardBullet : MonoBehaviour
     void Start()
     {
         spellRB = gameObject.GetComponent<Rigidbody>();
-
-        Destroy(gameObject, 1.5f); // Autodestruir después de X segundos
-    }
-
-    void FixedUpdate()
-    {
-        // Movimiento hacia adelante
         spellRB.velocity = transform.forward * speed;
+        Destroy(gameObject, 2.8f); // Autodestruir después de X segundos
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
@@ -30,7 +24,8 @@ public class HardBullet : MonoBehaviour
             {
                 enemy.GetComponent<DistanceBT>().PlayerHitted();
             }
-        }else if (collision.gameObject.CompareTag(Constants.waterBullet))
+        }
+        else if (collision.gameObject.CompareTag(Constants.waterBullet) || collision.gameObject.CompareTag(Constants.enemy))
         {
             return;
         }

@@ -100,7 +100,7 @@ public class DistanceBT : Enemy
                                      }
                                      else
                                      { */
-                                    animator.SetInteger(Constants.state, 2);
+                                    animator.SetInteger(Constants.state, 3);
                                     /* } */
                                     break;
                                 case Element.Electric:

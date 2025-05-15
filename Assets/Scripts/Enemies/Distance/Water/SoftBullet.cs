@@ -49,7 +49,7 @@ public class SoftBullet : MonoBehaviour
             {
                 enemy.GetComponent<DistanceBT>().PlayerHitted();
             }
-        }else if (collision.gameObject.CompareTag(Constants.waterBullet))
+        }else if (collision.gameObject.CompareTag(Constants.waterBullet) || collision.gameObject.CompareTag(Constants.enemy))
         {
             return;
         }
