@@ -40,7 +40,6 @@ public class DistanceBT : Enemy
     private ParticleSystem activeHeavyParticles;
 
 
-
     // Start is called before the first frame update
 
 
@@ -130,7 +129,6 @@ public class DistanceBT : Enemy
                                                 {
                                                     //transform.LookAt(player.transform);
                                                     animator.SetInteger(Constants.state, 3);
-                                                    ResetHeavyAttackCooldown();
                                                 }
                                                 else
                                                 {
@@ -146,7 +144,6 @@ public class DistanceBT : Enemy
                                         {
                                             //transform.LookAt(player.transform);
                                             animator.SetInteger(Constants.state, 3);
-                                            ResetHeavyAttackCooldown();
                                         }
                                         else
                                         {
