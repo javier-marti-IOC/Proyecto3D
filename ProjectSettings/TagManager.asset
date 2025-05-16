@@ -13,6 +13,7 @@ TagManager:
   - TeleportZone
   - TrackPoint
   - ProgressManager
+  - WaterBullet
   layers:
   - Default
   - TransparentFX

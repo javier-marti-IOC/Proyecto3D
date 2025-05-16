@@ -823,6 +823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343110076851022865}
   - component: {fileID: 457281503462671176}
+  - component: {fileID: 2900371768204589122}
   m_Layer: 5
   m_Name: vsync - Toggle
   m_TagString: Untagged
@@ -863,15 +864,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 7849257725274290962}
+    m_SelectOnDown: {fileID: 6199476481335005724}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.13333334, g: 0.13333334, b: 0.13333334, a: 0.8627451}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.8627451}
     m_HighlightedColor: {r: 0.5647059, g: 0.69411767, b: 0.85882354, a: 1}
     m_PressedColor: {r: 0.5647059, g: 0.69411767, b: 0.8588236, a: 1}
     m_SelectedColor: {r: 0.5647059, g: 0.69411767, b: 0.8588236, a: 1}
@@ -910,6 +911,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &2900371768204589122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208661563778977268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6f2cf9af46d8348bcccdd7c4f37c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundName: HoverButton
+  clickSoundName: ClickButton
 --- !u!1 &5677853507357203909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,15 +1275,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1378,7 +1393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8627451}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7058824}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2048,6 +2063,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 2090027169614458392}
+    - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 457281503462671176}
+    - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5877199807864372854}
@@ -2702,6 +2732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547686355053197462, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7957142724556306204, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
@@ -5793,6 +5828,21 @@ PrefabInstance:
       propertyPath: m_text
       value: "Resoluci\xF3"
       objectReference: {fileID: 0}
+    - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 2727944461538650632}
+    - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 7849257725274290962}
     - target: {fileID: 7376473591803084240, guid: 57a2e7d225714914cb4b6de57013af91,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

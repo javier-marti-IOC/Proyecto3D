@@ -844,6 +844,7 @@ GameObject:
   - component: {fileID: 7233294181849309237}
   - component: {fileID: 7953379293160061104}
   - component: {fileID: 7376473591803084240}
+  - component: {fileID: 7531231706789716873}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -979,6 +980,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &7531231706789716873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5315896724025566688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3385f6755c4394fa1115d64237fcdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundName: HoverButton
+  selectSoundName: ClickButton
 --- !u!1 &5693053882929756438
 GameObject:
   m_ObjectHideFlags: 0

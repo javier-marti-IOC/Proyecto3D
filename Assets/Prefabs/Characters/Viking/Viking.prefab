@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 2827733054762747722}
   - component: {fileID: 4803420567356887932}
   - component: {fileID: 2771150540517159151}
-  - component: {fileID: 2953335718404235937}
+  - component: {fileID: 8426540911532863671}
   m_Layer: 0
   m_Name: PP_Sword_Used_01
   m_TagString: Untagged
@@ -218,7 +218,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2953335718404235937
+--- !u!54 &8426540911532863671
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6496,10 +6496,11 @@ MonoBehaviour:
   animator: {fileID: 8620253860425985851}
   healthPoints: 100
   swordCollider: {fileID: 126554037317453137}
-  basicAttackBasicDamage: 2
+  basicAttackBasicDamage: 200
   basicAttackMagicDamage: 5
   heavyAttackBasicDamage: 3
   heavyAttackMagicDamage: 8
+  elementsHUD: {fileID: 0}
   OnAction: 0
   isRolling: 0
   rollCooldown: 0

@@ -24,7 +24,6 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 
     private Vector2 rotation = Vector2.zero;
     private Vector3 currentPosition;
-
     private Vector3 velocity = Vector3.zero;
 
     void Start()
@@ -41,18 +40,6 @@ public class SimpleThirdPersonCamera : MonoBehaviour
         Quaternion initialRotation = Quaternion.Euler(rotation.y, rotation.x, 0);
         currentPosition = target.position + initialRotation * offset;
 
-        Cursor.lockState = CursorLockMode.Locked;
-
-        // Colocar cámara al inicio
-        Vector3 origin = target.position + Vector3.up * 1.5f;
-        Vector3 direction = (currentPosition - origin).normalized;
-        float maxDistance = offset.magnitude;
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance + collisionBuffer, collisionMask))
-        {
-            currentPosition = hit.point - direction * collisionBuffer;
-        }
-
         transform.position = currentPosition;
         transform.LookAt(target.position + Vector3.up * 1.5f);
     }
@@ -60,6 +47,19 @@ public class SimpleThirdPersonCamera : MonoBehaviour
     void LateUpdate()
     {
         if (target == null) return;
+
+        // Si el juego está pausado, liberar cursor y no mover cámara
+        if (Time.timeScale == 0f)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            return;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         float inputX = playerInputs.look.x;
         float inputY = playerInputs.look.y;
@@ -85,7 +85,6 @@ public class SimpleThirdPersonCamera : MonoBehaviour
             rotation.y = Mathf.Clamp(rotation.y, -35f, 70f);
         }
 
-        // Posicionamiento de la cámara
         Quaternion targetRotation = Quaternion.Euler(rotation.y, rotation.x, 0);
         Vector3 desiredPosition = target.position + targetRotation * offset;
 
@@ -98,7 +97,6 @@ public class SimpleThirdPersonCamera : MonoBehaviour
             desiredPosition = hit.point - direction * collisionBuffer;
         }
 
-        //currentPosition = Vector3.Lerp(currentPosition, desiredPosition, Time.deltaTime * distanceDamping);
         currentPosition = Vector3.SmoothDamp(currentPosition, desiredPosition, ref velocity, 1f / distanceDamping);
         transform.position = currentPosition;
         transform.LookAt(target.position + Vector3.up * 1.5f);

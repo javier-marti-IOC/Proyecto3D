@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 740522657327985769}
   - component: {fileID: 4970407900146234303}
   - component: {fileID: 2383495865959879275}
+  - component: {fileID: 5045632628115161379}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -256,3 +257,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5045632628115161379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622570865741688608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6f2cf9af46d8348bcccdd7c4f37c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSoundName: HoverButton
+  clickSoundName: ClickButton

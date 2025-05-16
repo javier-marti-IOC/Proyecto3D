@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,9 @@ public class Tower : MonoBehaviour
     public Color[] corruptedColors;
     public Color[] colors;
 
+    public GameObject deathTowerParticles;
 
+    public GameObject[] environmentParticles;
 
     [Header("Texto del canva")]
     //public TextMeshProUGUI life_text;
@@ -95,7 +98,8 @@ public class Tower : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M)) // Restar vida
         {
-            Utils.ReplaceMaterials(materials, colors);
+            Utils.ReplaceMaterials(materials, corruptedColors);
+            ChangeEnvironmentParticlesOff();
             Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
         }
 
@@ -103,8 +107,14 @@ public class Tower : MonoBehaviour
         {
             int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
                                                                                                      //Debug.Log("POSITION EN EL ARRAY: " + position);
-            Utils.ReplaceMaterials(materials, corruptedColors);
+            Utils.ReplaceMaterials(materials, colors);
+            ChangeEnvironmentParticles();
             Destroy(gameObject);
+        }
+        else
+        {
+            Utils.ReplaceMaterials(materials, corruptedColors);
+            ChangeEnvironmentParticlesOff();
         }
 
         if (life <= 0)
@@ -193,7 +203,9 @@ public class Tower : MonoBehaviour
 
     public void DestroyTower()
     {
-        Utils.ReplaceMaterials(materials, corruptedColors);
+        InstantiateDeathTowerParticles();
+        Utils.ReplaceMaterials(materials, colors);
+        ChangeEnvironmentParticles();
         Destroy(transform.root.gameObject); // Destruye la torre si se queda sin vida
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         progressManager.SaveGame();
@@ -246,11 +258,11 @@ public class Tower : MonoBehaviour
             return;
         }
     }
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerHealEnter(Collider other)
     {
         if (other.CompareTag(Constants.enemy)) // Comparamos el tag 
         {
-            Enemy enemy = other.GetComponent<Enemy>(); // Cogemos su componente enemy
+            Enemy enemy = other.gameObject.GetComponent<Enemy>(); // Cogemos su componente enemy
             if (enemy != null)
             {
                 if (enemy.activeElement == activeElement) // Verificamos si es del mismo tipo que la torre
@@ -258,7 +270,8 @@ public class Tower : MonoBehaviour
                     Debug.Log("----->>>>>>>>>> DETECTO ALGO DE ENEMY");
                     if (!enemiesInHealRange.Contains(other.gameObject)) // Si el enemigo no esta en el array de enemigos en zona, lo añadimos
                     {
-                        enemiesInHealRange.Add(other.GetComponent<Transform>().gameObject); // Añadimos el enemigo a la lista de enemigos detectados en la zona de curacion
+                        Debug.Log("HEALER");
+                        enemiesInHealRange.Add(other.gameObject.GetComponent<Transform>().gameObject); // Añadimos el enemigo a la lista de enemigos detectados en la zona de curacion
                     }
                 }
             }
@@ -268,28 +281,28 @@ public class Tower : MonoBehaviour
             }
         }
     }
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerHealExit(Collider other)
     {
         if (other.CompareTag(Constants.enemy))
         {
-            Enemy enemy = other.GetComponent<Enemy>();
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
                 if (enemy.activeElement == activeElement)
                 {
                     firstZoneContact = false;
-                    enemiesInHealRange.Remove(other.GetComponent<Transform>().gameObject); // Eliminamos el enemigo que sale de la zona de curacion
+                    enemiesInHealRange.Remove(other.gameObject); // Eliminamos el enemigo que sale de la zona de curacion
                     Debug.Log("---->>>>> SALE EL ENEMIGO");
                 }
             }
         }
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerHealStay(Collider other)
     {
         if (other.CompareTag(Constants.enemy))
         {
-            Enemy enemy = other.GetComponent<Enemy>();
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
                 if (enemy.activeElement == activeElement)
@@ -344,6 +357,30 @@ public class Tower : MonoBehaviour
     public void HealthTaken(int damage)
     {
         life -= damage;
+    }
+
+    public void ChangeEnvironmentParticles()
+    {
+        foreach (GameObject particle in environmentParticles)
+        {
+            particle.SetActive(true);
+        }
+    }
+
+    public void ChangeEnvironmentParticlesOff()
+    {
+        foreach (GameObject particle in environmentParticles)
+        {
+            particle.SetActive(false);
+        }
+    }
+
+    private void InstantiateDeathTowerParticles()
+    {
+        if (deathTowerParticles != null)
+        {
+            Instantiate (deathTowerParticles, transform.position, quaternion.identity);
+        }
     }
 
 }
