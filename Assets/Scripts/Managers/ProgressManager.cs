@@ -145,12 +145,12 @@ public class ProgressManager : MonoBehaviour
         {
             File.Delete(saveFilePath);  
             Debug.Log("Save file deleted!");
-            SceneManager.LoadScene(2);        
+            SceneManager.LoadScene(1);        
         }
         else
         {
             Debug.Log("There is nothing to delete!");
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
     }
 }
