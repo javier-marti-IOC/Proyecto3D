@@ -47,6 +47,28 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 36176d1c6022c4d4aa572482508b761b, type: 2}
   music: []
   sfx: []
-  ui: []
+  ui:
+  - name: HoverButton
+    clip: {fileID: 8300000, guid: 3d5dce41f6097524aac39ae92776089d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 7930080421294217295, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: ClickButton
+    clip: {fileID: 8300000, guid: 1028183cc307b144d832fba33312a491, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 7930080421294217295, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   ambience: []
   dialogue: []
