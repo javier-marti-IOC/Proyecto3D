@@ -94,14 +94,17 @@ public class DistanceBT : Enemy
                             switch (activeElement)
                             {
                                 case Element.Water:
-                                    /*  if (cooldownHeavyAttack < 0)
-                                     {
-                                         animator.SetInteger(Constants.state, 3);
-                                     }
-                                     else
-                                     { */
-                                    animator.SetInteger(Constants.state, 3);
-                                    /* } */
+                                    if (cooldownHeavyAttack <= 0)
+                                        {
+                                            //transform.LookAt(player.transform);
+                                            animator.SetInteger(Constants.state, 3);
+                                            ResetHeavyAttackCooldown();
+                                        }
+                                        else
+                                        {
+                                            //transform.LookAt(player.transform);
+                                            animator.SetInteger(Constants.state, 2);
+                                        }
                                     break;
                                 case Element.Electric:
                                     //Funcionalidad enemigo electrico
