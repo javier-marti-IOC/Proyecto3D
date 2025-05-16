@@ -22,7 +22,7 @@ public class HardBullet : MonoBehaviour
         {
             if (enemy != null)
             {
-                enemy.GetComponent<DistanceBT>().PlayerHitted();
+                enemy.GetComponent<DistanceBT>().PlayerHitted();//TODO cambiar funcion por PlayerHeavyHitted
             }
         }
         else if (collision.gameObject.CompareTag(Constants.waterBullet) || collision.gameObject.CompareTag(Constants.enemy))
