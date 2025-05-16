@@ -11,7 +11,7 @@ public class WaterSoftAttackGenerator : MonoBehaviour
         // Instanciar la bala y guardar la referencia
         GameObject spawnedBullet = Instantiate(bullet, rightHand.position, Quaternion.identity);
 
-        // Obtener el componente Enemy de este mismo objeto (enemigo que dispara)
-        spawnedBullet.GetComponent<BasicSpellObject>().enemy = GetComponent<Enemy>();
+        // Obtener el componente Enemy de este mismo objeto (enemigo que dispara) 
+        spawnedBullet.GetComponent<SoftBullet>().enemy = GetComponent<Enemy>();
     }
 }

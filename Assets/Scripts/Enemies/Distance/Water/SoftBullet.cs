@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicSpellObject : MonoBehaviour
+public class SoftBullet : MonoBehaviour
 {
     public Enemy enemy;
     private GameObject target;
     private Rigidbody spellRB;
-    public float fallValue;
     public float speed;
     public float maxRotationAnglePerSecond = 30f; // Limita cuanto puede girar por segundo
 
@@ -50,7 +49,7 @@ public class BasicSpellObject : MonoBehaviour
             {
                 enemy.GetComponent<DistanceBT>().PlayerHitted();
             }
-        }else if (collision.gameObject.CompareTag(Constants.waterBullet))
+        }else if (collision.gameObject.CompareTag(Constants.waterBullet) || collision.gameObject.CompareTag(Constants.enemy))
         {
             return;
         }
