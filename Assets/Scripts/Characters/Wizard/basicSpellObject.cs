@@ -50,6 +50,9 @@ public class BasicSpellObject : MonoBehaviour
             {
                 enemy.GetComponent<DistanceBT>().PlayerHitted();
             }
+        }else if (collision.gameObject.CompareTag(Constants.waterBullet))
+        {
+            return;
         }
         Destroy(gameObject);
     }
