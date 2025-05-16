@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class DistanceBT : Enemy
 {
     private bool isPlayerInTeleportZone;
+    private bool isPlayerInHeavyAttackZone;
 
     [Header("Teleport Settings")]
     public float teleportCooldownTime;
@@ -32,12 +33,14 @@ public class DistanceBT : Enemy
 
     [Header("Electric Heavy Attack")]
     public ParticleSystem lightningArea;
+    //public GameObject lightningAreaVisual;
     public float heavyAttackDelay = 2f;
     public float heavyAttackRadius = 2f;
     public int heavyAttackDamage = 40;
     public float lightningHeight = 10f;
     private Vector3 pendingHeavyAttackPosition;
     private ParticleSystem activeHeavyParticles;
+    private GameObject activeHeavyVisual;
 
 
     // Start is called before the first frame update
@@ -242,6 +245,23 @@ public class DistanceBT : Enemy
         }
     }
 
+    public void HeavyAttackZoneEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            isPlayerInHeavyAttackZone = true;
+            Debug.Log("Player in Heavy Attack 2Zone");
+        }
+    }
+    public void HeavyAttackZoneExit(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            isPlayerInHeavyAttackZone = false;
+            Debug.Log("Player out Heavy Attack Zone");
+        }
+    }
+
     private int TeleportProbability()
     {
         int tp = UnityEngine.Random.Range(0, 100);
@@ -334,10 +354,85 @@ public class DistanceBT : Enemy
         {
             // Player rep pupa
             Debug.Log("Player hit by heavy electric attack");
-            player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
-
+            PlayerHeavyHitted();
         }
     }
+
+    /*public void StartHeavyAttack()
+    {
+        if (player == null) return;
+
+        pendingHeavyAttackPosition = player.transform.position;
+
+        // 1. Instanciar partículas
+        activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
+        activeHeavyParticles.Play();
+
+        // 2. RaycastAll hacia abajo desde una altura
+        Vector3 rayStart = pendingHeavyAttackPosition + Vector3.up * 5f;
+        RaycastHit[] hits = Physics.RaycastAll(rayStart, Vector3.down, 10f);
+
+        RaycastHit? groundHit = null;
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (!hit.collider.CompareTag("Player"))
+            {
+                groundHit = hit;
+                break;
+            }
+        }
+
+        if (groundHit.HasValue)
+        {
+            Vector3 spawnPos = groundHit.Value.point + groundHit.Value.normal * 0.02f;
+
+            // Alineación con la superficie del suelo
+            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, groundHit.Value.normal);
+            rotation *= Quaternion.Euler(90f, 0f, 0f);
+
+            activeHeavyVisual = Instantiate(lightningAreaVisual, spawnPos, rotation);
+        }
+        else
+        {
+            // Fallback si no encuentra suelo
+            Vector3 fallbackPos = pendingHeavyAttackPosition + Vector3.down * 0.2f;
+            Quaternion fallbackRot = Quaternion.Euler(90f, 0f, 0f);
+            activeHeavyVisual = Instantiate(lightningAreaVisual, fallbackPos, fallbackRot);
+        }
+
+        // 3. Programar ataque
+        Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
+    }
+
+
+
+    private void ExecuteHeavyAttack()
+    {
+        // 1. Destruir partículas y visual
+        if (activeHeavyParticles != null)
+            Destroy(activeHeavyParticles.gameObject);
+
+        if (activeHeavyVisual != null)
+            Destroy(activeHeavyVisual.gameObject);
+
+        // 2. Mostrar rayo eléctrico
+        Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
+        Vector3 end = pendingHeavyAttackPosition;
+
+        lightningLine.SetPosition(0, start);
+        lightningLine.SetPosition(1, end);
+        lightningLine.enabled = true;
+
+        attackLight.enabled = true;
+        Invoke(nameof(DisableLightningVisuals), 0.1f);
+
+        if (isPlayerInHeavyAttackZone)
+        {
+            Debug.Log("Player hit by heavy electric attack");
+            PlayerHeavyHitted();
+        }
+    }*/
 
 
     private void DisableLightningVisuals()
@@ -356,5 +451,10 @@ public class DistanceBT : Enemy
     {
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
 
+    }
+
+    public void PlayerHeavyHitted()
+    {
+        player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 }
