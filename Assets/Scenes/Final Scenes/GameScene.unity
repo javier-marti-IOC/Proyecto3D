@@ -97,7 +97,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e032d6541fe892d4eb6dcefb46120e56,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -12837,68 +12838,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 32818658340001196, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2048919974609720706, guid: 0af630da752cecd4c9d728a2a5580e2d,
-        type: 3}
-    - target: {fileID: 154760114542230874, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 175734207416998171, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759760103104210419, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: b482f791879c69d438bb993067bc6676,
-        type: 2}
-    - target: {fileID: 2939973393615914857, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2982628519017759651, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2048919974609720706, guid: 0af630da752cecd4c9d728a2a5580e2d,
-        type: 3}
-    - target: {fileID: 3298934962588557943, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3644837625731292476, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3863578781731793210, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_Name
       value: Assets
-      objectReference: {fileID: 0}
-    - target: {fileID: 3875668853010134443, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4327136106737746547, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627640329710152086, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5206674548401870801, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
@@ -12948,33 +12891,6 @@ PrefabInstance:
     - target: {fileID: 5206674548401870801, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5566537457458976652, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6415062625724502105, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7033743865924246080, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2048919974609720706, guid: 0af630da752cecd4c9d728a2a5580e2d,
-        type: 3}
-    - target: {fileID: 8541134069460233172, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 2048919974609720706, guid: 0af630da752cecd4c9d728a2a5580e2d,
-        type: 3}
-    - target: {fileID: 9172188680974777682, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
