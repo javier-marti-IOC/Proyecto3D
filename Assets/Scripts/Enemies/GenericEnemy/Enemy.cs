@@ -16,6 +16,9 @@ public abstract class Enemy : MonoBehaviour
     public Tower tower;
     public GameManager gameManager;
     public GameObject ghostAgent;
+
+    [Header("Animation ID")]
+    private int animIDSpeed;
     protected Animator animator;
 
     [Header("Booleans")]
@@ -75,6 +78,8 @@ public abstract class Enemy : MonoBehaviour
         agent.stoppingDistance = safeDistance;
         animator = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
+        animIDSpeed = Animator.StringToHash(Constants.speed);
+
     }
 
     // Metodos comunes
@@ -87,14 +92,9 @@ public abstract class Enemy : MonoBehaviour
 
     protected void CheckAgentSpeed()
     {
-        if (agent.velocity.magnitude <= 0.4f)
-        {
-            animator.SetInteger(Constants.state, 0);
-        }
-        else
-        {
-            animator.SetInteger(Constants.state, 1);
-        }
+        animator.SetInteger(Constants.state, 0);
+        animator.SetFloat(animIDSpeed, agent.velocity.magnitude);
+
     }
 
     protected void Patrol()
@@ -141,7 +141,7 @@ public abstract class Enemy : MonoBehaviour
         }
     } */
 
-    public void     Chase()
+    public void Chase()
     {
         Destroy(ghost);
         playerDetectorDown.SetActive(false);
@@ -195,7 +195,7 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Dying()
     {
         Debug.Log("Muelto");
-        Instantiate(drop,dropPosition.position,Quaternion.identity,null);
+        Instantiate(drop, dropPosition.position, Quaternion.identity, null);
         Destroy(gameObject);
     }
 
