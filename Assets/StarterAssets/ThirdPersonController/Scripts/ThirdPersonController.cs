@@ -1,5 +1,5 @@
-﻿ using UnityEngine;
- using UnityEngine.InputSystem;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
 
@@ -134,7 +134,7 @@ namespace StarterAssets
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            } 
+            }
         }
 
         private void Start()
@@ -145,7 +145,7 @@ namespace StarterAssets
                 {
                     PlacePlayerOnTutorialZone();
                 }
-                else 
+                else
                 {
                     PlacePlayerOnSafeZone();
                 }
@@ -156,7 +156,7 @@ namespace StarterAssets
             }
 
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -175,8 +175,8 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-            if (dead == false && !vikingController.OnAction) 
-            {  
+            if (dead == false && !vikingController.OnAction)
+            {
                 GroundedCheck();
                 JumpAndGravity();
                 Move();
@@ -243,64 +243,64 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
-private void Move()
-{
-    float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+        private void Move()
+        {
+            float targetSpeed = _input.move.magnitude > 0.7f ? SprintSpeed : MoveSpeed;
 
-    if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-    float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
-    float speedOffset = 0.1f;
-    float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+            float speedOffset = 0.1f;
+            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
-    if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-        currentHorizontalSpeed > targetSpeed + speedOffset)
-    {
-        _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-            Time.deltaTime * SpeedChangeRate);
+            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
+                currentHorizontalSpeed > targetSpeed + speedOffset)
+            {
+                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
+                    Time.deltaTime * SpeedChangeRate);
 
-        _speed = Mathf.Round(_speed * 1000f) / 1000f;
-    }
-    else
-    {
-        _speed = targetSpeed;
-    }
+                _speed = Mathf.Round(_speed * 1000f) / 1000f;
+            }
+            else
+            {
+                _speed = targetSpeed;
+            }
 
-    _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-    if (_animationBlend < 0.01f) _animationBlend = 0f;
+            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+            if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-    // 🔥 NUEVO: Calculamos la dirección basándonos en la cámara actualizada
-    Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            // 🔥 NUEVO: Calculamos la dirección basándonos en la cámara actualizada
+            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-    Vector3 cameraForward = _mainCamera.transform.forward;
-    cameraForward.y = 0f;
-    cameraForward.Normalize();
+            Vector3 cameraForward = _mainCamera.transform.forward;
+            cameraForward.y = 0f;
+            cameraForward.Normalize();
 
-    Vector3 cameraRight = _mainCamera.transform.right;
-    cameraRight.y = 0f;
-    cameraRight.Normalize();
+            Vector3 cameraRight = _mainCamera.transform.right;
+            cameraRight.y = 0f;
+            cameraRight.Normalize();
 
-    Vector3 moveDirection = (cameraForward * inputDirection.z + cameraRight * inputDirection.x).normalized;
+            Vector3 moveDirection = (cameraForward * inputDirection.z + cameraRight * inputDirection.x).normalized;
 
-    if (moveDirection.sqrMagnitude > 0.01f) // Solo rotamos si nos estamos moviendo
-    {
-        _targetRotation = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
-        float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-            RotationSmoothTime);
+            if (moveDirection.sqrMagnitude > 0.01f) // Solo rotamos si nos estamos moviendo
+            {
+                _targetRotation = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                    RotationSmoothTime);
 
-        transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-    }
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            }
 
-    _controller.Move(moveDirection * (_speed * Time.deltaTime) +
-                     new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            _controller.Move(moveDirection * (_speed * Time.deltaTime) +
+                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
-    if (_hasAnimator)
-    {
-        _animator.SetFloat(_animIDSpeed, _animationBlend);
-        _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-    }
-}
+            if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, _animationBlend);
+                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+            }
+        }
 
 
         private void JumpAndGravity()
@@ -434,7 +434,7 @@ private void Move()
 
         void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("DyingZone"))
+            if (other.CompareTag("DyingZone"))
             {
                 Debug.Log("---> IM DYING");
                 dead = true;
