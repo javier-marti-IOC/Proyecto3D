@@ -28,19 +28,16 @@ public class DistanceBT : Enemy
     public LineRenderer lightningLine;
     public Light attackLight;
     public float electricAttackRange = 10f;
-    public int electricDamage = 20;
     public GameObject impactPosition;
 
     [Header("Electric Heavy Attack")]
     public ParticleSystem lightningArea;
-    //public GameObject lightningAreaVisual;
     public float heavyAttackDelay = 2f;
     public float heavyAttackRadius = 2f;
-    public int heavyAttackDamage = 40;
     public float lightningHeight = 10f;
     private Vector3 pendingHeavyAttackPosition;
     private ParticleSystem activeHeavyParticles;
-    private GameObject activeHeavyVisual;
+    public GameObject heavyAttackZoneTrigger;
 
 
     // Start is called before the first frame update
@@ -49,6 +46,10 @@ public class DistanceBT : Enemy
     void Start()
     {
         base.Awake();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Transform spine1 = player.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "mixamorig:Spine2");
+        impactPosition = spine1.gameObject;
+        heavyAttackZoneTrigger.SetActive(false);
     }
 
     //Update is called once per frame
@@ -97,16 +98,16 @@ public class DistanceBT : Enemy
                             {
                                 case Element.Water:
                                     if (cooldownHeavyAttack <= 0)
-                                        {
-                                            //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 3);
-                                            ResetHeavyAttackCooldown();
-                                        }
-                                        else
-                                        {
-                                            //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 2);
-                                        }
+                                    {
+                                        //transform.LookAt(player.transform);
+                                        animator.SetInteger(Constants.state, 3);
+                                        ResetHeavyAttackCooldown();
+                                    }
+                                    else
+                                    {
+                                        //transform.LookAt(player.transform);
+                                        animator.SetInteger(Constants.state, 2);
+                                    }
                                     break;
                                 case Element.Electric:
                                     //Funcionalidad enemigo electrico
@@ -327,115 +328,50 @@ public class DistanceBT : Enemy
     {
         if (player == null) return;
 
+        // Guardar posició actual del player
         pendingHeavyAttackPosition = player.transform.position;
 
+        // Instanciar particules
         activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
         activeHeavyParticles.Play();
 
+        // Activar la zona
+        Transform zone = heavyAttackZoneTrigger.transform;
+        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
+        zone.gameObject.SetActive(true);
+
+        // Executar atac amb delay
         Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
     }
 
-
     private void ExecuteHeavyAttack()
     {
+        // Desactivar particules que hagin pogut quedar
         if (activeHeavyParticles != null)
         {
             Destroy(activeHeavyParticles.gameObject);
         }
 
+        // Definir inici i final del rayo
         Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
         Vector3 end = pendingHeavyAttackPosition;
 
+        // Posició inicial i final visualment
         lightningLine.SetPosition(0, start);
         lightningLine.SetPosition(1, end);
-        lightningLine.enabled = true;
-
-        attackLight.enabled = true;
-        Invoke(nameof(DisableLightningVisuals), 0.1f);
-
-        if (Vector3.Distance(player.transform.position, end) <= heavyAttackRadius)
-        {
-            // Player rep pupa
-            Debug.Log("Player hit by heavy electric attack");
-            PlayerHeavyHitted();
-        }
-    }
-
-    /*public void StartHeavyAttack()
-    {
-        if (player == null) return;
-
-        pendingHeavyAttackPosition = player.transform.position;
-
-        // 1. Instanciar partículas
-        activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
-        activeHeavyParticles.Play();
-
-        // 2. RaycastAll hacia abajo desde una altura
-        Vector3 rayStart = pendingHeavyAttackPosition + Vector3.up * 5f;
-        RaycastHit[] hits = Physics.RaycastAll(rayStart, Vector3.down, 10f);
-
-        RaycastHit? groundHit = null;
-
-        foreach (RaycastHit hit in hits)
-        {
-            if (!hit.collider.CompareTag("Player"))
-            {
-                groundHit = hit;
-                break;
-            }
-        }
-
-        if (groundHit.HasValue)
-        {
-            Vector3 spawnPos = groundHit.Value.point + groundHit.Value.normal * 0.02f;
-
-            // Alineación con la superficie del suelo
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, groundHit.Value.normal);
-            rotation *= Quaternion.Euler(90f, 0f, 0f);
-
-            activeHeavyVisual = Instantiate(lightningAreaVisual, spawnPos, rotation);
-        }
-        else
-        {
-            // Fallback si no encuentra suelo
-            Vector3 fallbackPos = pendingHeavyAttackPosition + Vector3.down * 0.2f;
-            Quaternion fallbackRot = Quaternion.Euler(90f, 0f, 0f);
-            activeHeavyVisual = Instantiate(lightningAreaVisual, fallbackPos, fallbackRot);
-        }
-
-        // 3. Programar ataque
-        Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
-    }
-
-
-
-    private void ExecuteHeavyAttack()
-    {
-        // 1. Destruir partículas y visual
-        if (activeHeavyParticles != null)
-            Destroy(activeHeavyParticles.gameObject);
-
-        if (activeHeavyVisual != null)
-            Destroy(activeHeavyVisual.gameObject);
-
-        // 2. Mostrar rayo eléctrico
-        Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
-        Vector3 end = pendingHeavyAttackPosition;
-
-        lightningLine.SetPosition(0, start);
-        lightningLine.SetPosition(1, end);
-        lightningLine.enabled = true;
+        lightningLine.enabled = true; // Activar visualització
 
         attackLight.enabled = true;
         Invoke(nameof(DisableLightningVisuals), 0.1f);
 
         if (isPlayerInHeavyAttackZone)
         {
+            //Player rep pupa
             Debug.Log("Player hit by heavy electric attack");
             PlayerHeavyHitted();
         }
-    }*/
+        heavyAttackZoneTrigger.SetActive(false);
+    }
 
 
     private void DisableLightningVisuals()
