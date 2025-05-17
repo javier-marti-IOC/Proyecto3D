@@ -42,7 +42,8 @@ public class Spawner : MonoBehaviour
                         if(enemy.transform.GetChild(0).transform.GetComponent<EnemyAreaConfigurator>().activeElement == activeElement) // Verificamos que el activeElement del enemigo concuerde con el de la funcion
                         {
                             Debug.Log("-----> INSTANCIO");
-                            Instantiate(enemy, trackPoints[rndNum].transform.position, Quaternion.identity); // Instanciamos el enemigo
+                            GameObject newEnemy = Instantiate(enemy, trackPoints[rndNum].transform.position, Quaternion.identity); // Instanciamos el enemigo
+                            newEnemy.GetComponentInChildren<Enemy>().tower = tower;
                             tower.isOnCooldown = true; // Activamos el cooldown    
                         }
                     }

@@ -14,7 +14,7 @@ public class VikingController : MonoBehaviour
     private InputAction heavyAttackAction;
     private InputAction rollAction;
     private Vector2 dpadValue;
-    
+
 
     //Mana Bars
     public int earthMana;
@@ -40,6 +40,9 @@ public class VikingController : MonoBehaviour
     public bool isRolling;
     public float rollCooldown;
     private float reduceMana = 1f;
+
+    public List<Enemy> enemiesInCombat;
+    public int maxEnemies;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +52,7 @@ public class VikingController : MonoBehaviour
         electricMana = 0;
         healthPoints = 100;
         activeElement = Element.None;
-        dpadAction =  inputActions.FindAction("DPAD");
+        dpadAction = inputActions.FindAction("DPAD");
         dpadAction.Enable();
         basicAttackAction = inputActions.FindAction("BasicAttack");
         basicAttackAction.Enable();
@@ -106,14 +109,14 @@ public class VikingController : MonoBehaviour
             Dying();
         }
         reduceMana -= Time.deltaTime;
-        if (reduceMana < 0 )
+        if (reduceMana < 0)
         {
             reduceMana = 0.5f;
             if (activeElement == Element.Earth)
             {
                 earthMana -= 1;
                 elementsHUD.earthReduce(earthMana);
-                if (earthMana  <= 0)
+                if (earthMana <= 0)
                 {
                     elementsHUD.EarthStopBlink();
                     activeElement = Element.None;
@@ -123,33 +126,33 @@ public class VikingController : MonoBehaviour
             {
                 waterMana -= 1;
                 elementsHUD.waterReduce(waterMana);
-                if (waterMana  <= 0)
+                if (waterMana <= 0)
                 {
                     elementsHUD.WaterStopBlink();
                     activeElement = Element.None;
                 }
-            }   
+            }
             else if (activeElement == Element.Fire)
             {
                 fireMana -= 1;
                 //if (fireMana <= 0) StopElementBlink(activeElement);
                 elementsHUD.fireReduce(fireMana);
-                if (fireMana  <= 0)
+                if (fireMana <= 0)
                 {
                     elementsHUD.FireStopBlink();
                     activeElement = Element.None;
                 }
-            }   
+            }
             else if (activeElement == Element.Electric)
             {
                 electricMana -= 1;
                 elementsHUD.lightningReduce(electricMana);
-                if (electricMana  <= 0)
+                if (electricMana <= 0)
                 {
                     elementsHUD.LightningStopBlink();
                     activeElement = Element.None;
                 }
-            }  
+            }
         }
     }
 
@@ -157,7 +160,7 @@ public class VikingController : MonoBehaviour
     {
         bool changed = false;
         //ACtivar elemento nuevo
-        if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth) 
+        if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
             vikingElementsHUD.earthReduce(earthMana);
             changed = true;
@@ -228,24 +231,25 @@ public class VikingController : MonoBehaviour
     {
         animator.SetTrigger("Dying");
         OnAction = true;
-        
+
     }
 
     public void AttackEnter(Collider other)
     {
         if (other.CompareTag(Constants.enemy))
         {
+            ResetEnemyDetection(other.GetComponent<Enemy>());
             int damageDeal;
             if (isBasicAttack)
             {
-                damageDeal = gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackMagicDamage,other.GetComponentInParent<Enemy>().activeElement);
-                other.GetComponentInParent<Enemy>().HealthTaken(damageDeal);
+                damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal);
                 Debug.Log("Basic Attack Damage Deal: " + damageDeal);
             }
             else
             {
-                damageDeal = gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackMagicDamage,other.GetComponentInParent<Enemy>().activeElement);
-                other.GetComponentInParent<Enemy>().HealthTaken(damageDeal);
+                damageDeal = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal);
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
         }
@@ -293,7 +297,7 @@ public class VikingController : MonoBehaviour
         int max = 45;
         if (element == Element.None)
         {
-            if (activeElement != Element.Earth) 
+            if (activeElement != Element.Earth)
             {
                 earthMana = 100;
                 elementsHUD.earthAdd(earthMana);
@@ -303,12 +307,12 @@ public class VikingController : MonoBehaviour
                 waterMana = 100;
                 elementsHUD.waterAdd(waterMana);
             }
-            if (activeElement != Element.Fire) 
+            if (activeElement != Element.Fire)
             {
                 fireMana = 100;
                 elementsHUD.fireAdd(fireMana);
             }
-            if (activeElement != Element.Electric) 
+            if (activeElement != Element.Electric)
             {
                 electricMana = 100;
                 elementsHUD.lightningAdd(electricMana);
@@ -316,28 +320,59 @@ public class VikingController : MonoBehaviour
         }
         else if (element == Element.Earth && activeElement != Element.Earth)
         {
-            earthMana += Random.Range(min,max);
+            earthMana += Random.Range(min, max);
             if (earthMana > 100) earthMana = 100;
             elementsHUD.earthAdd(earthMana);
 
         }
         else if (element == Element.Water && activeElement != Element.Water)
         {
-            waterMana += Random.Range(min,max);
+            waterMana += Random.Range(min, max);
             if (waterMana > 100) waterMana = 100;
             elementsHUD.waterAdd(waterMana);
-        }   
+        }
         else if (element == Element.Fire && activeElement != Element.Fire)
         {
-            fireMana += Random.Range(min,max);
+            fireMana += Random.Range(min, max);
             if (fireMana > 100) fireMana = 100;
             elementsHUD.fireAdd(fireMana);
-        }   
+        }
         else if (element == Element.Electric && activeElement != Element.Electric)
         {
-            electricMana += Random.Range(min,max);
+            electricMana += Random.Range(min, max);
             if (electricMana > 100) electricMana = 100;
             elementsHUD.lightningAdd(electricMana);
-        }    
+        }
+    }
+
+    public bool EnemyDetecion(Enemy enemy)
+    {
+        if (enemiesInCombat.Contains(enemy))
+        {
+            Debug.Log("InList");
+            return true;
+        }
+        else if (enemiesInCombat.Count < maxEnemies)
+        {
+            enemiesInCombat.Add(enemy);
+            Debug.Log("Added");
+            return true;
+        }
+        Debug.Log("Exceed");
+        return false;
+    }
+
+    public void RemoveEnemyDetection(Enemy enemy)
+    {
+        enemiesInCombat.Remove(enemy);
+    }
+
+    public void ResetEnemyDetection(Enemy enemy)
+    {
+        for (int i = enemiesInCombat.Count - 1; i >= 0; i--)
+        {
+            RemoveEnemyDetection(enemiesInCombat[i]);
+        }
+        enemiesInCombat.Add(enemy);
     }
 }

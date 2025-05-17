@@ -27,7 +27,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool onCombat; // El enemigo esta en combate
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
     public bool playerInAttackRange; // Esta el player en mi zona de ataque
-    [SerializeField] protected bool towerInRange; // Tengo la torre en rango para patrullar
+    [SerializeField] public bool towerInRange; // Tengo la torre en rango para patrullar
     public bool playerHitted;
     protected bool attacking;
 
@@ -79,22 +79,21 @@ public abstract class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
         animIDSpeed = Animator.StringToHash(Constants.speed);
+        foreach (GameObject t in GameObject.FindGameObjectsWithTag(Constants.tower))
+        {
+            if (t.GetComponent<Tower>().activeElement == activeElement) tower = t.GetComponent<Tower>();
+        }
 
     }
 
     // Metodos comunes
     // Indicamos virtual para poder sobreescribir el metodo si fuera necesario
     // O indicamos abstract para que las clases hijas o hereden si o si
-    protected virtual void Heal()
-    {
-
-    }
 
     protected void CheckAgentSpeed()
     {
         animator.SetInteger(Constants.state, 0);
         animator.SetFloat(animIDSpeed, agent.velocity.magnitude);
-
     }
 
     protected void Patrol()
@@ -109,6 +108,25 @@ public abstract class Enemy : MonoBehaviour
         agent.stoppingDistance = safeDistance;
 
         ghost.GetComponent<RunnerGhostAgent>().patrolPoint = pointPatrol;
+        agent.SetDestination(ghost.transform.position);
+        agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
+
+        // animator.SetInteger(Constants.state, 1);
+
+    }
+
+    protected void TowerPatrol()
+    {
+        CheckAgentSpeed();
+
+        if (ghost == null)
+        {
+            ghost = Instantiate(ghostPrefab, agent.transform.position, Quaternion.identity, agent.transform);
+        }
+
+        agent.stoppingDistance = safeDistance;
+
+        ghost.GetComponent<RunnerGhostAgent>().patrolPoint = tower.gameObject;
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
 
@@ -165,6 +183,7 @@ public abstract class Enemy : MonoBehaviour
         playerDetectorUp.SetActive(true);
         minDistanceChase.SetActive(true);
         playerDetected = false;
+        player.GetComponent<VikingController>().RemoveEnemyDetection(this);
     }
     protected virtual void TowerChase()
     {
@@ -195,10 +214,14 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Dying()
     {
         Debug.Log("Muelto");
-        tower.enemiesInSecondZoneRange.Remove(gameObject);
-        tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
+        if (tower != null)
+        {
+            tower.enemiesInSecondZoneRange.Remove(gameObject);
+            tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
+        }
+        player.GetComponent<VikingController>().RemoveEnemyDetection(this);
         Instantiate(drop, dropPosition.position, Quaternion.identity, null);
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     public void PlayerDetected()

@@ -27,10 +27,6 @@ public class MeleeBT : Enemy
                     {
                         towerCalling = false;
                     }
-                    else
-                    {
-                        Heal();
-                    }
                 }
                 else
                 {
@@ -44,10 +40,10 @@ public class MeleeBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-                    if (/*player.GetComponent<PlayerController>().maxEmemies*/1==-1)
+                    if (!player.GetComponent<VikingController>().EnemyDetecion(this))
                     {
-                        //Funcion quedar a la espera para combate
-
+                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
+                        animator.SetInteger(Constants.state, 0);
                     }
                     else
                     {
@@ -58,27 +54,27 @@ public class MeleeBT : Enemy
                                 if (cooldownHeavyAttack < 0)
                                 {
                                     //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,3);
+                                    animator.SetInteger(Constants.state, 3);
                                 }
                                 else
                                 {
                                     //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,2);
+                                    animator.SetInteger(Constants.state, 2);
                                 }
                             }
                             else if (activeElement == Element.Fire)
                             {
                                 // Esta el player usando el elemento de agua
-                                if(player.GetComponent<VikingController>().activeElement == Element.Water)
+                                if (player.GetComponent<VikingController>().activeElement == Element.Water)
                                 {
                                     // Esta a una distancia prudencial del player?
-                                    if(playerInSecurityDistance)
+                                    if (playerInSecurityDistance)
                                     {
                                         // Tiene cooldown de ataque en area?
                                         if (cooldownHeavyAttack < 0)
                                         {
                                             //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state,3);
+                                            animator.SetInteger(Constants.state, 3);
                                         }
                                         else
                                         {
@@ -91,20 +87,21 @@ public class MeleeBT : Enemy
                                         // Alejarse
                                         Vector3 direction = transform.position - player.transform.position; // Ir en direccion contraria
                                         Vector3 newPosition = transform.position + direction * 0.1f; // Calcula la nueva posicion en la direccion opuesta
-                                        agent.SetDestination(newPosition); 
+                                        agent.SetDestination(newPosition);
                                     }
 
-                                } else
+                                }
+                                else
                                 { // Tiene cooldown de ataque en area?
                                     if (cooldownHeavyAttack < 0)
                                     {
                                         //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state,3);
+                                        animator.SetInteger(Constants.state, 3);
                                     }
                                     else
                                     {
                                         //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state,2);
+                                        animator.SetInteger(Constants.state, 2);
                                     }
                                 }
                             }
@@ -113,7 +110,7 @@ public class MeleeBT : Enemy
                         {
                             if (!attacking)
                             {
-                                animator.SetInteger(Constants.state,1);
+                                animator.SetInteger(Constants.state, 1);
                                 Chase();
                             }
                         }
@@ -123,7 +120,7 @@ public class MeleeBT : Enemy
                 {
                     if (towerInRange)
                     {
-                        TowerChase();
+                        TowerPatrol();
                     }
                     else
                     {

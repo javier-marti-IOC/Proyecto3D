@@ -17,6 +17,7 @@ public class SecondZone : MonoBehaviour
             {
                 if (enemy.activeElement == tower.activeElement)
                 {
+                    enemy.towerInRange = true;
                     tower.enemiesInSecondZoneRange.Add(enemy.gameObject);
                     enemy.tower = tower;
                     tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
@@ -38,6 +39,7 @@ public class SecondZone : MonoBehaviour
             {
                 if (enemy.activeElement == tower.activeElement)
                 {
+                    enemy.towerInRange = false;
                     tower.enemiesInSecondZoneRange.Remove(enemy.gameObject);
                     tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
 

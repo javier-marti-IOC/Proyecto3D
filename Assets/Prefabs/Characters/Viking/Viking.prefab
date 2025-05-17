@@ -242,7 +242,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -6489,6 +6489,7 @@ GameObject:
   - component: {fileID: 2905455835062671263}
   - component: {fileID: 3023389732709961547}
   - component: {fileID: 5119653336814344007}
+  - component: {fileID: 1480364971835298096}
   m_Layer: 8
   m_Name: Viking
   m_TagString: Player
@@ -6766,7 +6767,7 @@ MonoBehaviour:
   animator: {fileID: 8620253860425985851}
   healthPoints: 100
   swordCollider: {fileID: 126554037317453137}
-  basicAttackBasicDamage: 200
+  basicAttackBasicDamage: 20
   basicAttackMagicDamage: 5
   heavyAttackBasicDamage: 3
   heavyAttackMagicDamage: 8
@@ -6774,6 +6775,8 @@ MonoBehaviour:
   OnAction: 0
   isRolling: 0
   rollCooldown: 0
+  enemiesInCombat: []
+  maxEnemies: 2
 --- !u!136 &5119653336814344007
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6797,6 +6800,22 @@ CapsuleCollider:
   m_Height: 2.3
   m_Direction: 1
   m_Center: {x: 0.0021247864, y: 0.6602942, z: 0}
+--- !u!208 &1480364971835298096
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113744238655452588}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1622288981137436283
 PrefabInstance:
   m_ObjectHideFlags: 0

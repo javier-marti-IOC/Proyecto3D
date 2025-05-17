@@ -110,7 +110,10 @@ public class Tower : MonoBehaviour
                                                                                                      //Debug.Log("POSITION EN EL ARRAY: " + position);
             Utils.ReplaceMaterials(materials, colors);
             ChangeEnvironmentParticles();
-            Destroy(gameObject);
+            for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
+            {
+                enemiesInSecondZoneRange[i].GetComponent<Enemy>().towerInRange = false;
+            }
         }
         else
         {
@@ -204,10 +207,14 @@ public class Tower : MonoBehaviour
 
     public void DestroyTower()
     {
+        for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
+        {
+            enemiesInSecondZoneRange[i].GetComponent<Enemy>().Dying();
+        }
         InstantiateDeathTowerParticles();
         Utils.ReplaceMaterials(materials, colors);
         ChangeEnvironmentParticles();
-        Destroy(transform.root.gameObject); // Destruye la torre si se queda sin vida
+        Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         progressManager.SaveGame();
     }
