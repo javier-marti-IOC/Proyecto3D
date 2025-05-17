@@ -19,38 +19,39 @@ public class ProgressManager : MonoBehaviour
     public static ProgressManager Instance { get; private set; }
     public ProgressData progressData;
     private string saveFilePath;
+    public GameObject continueBtn;
 
     private void Awake()
-{
-    if(Instance == null)
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-    else
-    {
-        Destroy(gameObject);
-        return;
-    }
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-    // Mueve la inicialización del progreso aquí
-    saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+        // Mueve la inicialización del progreso aquí
+        saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
 
-    if (!File.Exists(saveFilePath))
-    {
-        progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
-    }
-    else
-    {
-        string loadProgressData = File.ReadAllText(saveFilePath);
-        progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
-    }
+        if (!File.Exists(saveFilePath))
+        {
+            progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
+        }
+        else
+        {
+            string loadProgressData = File.ReadAllText(saveFilePath);
+            progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+        }
 
-    if (progressData == null)
-    {
-        progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
+        if (progressData == null)
+        {
+            progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
+        }
     }
-}
 
 
     void Start()
@@ -58,9 +59,10 @@ public class ProgressManager : MonoBehaviour
         // Guardamos la ruta donde queremos generar el JSON
         saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
         // Si el archivo no existe, generamos el objeto del JSON con todo a 0
-        if(!File.Exists(saveFilePath))
+        if (!File.Exists(saveFilePath))
         {
             progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
+            DeactivateContinueBtn();
         }
         else
         {
@@ -68,6 +70,7 @@ public class ProgressManager : MonoBehaviour
             string loadProgressData = File.ReadAllText(saveFilePath);
             // Almacenamos los datos en progressData
             progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+            ActivateContinueBtn();
         }
         // Verificar si progressData es nulo después de cargar
         if (progressData == null)
@@ -79,12 +82,12 @@ public class ProgressManager : MonoBehaviour
     void Update()
     {
         // Guardar data
-        if(Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             SaveGame();
         }
         // Cargar data
-        if(Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if (File.Exists(saveFilePath))
             {
@@ -98,7 +101,7 @@ public class ProgressManager : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (File.Exists(saveFilePath))
             {
@@ -143,14 +146,30 @@ public class ProgressManager : MonoBehaviour
     {
         if (File.Exists(saveFilePath))
         {
-            File.Delete(saveFilePath);  
+            File.Delete(saveFilePath);
             Debug.Log("Save file deleted!");
-            SceneManager.LoadScene(1);        
+            SceneManager.LoadScene(1);
         }
         else
         {
             Debug.Log("There is nothing to delete!");
             SceneManager.LoadScene(1);
+        }
+    }
+    // Funcion para activar el boton de continuar del menu de inicio
+    public void ActivateContinueBtn()
+    {
+        if (continueBtn != null)
+        {
+            continueBtn.SetActive(true);
+        }
+    }
+    // Funcion para desactivar el boton de continuar del menu de inicio
+    public void DeactivateContinueBtn()
+    {
+        if (continueBtn != null)
+        {
+            continueBtn.SetActive(false);
         }
     }
 }

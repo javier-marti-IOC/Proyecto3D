@@ -4254,6 +4254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e181282a7269120409b7f80a79046e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continueBtn: {fileID: 0}
 --- !u!1 &617777472
 GameObject:
   m_ObjectHideFlags: 0
@@ -11984,9 +11985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 2401776571205141224}
   enemy: {fileID: 0}
-  instantiatedEnemies: []
-  enemyCount: 0
-  isCalling: 0
 --- !u!4 &1048479738800374052
 Transform:
   m_ObjectHideFlags: 0
@@ -13573,9 +13571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 7785258435727814170}
   enemy: {fileID: 0}
-  instantiatedEnemies: []
-  enemyCount: 0
-  isCalling: 0
 --- !u!1 &5305874970657576618
 GameObject:
   m_ObjectHideFlags: 0
@@ -14074,9 +14069,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 8187992172395152765}
   enemy: {fileID: 0}
-  instantiatedEnemies: []
-  enemyCount: 0
-  isCalling: 0
 --- !u!114 &6536182112660341854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15132,9 +15124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 7211235464008369158}
   enemy: {fileID: 0}
-  instantiatedEnemies: []
-  enemyCount: 0
-  isCalling: 0
 --- !u!1001 &8546600916921461144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15551,7 +15540,7 @@ SceneRoots:
   - {fileID: 1237416055}
   - {fileID: 7562197047261513887}
   - {fileID: 193484584109215839}
-  - {fileID: 3230933145150379000}
   - {fileID: 7028022042135625482}
   - {fileID: 8945223068028654701}
+  - {fileID: 3230933145150379000}
   - {fileID: 1500690291}
