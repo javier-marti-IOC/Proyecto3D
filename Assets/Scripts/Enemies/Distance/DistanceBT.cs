@@ -101,7 +101,6 @@ public class DistanceBT : Enemy
                                     {
                                         //transform.LookAt(player.transform);
                                         animator.SetInteger(Constants.state, 3);
-                                        ResetHeavyAttackCooldown();
                                     }
                                     else
                                     {
