@@ -46,10 +46,13 @@ public class DistanceBT : Enemy
     void Start()
     {
         base.Awake();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Transform spine1 = player.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "mixamorig:Spine2");
-        impactPosition = spine1.gameObject;
-        heavyAttackZoneTrigger.SetActive(false);
+
+        if (activeElement == Element.Electric)
+        {
+            Transform spine1 = player.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "mixamorig:Spine2");
+            impactPosition = spine1.gameObject;
+            heavyAttackZoneTrigger.SetActive(false);
+        }
     }
 
     //Update is called once per frame
