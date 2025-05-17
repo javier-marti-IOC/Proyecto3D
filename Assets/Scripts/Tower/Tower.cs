@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -236,8 +237,20 @@ public class Tower : MonoBehaviour
         enemiesInHealRange.RemoveAt(0); // Eliminamos ese prefab del array
         enemiesInSecondZoneRange.Remove(enemy.GetComponent<Transform>().gameObject);
         Destroy(enemy.transform.root.gameObject); // Destruimos el prefab
-        secondZone.enemyCount -= 2;
+        CheckSecondZoneCount(enemiesInSecondZoneRange);
     }
+
+    public void CheckSecondZoneCount(List<GameObject> enemiesInSecondZoneRange)
+    {
+        if (enemiesInSecondZoneRange.Count > 0)
+        {
+            secondZoneContact = true;
+        }else
+        {
+            secondZoneContact = false;
+        }
+    }
+
 
     public void ActivateCooldown()
     {

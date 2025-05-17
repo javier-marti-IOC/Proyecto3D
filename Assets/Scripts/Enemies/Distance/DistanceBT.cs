@@ -65,24 +65,7 @@ public class DistanceBT : Enemy
             //ME ESTA LLAMANDO LA TORRE?
             if (towerCalling)
             {
-                //Estoy en la zona de curacion?
-                if (onHealZone)
-                {
-                    //Esta la torre en cooldown
-                    if (tower.GetComponent<TowerBT>().onCooldown)
-                    {
-                        towerCalling = false;
-                    }
-                    else
-                    {
-                        Heal();
-                    }
-                }
-                else
-                {
-                    //Me acerco
-                    TowerChase();
-                }
+                TowerChase();
             }
             else
             {
@@ -187,18 +170,8 @@ public class DistanceBT : Enemy
                 }
                 else
                 {
-                    if (towerInRange)
-                    {
-                        TowerChase();
-                    }
-                    else /* if (rotating)
-                    {
-                        Rotate();
-                    } */
-                    {
-                        SetLookingPlayersActive(false);
-                        Patrol();
-                    }
+                    SetLookingPlayersActive(false);
+                    Patrol();
                 }
             }
         }
@@ -402,7 +375,9 @@ public class DistanceBT : Enemy
     public override void Dying()
     {
         Debug.Log("Muelto");
+        tower.enemiesInSecondZoneRange.Remove(gameObject);
+        tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
         Instantiate(drop, dropPosition.position, Quaternion.identity, null);
-        Utils.DestroyParent(gameObject);
+        Utils.DestroyRoot(gameObject);
     }
 }

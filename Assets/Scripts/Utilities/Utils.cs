@@ -20,11 +20,11 @@ public static class Utils
             sources[i].SetColor("_BaseColor", target[i]);
         }
     }
-    public static void DestroyParent(GameObject child)
+    public static void DestroyRoot(GameObject child)
     {
-        if (child.transform.parent != null)
+        if (child.transform.root != null)
         {
-            Object.Destroy(child.transform.parent.gameObject);
+            Object.Destroy(child.transform.root.gameObject);
         }
     }
 

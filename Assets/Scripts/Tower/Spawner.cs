@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
         {
             rndNum = Random.Range(0, trackPoints.Length); // Seleccionamos un track point aleatorio dentro del array
 
-            if(secondZone.enemyCount < 6) // Verificamos los enemigos instanciados en la zona 
+            if(tower.enemiesInSecondZoneRange.Count < 3) // Verificamos los enemigos instanciados en la zona 
             {
                 foreach (GameObject enemy in enemyPrefabs) // Recorremos el array que contiene los 4 tipos de enemigos
                 {

@@ -27,7 +27,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool onCombat; // El enemigo esta en combate
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
     public bool playerInAttackRange; // Esta el player en mi zona de ataque
-    protected bool towerInRange; // Tengo la torre en rango para patrullar
+    [SerializeField] protected bool towerInRange; // Tengo la torre en rango para patrullar
     public bool playerHitted;
     protected bool attacking;
 
@@ -195,6 +195,8 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Dying()
     {
         Debug.Log("Muelto");
+        tower.enemiesInSecondZoneRange.Remove(gameObject);
+        tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
         Instantiate(drop, dropPosition.position, Quaternion.identity, null);
         Destroy(gameObject);
     }
