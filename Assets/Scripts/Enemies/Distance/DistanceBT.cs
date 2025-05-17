@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class DistanceBT : Enemy
 {
     private bool isPlayerInTeleportZone;
+    private bool isPlayerInHeavyAttackZone;
 
     [Header("Teleport Settings")]
     public float teleportCooldownTime;
@@ -27,18 +28,16 @@ public class DistanceBT : Enemy
     public LineRenderer lightningLine;
     public Light attackLight;
     public float electricAttackRange = 10f;
-    public int electricDamage = 20;
     public GameObject impactPosition;
 
     [Header("Electric Heavy Attack")]
     public ParticleSystem lightningArea;
     public float heavyAttackDelay = 2f;
     public float heavyAttackRadius = 2f;
-    public int heavyAttackDamage = 40;
     public float lightningHeight = 10f;
     private Vector3 pendingHeavyAttackPosition;
     private ParticleSystem activeHeavyParticles;
-
+    public GameObject heavyAttackZoneTrigger;
 
 
     // Start is called before the first frame update
@@ -47,6 +46,10 @@ public class DistanceBT : Enemy
     void Start()
     {
         base.Awake();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Transform spine1 = player.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "mixamorig:Spine2");
+        impactPosition = spine1.gameObject;
+        heavyAttackZoneTrigger.SetActive(false);
     }
 
     //Update is called once per frame
@@ -95,15 +98,15 @@ public class DistanceBT : Enemy
                             {
                                 case Element.Water:
                                     if (cooldownHeavyAttack <= 0)
-                                        {
-                                            //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 3);
-                                        }
-                                        else
-                                        {
-                                            //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 2);
-                                        }
+                                    {
+                                        //transform.LookAt(player.transform);
+                                        animator.SetInteger(Constants.state, 3);
+                                    }
+                                    else
+                                    {
+                                        //transform.LookAt(player.transform);
+                                        animator.SetInteger(Constants.state, 2);
+                                    }
                                     break;
                                 case Element.Electric:
                                     //Funcionalidad enemigo electrico
@@ -132,7 +135,6 @@ public class DistanceBT : Enemy
                                                 {
                                                     //transform.LookAt(player.transform);
                                                     animator.SetInteger(Constants.state, 3);
-                                                    ResetHeavyAttackCooldown();
                                                 }
                                                 else
                                                 {
@@ -148,7 +150,6 @@ public class DistanceBT : Enemy
                                         {
                                             //transform.LookAt(player.transform);
                                             animator.SetInteger(Constants.state, 3);
-                                            ResetHeavyAttackCooldown();
                                         }
                                         else
                                         {
@@ -247,6 +248,23 @@ public class DistanceBT : Enemy
         }
     }
 
+    public void HeavyAttackZoneEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            isPlayerInHeavyAttackZone = true;
+            Debug.Log("Player in Heavy Attack 2Zone");
+        }
+    }
+    public void HeavyAttackZoneExit(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            isPlayerInHeavyAttackZone = false;
+            Debug.Log("Player out Heavy Attack Zone");
+        }
+    }
+
     private int TeleportProbability()
     {
         int tp = UnityEngine.Random.Range(0, 100);
@@ -309,39 +327,49 @@ public class DistanceBT : Enemy
     {
         if (player == null) return;
 
+        // Guardar posició actual del player
         pendingHeavyAttackPosition = player.transform.position;
 
+        // Instanciar particules
         activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
         activeHeavyParticles.Play();
 
+        // Activar la zona
+        Transform zone = heavyAttackZoneTrigger.transform;
+        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
+        zone.gameObject.SetActive(true);
+
+        // Executar atac amb delay
         Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
     }
 
-
     private void ExecuteHeavyAttack()
     {
+        // Desactivar particules que hagin pogut quedar
         if (activeHeavyParticles != null)
         {
             Destroy(activeHeavyParticles.gameObject);
         }
 
+        // Definir inici i final del rayo
         Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
         Vector3 end = pendingHeavyAttackPosition;
 
+        // Posició inicial i final visualment
         lightningLine.SetPosition(0, start);
         lightningLine.SetPosition(1, end);
-        lightningLine.enabled = true;
+        lightningLine.enabled = true; // Activar visualització
 
         attackLight.enabled = true;
         Invoke(nameof(DisableLightningVisuals), 0.1f);
 
-        if (Vector3.Distance(player.transform.position, end) <= heavyAttackRadius)
+        if (isPlayerInHeavyAttackZone)
         {
-            // Player rep pupa
+            //Player rep pupa
             Debug.Log("Player hit by heavy electric attack");
-            player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
-
+            PlayerHeavyHitted();
         }
+        heavyAttackZoneTrigger.SetActive(false);
     }
 
 
@@ -361,6 +389,11 @@ public class DistanceBT : Enemy
     {
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
 
+    }
+
+    public void PlayerHeavyHitted()
+    {
+        player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 
     public override void Dying()
