@@ -246,8 +246,8 @@ public abstract class Enemy : MonoBehaviour
         random = Random.Range(0, 100);
         if (random < 20)
         {
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+            Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
         }
         else if (random < 50)
         {

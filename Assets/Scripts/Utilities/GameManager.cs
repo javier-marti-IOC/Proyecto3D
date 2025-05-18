@@ -150,38 +150,40 @@ public class GameManager : MonoBehaviour
                 Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        FindObjectOfType<ProgressManager>().LoadData();
-        elementsLevel = FindObjectOfType<ProgressManager>().progressData.GetTowerActiveElements();
-        earthLeveled = false;
-        waterLeveled = false;
-        fireLeveled = false;
-        electricLeveled = false;
-        for (int i = 0; i < elementsLevel.Count; i++)
+        if (FindObjectOfType<ProgressManager>().LoadData())
         {
-            if (elementsLevel[i] == Element.Earth)
+            elementsLevel = FindObjectOfType<ProgressManager>().progressData.GetTowerActiveElements();
+            earthLeveled = false;
+            waterLeveled = false;
+            fireLeveled = false;
+            electricLeveled = false;
+            for (int i = 0; i < elementsLevel.Count; i++)
             {
-                earthLevel = i + 1;
-                earthLeveled = true;
+                if (elementsLevel[i] == Element.Earth)
+                {
+                    earthLevel = i + 1;
+                    earthLeveled = true;
+                }
+                else if (elementsLevel[i] == Element.Water)
+                {
+                    waterLevel = i + 1;
+                    waterLeveled = true;
+                }
+                else if (elementsLevel[i] == Element.Fire)
+                {
+                    fireLevel = i + 1;
+                    fireLeveled = true;
+                }
+                else if (elementsLevel[i] == Element.Electric)
+                {
+                    electricLevel = i + 1;
+                    electricLeveled = true;
+                }
+                if (!earthLeveled) earthLevel = i + 2;
+                if (!waterLeveled) waterLevel = i + 2;
+                if (!fireLeveled) fireLevel = i + 2;
+                if (!electricLeveled) electricLevel = i + 2;
             }
-            else if (elementsLevel[i] == Element.Water)
-            {
-                waterLevel = i + 1;
-                waterLeveled = true;
-            }
-            else if (elementsLevel[i] == Element.Fire)
-            {
-                fireLevel = i + 1;
-                fireLeveled = true;
-            }
-            else if (elementsLevel[i] == Element.Electric)
-            {
-                electricLevel = i + 1;
-                electricLeveled = true;
-            }
-            if (!earthLeveled) earthLevel = i + 2;
-            if (!waterLeveled) waterLevel = i + 2;
-            if (!fireLeveled) fireLevel = i + 2;
-            if (!electricLeveled) electricLevel = i + 2;
         }
         enemies = GameObject.FindGameObjectsWithTag(Constants.enemy);
         foreach (GameObject e in enemies)

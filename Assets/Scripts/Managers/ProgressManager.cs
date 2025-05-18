@@ -171,11 +171,18 @@ public class ProgressManager : MonoBehaviour
             continueBtn.SetActive(false);
         }
     }
-    public void LoadData()
+    public bool LoadData()
     {
+        saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+        if (!File.Exists(saveFilePath))
+        {
+            Debug.Log("FALSE");
+            return false;
+        }
         string loadProgressData = File.ReadAllText(saveFilePath);
         progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
         Debug.Log("DATA GUARDADA: " + loadProgressData);
+        return true;
     }
 }
 
