@@ -241,9 +241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 8822744985483429131}
   enemy: {fileID: 0}
-  instantiatedEnemies: []
-  enemyCount: 0
-  isCalling: 0
 --- !u!1 &2768513532295956250
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,17 +635,24 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ae40719550f33674398884308d0515a5, type: 2}
   - {fileID: 2100000, guid: bae1233a52324a04ca42bdd801531969, type: 2}
   - {fileID: 2100000, guid: 426667a7d6a2f5b4eb289cdb68d8960e, type: 2}
+  - {fileID: 2100000, guid: db33bce7a4b018b4c9308de4a23116dc, type: 2}
+  - {fileID: 2100000, guid: ef786092717fb1144a414414122c7061, type: 2}
   corruptedColors:
   - {r: 0.46666667, g: 0.34901962, b: 0.25490198, a: 0}
   - {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 0}
   - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 0, g: 0.2, b: 0.023529412, a: 0}
+  - {r: 0.11764706, g: 0.41568628, b: 0, a: 0}
   colors:
   - {r: 0.7372549, g: 0.64705884, b: 0.5764706, a: 0}
   - {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 0}
   - {r: 0.5176471, g: 0.5176471, b: 0.5176471, a: 0}
+  - {r: 0, g: 0.6509804, b: 0.078431375, a: 0}
+  - {r: 0.23921569, g: 0.84313726, b: 0, a: 0}
   deathTowerParticles: {fileID: 7474336141603242480, guid: 83a16b77799c4a54ab8f68f5563bb442,
     type: 3}
   environmentParticles:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
