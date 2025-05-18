@@ -4,7 +4,9 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
-    public GameObject drop;
+    public GameObject manaDrop;
+    public GameObject goldDrop;
+    public GameObject lifeDrop;
     public Transform dropPosition;
     public EnemyHUD enemyHUD;
     public GameObject hudPanelCanvas;
@@ -220,7 +222,37 @@ public abstract class Enemy : MonoBehaviour
             tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
         }
         player.GetComponent<VikingController>().RemoveEnemyDetection(this);
-        Instantiate(drop, dropPosition.position, Quaternion.identity, null);
+        //for random
+        int random = Random.Range(0, 100);
+        if (random == 0)
+        {
+            Instantiate(goldDrop, dropPosition.position, Quaternion.identity, null);
+        }
+        else if (random < 20)
+        {
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+        }
+        else if (random < 50)
+        {
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+        }
+        else
+        {
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+        }
+        random = Random.Range(0, 100);
+        if (random < 20)
+        {
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+        }
+        else if (random < 50)
+        {
+            Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+        }
         Destroy(transform.parent.gameObject);
     }
 
@@ -228,5 +260,9 @@ public abstract class Enemy : MonoBehaviour
     {
         playerDetected = true;
         hudPanelCanvas.SetActive(true);
+    }
+    public void SetStatsByLevel()
+    {
+        //TODO
     }
 }

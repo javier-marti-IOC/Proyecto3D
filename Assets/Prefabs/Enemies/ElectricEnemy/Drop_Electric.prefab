@@ -5375,7 +5375,7 @@ GameObject:
   - component: {fileID: 3815266105894961466}
   m_Layer: 0
   m_Name: Drop_Electric
-  m_TagString: Untagged
+  m_TagString: Drop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

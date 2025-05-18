@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 2107500358928555347}
   m_Layer: 0
   m_Name: ElectricEnemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6571,7 +6571,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9001474cea1ba04381276e0fba97132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 2555196290468789356, guid: 2372f370c4f221a4599f8692a9e20d70, type: 3}
+  manaDrop: {fileID: 2555196290468789356, guid: 2372f370c4f221a4599f8692a9e20d70,
+    type: 3}
+  goldDrop: {fileID: 2928080803187948343, guid: fcf63ae41115f0d469258919cd1612c9,
+    type: 3}
+  lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
+    type: 3}
   dropPosition: {fileID: 2184018156853480961}
   enemyHUD: {fileID: 6529356935889863858}
   hudPanelCanvas: {fileID: 6997485962184069293}
@@ -6584,6 +6589,7 @@ MonoBehaviour:
   ghostAgent: {fileID: 0}
   towerCalling: 0
   playerInAttackRange: 0
+  towerInRange: 0
   playerHitted: 0
   minCooldownTimeInclusive: 8
   maxCooldownTimeExclusive: 10

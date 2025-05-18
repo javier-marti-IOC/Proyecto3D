@@ -516,7 +516,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774a69988b761d040a713bae02426b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 4019605022555627763, guid: cbd792443c7b6ec4ea9b8abad5d60484, type: 3}
+  manaDrop: {fileID: 4019605022555627763, guid: cbd792443c7b6ec4ea9b8abad5d60484,
+    type: 3}
+  goldDrop: {fileID: 2928080803187948343, guid: fcf63ae41115f0d469258919cd1612c9,
+    type: 3}
+  lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
+    type: 3}
   dropPosition: {fileID: 3383887799465661057}
   enemyHUD: {fileID: 1174499256736905981}
   hudPanelCanvas: {fileID: 8426004555021005414}
@@ -529,6 +534,7 @@ MonoBehaviour:
   ghostAgent: {fileID: 0}
   towerCalling: 0
   playerInAttackRange: 0
+  towerInRange: 0
   playerHitted: 0
   minCooldownTimeInclusive: 8
   maxCooldownTimeExclusive: 12

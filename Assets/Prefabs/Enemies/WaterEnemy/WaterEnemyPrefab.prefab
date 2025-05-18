@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 6127873753904418742}
   m_Layer: 0
   m_Name: WaterEnemyPrefab
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,7 +1009,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9001474cea1ba04381276e0fba97132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 4280553628134071422, guid: 82410f60f44de304baedaf7c930bdd9a, type: 3}
+  manaDrop: {fileID: 4280553628134071422, guid: 82410f60f44de304baedaf7c930bdd9a,
+    type: 3}
+  goldDrop: {fileID: 2928080803187948343, guid: fcf63ae41115f0d469258919cd1612c9,
+    type: 3}
+  lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
+    type: 3}
   dropPosition: {fileID: 5732543632236977345}
   enemyHUD: {fileID: 5731537666881477339}
   hudPanelCanvas: {fileID: 8361632850504355524}
@@ -1022,6 +1027,7 @@ MonoBehaviour:
   ghostAgent: {fileID: 0}
   towerCalling: 0
   playerInAttackRange: 0
+  towerInRange: 0
   playerHitted: 0
   minCooldownTimeInclusive: 10
   maxCooldownTimeExclusive: 15
@@ -1048,13 +1054,12 @@ MonoBehaviour:
   lightningLine: {fileID: 0}
   attackLight: {fileID: 0}
   electricAttackRange: 10
-  electricDamage: 20
   impactPosition: {fileID: 0}
   lightningArea: {fileID: 0}
   heavyAttackDelay: 2
   heavyAttackRadius: 2
-  heavyAttackDamage: 40
   lightningHeight: 10
+  heavyAttackZoneTrigger: {fileID: 0}
 --- !u!195 &258517528031875190
 NavMeshAgent:
   m_ObjectHideFlags: 0

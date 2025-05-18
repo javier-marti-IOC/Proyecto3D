@@ -371,13 +371,4 @@ public class DistanceBT : Enemy
     {
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
-
-    public override void Dying()
-    {
-        Debug.Log("Muelto");
-        tower.enemiesInSecondZoneRange.Remove(gameObject);
-        tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
-        Instantiate(drop, dropPosition.position, Quaternion.identity, null);
-        Utils.DestroyRoot(gameObject);
-    }
 }

@@ -229,9 +229,12 @@ public class VikingController : MonoBehaviour
     }
     public void Dying()
     {
-        animator.SetTrigger("Dying");
-        OnAction = true;
-
+        Debug.Log("DEADGE");
+        //animator.SetTrigger("Dying");
+        //OnAction = true;
+        gameManager.ResetEnemies();
+        transform.position = new Vector3(95, 0, 15);
+        healthPoints = 100;
     }
 
     public void AttackEnter(Collider other)
@@ -293,8 +296,7 @@ public class VikingController : MonoBehaviour
     }
     public void CollectMana(Element element)
     {
-        int min = 30;
-        int max = 45;
+        int mana = 25;
         if (element == Element.None)
         {
             if (activeElement != Element.Earth)
@@ -320,26 +322,26 @@ public class VikingController : MonoBehaviour
         }
         else if (element == Element.Earth && activeElement != Element.Earth)
         {
-            earthMana += Random.Range(min, max);
+            earthMana += mana;
             if (earthMana > 100) earthMana = 100;
             elementsHUD.earthAdd(earthMana);
 
         }
         else if (element == Element.Water && activeElement != Element.Water)
         {
-            waterMana += Random.Range(min, max);
+            waterMana += mana;
             if (waterMana > 100) waterMana = 100;
             elementsHUD.waterAdd(waterMana);
         }
         else if (element == Element.Fire && activeElement != Element.Fire)
         {
-            fireMana += Random.Range(min, max);
+            fireMana += mana;
             if (fireMana > 100) fireMana = 100;
             elementsHUD.fireAdd(fireMana);
         }
         else if (element == Element.Electric && activeElement != Element.Electric)
         {
-            electricMana += Random.Range(min, max);
+            electricMana += mana;
             if (electricMana > 100) electricMana = 100;
             elementsHUD.lightningAdd(electricMana);
         }
@@ -374,5 +376,12 @@ public class VikingController : MonoBehaviour
             RemoveEnemyDetection(enemiesInCombat[i]);
         }
         enemiesInCombat.Add(enemy);
+    }
+
+    public void CollectLife()
+    {
+        healthPoints += 10;
+        if (healthPoints > 100) healthPoints = 100;
+        vikingHealthHUD.SetHealth(healthPoints);
     }
 }

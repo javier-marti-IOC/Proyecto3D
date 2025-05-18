@@ -11,6 +11,11 @@ public class ProgressData
 {
     public bool tutorial;
     public List<Element> towerActiveElements;
+
+    public List<Element> GetTowerActiveElements()
+    {
+        return towerActiveElements;
+    }
 }
 
 public class ProgressManager : MonoBehaviour
@@ -43,8 +48,7 @@ public class ProgressManager : MonoBehaviour
         }
         else
         {
-            string loadProgressData = File.ReadAllText(saveFilePath);
-            progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+            LoadData();
         }
 
         if (progressData == null)
@@ -67,9 +71,7 @@ public class ProgressManager : MonoBehaviour
         else
         {
             // Si existe, lo leemos y cargamos los datos
-            string loadProgressData = File.ReadAllText(saveFilePath);
-            // Almacenamos los datos en progressData
-            progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+            LoadData();
             ActivateContinueBtn();
         }
         // Verificar si progressData es nulo después de cargar
@@ -91,9 +93,7 @@ public class ProgressManager : MonoBehaviour
         {
             if (File.Exists(saveFilePath))
             {
-                string loadProgressData = File.ReadAllText(saveFilePath);
-                progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
-                Debug.Log("DATA GUARDADA: " + loadProgressData);
+                LoadData();
             }
             else
             {
@@ -131,8 +131,7 @@ public class ProgressManager : MonoBehaviour
     {
         if (File.Exists(saveFilePath))
         {
-            string loadProgressData = File.ReadAllText(saveFilePath);
-            progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+            LoadData();
             SceneManager.LoadScene(1);
             Debug.Log("Partida cargada con exito!");
         }
@@ -171,6 +170,12 @@ public class ProgressManager : MonoBehaviour
         {
             continueBtn.SetActive(false);
         }
+    }
+    public void LoadData()
+    {
+        string loadProgressData = File.ReadAllText(saveFilePath);
+        progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
+        Debug.Log("DATA GUARDADA: " + loadProgressData);
     }
 }
 
