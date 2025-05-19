@@ -122,28 +122,28 @@ public class GameManager : MonoBehaviour
 
     public void EnemiesGenerator()
     {
-        for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
+        for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i -= 2)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
                 Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
+        for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i -= 2)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
                 Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
+        for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i -= 2)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
                 Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
+        for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0;i -= 2)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
