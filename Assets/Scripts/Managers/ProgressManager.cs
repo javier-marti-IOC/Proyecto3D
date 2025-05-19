@@ -5,6 +5,7 @@ using System.IO;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Objeto a guardar en el JSON y que contiene todas la data
 public class ProgressData
@@ -25,6 +26,7 @@ public class ProgressManager : MonoBehaviour
     public ProgressData progressData;
     private string saveFilePath;
     public GameObject continueBtn;
+    public Button newGameBtn;
 
     private void Awake()
     {
@@ -169,6 +171,7 @@ public class ProgressManager : MonoBehaviour
         if (continueBtn != null)
         {
             continueBtn.SetActive(false);
+            newGameBtn.Select();
         }
     }
     public bool LoadData()
