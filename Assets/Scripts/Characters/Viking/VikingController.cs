@@ -24,7 +24,7 @@ public class VikingController : MonoBehaviour
     [Header("HUD")]
     public HealthHUD vikingHealthHUD;
     public ElementsHUD elementsHUD;
-    public GameObject deathHUD;
+    public PauseMenu pauseMenu;
 
     [Header("Combat")]
     public Animator animator;
@@ -77,7 +77,6 @@ public class VikingController : MonoBehaviour
 
         //HUD
         vikingHealthHUD.SetHealth(healthPoints);
-        deathHUD.SetActive(false);
     }
 
     // Update is called once per frame
@@ -311,7 +310,8 @@ public class VikingController : MonoBehaviour
         Debug.Log("DEADGE");
         //animator.SetTrigger("Dying");
         OnAction = true;
-        deathHUD.SetActive(true);
+        pauseMenu.ToggleDeath();
+        healthPoints = 100;
     }
 
     //Control de maxim enemics en combat
@@ -319,7 +319,6 @@ public class VikingController : MonoBehaviour
     {
         if (enemiesInCombat.Contains(enemy))
         {
-            Debug.Log("InList");
             return true;
         }
         else if (enemiesInCombat.Count < maxEnemies)

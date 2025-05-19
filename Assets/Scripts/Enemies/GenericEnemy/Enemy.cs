@@ -59,7 +59,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float wanderRotationTimer = 2f; // tiempo que debe durar la rotación */
 
     [Header("Chase")]
-    public bool playerDetected; // Detecto al player
+    protected bool playerDetected; // Detecto al player
     [SerializeField] protected GameObject playerDetectorDown;
     [SerializeField] protected GameObject playerDetectorUp;
     [SerializeField] protected GameObject minDistanceChase;
@@ -180,6 +180,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public void StopChasing()
     {
+        Debug.Log("StopChasing");
         hudPanelCanvas.SetActive(false);
         playerDetectorDown.SetActive(true);
         playerDetectorUp.SetActive(true);
