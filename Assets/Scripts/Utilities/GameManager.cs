@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     public void EnemiesGenerator()
     {
-        for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
+        /* for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
             {
                 Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
-        }
+        } */
         if (FindObjectOfType<ProgressManager>().LoadData())
         {
             elementsLevel = FindObjectOfType<ProgressManager>().progressData.GetTowerActiveElements();
