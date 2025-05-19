@@ -59,7 +59,6 @@ public class DistanceBT : Enemy
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
-        Debug.Log("PLAYER DETECTED?: " + playerDetected);
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
