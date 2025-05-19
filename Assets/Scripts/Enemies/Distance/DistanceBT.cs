@@ -17,6 +17,7 @@ public class DistanceBT : Enemy
     public int teleportChance;
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
+    public ParticleSystem teleportParticles;
 
     [Header("Chase")]
     public float stoppingDistance = 8f;
@@ -26,18 +27,17 @@ public class DistanceBT : Enemy
     [Header("Electric Basic Attack")]
     public Transform hand;
     public LineRenderer lightningLine;
-    public Light attackLight;
-    public float electricAttackRange = 10f;
+    public float electricAttackRange = 8f;
     public GameObject impactPosition;
 
     [Header("Electric Heavy Attack")]
     public ParticleSystem lightningArea;
     public float heavyAttackDelay = 2f;
-    public float heavyAttackRadius = 2f;
     public float lightningHeight = 10f;
     private Vector3 pendingHeavyAttackPosition;
     private ParticleSystem activeHeavyParticles;
     public GameObject heavyAttackZoneTrigger;
+    private bool isAttacking = false;
 
 
     // Start is called before the first frame update
@@ -59,6 +59,7 @@ public class DistanceBT : Enemy
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
+        Debug.Log("PLAYER DETECTED?: " + playerDetected);
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
@@ -193,7 +194,10 @@ public class DistanceBT : Enemy
     private void CheckLookingPlayer()
     {
         SetLookingPlayersActive(true);
-        agent.SetDestination(player.transform.position);
+        if (!isAttacking)
+        {
+            agent.SetDestination(player.transform.position);
+        }
 
         if (lookAtPlayers.Any(lookAtPlayer => lookAtPlayer.GetComponent<LookAtPlayer>().CentralRay()))
         {
@@ -205,7 +209,6 @@ public class DistanceBT : Enemy
         }
 
     }
-
 
     public void TeleportZoneEnter(Collider other)
     {
@@ -249,12 +252,21 @@ public class DistanceBT : Enemy
 
     private void TeleportToSafeZone()
     {
+        Vector3 originalPosition = transform.position;
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * teleportDistance;
-        randomDirection += transform.position;
+        randomDirection += originalPosition;
 
         if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, teleportDistance, NavMesh.AllAreas))
         {
+            // Instanciar partículas donde desaparece
+            Instantiate(teleportParticles, originalPosition, Quaternion.identity).Play();
+
+            // Mover al enemigo
             transform.position = hit.position;
+
+            // Instanciar partículas donde aparece
+            Instantiate(teleportParticles, hit.position, Quaternion.identity).Play();
+
             Debug.Log("Teletransportado a nueva posición: " + hit.position);
         }
         else
@@ -263,9 +275,13 @@ public class DistanceBT : Enemy
         }
     }
 
+
     public void ShootLightning()
     {
         if (player == null) return;
+
+        isAttacking = true;
+        agent.isStopped = true;
 
         //Vector3 direction = (player.transform.position - hand.position).normalized;
         Vector3 direction = (impactPosition.transform.position - hand.position).normalized;
@@ -294,14 +310,16 @@ public class DistanceBT : Enemy
         lightningLine.SetPosition(1, endPoint);
         lightningLine.enabled = true;
 
-        attackLight.enabled = true;
-
+        Invoke(nameof(EndEnemyAttack), 1.5f);
         Invoke(nameof(DisableLightningVisuals), 0.1f);
     }
 
     public void StartHeavyAttack()
     {
         if (player == null) return;
+
+        isAttacking = true;
+        agent.isStopped = true;
 
         // Guardar posició actual del player
         pendingHeavyAttackPosition = player.transform.position;
@@ -317,6 +335,7 @@ public class DistanceBT : Enemy
 
         // Executar atac amb delay
         Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
+        Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
     }
 
     private void ExecuteHeavyAttack()
@@ -336,7 +355,6 @@ public class DistanceBT : Enemy
         lightningLine.SetPosition(1, end);
         lightningLine.enabled = true; // Activar visualització
 
-        attackLight.enabled = true;
         Invoke(nameof(DisableLightningVisuals), 0.1f);
 
         if (isPlayerInHeavyAttackZone)
@@ -348,11 +366,15 @@ public class DistanceBT : Enemy
         heavyAttackZoneTrigger.SetActive(false);
     }
 
-
     private void DisableLightningVisuals()
     {
         lightningLine.enabled = false;
-        attackLight.enabled = false;
+    }
+
+    private void EndEnemyAttack()
+    {
+        isAttacking = false;
+        agent.isStopped = false;
     }
 
     public void ResetHeavyAttackCooldown()
