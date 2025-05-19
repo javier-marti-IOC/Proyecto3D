@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +10,24 @@ public class MeleeBT : Enemy
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
-    
+
+    public GameObject heavyAttackFireZoneTrigger;
+
+    private bool isAttacking;
+    private bool fireZoneArea = false;
+    private Vector3 pendingHeavyAttackPosition;
+    public float heavyAttackDelay = 2f;
+    private float timerFireStay = 0.5f;
+
+    void Start()
+    {
+        if (activeElement == Element.Fire)
+        {
+            //Transform spine1 = player.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "mixamorig:Spine2");
+            //impactPosition = spine1.gameObject;
+            heavyAttackFireZoneTrigger.SetActive(false);
+        }
+    }
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
@@ -41,7 +59,8 @@ public class MeleeBT : Enemy
                 Debug.Log("playerDetected " + playerDetected);
                 if (playerDetected)
                 {
-                    if (!player.GetComponent<VikingController>().EnemyDetecion(this))
+                    //if (!player.GetComponent<VikingController>().EnemyDetecion(this))
+                    if (1 == 0)
                     {
                         Debug.Log("NO");
                         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
@@ -190,13 +209,65 @@ public class MeleeBT : Enemy
         heavyAttackCollider.enabled = false;
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
+    
+        public void ResetHeavyAttackCooldown()
+    {
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
+    }
+
+    public void StartHeavyAttack()
+    {
+        if (player == null) return;
+
+        isAttacking = true;
+        agent.isStopped = true;
+
+        // Guardar posició actual del player
+        pendingHeavyAttackPosition = player.transform.position;
+
+        // Instanciar particules
+        //activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
+        //activeHeavyParticles.Play();
+
+        // Activar la zona
+        Transform zone = heavyAttackFireZoneTrigger.transform;
+        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
+        zone.gameObject.SetActive(true);
+
+        // Executar atac amb delay
+        //Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
+        Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
+    }
+
+        private void EndEnemyAttack()
+    {
+        isAttacking = false;
+        agent.isStopped = false;
+    }
+    public void HeavyAttackZoneStay(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            fireZoneArea = true;
+            Debug.Log("Player in heavy fire zone: " + fireZoneArea);
+            if (timerFireStay < 0)
+            {
+                timerFireStay = 0.5f;
+                other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
+            }
+            else
+            {
+                timerFireStay -= Time.deltaTime;
+            }
+        }
+    }
 
     public void AttackEnter(Collider other)
     {
         if (other.CompareTag(Constants.player) && !playerHitted)
         {
             playerHitted = true;
-            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
         }
     }
 }
