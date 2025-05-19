@@ -8,9 +8,10 @@ public class BasicAttackCollider : MonoBehaviour
     void Awake()
     {
         meleeBT = gameObject.GetComponentInParent<MeleeBT>();
+        GetComponent<Collider>().enabled = false;
     }
     public void OnTriggerEnter(Collider other)
     {
-        meleeBT.AttackEnter(other);
+        meleeBT.EarthBasicAttackEnter(other);
     }
 }

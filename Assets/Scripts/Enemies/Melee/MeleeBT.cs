@@ -56,7 +56,6 @@ public class MeleeBT : Enemy
             else
             {
                 //El enemigo detecta al player
-                Debug.Log("playerDetected " + playerDetected);
                 if (playerDetected)
                 {
                     //if (!player.GetComponent<VikingController>().EnemyDetecion(this))
@@ -72,8 +71,10 @@ public class MeleeBT : Enemy
                         {
                             if (activeElement == Element.Earth)
                             {
+                                agent.SetDestination(transform.position);
                                 if (cooldownHeavyAttack < 0)
                                 {
+                                    Debug.Log("HEAVY ATTACK");
                                     //transform.LookAt(player.transform);
                                     animator.SetInteger(Constants.state, 3);
                                 }
@@ -129,6 +130,7 @@ public class MeleeBT : Enemy
                         }
                         else
                         {
+                            animator.SetInteger(Constants.state, 0);
                             if (!attacking)
                             {
                                 CheckAgentSpeed();
@@ -158,28 +160,28 @@ public class MeleeBT : Enemy
     }
     public void PlayerSecurityMinDistanceColliderEnter(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = false;
         }
     }
     public void PlayerSecurityMinDistanceColliderExit(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = true;
         }
     }
     public void PlayerSecurityMaxDistanceColliderEnter(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = true;
         }
     }
     public void PlayerSecurityMaxDistanceColliderExit(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = false;
         }
@@ -262,12 +264,20 @@ public class MeleeBT : Enemy
         }
     }
 
-    public void AttackEnter(Collider other)
+    public void EarthBasicAttackEnter(Collider other)
     {
         if (other.CompareTag(Constants.player) && !playerHitted)
         {
             playerHitted = true;
             other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
+        }
+    }
+    public void EarthHeavyAttackEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player) && !playerHitted)
+        {
+            playerHitted = true;
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
         }
     }
 }

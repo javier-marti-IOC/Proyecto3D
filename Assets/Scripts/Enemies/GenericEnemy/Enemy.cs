@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
                                             (este numero no entra en el rango)*/
 
     [Header("Cooldowns")]
-    protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
+    [SerializeField]protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
 
     [Header("Patrol")]
