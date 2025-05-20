@@ -51,6 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Proyecto3D.sln",
+    "dotnet.defaultSolution": "proyecto3D.sln",
     "git.ignoreLimitWarning": true
 }

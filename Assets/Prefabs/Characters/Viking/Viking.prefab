@@ -6489,6 +6489,7 @@ GameObject:
   - component: {fileID: 2905455835062671263}
   - component: {fileID: 3023389732709961547}
   - component: {fileID: 5119653336814344007}
+  - component: {fileID: 4455249341099659893}
   m_Layer: 8
   m_Name: Viking
   m_TagString: Player
@@ -6799,6 +6800,14 @@ CapsuleCollider:
   m_Height: 2.3
   m_Direction: 1
   m_Center: {x: 0.0021247864, y: 0.6602942, z: 0}
+--- !u!81 &4455249341099659893
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113744238655452588}
+  m_Enabled: 1
 --- !u!1001 &1622288981137436283
 PrefabInstance:
   m_ObjectHideFlags: 0
