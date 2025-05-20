@@ -29,6 +29,8 @@ public class DistanceBT : Enemy
     public LineRenderer lightningLine;
     public float electricAttackRange = 8f;
     public GameObject impactPosition;
+    public RayoController lightningEffectBasicAttack;
+    public RayoController lightningEffectHeavyAttack;
 
     [Header("Electric Heavy Attack")]
     public ParticleSystem lightningArea;
@@ -79,7 +81,7 @@ public class DistanceBT : Enemy
                         if (foundLookingPlayer)
                         {
                             // SetLookingPlayersActive(false);
-                            Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
+                            Utils.RotatePositionToTarget(gameObject.transform, player.transform, 5f);
                             switch (activeElement)
                             {
                                 case Element.Water:
@@ -282,7 +284,6 @@ public class DistanceBT : Enemy
         isAttacking = true;
         agent.isStopped = true;
 
-        //Vector3 direction = (player.transform.position - hand.position).normalized;
         Vector3 direction = (impactPosition.transform.position - hand.position).normalized;
         RaycastHit hit;
 
@@ -305,12 +306,10 @@ public class DistanceBT : Enemy
             endPoint = hand.position + direction * electricAttackRange;
         }
 
-        lightningLine.SetPosition(0, hand.position);
-        lightningLine.SetPosition(1, endPoint);
-        lightningLine.enabled = true;
+        //Cridar a la funció del rayo Controller
+        lightningEffectBasicAttack.PlayLightning(hand.position, endPoint, 0.1f);
 
         Invoke(nameof(EndEnemyAttack), 1.5f);
-        Invoke(nameof(DisableLightningVisuals), 0.1f);
     }
 
     public void StartHeavyAttack()
@@ -349,12 +348,9 @@ public class DistanceBT : Enemy
         Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
         Vector3 end = pendingHeavyAttackPosition;
 
-        // Posició inicial i final visualment
-        lightningLine.SetPosition(0, start);
-        lightningLine.SetPosition(1, end);
-        lightningLine.enabled = true; // Activar visualització
+        //Cridar a la funció del rayo Controller
+        lightningEffectHeavyAttack.PlayLightning(start, end, 0.1f);
 
-        Invoke(nameof(DisableLightningVisuals), 0.1f);
 
         if (isPlayerInHeavyAttackZone)
         {
@@ -378,7 +374,6 @@ public class DistanceBT : Enemy
 
     public void ResetHeavyAttackCooldown()
     {
-        //playerHitted = false;
         cooldownHeavyAttack = UnityEngine.Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
 

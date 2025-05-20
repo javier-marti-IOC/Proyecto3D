@@ -6,59 +6,64 @@ using UnityEngine.Rendering.Universal.Internal;
 
 public class RayoController : MonoBehaviour
 {
-    public GameObject impactPosition;
-    public int numPoints;
-    public float dispersion;
-    public float frequency;
+    [Header("Configuración del rayo")]
+    public LineRenderer line;
+    public int numPoints = 10;
+    public float dispersion = 0.3f;
+    public float updateFrequency = 0.02f;
 
-    private LineRenderer line;
-    private float time = 0;
+    private float updateTimer = 0f;
+    private bool isActive = false;
+    private Vector3 startPoint;
+    private Vector3 endPoint;
+    
 
-    void Start()
+    public void PlayLightning(Vector3 start, Vector3 end, float duration)
     {
-        line = GetLine();
-        GameObject player = GameObject.FindWithTag("Player");
-        Transform spine1 = player.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "mixamorig:Spine2");
-        impactPosition = spine1.gameObject;
+        startPoint = start;
+        endPoint = end;
+
+        isActive = true;
+        line.enabled = true;
+
+        // Forzar primera actualización inmediata
+        UpdateLightning();
+        updateTimer = 0f;
+
+        Invoke(nameof(StopLightning), duration);
     }
 
-    void Update()
+    private void Update()
     {
-        time += Time.deltaTime;
+        if (!isActive) return;
 
-        if (time > frequency)
+        updateTimer += Time.deltaTime;
+        if (updateTimer >= updateFrequency)
         {
-            UpdatePoints(this.line);
-            time = 0;
+            UpdateLightning();
+            updateTimer = 0f;
         }
     }
 
-    private LineRenderer GetLine()
+    private void UpdateLightning()
     {
-        return GetComponent<LineRenderer>();
-    }
+        List<Vector3> points = new List<Vector3>();
 
-    private void UpdatePoints(LineRenderer line)
-    {
-        List<Vector3> points = InterpolatePoints(Vector3.zero, impactPosition.transform.localPosition, numPoints);
+        for (int i = 0; i < numPoints; i++)
+        {
+            float t = (float)i / (numPoints - 1);
+            Vector3 point = Vector3.Lerp(startPoint, endPoint, t);
+            point += Random.insideUnitSphere * dispersion;
+            points.Add(point);
+        }
+
         line.positionCount = points.Count;
         line.SetPositions(points.ToArray());
     }
 
-    private List<Vector3> InterpolatePoints(Vector3 start, Vector3 impactPosition, int totalPoints)
+    private void StopLightning()
     {
-        List<Vector3> list = new List<Vector3>();
-
-        for (int i = 0; i < totalPoints; i++)
-        {
-            list.Add(Vector3.Lerp(start, impactPosition, (float)i / totalPoints) + RandomPoints());
-        }
-
-        return list;
-    }
-
-    private Vector3 RandomPoints()
-    {
-        return Random.insideUnitSphere.normalized * Random.Range(0, dispersion);
+        isActive = false;
+        line.enabled = false;
     }
 }
