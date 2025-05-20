@@ -220,6 +220,7 @@ public class MeleeBT : Enemy
 
         pendingHeavyAttackPosition = player.transform.position;
 
+        AudioManager.Instance.Play("FireInvoke");
         GameObject zone = Instantiate(fireZonePrefab, pendingHeavyAttackPosition + Vector3.up * 0.01f, Quaternion.identity);
         
         // Pasar referencia del enemigo a la zona
