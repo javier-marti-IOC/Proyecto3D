@@ -145,13 +145,15 @@ MonoBehaviour:
   offset: {x: 0, y: 2, z: -12}
   mouseSensitivity: 2
   joystickSensitivity: 1
+  player: {fileID: 0}
+  followOffset: {x: 0, y: 1.6, z: 0}
   invertMouseY: 0
   invertJoystickY: 0
-  distanceDamping: 5
   collisionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   collisionBuffer: 0.2
+  minDistanceToPlayer: 2
   playerInputs: {fileID: 0}
 --- !u!114 &1829239549439841662
 MonoBehaviour:
