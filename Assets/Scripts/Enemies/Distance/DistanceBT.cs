@@ -45,7 +45,6 @@ public class DistanceBT : Enemy
 
     void Start()
     {
-        base.Awake();
 
         if (activeElement == Element.Electric)
         {
@@ -59,6 +58,7 @@ public class DistanceBT : Enemy
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
+
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
