@@ -234,8 +234,8 @@ public class MeleeBT : Enemy
     {
         if (playerCollider.TryGetComponent(out VikingController vc))
         {
-            float dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
-            vc.HealthTaken(Mathf.RoundToInt(dmg));
+            int dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
+            vc.HealthTaken(dmg);
         }
     }
 

@@ -6767,10 +6767,10 @@ MonoBehaviour:
   healthPoints: 100
   swordCollider: {fileID: 126554037317453137}
   activeElement: 0
-  basicAttackBasicDamage: 20
-  basicAttackMagicDamage: 5
-  heavyAttackBasicDamage: 3
-  heavyAttackMagicDamage: 8
+  basicAttackBasicDamage: 4
+  basicAttackMagicDamage: 6
+  heavyAttackBasicDamage: 12
+  heavyAttackMagicDamage: 18
   OnAction: 0
   isRolling: 0
   rollCooldown: 0
