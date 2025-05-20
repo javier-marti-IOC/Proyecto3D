@@ -348,6 +348,7 @@ public class VikingController : MonoBehaviour
     //Recollir Drops
     public void CollectMana(Element element)
     {
+        AudioManager.Instance.Play("PickUpOrbe");
         int mana = 25;
         if (element == Element.None)
         {
