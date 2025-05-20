@@ -401,7 +401,7 @@ public class VikingController : MonoBehaviour
     }
     public void CollectLife()
     {
-        healthPoints += 10;
+        healthPoints += 30;
         if (healthPoints > 100) healthPoints = 100;
         vikingHealthHUD.SetHealth(healthPoints);
     }

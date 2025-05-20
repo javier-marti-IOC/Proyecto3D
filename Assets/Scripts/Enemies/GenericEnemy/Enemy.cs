@@ -264,6 +264,100 @@ public abstract class Enemy : MonoBehaviour
     }
     public void SetStatsByLevel()
     {
-        //TODO
+        // Earth: Mucha vida base con gran escalado
+        // Daño base bajo con poco escalado, su daño no es ve afectado mucho por el elemento
+        // Lv.1: [3,4,5,10,40], Lv.2: [5,6,8,13,70], Lv.3: [8,9,11,16,100], Lv.4: [10,11,14,19,130] 
+        if (activeElement == Element.Earth)
+        {
+            basicAttackBasicDamage = 3;
+            basicAttackElementalDamage = 4;
+
+            heavyAttackBasicDamage = 5;
+            heavyAttackElementalDamage = 10;
+
+            maxHealthPoints = 40;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 2;
+                basicAttackElementalDamage += 2;
+
+                heavyAttackBasicDamage += 3;
+                heavyAttackElementalDamage += 3;
+
+                maxHealthPoints += 30;
+            }
+        }
+        // Water: Vida estandard con escalado estandard
+        // Daño base estandard con mucho escalado elemental
+        // Lv.1: [2,3,5,6,30], Lv.2: [3,8,7,13,50], Lv.3: [4,13,9,20,70], Lv.4: [5,18,11,27,90] 
+        else if (activeElement == Element.Water)
+        {
+            basicAttackBasicDamage = 2;
+            basicAttackElementalDamage = 3;
+
+            heavyAttackBasicDamage = 5;
+            heavyAttackElementalDamage = 6;
+
+            maxHealthPoints = 30;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 1;
+                basicAttackElementalDamage += 5;
+
+                heavyAttackBasicDamage += 2;
+                heavyAttackElementalDamage += 7;
+
+                maxHealthPoints += 20;
+            }
+        }
+        // Fire: Vida estandard con buen escalado
+        // Daño ataque basico estandard
+        // El ataque fuerte hace 16 tics por lo que el daño despues de los 8s seria:
+        // Lv.1: 48, Lv.2: 96, Lv.3: 144, Lv.4: 192. Sin contar elementos ni randoms. 
+        // Lv.1: [3,4,1,2,30], Lv.2: [5,8,2,4,55], Lv.3: [7,12,3,5,80], Lv.4: [9,16,4,7,105]
+        else if (activeElement == Element.Fire)
+        {
+            basicAttackBasicDamage = 3;
+            basicAttackElementalDamage = 4;
+
+            heavyAttackBasicDamage = 1;
+            heavyAttackElementalDamage = 2;
+
+            maxHealthPoints = 30;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 2;
+                basicAttackElementalDamage += 4;
+
+                heavyAttackBasicDamage += 1;
+                heavyAttackElementalDamage += 2;
+
+                maxHealthPoints += 25;
+            }
+        }
+        // Electric: Poca vida con mal esacalado
+        // Daño de ataque basico flojo y mal escalado
+        // Ataque fuerte con buen daño base y escalado, sin recaer demasiado en daño elemental
+        // Lv.1: [2,3,15,25,25], Lv.2: [4,6,25,35,40], Lv.3: [6,9,35,45,55], Lv.4: [8,12,45,55,70]
+        else if (activeElement == Element.Electric)
+        {
+            basicAttackBasicDamage = 2;
+            basicAttackElementalDamage = 3;
+
+            heavyAttackBasicDamage = 15;
+            heavyAttackElementalDamage = 25;
+
+            maxHealthPoints = 25;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 2;
+                basicAttackElementalDamage += 3;
+
+                heavyAttackBasicDamage += 10;
+                heavyAttackElementalDamage += 10;
+
+                maxHealthPoints += 15;
+            }
+        }
     }
 }

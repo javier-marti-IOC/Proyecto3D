@@ -47,11 +47,11 @@ public class GameManager : MonoBehaviour
         switch (ElementInteraction(dealerElement, takerElement))
         {
             case 1:
-                return (int)(basicDamageRange + elementDamageRange * 1.5f);
+                return (int)(basicDamageRange + (elementDamageRange * 1.5f));
             case 0:
                 return (int)(basicDamageRange + elementDamageRange);
             case -1:
-                return (int)(basicDamageRange + elementDamageRange * 0.75f);
+                return (int)(basicDamageRange + (elementDamageRange * 0.75f));
         }
         return 0;
     }
@@ -122,28 +122,28 @@ public class GameManager : MonoBehaviour
 
     public void EnemiesGenerator()
     {
-        for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i -= 4)
+        for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
                 Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i -= 4)
+        for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
                 Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i -= 4)
+        for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
                 Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0;i -= 4 )
+        for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0;i -- )
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
