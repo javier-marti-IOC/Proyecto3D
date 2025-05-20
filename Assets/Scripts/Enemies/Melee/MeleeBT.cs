@@ -11,23 +11,13 @@ public class MeleeBT : Enemy
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
 
-    public GameObject heavyAttackFireZoneTrigger;
+    public GameObject fireZonePrefab;
 
     private bool isAttacking;
-    private bool fireZoneArea = false;
     private Vector3 pendingHeavyAttackPosition;
     public float heavyAttackDelay = 2f;
-    private float timerFireStay = 0.5f;
+    public float fireZoneDuration;
 
-    void Start()
-    {
-        if (activeElement == Element.Fire)
-        {
-            //Transform spine1 = player.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "mixamorig:Spine2");
-            //impactPosition = spine1.gameObject;
-            heavyAttackFireZoneTrigger.SetActive(false);
-        }
-    }
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
@@ -58,8 +48,7 @@ public class MeleeBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-                    //if (!player.GetComponent<VikingController>().EnemyDetecion(this))
-                    if (1 == 0)
+                    if (!player.GetComponent<VikingController>().EnemyDetecion(this))
                     {
                         Debug.Log("NO");
                         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
@@ -216,7 +205,12 @@ public class MeleeBT : Enemy
     {
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
-
+        private void EndEnemyAttack()
+    {
+        isAttacking = false;
+        agent.isStopped = false;
+    }
+    
     public void StartHeavyAttack()
     {
         if (player == null) return;
@@ -224,43 +218,24 @@ public class MeleeBT : Enemy
         isAttacking = true;
         agent.isStopped = true;
 
-        // Guardar posició actual del player
         pendingHeavyAttackPosition = player.transform.position;
 
-        // Instanciar particules
-        //activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
-        //activeHeavyParticles.Play();
+        GameObject zone = Instantiate(fireZonePrefab, pendingHeavyAttackPosition + Vector3.up * 0.01f, Quaternion.identity);
+        
+        // Pasar referencia del enemigo a la zona
+        zone.GetComponent<FireZone>().Initialize(this);
+        
+        Destroy(zone, fireZoneDuration);
 
-        // Activar la zona
-        Transform zone = heavyAttackFireZoneTrigger.transform;
-        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
-        zone.gameObject.SetActive(true);
-
-        // Executar atac amb delay
-        //Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
         Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
     }
 
-        private void EndEnemyAttack()
+    public void DealFireZoneDamage(Collider playerCollider)
     {
-        isAttacking = false;
-        agent.isStopped = false;
-    }
-    public void HeavyAttackZoneStay(Collider other)
-    {
-        if (other.CompareTag(Constants.player))
+        if (playerCollider.TryGetComponent(out VikingController vc))
         {
-            fireZoneArea = true;
-            Debug.Log("Player in heavy fire zone: " + fireZoneArea);
-            if (timerFireStay < 0)
-            {
-                timerFireStay = 0.5f;
-                other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
-            }
-            else
-            {
-                timerFireStay -= Time.deltaTime;
-            }
+            float dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
+            vc.HealthTaken(Mathf.RoundToInt(dmg));
         }
     }
 

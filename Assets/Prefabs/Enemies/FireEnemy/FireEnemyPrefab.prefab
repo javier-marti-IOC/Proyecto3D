@@ -329,7 +329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5159480a228b1b842beb658e891e3783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeBT: {fileID: 5073826984564960317}
 --- !u!1 &1728276217441479041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,8 +1415,9 @@ MonoBehaviour:
   playerInAttackRange: 0
   towerInRange: 0
   playerHitted: 0
-  minCooldownTimeInclusive: 10
-  maxCooldownTimeExclusive: 16
+  minCooldownTimeInclusive: 12
+  maxCooldownTimeExclusive: 20
+  cooldownHeavyAttack: 0
   ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
     type: 3}
   safeDistance: 1
@@ -1425,15 +1425,16 @@ MonoBehaviour:
   playerDetectorDown: {fileID: 2912064289879657469}
   playerDetectorUp: {fileID: 7113069356314719712}
   minDistanceChase: {fileID: 1728276217441479041}
-  basicAttackBasicDamage: 4
-  basicAttackElementalDamage: 2
-  heavyAttackBasicDamage: 1
-  heavyAttackElementalDamage: 15
+  basicAttackBasicDamage: 2
+  basicAttackElementalDamage: 4
+  heavyAttackBasicDamage: 6
+  heavyAttackElementalDamage: 10
   basicAttackCollider: {fileID: 4202588707592247184}
   heavyAttackCollider: {fileID: 0}
-  heavyAttackFireZoneTrigger: {fileID: 7101652737239434452, guid: 935e5c07041c3a444acec6944d62fec7,
+  fireZonePrefab: {fileID: 7101652737239434452, guid: 935e5c07041c3a444acec6944d62fec7,
     type: 3}
   heavyAttackDelay: 2
+  fireZoneDuration: 8
 --- !u!195 &8761287664093615416
 NavMeshAgent:
   m_ObjectHideFlags: 0
