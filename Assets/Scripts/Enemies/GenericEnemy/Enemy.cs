@@ -81,10 +81,10 @@ public abstract class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
         animIDSpeed = Animator.StringToHash(Constants.speed);
-        foreach (GameObject t in GameObject.FindGameObjectsWithTag(Constants.tower))
+        /* foreach (GameObject t in GameObject.FindGameObjectsWithTag(Constants.tower))
         {
             if (t.GetComponent<Tower>().activeElement == activeElement) tower = t.GetComponent<Tower>();
-        }
+        } */
 
     }
 
