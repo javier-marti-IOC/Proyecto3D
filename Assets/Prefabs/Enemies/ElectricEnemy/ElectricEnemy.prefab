@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 2098412499323697153}
   - component: {fileID: 6912546633430916556}
   m_Layer: 0
-  m_Name: LightningRenderer
+  m_Name: LightningRendererHeavyAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +317,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784645394158776618}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -361,8 +361,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.002532959
-        value: 0.31883448
+        time: 0
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -389,7 +389,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.30724335
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -896,6 +896,217 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8031013963958375719}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3076342110033212889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1310089119578681815}
+  - component: {fileID: 6080048647705669472}
+  m_Layer: 0
+  m_Name: LightningRendererBasicAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1310089119578681815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076342110033212889}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.140001, y: 3.328, z: 10.829998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 149331980688302648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!120 &6080048647705669472
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076342110033212889}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6c897ef170d612e41b62993e2cbb323b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.11849196
+        value: 0.15054902
+        inSlope: -0.003244397
+        outSlope: -0.003244397
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.8966932
+        value: 0.15092272
+        inSlope: -0.0035304034
+        outSlope: -0.0035304034
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
+--- !u!1 &3143721626095181383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6767906845183249693}
+  - component: {fileID: 6551246795342067388}
+  m_Layer: 0
+  m_Name: RayoControllerBasicAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6767906845183249693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143721626095181383}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.052995928, y: -0.010521038, z: -0.0017083001, w: 0.99853784}
+  m_LocalPosition: {x: 0.009226931, y: 0.41654837, z: -0.026469316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 149331980688302648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6551246795342067388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143721626095181383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a26c9a9c54a3640936b8032eb032c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 6080048647705669472}
+  numPoints: 10
+  dispersion: 1
+  updateFrequency: 0.05
 --- !u!1 &3338182029527256264
 GameObject:
   m_ObjectHideFlags: 0
@@ -11207,6 +11418,7 @@ Transform:
   - {fileID: 7112861792126278427}
   - {fileID: 5909286692545216251}
   - {fileID: 2853439425861859216}
+  - {fileID: 1310089119578681815}
   - {fileID: 2098412499323697153}
   - {fileID: 876552761740328005}
   - {fileID: 8347957517368812186}
@@ -11214,6 +11426,8 @@ Transform:
   - {fileID: 4915129082857986680}
   - {fileID: 6092340985092875376}
   - {fileID: 5181325054406352418}
+  - {fileID: 6767906845183249693}
+  - {fileID: 985132454579357166}
   m_Father: {fileID: 2107500358928555347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1612513726924291614
@@ -11310,11 +11524,11 @@ MonoBehaviour:
   playerHitted: 0
   minCooldownTimeInclusive: 8
   maxCooldownTimeExclusive: 10
+  cooldownHeavyAttack: 0
   ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
     type: 3}
   safeDistance: 1
   pointPatrol: {fileID: 961819793605346570}
-  playerDetected: 0
   playerDetectorDown: {fileID: 8306107901565845812}
   playerDetectorUp: {fileID: 7831347867606095461}
   minDistanceChase: {fileID: 913889334040122599}
@@ -11325,18 +11539,19 @@ MonoBehaviour:
   teleportCooldownTime: 20
   teleportChance: 10
   teleportDistance: 10
+  teleportParticles: {fileID: 6342882208450846344}
   stoppingDistance: 8
   lookAtPlayers:
   - {fileID: 6828379924087982675}
   - {fileID: 1843922218122099571}
   hand: {fileID: 749880238909680935}
-  lightningLine: {fileID: 6912546633430916556}
-  attackLight: {fileID: 0}
+  lightningLine: {fileID: 0}
   electricAttackRange: 10
   impactPosition: {fileID: 0}
+  lightningEffectBasicAttack: {fileID: 6551246795342067388}
+  lightningEffectHeavyAttack: {fileID: 9010351035347234304}
   lightningArea: {fileID: 5840987218067351811}
   heavyAttackDelay: 2
-  heavyAttackRadius: 2
   lightningHeight: 10
   heavyAttackZoneTrigger: {fileID: 6150424103477509842}
 --- !u!54 &4139566177723120796
@@ -17339,6 +17554,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 8
+--- !u!1 &8370716228581958209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985132454579357166}
+  - component: {fileID: 9010351035347234304}
+  m_Layer: 0
+  m_Name: RayoControllerHeavyAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985132454579357166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8370716228581958209}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.052995928, y: -0.010521038, z: -0.0017083001, w: 0.99853784}
+  m_LocalPosition: {x: 0.009226931, y: 0.41654837, z: -0.026469316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 149331980688302648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9010351035347234304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8370716228581958209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a26c9a9c54a3640936b8032eb032c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 6912546633430916556}
+  numPoints: 15
+  dispersion: 1
+  updateFrequency: 0.05
 --- !u!1 &8443384556436992215
 GameObject:
   m_ObjectHideFlags: 0
