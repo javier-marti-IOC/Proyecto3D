@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +10,14 @@ public class MeleeBT : Enemy
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
-    
+
+    public GameObject fireZonePrefab;
+
+    private bool isAttacking;
+    private Vector3 pendingHeavyAttackPosition;
+    public float heavyAttackDelay = 2f;
+    public float fireZoneDuration;
+
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
@@ -38,7 +46,6 @@ public class MeleeBT : Enemy
             else
             {
                 //El enemigo detecta al player
-                Debug.Log("playerDetected " + playerDetected);
                 if (playerDetected)
                 {
                     if (!player.GetComponent<VikingController>().EnemyDetecion(this))
@@ -53,8 +60,10 @@ public class MeleeBT : Enemy
                         {
                             if (activeElement == Element.Earth)
                             {
+                                agent.SetDestination(transform.position);
                                 if (cooldownHeavyAttack < 0)
                                 {
+                                    Debug.Log("HEAVY ATTACK");
                                     //transform.LookAt(player.transform);
                                     animator.SetInteger(Constants.state, 3);
                                 }
@@ -110,6 +119,7 @@ public class MeleeBT : Enemy
                         }
                         else
                         {
+                            animator.SetInteger(Constants.state, 0);
                             if (!attacking)
                             {
                                 CheckAgentSpeed();
@@ -139,28 +149,28 @@ public class MeleeBT : Enemy
     }
     public void PlayerSecurityMinDistanceColliderEnter(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = false;
         }
     }
     public void PlayerSecurityMinDistanceColliderExit(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = true;
         }
     }
     public void PlayerSecurityMaxDistanceColliderEnter(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = true;
         }
     }
     public void PlayerSecurityMaxDistanceColliderExit(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = false;
         }
@@ -190,13 +200,59 @@ public class MeleeBT : Enemy
         heavyAttackCollider.enabled = false;
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
+    
+        public void ResetHeavyAttackCooldown()
+    {
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
+    }
+        private void EndEnemyAttack()
+    {
+        isAttacking = false;
+        agent.isStopped = false;
+    }
+    
+    public void StartHeavyAttack()
+    {
+        if (player == null) return;
 
-    public void AttackEnter(Collider other)
+        isAttacking = true;
+        agent.isStopped = true;
+
+        pendingHeavyAttackPosition = player.transform.position;
+
+        GameObject zone = Instantiate(fireZonePrefab, pendingHeavyAttackPosition + Vector3.up * 0.01f, Quaternion.identity);
+        
+        // Pasar referencia del enemigo a la zona
+        zone.GetComponent<FireZone>().Initialize(this);
+        
+        Destroy(zone, fireZoneDuration);
+
+        Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
+    }
+
+    public void DealFireZoneDamage(Collider playerCollider)
+    {
+        if (playerCollider.TryGetComponent(out VikingController vc))
+        {
+            float dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
+            vc.HealthTaken(Mathf.RoundToInt(dmg));
+        }
+    }
+
+    public void EarthBasicAttackEnter(Collider other)
     {
         if (other.CompareTag(Constants.player) && !playerHitted)
         {
             playerHitted = true;
-            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
+        }
+    }
+    public void EarthHeavyAttackEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player) && !playerHitted)
+        {
+            playerHitted = true;
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
         }
     }
 }

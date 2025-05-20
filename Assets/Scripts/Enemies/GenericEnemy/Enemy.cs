@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
                                             (este numero no entra en el rango)*/
 
     [Header("Cooldowns")]
-    protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
+    [SerializeField]protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
 
     [Header("Patrol")]
@@ -81,10 +81,10 @@ public abstract class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
         animIDSpeed = Animator.StringToHash(Constants.speed);
-        foreach (GameObject t in GameObject.FindGameObjectsWithTag(Constants.tower))
+        /* foreach (GameObject t in GameObject.FindGameObjectsWithTag(Constants.tower))
         {
             if (t.GetComponent<Tower>().activeElement == activeElement) tower = t.GetComponent<Tower>();
-        }
+        } */
 
     }
 

@@ -4416,6 +4416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   continueBtn: {fileID: 0}
+  newGameBtn: {fileID: 0}
 --- !u!1 &617777472
 GameObject:
   m_ObjectHideFlags: 0
