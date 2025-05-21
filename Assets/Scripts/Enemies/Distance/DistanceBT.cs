@@ -26,7 +26,6 @@ public class DistanceBT : Enemy
 
     [Header("Electric Basic Attack")]
     public Transform hand;
-    public LineRenderer lightningLine;
     public float electricAttackRange = 8f;
     public GameObject impactPosition;
     public RayoController lightningEffectBasicAttack;
@@ -366,12 +365,6 @@ public class DistanceBT : Enemy
         }
         heavyAttackZoneTrigger.SetActive(false);
     }
-
-    private void DisableLightningVisuals()
-    {
-        lightningLine.enabled = false;
-    }
-
     private void EndEnemyAttack()
     {
         isAttacking = false;
