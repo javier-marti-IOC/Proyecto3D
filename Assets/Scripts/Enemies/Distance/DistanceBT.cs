@@ -401,12 +401,18 @@ public class DistanceBT : Enemy
         playerDetectorUp.SetActive(false);
         minDistanceChase.SetActive(false);
         SetLookingPlayersActive(false);
+        Invoke(nameof(SetFalseHitted), 0.5f);
     }
     // Método compatible con Animation Event
     public void SetHittedFalse()
     {
-        hitted = false;
+        // hitted = false;
         agent.isStopped = false;
         hitParticle.SetActive(false);
+    }
+
+    private void SetFalseHitted()
+    {
+        hitted = false;
     }
 }

@@ -1047,7 +1047,7 @@ MonoBehaviour:
   basicAttackElementalDamage: 3
   heavyAttackBasicDamage: 3
   heavyAttackElementalDamage: 4
-  hitParticles: {fileID: 0}
+  hitParticle: {fileID: 6846957109864533057}
   teleportCooldownTime: 5
   teleportChance: 15
   teleportDistance: 5
@@ -1057,7 +1057,6 @@ MonoBehaviour:
   - {fileID: 993764451183703474}
   - {fileID: 222972871648877456}
   hand: {fileID: 0}
-  lightningLine: {fileID: 0}
   electricAttackRange: 10
   impactPosition: {fileID: 0}
   lightningEffectBasicAttack: {fileID: 0}
@@ -1347,12 +1346,12 @@ PrefabInstance:
     - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.242
+      value: 0.771
       objectReference: {fileID: 0}
     - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
         type: 3}
@@ -1404,6 +1403,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1, type: 3}
+--- !u!1 &6846957109864533057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4142111093286157832, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7385616558527689289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7655750607069706786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
