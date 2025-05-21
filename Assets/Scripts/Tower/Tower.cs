@@ -31,6 +31,8 @@ public class Tower : MonoBehaviour
     public Color[] colors;
     public GameObject deathTowerParticles;
     public GameObject[] environmentParticles;
+    public GameObject[] trees;
+    public Mesh[] newTrees;
 
 
 
@@ -197,6 +199,15 @@ public class Tower : MonoBehaviour
         }
         InstantiateDeathTowerParticles();
         Utils.ReplaceMaterials(materials, colors);
+
+        /* 
+            if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
+            {
+                Utils.ReplaceTrees(trees, newTrees);
+                Debug.Log("--->>>> CAMBIANDO ARBOLES");
+            } 
+        */
+
         ChangeEnvironmentParticles();
         Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
