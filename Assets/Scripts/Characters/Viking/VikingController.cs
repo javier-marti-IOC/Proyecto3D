@@ -195,21 +195,25 @@ public class VikingController : MonoBehaviour
         //ACtivar elemento nuevo
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
+            AudioManager.Instance?.Play("ActivateElement");
             elementsHUD.earthReduce(earthMana);
             changed = true;
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
+            AudioManager.Instance?.Play("ActivateElement");
             elementsHUD.waterReduce(waterMana);
             changed = true;
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
+            AudioManager.Instance?.Play("ActivateElement");
             elementsHUD.fireReduce(fireMana);
             changed = true;
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
+            AudioManager.Instance?.Play("ActivateElement");
             elementsHUD.lightningReduce(electricMana);
             changed = true;
         }
@@ -366,10 +370,11 @@ public class VikingController : MonoBehaviour
     //Recollir Drops
     public void CollectMana(Element element)
     {
-        AudioManager.Instance.Play("PickUpOrbe");
+        
         int mana = 25;
         if (element == Element.None)
         {
+            AudioManager.Instance.Play("PickUpGoldOrbe");
             if (activeElement != Element.Earth)
             {
                 earthMana = 100;
@@ -391,30 +396,34 @@ public class VikingController : MonoBehaviour
                 elementsHUD.lightningAdd(electricMana);
             }
         }
-        else if (element == Element.Earth && activeElement != Element.Earth)
+        else
         {
-            earthMana += mana;
-            if (earthMana > 100) earthMana = 100;
-            elementsHUD.earthAdd(earthMana);
+            AudioManager.Instance.Play("PickUpOrbe");
+            if (element == Element.Earth && activeElement != Element.Earth)
+            {
+                earthMana += mana;
+                if (earthMana > 100) earthMana = 100;
+                elementsHUD.earthAdd(earthMana);
 
-        }
-        else if (element == Element.Water && activeElement != Element.Water)
-        {
-            waterMana += mana;
-            if (waterMana > 100) waterMana = 100;
-            elementsHUD.waterAdd(waterMana);
-        }
-        else if (element == Element.Fire && activeElement != Element.Fire)
-        {
-            fireMana += mana;
-            if (fireMana > 100) fireMana = 100;
-            elementsHUD.fireAdd(fireMana);
-        }
-        else if (element == Element.Electric && activeElement != Element.Electric)
-        {
-            electricMana += mana;
-            if (electricMana > 100) electricMana = 100;
-            elementsHUD.lightningAdd(electricMana);
+            }
+            else if (element == Element.Water && activeElement != Element.Water)
+            {
+                waterMana += mana;
+                if (waterMana > 100) waterMana = 100;
+                elementsHUD.waterAdd(waterMana);
+            }
+            else if (element == Element.Fire && activeElement != Element.Fire)
+            {
+                fireMana += mana;
+                if (fireMana > 100) fireMana = 100;
+                elementsHUD.fireAdd(fireMana);
+            }
+            else if (element == Element.Electric && activeElement != Element.Electric)
+            {
+                electricMana += mana;
+                if (electricMana > 100) electricMana = 100;
+                elementsHUD.lightningAdd(electricMana);
+            }
         }
     }
     public void CollectLife()
