@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                //Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
         for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                //Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
         if (FindObjectOfType<ProgressManager>().LoadData())

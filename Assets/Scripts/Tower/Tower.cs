@@ -240,7 +240,7 @@ public class Tower : MonoBehaviour
         GameObject enemy = enemiesInHealRange[0]; // Creamos referencia del prefab guardado en X posicion del array
         enemiesInHealRange.RemoveAt(0); // Eliminamos ese prefab del array
         enemiesInSecondZoneRange.Remove(enemy.GetComponent<Transform>().gameObject);
-        Destroy(enemy.transform.root.gameObject); // Destruimos el prefab
+        enemy.GetComponent<Enemy>().Dying(false); // Destruimos el prefab
         CheckSecondZoneCount(enemiesInSecondZoneRange);
     }
 
