@@ -394,6 +394,7 @@ public class DistanceBT : Enemy
         base.HealthTaken(damageTaken);
         hitted = true;
         agent.isStopped = true;
+        hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
 
         playerDetectorDown.SetActive(false);
@@ -406,5 +407,6 @@ public class DistanceBT : Enemy
     {
         hitted = false;
         agent.isStopped = false;
+        hitParticle.SetActive(false);
     }
 }

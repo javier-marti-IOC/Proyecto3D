@@ -69,7 +69,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int basicAttackElementalDamage;
     [SerializeField] protected int heavyAttackBasicDamage;
     [SerializeField] protected int heavyAttackElementalDamage;
-
+    public GameObject hitParticle;
 
 
     protected virtual void Awake()
