@@ -26,8 +26,6 @@ public class DistanceBT : Enemy
 
     [Header("Electric Basic Attack")]
     public Transform hand;
-    public ParticleSystem handParticles;
-    private ParticleSystem currentHandParticles;
     public float electricAttackRange = 8f;
     public GameObject impactPosition;
     public RayoController lightningEffectBasicAttack;
@@ -361,20 +359,6 @@ public class DistanceBT : Enemy
         }
         heavyAttackZoneTrigger.SetActive(false);
     }
-
-    private void EnableHandParticles()
-    {
-        currentHandParticles = Instantiate(handParticles, hand.position, hand.rotation, hand);
-        currentHandParticles.Play();
-    }
-
-    private void DisableHandParticles()
-    {
-        currentHandParticles.Stop();
-        Destroy(currentHandParticles.gameObject);
-        currentHandParticles = null;
-    }
-
     private void EndEnemyAttack()
     {
         isAttacking = false;
