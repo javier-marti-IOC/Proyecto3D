@@ -224,7 +224,7 @@ public abstract class Enemy : MonoBehaviour
         if (drops)
         {
             //for random
-            int random = Random.Range(0, 100);
+            int random = Random.Range(0, 100);
             if (random == 0)
             {
                 AudioManager.Instance?.Play("goldDrop");
