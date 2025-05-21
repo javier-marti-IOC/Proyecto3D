@@ -32,7 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 138.78, y: -119.99, z: -81.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -126,9 +126,7 @@ MonoBehaviour:
   - "Con su victoria, tom\xF3 el poder y desat\xF3 el caos sin control."
   - "Las torres elementales fueron corrompidas, el mundo se pudri\xF3 en su sombra."
   - "Lo que antes florec\xEDa, ahora es desolaci\xF3n y cenizas."
-  panel: {fileID: 0}
-  fadePanel: {fileID: 0}
-  readingPillar: 0
+  textHUD: {fileID: 0}
 --- !u!65 &4126845980547460901
 BoxCollider:
   m_ObjectHideFlags: 0
