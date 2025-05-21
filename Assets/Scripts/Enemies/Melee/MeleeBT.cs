@@ -144,7 +144,7 @@ public class MeleeBT : Enemy
         }
         else
         {
-            Dying();
+            Dying(true);
         }
     }
     public void PlayerSecurityMinDistanceColliderEnter(Collider other)

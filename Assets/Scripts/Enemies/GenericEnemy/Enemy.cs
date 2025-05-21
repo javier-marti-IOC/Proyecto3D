@@ -180,7 +180,6 @@ public abstract class Enemy : MonoBehaviour
     }
     public void StopChasing()
     {
-        Debug.Log("StopChasing");
         hudPanelCanvas.SetActive(false);
         playerDetectorDown.SetActive(true);
         playerDetectorUp.SetActive(true);
@@ -214,45 +213,47 @@ public abstract class Enemy : MonoBehaviour
         enemyHUD.UpdateHealth(healthPoints);
         PlayerDetected();
     }
-    public virtual void Dying()
+    public virtual void Dying(bool drops)
     {
-        Debug.Log("Muelto");
         if (tower != null)
         {
             tower.enemiesInSecondZoneRange.Remove(gameObject);
             tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
         }
         player.GetComponent<VikingController>().RemoveEnemyDetection(this);
-        //for random
-        int random = Random.Range(0, 100);
-        if (random == 0)
+        if (drops)
         {
-            Instantiate(goldDrop, dropPosition.position, Quaternion.identity, null);
-        }
-        else if (random < 20)
-        {
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
-        }
-        else if (random < 50)
-        {
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
-        }
-        else
-        {
-            Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
-        }
-        random = Random.Range(0, 100);
-        if (random < 20)
-        {
-            Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
-            Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
-        }
-        else if (random < 50)
-        {
-            Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+            //for random
+            int random = Random.Range(0, 100);
+            if (random == 0)
+            {
+                Instantiate(goldDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else if (random < 20)
+            {
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else if (random < 50)
+            {
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else
+            {
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            random = Random.Range(0, 100);
+            if (random < 20)
+            {
+                Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else if (random < 50)
+            {
+                Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+            }
         }
         Destroy(transform.parent.gameObject);
     }
@@ -359,5 +360,6 @@ public abstract class Enemy : MonoBehaviour
                 maxHealthPoints += 15;
             }
         }
+        healthPoints = maxHealthPoints;
     }
 }

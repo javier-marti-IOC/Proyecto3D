@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,7 +30,7 @@ public class VikingController : MonoBehaviour
     [Header("Combat")]
     public Animator animator;
     public int healthPoints;
-    public GameObject swordCollider;
+    public Collider swordCollider;
     public Element activeElement;
     private bool isBasicAttack;
     public int basicAttackBasicDamage;
@@ -49,6 +50,11 @@ public class VikingController : MonoBehaviour
     [Header("Enemies")]
     public List<Enemy> enemiesInCombat;
     public int maxEnemies;
+
+    [Header("Heal")]
+    public GameObject healParticles;
+    private float healParticlesTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +68,7 @@ public class VikingController : MonoBehaviour
         healthPoints = 100;
         activeElement = Element.None;
         OnAction = false;
-        swordCollider.SetActive(false);
+        swordCollider.enabled = false;
         isBasicAttack = true;
 
         //DPAD
@@ -82,6 +88,14 @@ public class VikingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (healParticlesTimer < 0)
+        {
+            healParticles.SetActive(false);
+        }
+        else
+        {
+            healParticlesTimer -= Time.deltaTime;
+        }
         if (healthPoints <= 0)
         {
             Dying();
@@ -265,12 +279,12 @@ public class VikingController : MonoBehaviour
     }
     public void ColliderAttackEnable()
     {
-        swordCollider.SetActive(true);
+        swordCollider.enabled = true;
     }
 
     public void ColliderAttackDisable()
     {
-        swordCollider.SetActive(false);
+        swordCollider.enabled = false;
     }
     public void AttackEnter(Collider other)
     {
@@ -293,8 +307,15 @@ public class VikingController : MonoBehaviour
         }
         if (other.CompareTag(Constants.tower))
         {
-            Debug.Log("TowerHit");
-            other.GetComponent<Tower>().HealthTaken(5);
+            if (other.GetComponent<Tower>().activeElement == activeElement && !isBasicAttack)
+            {
+                if (activeElement == Element.Earth) earthMana = 0;
+                else if (activeElement == Element.Water) waterMana = 0;
+                else if (activeElement == Element.Fire) fireMana = 0;
+                else if (activeElement == Element.Electric) electricMana = 0;
+                Debug.Log("TowerHit");
+                other.GetComponent<Tower>().HealthTaken(20);
+            }
         }
     }
     public void HealthTaken(int healthTaken)
@@ -307,7 +328,6 @@ public class VikingController : MonoBehaviour
     }
     public void Dying()
     {
-        Debug.Log("DEADGE");
         //animator.SetTrigger("Dying");
         OnAction = true;
         pauseMenu.ToggleDeath();
@@ -324,10 +344,8 @@ public class VikingController : MonoBehaviour
         else if (enemiesInCombat.Count < maxEnemies)
         {
             enemiesInCombat.Add(enemy);
-            Debug.Log("Added");
             return true;
         }
-        Debug.Log("Exceed");
         return false;
     }
 
@@ -401,18 +419,12 @@ public class VikingController : MonoBehaviour
     }
     public void CollectLife()
     {
+        healParticles.SetActive(false);
+        healParticles.SetActive(true);
+        healParticlesTimer = 2f;
+        AudioManager.Instance.Play("PickUpOrbe");
         healthPoints += 30;
         if (healthPoints > 100) healthPoints = 100;
         vikingHealthHUD.SetHealth(healthPoints);
-    }
-    
-    //Reiniciar intent
-    public void Continue()
-    {
-        gameManager.ResetEnemies();
-        gameObject.GetComponent<ThirdPersonController>().enabled = false;
-        transform.position = new Vector3(96, 0, 21);
-        gameObject.GetComponent<ThirdPersonController>().enabled = true;
-        Start();
     }
 }
