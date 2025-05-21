@@ -14,6 +14,7 @@ public class Tutorial : MonoBehaviour
         {
             ProgressManager.Instance.Data.tutorial = true;
             progressManager.SaveGame();
+            Debug.Log("----->>>>> TUTORIAL COMPLETADO");
         }
     }
 }
