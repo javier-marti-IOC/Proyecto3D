@@ -114,6 +114,17 @@ MonoBehaviour:
     outputGroup: {fileID: 7930080421294217295, guid: 36176d1c6022c4d4aa572482508b761b,
       type: 2}
     source: {fileID: 0}
+  - name: ActivateElement
+    clip: {fileID: 8300000, guid: f86f14834422eb64aac2ef36a16b9aae, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 7930080421294217295, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   ambience:
   - name: AmbienceVolcano
     clip: {fileID: 8300000, guid: 33721e91a858d784599e731018aa566f, type: 3}

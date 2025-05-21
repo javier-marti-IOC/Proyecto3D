@@ -227,21 +227,25 @@ public abstract class Enemy : MonoBehaviour
         int random = Random.Range(0, 100);
         if (random == 0)
         {
+            AudioManager.Instance?.Play("goldDrop");
             Instantiate(goldDrop, dropPosition.position, Quaternion.identity, null);
         }
         else if (random < 20)
         {
+            AudioManager.Instance?.Play("manaDrop");
             Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
             Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
             Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
         }
         else if (random < 50)
         {
+            AudioManager.Instance?.Play("manaDrop");
             Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
             Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
         }
         else
         {
+            AudioManager.Instance?.Play("manaDrop");
             Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
         }
         random = Random.Range(0, 100);
