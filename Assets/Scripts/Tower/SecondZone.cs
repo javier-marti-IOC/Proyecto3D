@@ -7,6 +7,7 @@ public class SecondZone : MonoBehaviour
 {
     public Tower tower;
     public Enemy enemy;
+    public bool playerInSecondZoneRange;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -23,10 +24,16 @@ public class SecondZone : MonoBehaviour
                     tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
                 }
             }
-            else 
+            else
             {
                 Debug.Log("---->>>> NO EXISTE EL COMPONENTE ENEMY");
             }
+        }
+
+        if (other.CompareTag(Constants.player))
+        {
+            playerInSecondZoneRange = true;
+            // Debug.Log("---->>>>>>> PLAYER EN ZONA");
         }
     }
 
@@ -42,9 +49,14 @@ public class SecondZone : MonoBehaviour
                     enemy.towerInRange = false;
                     tower.enemiesInSecondZoneRange.Remove(enemy.gameObject);
                     tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
-
                 }
             }
+        }
+
+        if (other.CompareTag(Constants.player))
+        {
+            playerInSecondZoneRange = false;
+            // Debug.Log("---->>>>>>> PLAYER FUERA DE ZONA");
         }
     }
 }

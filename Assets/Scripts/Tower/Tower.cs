@@ -16,6 +16,10 @@ public class Tower : MonoBehaviour
     public int life;
     public int invoke_cost;
     public bool isOnCooldown;
+    [SerializeField] float remainingTime;
+    public float cooldownTime;
+    private float regenTimer = 0f;
+
     [Header("Zonas de contacto")]
     public bool firstZoneContact;
     public bool secondZoneContact;
@@ -25,16 +29,9 @@ public class Tower : MonoBehaviour
     public Material[] materials;
     public Color[] corruptedColors;
     public Color[] colors;
-
     public GameObject deathTowerParticles;
-
     public GameObject[] environmentParticles;
 
-    [Header("Texto del canva")]
-    //public TextMeshProUGUI life_text;
-    //[SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float remainingTime;
-    public float cooldownTime;
 
 
     // Escondemos del inspector porque si no, al eliminar el enemigo de la lista, salta error de que no lo encuentra
@@ -44,30 +41,12 @@ public class Tower : MonoBehaviour
     [Header("Spawner")]
     public Spawner spawner;
 
-    //[Header("Elemental Objects Assigned")]
-    //public Transform elementalObjects;
-    //public ChangeAppearence changeAppearence;
-    //public Color healthyTreeColor = new Color();
-
-    //[Header("CameraManager")]
-    //public CameraManager cameraManager;
-
     [Header("Progress Manager")]
     public ProgressManager progressManager;
     public ProgressData progressData;
 
     [Header("TowerHud")]
     public TowerHUD towerHUD;
-
-
-    /* ORDEN DE LAS TORRES (Constants.cs) */
-    /* 
-        None ===== [0]
-        Earth ==== [1]
-        Water ==== [2]
-        Fire ===== [3]
-        Electric = [4]
-    */
 
     void Start()
     {
@@ -76,18 +55,13 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        /* if (life_text != null) // Mostrar la vida de la torre por pantalla
-        {
-            life_text.text = "T.Life: " + life;
-        } */
-
         if (Input.GetKeyDown(KeyCode.L)) // Restar vida
         {
             life = life - 5;
             towerHUD.UpdateHealth(life);
         }
 
-        if (Input.GetKeyDown(KeyCode.P)) // Restar vida
+        if (Input.GetKeyDown(KeyCode.P)) // Sumar vida
         {
             life += 5;
             towerHUD.UpdateHealth(life);
@@ -97,7 +71,7 @@ public class Tower : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.M)) // Restar vida
+        if (Input.GetKeyDown(KeyCode.M)) // Reiniciar materiales
         {
             Utils.ReplaceMaterials(materials, corruptedColors);
             ChangeEnvironmentParticlesOff();
@@ -106,8 +80,8 @@ public class Tower : MonoBehaviour
 
         if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
-            int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement); // Para obtener la posicion de la torre en el array del JSON
-                                                                                                     //Debug.Log("POSITION EN EL ARRAY: " + position);
+            int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement);
+                                                                                                    
             Utils.ReplaceMaterials(materials, colors);
             ChangeEnvironmentParticles();
             for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
@@ -120,6 +94,17 @@ public class Tower : MonoBehaviour
             Utils.ReplaceMaterials(materials, corruptedColors);
             ChangeEnvironmentParticlesOff();
         }
+
+        if (!secondZone.playerInSecondZoneRange && life != max_life)
+        {
+            IncreaseLifeProgressively();
+        }
+
+        // ***************************************************
+        // ***************************************************
+        // ********************  TOWER BT ********************
+        // ***************************************************
+        // ***************************************************
 
         if (life <= 0)
         {
@@ -149,7 +134,7 @@ public class Tower : MonoBehaviour
                     {
                         if (secondZoneContact) // El enemigo de mi tipo esta en el collider exterior?
                         {
-                            Debug.Log("-----> ACERCATE");
+                            // Debug.Log("-----> ACERCATE");
                             CallAllEnemies(enemiesInSecondZoneRange);
                         }
                         else
@@ -183,27 +168,26 @@ public class Tower : MonoBehaviour
                         }
                     }
                 }
-
             }
         }
-
     }
 
-    /* public void DestroyTower()
+    public void IncreaseLifeProgressively()
     {
-        gameObject.SetActive(false);
-        //cameraManager.ActivateFade();
-        Invoke(nameof(EraseTower), 1.0f);
-    } */
+        regenTimer += Time.deltaTime;
 
-    /* public void EraseTower()
-    {
-        Utils.ReplaceMaterials(materials, corruptedColors);
-        Destroy(gameObject); // Destruye la torre si se queda sin vida
-        ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
-        //Debug.Log("TORRES EN EL PROGRESS DATA: " + string.Join(", ", ProgressManager.Instance.Data.towerActiveElements));
-        progressManager.SaveGame();
-    } */
+        if (regenTimer >= 1f)
+        {
+            regenTimer = 0f;
+            life += 1;
+
+            if (life > max_life)
+                life = max_life;
+
+            towerHUD.UpdateHealth(life);
+        }
+        // Debug.Log("---->>>> INCREMENTANDO VIDA PROGRESIVAMENTE");
+    }
 
     public void DestroyTower()
     {
@@ -228,13 +212,13 @@ public class Tower : MonoBehaviour
             if (this.life > max_life) // Si se pasa del limite de vida establecido, se rebaja hasta se vida maxima
             {
                 this.life = max_life;
-                Debug.Log("---> Curacion aplicado");
+                // Debug.Log("---> Curacion aplicado");
             }
         }
         else
         {
             this.life -= invoke_cost;
-            Debug.Log("---> Coste aplicado");
+            // Debug.Log("---> Coste aplicado");
         }
     }
 
@@ -287,17 +271,17 @@ public class Tower : MonoBehaviour
             {
                 if (enemy.activeElement == activeElement) // Verificamos si es del mismo tipo que la torre
                 {
-                    Debug.Log("----->>>>>>>>>> DETECTO ALGO DE ENEMY");
+                    // Debug.Log("----->>>>>>>>>> DETECTO ALGO DE ENEMY");
                     if (!enemiesInHealRange.Contains(other.gameObject)) // Si el enemigo no esta en el array de enemigos en zona, lo añadimos
                     {
-                        Debug.Log("HEALER");
+                        // Debug.Log("HEALER");
                         enemiesInHealRange.Add(other.gameObject.GetComponent<Transform>().gameObject); // Añadimos el enemigo a la lista de enemigos detectados en la zona de curacion
                     }
                 }
             }
             else
             {
-                Debug.Log("---->>>>> NO ENTRA EN ZONA CURA");
+                // Debug.Log("---->>>>> NO ENTRA EN ZONA CURA");
             }
         }
     }
@@ -312,7 +296,7 @@ public class Tower : MonoBehaviour
                 {
                     firstZoneContact = false;
                     enemiesInHealRange.Remove(other.gameObject); // Eliminamos el enemigo que sale de la zona de curacion
-                    Debug.Log("---->>>>> SALE EL ENEMIGO");
+                    // Debug.Log("---->>>>> SALE EL ENEMIGO");
                 }
             }
         }
