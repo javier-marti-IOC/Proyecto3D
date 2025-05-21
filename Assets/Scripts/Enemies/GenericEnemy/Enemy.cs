@@ -208,7 +208,7 @@ public abstract class Enemy : MonoBehaviour
     {
         attacking = false;
     }
-    public void HealthTaken(int damageTaken)
+    public virtual void HealthTaken(int damageTaken)
     {
         healthPoints -= damageTaken;
         enemyHUD.UpdateHealth(healthPoints);
