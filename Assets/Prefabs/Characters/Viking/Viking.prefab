@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6577771443561475689}
   - component: {fileID: 1053238006340951725}
   - component: {fileID: 5546922886871438127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SwordCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6766,8 +6766,8 @@ MonoBehaviour:
   elementsHUD: {fileID: 0}
   pauseMenu: {fileID: 0}
   animator: {fileID: 8620253860425985851}
-  healthPoints: 100
-  swordCollider: {fileID: 126554037317453137}
+  healthPoints: 1
+  swordCollider: {fileID: 1053238006340951725}
   activeElement: 0
   basicAttackBasicDamage: 4
   basicAttackMagicDamage: 6
@@ -6778,6 +6778,7 @@ MonoBehaviour:
   rollCooldown: 0
   enemiesInCombat: []
   maxEnemies: 2
+  healParticles: {fileID: 4967606259284499030}
 --- !u!136 &5119653336814344007
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6825,7 +6826,7 @@ PrefabInstance:
     - target: {fileID: 5941370138075001901, guid: fcb1256d70438464f81b3265de510261,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7216646821193302840, guid: fcb1256d70438464f81b3265de510261,
         type: 3}
@@ -6882,6 +6883,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb1256d70438464f81b3265de510261, type: 3}
+--- !u!1 &4967606259284499030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5941370138075001901, guid: fcb1256d70438464f81b3265de510261,
+    type: 3}
+  m_PrefabInstance: {fileID: 1622288981137436283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8261054411121880387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7216646821193302840, guid: fcb1256d70438464f81b3265de510261,

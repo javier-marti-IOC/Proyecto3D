@@ -184,7 +184,7 @@ public class DistanceBT : Enemy
         }
         else
         {
-            Dying();
+            Dying(true);
         }
     }
     private void SetLookingPlayersActive(bool active)

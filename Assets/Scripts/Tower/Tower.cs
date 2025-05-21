@@ -43,9 +43,10 @@ public class Tower : MonoBehaviour
     [Header("Spawner")]
     public Spawner spawner;
 
-    [Header("Progress Manager")]
+    [Header("Managers")]
     public ProgressManager progressManager;
     public ProgressData progressData;
+    public GameManager gameManager;
 
     [Header("TowerHud")]
     public TowerHUD towerHUD;
@@ -195,7 +196,7 @@ public class Tower : MonoBehaviour
     {
         for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
         {
-            enemiesInSecondZoneRange[i].GetComponent<Enemy>().Dying();
+            enemiesInSecondZoneRange[i].GetComponent<Enemy>().Dying(true);
         }
         InstantiateDeathTowerParticles();
         Utils.ReplaceMaterials(materials, colors);
@@ -209,9 +210,10 @@ public class Tower : MonoBehaviour
         */
 
         ChangeEnvironmentParticles();
-        Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         progressManager.SaveGame();
+        gameManager.ResetEnemies();
+        Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
     }
 
     public void IncreaseDecreaseTowerLife(bool increase, int life)
@@ -372,6 +374,7 @@ public class Tower : MonoBehaviour
     public void HealthTaken(int damage)
     {
         life -= damage;
+        towerHUD.UpdateHealth(life);
     }
 
     public void ChangeEnvironmentParticles()

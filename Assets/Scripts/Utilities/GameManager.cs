@@ -126,21 +126,21 @@ public class GameManager : MonoBehaviour
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                //Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
         for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                //Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
         for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                //Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
         for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0;i -- )
@@ -212,12 +212,7 @@ public class GameManager : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag(Constants.enemy);
         for (int i = enemies.Length - 1; i >= 0; i--)
         {
-            enemies[i].GetComponent<Enemy>().Dying();
-        }
-        drops = GameObject.FindGameObjectsWithTag(Constants.drop);
-        for (int i = drops.Length - 1; i >= 0; i--)
-        {
-            Destroy(drops[i].gameObject);
+            enemies[i].GetComponent<Enemy>().Dying(false);
         }
         EnemiesGenerator();
     }
