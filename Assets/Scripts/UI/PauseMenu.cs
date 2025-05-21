@@ -13,22 +13,23 @@ public class PauseMenu : MonoBehaviour
     public GameObject exitPanel;
     public GameObject deathPanel;
 
-    public Button selectedButton; 
+    public Button selectedButton;
+    public Button selectedDeathButton;
     private bool isPaused = false;
 
     void Update()
     {
-        if(deathPanel.activeInHierarchy == false)
+        if (deathPanel.activeInHierarchy == false)
         {
-            if(pausePanel.activeInHierarchy && Input.GetKeyDown(KeyCode.JoystickButton1))
-                {
-                    TogglePause();
-                }
-                // Botón Start de mando Xbox o tecla Escape
-                if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
-                {
-                    TogglePause();
-                }
+            if (pausePanel.activeInHierarchy && Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                TogglePause();
+            }
+            // Botón Start de mando Xbox o tecla Escape
+            if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
+            {
+                TogglePause();
+            }
         }
     }
 
@@ -49,7 +50,7 @@ public class PauseMenu : MonoBehaviour
             pausePanel.SetActive(false);
             hudPanel.SetActive(true);
             exitPanel.SetActive(false);
-           
+
         }
     }
 
@@ -59,9 +60,17 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
     }
-    public void backToMenu() { // Script para volver al menu principal
-        SceneManager.LoadScene(0); 
+    public void backToMenu()
+    { // Script para volver al menu principal
+        SceneManager.LoadScene(0);
         Debug.Log("Sortir al ménu");
         Time.timeScale = 1f;
+    }
+
+    public void ToggleDeath()
+    {
+        hudPanel.SetActive(false);
+        deathPanel.SetActive(true);
+        selectedDeathButton.Select();
     }
 }

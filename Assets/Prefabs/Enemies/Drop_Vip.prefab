@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7444548283866190138}
   m_Layer: 0
   m_Name: Drop_Vip
-  m_TagString: Untagged
+  m_TagString: Drop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af3c22604e520e41a2352f276deb4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 2
+  element: 0
 --- !u!135 &7444548283866190138
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -187,7 +187,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.12322235
+  m_Radius: 1
   m_Center: {x: 0.009963933, y: 0.11808339, z: 0.030541517}
 --- !u!1 &5626906494458557861
 GameObject:

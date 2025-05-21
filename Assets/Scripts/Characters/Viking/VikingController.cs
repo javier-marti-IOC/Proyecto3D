@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,42 +15,64 @@ public class VikingController : MonoBehaviour
     private InputAction heavyAttackAction;
     private InputAction rollAction;
     private Vector2 dpadValue;
-    
 
-    //Mana Bars
+    [Header("Mana Bars")]
     public int earthMana;
     public int fireMana;
     public int waterMana;
     public int electricMana;
 
-    public ElementsHUD vikingElementsHUD;
+    [Header("HUD")]
     public HealthHUD vikingHealthHUD;
-    public Element activeElement;
+    public ElementsHUD elementsHUD;
+    public PauseMenu pauseMenu;
+
+    [Header("Combat")]
     public Animator animator;
     public int healthPoints;
-    public GameObject swordCollider;
+    public Collider swordCollider;
+    public Element activeElement;
     private bool isBasicAttack;
     public int basicAttackBasicDamage;
     public int basicAttackMagicDamage;
     public int heavyAttackBasicDamage;
     public int heavyAttackMagicDamage;
     private GameManager gameManager;
-    public ElementsHUD elementsHUD;
 
+    [Header("Booleans")]
     public bool OnAction;
     public bool isRolling;
+
+    [Header("Cooldowns")]
     public float rollCooldown;
     private float reduceMana = 1f;
+
+    [Header("Enemies")]
+    public List<Enemy> enemiesInCombat;
+    public int maxEnemies;
+
+    [Header("Heal")]
+    public GameObject healParticles;
+    private float healParticlesTimer;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
+        //Valors Inicials
         earthMana = 0;
         fireMana = 0;
         waterMana = 0;
         electricMana = 0;
         healthPoints = 100;
         activeElement = Element.None;
-        dpadAction =  inputActions.FindAction("DPAD");
+        OnAction = false;
+        swordCollider.enabled = false;
+        isBasicAttack = true;
+
+        //DPAD
+        dpadAction = inputActions.FindAction("DPAD");
         dpadAction.Enable();
         basicAttackAction = inputActions.FindAction("BasicAttack");
         basicAttackAction.Enable();
@@ -57,99 +80,112 @@ public class VikingController : MonoBehaviour
         heavyAttackAction.Enable();
         rollAction = inputActions.FindAction("Roll");
         heavyAttackAction.Enable();
-        OnAction = false;
-        swordCollider.SetActive(false);
-        isBasicAttack = true;
+
+        //HUD
         vikingHealthHUD.SetHealth(healthPoints);
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        dpadValue = dpadAction.ReadValue<Vector2>();
-        rollCooldown -= Time.deltaTime;
-        if (!OnAction && healthPoints > 0)
+        if (healParticlesTimer < 0)
         {
-            if (dpadValue.x > 0.5f)
-            {
-                ChangeElement(Element.Earth);
-            }
-            if (dpadValue.x < -0.5f)
-            {
-                ChangeElement(Element.Electric);
-            }
-            if (dpadValue.y > 0.5f)
-            {
-                ChangeElement(Element.Fire);
-            }
-            if (dpadValue.y < -0.5f)
-            {
-                ChangeElement(Element.Water);
-            }
-            if (basicAttackAction.WasPerformedThisFrame() && !isRolling)
-            {
-                BasicAttack();
-            }
-            if (heavyAttackAction.ReadValue<float>() > 0.5f && !isRolling)
-            {
-                HeavyAttack();
-            }
-            if (rollAction.WasPerformedThisFrame() && rollCooldown < 0f)
-            {
-                rollCooldown = 1.2f;
-                Roll();
-            }
+            healParticles.SetActive(false);
+        }
+        else
+        {
+            healParticlesTimer -= Time.deltaTime;
         }
         if (healthPoints <= 0)
         {
             Dying();
         }
-        reduceMana -= Time.deltaTime;
-        if (reduceMana < 0 )
+        else
         {
-            reduceMana = 0.5f;
-            if (activeElement == Element.Earth)
+            //Timers
+            rollCooldown -= Time.deltaTime;
+            reduceMana -= Time.deltaTime;
+
+            if (!OnAction)
             {
-                earthMana -= 1;
-                elementsHUD.earthReduce(earthMana);
-                if (earthMana  <= 0)
+                //DPAD
+                dpadValue = dpadAction.ReadValue<Vector2>();
+                if (dpadValue.x > 0.5f)
                 {
-                    elementsHUD.EarthStopBlink();
-                    activeElement = Element.None;
+                    ChangeElement(Element.Earth);
+                }
+                if (dpadValue.x < -0.5f)
+                {
+                    ChangeElement(Element.Electric);
+                }
+                if (dpadValue.y > 0.5f)
+                {
+                    ChangeElement(Element.Fire);
+                }
+                if (dpadValue.y < -0.5f)
+                {
+                    ChangeElement(Element.Water);
+                }
+                if (basicAttackAction.WasPerformedThisFrame() && !isRolling)
+                {
+                    BasicAttack();
+                }
+                if (heavyAttackAction.ReadValue<float>() > 0.5f && !isRolling)
+                {
+                    HeavyAttack();
+                }
+                if (rollAction.WasPerformedThisFrame() && rollCooldown < 0f)
+                {
+                    rollCooldown = 1.2f;
+                    Roll();
                 }
             }
-            else if (activeElement == Element.Water)
+
+            if (reduceMana < 0)
             {
-                waterMana -= 1;
-                elementsHUD.waterReduce(waterMana);
-                if (waterMana  <= 0)
+                reduceMana = 0.5f;
+                if (activeElement == Element.Earth)
                 {
-                    elementsHUD.WaterStopBlink();
-                    activeElement = Element.None;
+                    earthMana -= 1;
+                    elementsHUD.earthReduce(earthMana);
+                    if (earthMana <= 0)
+                    {
+                        elementsHUD.EarthStopBlink();
+                        activeElement = Element.None;
+                    }
                 }
-            }   
-            else if (activeElement == Element.Fire)
-            {
-                fireMana -= 1;
-                //if (fireMana <= 0) StopElementBlink(activeElement);
-                elementsHUD.fireReduce(fireMana);
-                if (fireMana  <= 0)
+                else if (activeElement == Element.Water)
                 {
-                    elementsHUD.FireStopBlink();
-                    activeElement = Element.None;
+                    waterMana -= 1;
+                    elementsHUD.waterReduce(waterMana);
+                    if (waterMana <= 0)
+                    {
+                        elementsHUD.WaterStopBlink();
+                        activeElement = Element.None;
+                    }
                 }
-            }   
-            else if (activeElement == Element.Electric)
-            {
-                electricMana -= 1;
-                elementsHUD.lightningReduce(electricMana);
-                if (electricMana  <= 0)
+                else if (activeElement == Element.Fire)
                 {
-                    elementsHUD.LightningStopBlink();
-                    activeElement = Element.None;
+                    fireMana -= 1;
+                    //if (fireMana <= 0) StopElementBlink(activeElement);
+                    elementsHUD.fireReduce(fireMana);
+                    if (fireMana <= 0)
+                    {
+                        elementsHUD.FireStopBlink();
+                        activeElement = Element.None;
+                    }
                 }
-            }  
+                else if (activeElement == Element.Electric)
+                {
+                    electricMana -= 1;
+                    elementsHUD.lightningReduce(electricMana);
+                    if (electricMana <= 0)
+                    {
+                        elementsHUD.LightningStopBlink();
+                        activeElement = Element.None;
+                    }
+                }
+            }
         }
     }
 
@@ -157,24 +193,28 @@ public class VikingController : MonoBehaviour
     {
         bool changed = false;
         //ACtivar elemento nuevo
-        if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth) 
+        if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
-            vikingElementsHUD.earthReduce(earthMana);
+            AudioManager.Instance?.Play("ActivateElement");
+            elementsHUD.earthReduce(earthMana);
             changed = true;
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
-            vikingElementsHUD.waterReduce(waterMana);
+            AudioManager.Instance?.Play("ActivateElement");
+            elementsHUD.waterReduce(waterMana);
             changed = true;
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
-            vikingElementsHUD.fireReduce(fireMana);
+            AudioManager.Instance?.Play("ActivateElement");
+            elementsHUD.fireReduce(fireMana);
             changed = true;
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
-            vikingElementsHUD.lightningReduce(electricMana);
+            AudioManager.Instance?.Play("ActivateElement");
+            elementsHUD.lightningReduce(electricMana);
             changed = true;
         }
         //Desactivar elemento antiguo
@@ -208,68 +248,11 @@ public class VikingController : MonoBehaviour
         }
     }
 
-    public void BasicAttack()
-    {
-        animator.SetTrigger("SoftAttack");
-        OnAction = true;
-        isBasicAttack = true;
-    }
+    //Roll
     public void Roll()
     {
         animator.SetTrigger("Roll");
     }
-    public void HeavyAttack()
-    {
-        animator.SetTrigger("HardAttack");
-        OnAction = true;
-        isBasicAttack = false;
-    }
-    public void Dying()
-    {
-        animator.SetTrigger("Dying");
-        OnAction = true;
-        
-    }
-
-    public void AttackEnter(Collider other)
-    {
-        if (other.CompareTag(Constants.enemy))
-        {
-            int damageDeal;
-            if (isBasicAttack)
-            {
-                damageDeal = gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackMagicDamage,other.GetComponentInParent<Enemy>().activeElement);
-                other.GetComponentInParent<Enemy>().HealthTaken(damageDeal);
-                Debug.Log("Basic Attack Damage Deal: " + damageDeal);
-            }
-            else
-            {
-                damageDeal = gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackMagicDamage,other.GetComponentInParent<Enemy>().activeElement);
-                other.GetComponentInParent<Enemy>().HealthTaken(damageDeal);
-                Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
-            }
-        }
-        if (other.CompareTag(Constants.tower))
-        {
-            Debug.Log("TowerHit");
-            other.GetComponent<Tower>().HealthTaken(5);
-        }
-    }
-    public void EndAction()
-    {
-        OnAction = false;
-    }
-
-    public void ColliderAttackEnable()
-    {
-        swordCollider.SetActive(true);
-    }
-
-    public void ColliderAttackDisable()
-    {
-        swordCollider.SetActive(false);
-    }
-
     public void InmunityEnable()
     {
         isRolling = true;
@@ -279,6 +262,66 @@ public class VikingController : MonoBehaviour
     {
         isRolling = false;
     }
+
+
+    //Combat
+    public void BasicAttack()
+    {
+        animator.SetTrigger("SoftAttack");
+        OnAction = true;
+        isBasicAttack = true;
+    }
+    public void HeavyAttack()
+    {
+        animator.SetTrigger("HardAttack");
+        OnAction = true;
+        isBasicAttack = false;
+    }
+    public void EndAction()
+    {
+        OnAction = false;
+    }
+    public void ColliderAttackEnable()
+    {
+        swordCollider.enabled = true;
+    }
+
+    public void ColliderAttackDisable()
+    {
+        swordCollider.enabled = false;
+    }
+    public void AttackEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.enemy))
+        {
+            ResetEnemyDetection(other.GetComponent<Enemy>());
+            int damageDeal;
+            if (isBasicAttack)
+            {
+                damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                Debug.Log("Basic Attack Damage Deal: " + damageDeal);
+            }
+            else
+            {
+                damageDeal = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
+            }
+        }
+        if (other.CompareTag(Constants.tower))
+        {
+            if (other.GetComponent<Tower>().activeElement == activeElement && !isBasicAttack)
+            {
+                if (activeElement == Element.Earth) earthMana = 0;
+                else if (activeElement == Element.Water) waterMana = 0;
+                else if (activeElement == Element.Fire) fireMana = 0;
+                else if (activeElement == Element.Electric) electricMana = 0;
+                Debug.Log("TowerHit");
+                other.GetComponent<Tower>().HealthTaken(20);
+            }
+        }
+    }
     public void HealthTaken(int healthTaken)
     {
         if (!isRolling)
@@ -287,13 +330,52 @@ public class VikingController : MonoBehaviour
             vikingHealthHUD.SetHealth(healthPoints);
         }
     }
+    public void Dying()
+    {
+        //animator.SetTrigger("Dying");
+        OnAction = true;
+        pauseMenu.ToggleDeath();
+        healthPoints = 100;
+    }
+
+    //Control de maxim enemics en combat
+    public bool EnemyDetecion(Enemy enemy)
+    {
+        if (enemiesInCombat.Contains(enemy))
+        {
+            return true;
+        }
+        else if (enemiesInCombat.Count < maxEnemies)
+        {
+            enemiesInCombat.Add(enemy);
+            return true;
+        }
+        return false;
+    }
+
+    public void RemoveEnemyDetection(Enemy enemy)
+    {
+        enemiesInCombat.Remove(enemy);
+    }
+
+    public void ResetEnemyDetection(Enemy enemy)
+    {
+        for (int i = enemiesInCombat.Count - 1; i >= 0; i--)
+        {
+            RemoveEnemyDetection(enemiesInCombat[i]);
+        }
+        enemiesInCombat.Add(enemy);
+    }
+
+    //Recollir Drops
     public void CollectMana(Element element)
     {
-        int min = 30;
-        int max = 45;
+        
+        int mana = 25;
         if (element == Element.None)
         {
-            if (activeElement != Element.Earth) 
+            AudioManager.Instance.Play("PickUpGoldOrbe");
+            if (activeElement != Element.Earth)
             {
                 earthMana = 100;
                 elementsHUD.earthAdd(earthMana);
@@ -303,41 +385,55 @@ public class VikingController : MonoBehaviour
                 waterMana = 100;
                 elementsHUD.waterAdd(waterMana);
             }
-            if (activeElement != Element.Fire) 
+            if (activeElement != Element.Fire)
             {
                 fireMana = 100;
                 elementsHUD.fireAdd(fireMana);
             }
-            if (activeElement != Element.Electric) 
+            if (activeElement != Element.Electric)
             {
                 electricMana = 100;
                 elementsHUD.lightningAdd(electricMana);
             }
         }
-        else if (element == Element.Earth && activeElement != Element.Earth)
+        else
         {
-            earthMana += Random.Range(min,max);
-            if (earthMana > 100) earthMana = 100;
-            elementsHUD.earthAdd(earthMana);
+            AudioManager.Instance.Play("PickUpOrbe");
+            if (element == Element.Earth && activeElement != Element.Earth)
+            {
+                earthMana += mana;
+                if (earthMana > 100) earthMana = 100;
+                elementsHUD.earthAdd(earthMana);
 
+            }
+            else if (element == Element.Water && activeElement != Element.Water)
+            {
+                waterMana += mana;
+                if (waterMana > 100) waterMana = 100;
+                elementsHUD.waterAdd(waterMana);
+            }
+            else if (element == Element.Fire && activeElement != Element.Fire)
+            {
+                fireMana += mana;
+                if (fireMana > 100) fireMana = 100;
+                elementsHUD.fireAdd(fireMana);
+            }
+            else if (element == Element.Electric && activeElement != Element.Electric)
+            {
+                electricMana += mana;
+                if (electricMana > 100) electricMana = 100;
+                elementsHUD.lightningAdd(electricMana);
+            }
         }
-        else if (element == Element.Water && activeElement != Element.Water)
-        {
-            waterMana += Random.Range(min,max);
-            if (waterMana > 100) waterMana = 100;
-            elementsHUD.waterAdd(waterMana);
-        }   
-        else if (element == Element.Fire && activeElement != Element.Fire)
-        {
-            fireMana += Random.Range(min,max);
-            if (fireMana > 100) fireMana = 100;
-            elementsHUD.fireAdd(fireMana);
-        }   
-        else if (element == Element.Electric && activeElement != Element.Electric)
-        {
-            electricMana += Random.Range(min,max);
-            if (electricMana > 100) electricMana = 100;
-            elementsHUD.lightningAdd(electricMana);
-        }    
+    }
+    public void CollectLife()
+    {
+        healParticles.SetActive(false);
+        healParticles.SetActive(true);
+        healParticlesTimer = 2f;
+        AudioManager.Instance.Play("PickUpOrbe");
+        healthPoints += 30;
+        if (healthPoints > 100) healthPoints = 100;
+        vikingHealthHUD.SetHealth(healthPoints);
     }
 }

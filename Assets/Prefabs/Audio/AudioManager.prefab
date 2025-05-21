@@ -46,7 +46,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 36176d1c6022c4d4aa572482508b761b, type: 2}
   music: []
-  sfx: []
+  sfx:
+  - name: FireInvoke
+    clip: {fileID: 8300000, guid: f521ca752bfc1bc47a907954356b3908, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: FireArea
+    clip: {fileID: 8300000, guid: 638bc70cefb6af843b6f9bf7e6e5c097, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PickUpOrbe
+    clip: {fileID: 8300000, guid: 7d150ee243727f9439cc0b6ce381fbeb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   ui:
   - name: HoverButton
     clip: {fileID: 8300000, guid: 3d5dce41f6097524aac39ae92776089d, type: 3}
@@ -81,5 +114,71 @@ MonoBehaviour:
     outputGroup: {fileID: 7930080421294217295, guid: 36176d1c6022c4d4aa572482508b761b,
       type: 2}
     source: {fileID: 0}
-  ambience: []
+  - name: ActivateElement
+    clip: {fileID: 8300000, guid: f86f14834422eb64aac2ef36a16b9aae, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 7930080421294217295, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  ambience:
+  - name: AmbienceVolcano
+    clip: {fileID: 8300000, guid: 33721e91a858d784599e731018aa566f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 6058387977715918536, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: AmbienceThunder
+    clip: {fileID: 8300000, guid: efbeb351845d190408bd7abddc0da592, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 6058387977715918536, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: AmbienceWater
+    clip: {fileID: 8300000, guid: 54bd0300f11b7574bb7a86ad247a0416, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 6058387977715918536, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: AmbienceForest
+    clip: {fileID: 8300000, guid: cb455115ea652094d8402240adb90f19, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    playOnAwake: 1
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 6058387977715918536, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: AmbienceCavern
+    clip: {fileID: 8300000, guid: 2e61d96e6872f864e851f7c7d60f453c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 6058387977715918536, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   dialogue: []

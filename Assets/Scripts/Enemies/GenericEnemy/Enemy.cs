@@ -4,7 +4,9 @@ using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
 
-    public GameObject drop;
+    public GameObject manaDrop;
+    public GameObject goldDrop;
+    public GameObject lifeDrop;
     public Transform dropPosition;
     public EnemyHUD enemyHUD;
     public GameObject hudPanelCanvas;
@@ -27,7 +29,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool onCombat; // El enemigo esta en combate
     protected bool onHealZone; // Esta el enemigo en zona de cura de la torre
     public bool playerInAttackRange; // Esta el player en mi zona de ataque
-    [SerializeField] protected bool towerInRange; // Tengo la torre en rango para patrullar
+    [SerializeField] public bool towerInRange; // Tengo la torre en rango para patrullar
     public bool playerHitted;
     protected bool attacking;
 
@@ -38,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
                                             (este numero no entra en el rango)*/
 
     [Header("Cooldowns")]
-    protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
+    [SerializeField] protected float cooldownHeavyAttack; // Cooldown para volver a realizar ataque fuerte
 
 
     [Header("Patrol")]
@@ -57,7 +59,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float wanderRotationTimer = 2f; // tiempo que debe durar la rotación */
 
     [Header("Chase")]
-    public bool playerDetected; // Detecto al player
+    protected bool playerDetected; // Detecto al player
     [SerializeField] protected GameObject playerDetectorDown;
     [SerializeField] protected GameObject playerDetectorUp;
     [SerializeField] protected GameObject minDistanceChase;
@@ -67,7 +69,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int basicAttackElementalDamage;
     [SerializeField] protected int heavyAttackBasicDamage;
     [SerializeField] protected int heavyAttackElementalDamage;
-
+    public GameObject hitParticle;
 
 
     protected virtual void Awake()
@@ -79,22 +81,21 @@ public abstract class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         gameManager = FindObjectOfType<GameManager>();
         animIDSpeed = Animator.StringToHash(Constants.speed);
+        /* foreach (GameObject t in GameObject.FindGameObjectsWithTag(Constants.tower))
+        {
+            if (t.GetComponent<Tower>().activeElement == activeElement) tower = t.GetComponent<Tower>();
+        } */
 
     }
 
     // Metodos comunes
     // Indicamos virtual para poder sobreescribir el metodo si fuera necesario
     // O indicamos abstract para que las clases hijas o hereden si o si
-    protected virtual void Heal()
-    {
-
-    }
 
     protected void CheckAgentSpeed()
     {
         animator.SetInteger(Constants.state, 0);
         animator.SetFloat(animIDSpeed, agent.velocity.magnitude);
-
     }
 
     protected void Patrol()
@@ -109,6 +110,25 @@ public abstract class Enemy : MonoBehaviour
         agent.stoppingDistance = safeDistance;
 
         ghost.GetComponent<RunnerGhostAgent>().patrolPoint = pointPatrol;
+        agent.SetDestination(ghost.transform.position);
+        agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
+
+        // animator.SetInteger(Constants.state, 1);
+
+    }
+
+    protected void TowerPatrol()
+    {
+        CheckAgentSpeed();
+
+        if (ghost == null)
+        {
+            ghost = Instantiate(ghostPrefab, agent.transform.position, Quaternion.identity, agent.transform);
+        }
+
+        agent.stoppingDistance = safeDistance;
+
+        ghost.GetComponent<RunnerGhostAgent>().patrolPoint = tower.gameObject;
         agent.SetDestination(ghost.transform.position);
         agent.speed = ghost.GetComponent<NavMeshAgent>().speed - 1f;
 
@@ -165,6 +185,7 @@ public abstract class Enemy : MonoBehaviour
         playerDetectorUp.SetActive(true);
         minDistanceChase.SetActive(true);
         playerDetected = false;
+        player.GetComponent<VikingController>().RemoveEnemyDetection(this);
     }
     protected virtual void TowerChase()
     {
@@ -186,24 +207,163 @@ public abstract class Enemy : MonoBehaviour
     {
         attacking = false;
     }
-    public void HealthTaken(int damageTaken)
+    public virtual void HealthTaken(int damageTaken)
     {
         healthPoints -= damageTaken;
         enemyHUD.UpdateHealth(healthPoints);
         PlayerDetected();
     }
-    public virtual void Dying()
+    public virtual void Dying(bool drops)
     {
-        Debug.Log("Muelto");
-        tower.enemiesInSecondZoneRange.Remove(gameObject);
-        tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
-        Instantiate(drop, dropPosition.position, Quaternion.identity, null);
-        Destroy(gameObject);
+        if (tower != null)
+        {
+            tower.enemiesInSecondZoneRange.Remove(gameObject);
+            tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
+        }
+        player.GetComponent<VikingController>().RemoveEnemyDetection(this);
+        if (drops)
+        {
+            //for random
+            int random = Random.Range(0, 100);
+            if (random == 0)
+            {
+                AudioManager.Instance?.Play("goldDrop");
+                Instantiate(goldDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else if (random < 20)
+            {
+                AudioManager.Instance?.Play("manaDrop");
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else if (random < 50)
+            {
+                AudioManager.Instance?.Play("manaDrop");
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else
+            {
+                AudioManager.Instance?.Play("manaDrop");
+                Instantiate(manaDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            random = Random.Range(0, 100);
+            if (random < 20)
+            {
+                Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+                Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+            }
+            else if (random < 50)
+            {
+                Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
+            }
+        }
+        Destroy(transform.parent.gameObject);
     }
 
     public void PlayerDetected()
     {
         playerDetected = true;
         hudPanelCanvas.SetActive(true);
+    }
+    public void SetStatsByLevel()
+    {
+        // Earth: Mucha vida base con gran escalado
+        // Daño base bajo con poco escalado, su daño no es ve afectado mucho por el elemento
+        // Lv.1: [3,4,5,10,40], Lv.2: [5,6,8,13,70], Lv.3: [8,9,11,16,100], Lv.4: [10,11,14,19,130] 
+        if (activeElement == Element.Earth)
+        {
+            basicAttackBasicDamage = 3;
+            basicAttackElementalDamage = 4;
+
+            heavyAttackBasicDamage = 5;
+            heavyAttackElementalDamage = 10;
+
+            maxHealthPoints = 40;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 2;
+                basicAttackElementalDamage += 2;
+
+                heavyAttackBasicDamage += 3;
+                heavyAttackElementalDamage += 3;
+
+                maxHealthPoints += 30;
+            }
+        }
+        // Water: Vida estandard con escalado estandard
+        // Daño base estandard con mucho escalado elemental
+        // Lv.1: [2,3,5,6,30], Lv.2: [3,8,7,13,50], Lv.3: [4,13,9,20,70], Lv.4: [5,18,11,27,90] 
+        else if (activeElement == Element.Water)
+        {
+            basicAttackBasicDamage = 2;
+            basicAttackElementalDamage = 3;
+
+            heavyAttackBasicDamage = 5;
+            heavyAttackElementalDamage = 6;
+
+            maxHealthPoints = 30;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 1;
+                basicAttackElementalDamage += 5;
+
+                heavyAttackBasicDamage += 2;
+                heavyAttackElementalDamage += 7;
+
+                maxHealthPoints += 20;
+            }
+        }
+        // Fire: Vida estandard con buen escalado
+        // Daño ataque basico estandard
+        // El ataque fuerte hace 16 tics por lo que el daño despues de los 8s seria:
+        // Lv.1: 48, Lv.2: 96, Lv.3: 144, Lv.4: 192. Sin contar elementos ni randoms. 
+        // Lv.1: [3,4,1,2,30], Lv.2: [5,8,2,4,55], Lv.3: [7,12,3,5,80], Lv.4: [9,16,4,7,105]
+        else if (activeElement == Element.Fire)
+        {
+            basicAttackBasicDamage = 3;
+            basicAttackElementalDamage = 4;
+
+            heavyAttackBasicDamage = 1;
+            heavyAttackElementalDamage = 2;
+
+            maxHealthPoints = 30;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 2;
+                basicAttackElementalDamage += 4;
+
+                heavyAttackBasicDamage += 1;
+                heavyAttackElementalDamage += 2;
+
+                maxHealthPoints += 25;
+            }
+        }
+        // Electric: Poca vida con mal esacalado
+        // Daño de ataque basico flojo y mal escalado
+        // Ataque fuerte con buen daño base y escalado, sin recaer demasiado en daño elemental
+        // Lv.1: [2,3,15,25,25], Lv.2: [4,6,25,35,40], Lv.3: [6,9,35,45,55], Lv.4: [8,12,45,55,70]
+        else if (activeElement == Element.Electric)
+        {
+            basicAttackBasicDamage = 2;
+            basicAttackElementalDamage = 3;
+
+            heavyAttackBasicDamage = 15;
+            heavyAttackElementalDamage = 25;
+
+            maxHealthPoints = 25;
+            for (int i = 1; i < enemyLevel; i++)
+            {
+                basicAttackBasicDamage += 2;
+                basicAttackElementalDamage += 3;
+
+                heavyAttackBasicDamage += 10;
+                heavyAttackElementalDamage += 10;
+
+                maxHealthPoints += 15;
+            }
+        }
+        healthPoints = maxHealthPoints;
     }
 }

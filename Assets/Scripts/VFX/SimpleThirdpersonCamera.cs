@@ -3,31 +3,31 @@ using UnityEngine;
 public class SimpleThirdPersonCamera : MonoBehaviour
 {
     public Transform target;
-    public Vector3 offset = new Vector3(0, 2, -4);
+    public Vector3 offset = new Vector3(0, 2, -12);
 
     [Header("Sensitivity Settings")]
     [Range(0.1f, 10f)] public float mouseSensitivity = 2f;
     [Range(1f, 500f)] public float joystickSensitivity = 50f;
 
+    [SerializeField] private Transform player;  // El objeto del jugador (no el target)
+    [SerializeField] private Vector3 followOffset = new Vector3(0, 1.6f, 0); // Donde mirar (altura)
+
     [Header("Invert Axis Settings")]
     public bool invertMouseY = false;
     public bool invertJoystickY = false;
 
-    [Header("Other Settings")]
-    public float distanceDamping = 5f;
-
     [Header("Camera Collision")]
     public LayerMask collisionMask = ~0;
     public float collisionBuffer = 0.2f;
+    public float minDistanceToPlayer = 2f;
 
     [SerializeField] private StarterAssets.StarterAssetsInputs playerInputs;
 
     private Vector2 rotation = Vector2.zero;
-    private Vector3 currentPosition;
-    private Vector3 velocity = Vector3.zero;
 
     void Start()
     {
+        
         if (target == null)
         {
             Debug.LogWarning("Falta asignar el target de la cámara.");
@@ -37,18 +37,13 @@ public class SimpleThirdPersonCamera : MonoBehaviour
         rotation.x = target.eulerAngles.y;
         rotation.y = target.eulerAngles.x;
 
-        Quaternion initialRotation = Quaternion.Euler(rotation.y, rotation.x, 0);
-        currentPosition = target.position + initialRotation * offset;
-
-        transform.position = currentPosition;
-        transform.LookAt(target.position + Vector3.up * 1.5f);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void LateUpdate()
     {
         if (target == null) return;
 
-        // Si el juego está pausado, liberar cursor y no mover cámara
         if (Time.timeScale == 0f)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -63,7 +58,6 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 
         float inputX = playerInputs.look.x;
         float inputY = playerInputs.look.y;
-
         bool hasLookInput = Mathf.Abs(inputX) > 0.01f || Mathf.Abs(inputY) > 0.01f;
         bool isUsingMouse = playerInputs.cursorInputForLook;
 
@@ -85,20 +79,20 @@ public class SimpleThirdPersonCamera : MonoBehaviour
             rotation.y = Mathf.Clamp(rotation.y, -35f, 70f);
         }
 
-        Quaternion targetRotation = Quaternion.Euler(rotation.y, rotation.x, 0);
-        Vector3 desiredPosition = target.position + targetRotation * offset;
+        Quaternion cameraRotation = Quaternion.Euler(rotation.y, rotation.x, 0);
+        Vector3 pivot = target.position + Vector3.up * offset.y;
+        Vector3 direction = cameraRotation * Vector3.back; // Siempre hacia atrás
+        float desiredDistance = -offset.z;
 
-        Vector3 origin = target.position + Vector3.up * 1.5f;
-        Vector3 direction = (desiredPosition - origin).normalized;
-        float maxDistance = offset.magnitude;
+        Vector3 desiredPosition = pivot + direction * desiredDistance;
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance + collisionBuffer, collisionMask))
+        if (Physics.Raycast(pivot, direction, out RaycastHit hit, desiredDistance + collisionBuffer, collisionMask))
         {
-            desiredPosition = hit.point - direction * collisionBuffer;
+            float clampedDistance = Mathf.Clamp(hit.distance - collisionBuffer, minDistanceToPlayer, desiredDistance);
+            desiredPosition = pivot + direction * clampedDistance;
         }
 
-        currentPosition = Vector3.SmoothDamp(currentPosition, desiredPosition, ref velocity, 1f / distanceDamping);
-        transform.position = currentPosition;
-        transform.LookAt(target.position + Vector3.up * 1.5f);
+        transform.position = desiredPosition;
+        transform.LookAt(pivot);
     }
 }

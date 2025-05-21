@@ -28,4 +28,13 @@ public static class Utils
         }
     }
 
+    public static void ReplaceTrees(GameObject[] trees, Mesh[] newTrees)
+    {
+        foreach (GameObject tree in trees)
+        {
+            int randPosition = Random.Range(0, newTrees.Length);
+            tree.GetComponent<MeshFilter>().mesh = newTrees[randPosition];
+        }
+    }
+
 }

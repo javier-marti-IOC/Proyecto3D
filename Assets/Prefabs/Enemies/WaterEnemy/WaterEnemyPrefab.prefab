@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 6127873753904418742}
   m_Layer: 0
   m_Name: WaterEnemyPrefab
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -902,6 +902,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7655750607069706786}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4139527660025378665}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
         type: 3}
@@ -1009,7 +1013,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9001474cea1ba04381276e0fba97132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 4280553628134071422, guid: 82410f60f44de304baedaf7c930bdd9a, type: 3}
+  manaDrop: {fileID: 4280553628134071422, guid: 82410f60f44de304baedaf7c930bdd9a,
+    type: 3}
+  goldDrop: {fileID: 2928080803187948343, guid: fcf63ae41115f0d469258919cd1612c9,
+    type: 3}
+  lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
+    type: 3}
   dropPosition: {fileID: 5732543632236977345}
   enemyHUD: {fileID: 5731537666881477339}
   hudPanelCanvas: {fileID: 8361632850504355524}
@@ -1022,14 +1031,15 @@ MonoBehaviour:
   ghostAgent: {fileID: 0}
   towerCalling: 0
   playerInAttackRange: 0
+  towerInRange: 0
   playerHitted: 0
   minCooldownTimeInclusive: 10
   maxCooldownTimeExclusive: 15
+  cooldownHeavyAttack: 0
   ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
     type: 3}
   safeDistance: 1
   pointPatrol: {fileID: 5444669361826954513}
-  playerDetected: 0
   playerDetectorDown: {fileID: 1961920292286216563}
   playerDetectorUp: {fileID: 437362043903965274}
   minDistanceChase: {fileID: 6769779894073946202}
@@ -1037,24 +1047,24 @@ MonoBehaviour:
   basicAttackElementalDamage: 3
   heavyAttackBasicDamage: 3
   heavyAttackElementalDamage: 4
+  hitParticle: {fileID: 6846957109864533057}
   teleportCooldownTime: 5
   teleportChance: 15
   teleportDistance: 5
+  teleportParticles: {fileID: 0}
   stoppingDistance: 8
   lookAtPlayers:
   - {fileID: 993764451183703474}
   - {fileID: 222972871648877456}
   hand: {fileID: 0}
-  lightningLine: {fileID: 0}
-  attackLight: {fileID: 0}
   electricAttackRange: 10
-  electricDamage: 20
   impactPosition: {fileID: 0}
+  lightningEffectBasicAttack: {fileID: 0}
+  lightningEffectHeavyAttack: {fileID: 0}
   lightningArea: {fileID: 0}
   heavyAttackDelay: 2
-  heavyAttackRadius: 2
-  heavyAttackDamage: 40
   lightningHeight: 10
+  heavyAttackZoneTrigger: {fileID: 0}
 --- !u!195 &258517528031875190
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1319,4 +1329,89 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3567476352188224276, guid: 2bb5242eaff695744941ef457daf9ead,
     type: 3}
   m_PrefabInstance: {fileID: 5010329428883250640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7385616558527689289
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 917795614414523819}
+    m_Modifications:
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.771
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142111093286157832, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Hit_Particle_Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142111093286157832, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1, type: 3}
+--- !u!1 &6846957109864533057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4142111093286157832, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7385616558527689289}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7655750607069706786 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 882788799486609515, guid: 02b1eb5ae43ee3a44a96ee516a96a9f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7385616558527689289}
   m_PrefabAsset: {fileID: 0}

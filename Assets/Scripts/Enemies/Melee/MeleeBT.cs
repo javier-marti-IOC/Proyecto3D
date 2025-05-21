@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +10,14 @@ public class MeleeBT : Enemy
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
-    
+
+    public GameObject fireZonePrefab;
+
+    private bool isAttacking;
+    private Vector3 pendingHeavyAttackPosition;
+    public float heavyAttackDelay = 2f;
+    public float fireZoneDuration;
+
     void Update()
     {
         cooldownHeavyAttack -= Time.deltaTime;
@@ -27,10 +35,6 @@ public class MeleeBT : Enemy
                     {
                         towerCalling = false;
                     }
-                    else
-                    {
-                        Heal();
-                    }
                 }
                 else
                 {
@@ -44,10 +48,10 @@ public class MeleeBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-                    if (/*player.GetComponent<PlayerController>().maxEmemies*/1==-1)
+                    if (!player.GetComponent<VikingController>().EnemyDetecion(this))
                     {
-                        //Funcion quedar a la espera para combate
-
+                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
+                        animator.SetInteger(Constants.state, 0);
                     }
                     else
                     {
@@ -55,30 +59,32 @@ public class MeleeBT : Enemy
                         {
                             if (activeElement == Element.Earth)
                             {
+                                agent.SetDestination(transform.position);
                                 if (cooldownHeavyAttack < 0)
                                 {
+                                    Debug.Log("HEAVY ATTACK");
                                     //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,3);
+                                    animator.SetInteger(Constants.state, 3);
                                 }
                                 else
                                 {
                                     //transform.LookAt(player.transform);
-                                    animator.SetInteger(Constants.state,2);
+                                    animator.SetInteger(Constants.state, 2);
                                 }
                             }
                             else if (activeElement == Element.Fire)
                             {
                                 // Esta el player usando el elemento de agua
-                                if(player.GetComponent<VikingController>().activeElement == Element.Water)
+                                if (player.GetComponent<VikingController>().activeElement == Element.Water)
                                 {
                                     // Esta a una distancia prudencial del player?
-                                    if(playerInSecurityDistance)
+                                    if (playerInSecurityDistance)
                                     {
                                         // Tiene cooldown de ataque en area?
                                         if (cooldownHeavyAttack < 0)
                                         {
                                             //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state,3);
+                                            animator.SetInteger(Constants.state, 3);
                                         }
                                         else
                                         {
@@ -91,29 +97,31 @@ public class MeleeBT : Enemy
                                         // Alejarse
                                         Vector3 direction = transform.position - player.transform.position; // Ir en direccion contraria
                                         Vector3 newPosition = transform.position + direction * 0.1f; // Calcula la nueva posicion en la direccion opuesta
-                                        agent.SetDestination(newPosition); 
+                                        agent.SetDestination(newPosition);
                                     }
 
-                                } else
+                                }
+                                else
                                 { // Tiene cooldown de ataque en area?
                                     if (cooldownHeavyAttack < 0)
                                     {
                                         //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state,3);
+                                        animator.SetInteger(Constants.state, 3);
                                     }
                                     else
                                     {
                                         //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state,2);
+                                        animator.SetInteger(Constants.state, 2);
                                     }
                                 }
                             }
                         }
                         else
                         {
+                            animator.SetInteger(Constants.state, 0);
                             if (!attacking)
                             {
-                                animator.SetInteger(Constants.state,1);
+                                CheckAgentSpeed();
                                 Chase();
                             }
                         }
@@ -121,9 +129,10 @@ public class MeleeBT : Enemy
                 }
                 else
                 {
+                    CheckAgentSpeed();
                     if (towerInRange)
                     {
-                        TowerChase();
+                        TowerPatrol();
                     }
                     else
                     {
@@ -134,33 +143,33 @@ public class MeleeBT : Enemy
         }
         else
         {
-            Dying();
+            Dying(true);
         }
     }
     public void PlayerSecurityMinDistanceColliderEnter(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = false;
         }
     }
     public void PlayerSecurityMinDistanceColliderExit(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = true;
         }
     }
     public void PlayerSecurityMaxDistanceColliderEnter(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = true;
         }
     }
     public void PlayerSecurityMaxDistanceColliderExit(Collider other)
     {
-        if(other.tag.Equals(Constants.player))
+        if (other.tag.Equals(Constants.player))
         {
             playerInSecurityDistance = false;
         }
@@ -190,13 +199,60 @@ public class MeleeBT : Enemy
         heavyAttackCollider.enabled = false;
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
+    
+        public void ResetHeavyAttackCooldown()
+    {
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
+    }
+        private void EndEnemyAttack()
+    {
+        isAttacking = false;
+        agent.isStopped = false;
+    }
+    
+    public void StartHeavyAttack()
+    {
+        if (player == null) return;
 
-    public void AttackEnter(Collider other)
+        isAttacking = true;
+        agent.isStopped = true;
+
+        pendingHeavyAttackPosition = player.transform.position;
+
+        AudioManager.Instance.Play("FireInvoke");
+        GameObject zone = Instantiate(fireZonePrefab, pendingHeavyAttackPosition + Vector3.up * 0.01f, Quaternion.identity);
+        
+        // Pasar referencia del enemigo a la zona
+        zone.GetComponent<FireZone>().Initialize(this);
+        
+        Destroy(zone, fireZoneDuration);
+
+        Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
+    }
+
+    public void DealFireZoneDamage(Collider playerCollider)
+    {
+        if (playerCollider.TryGetComponent(out VikingController vc))
+        {
+            int dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
+            vc.HealthTaken(dmg);
+        }
+    }
+
+    public void EarthBasicAttackEnter(Collider other)
     {
         if (other.CompareTag(Constants.player) && !playerHitted)
         {
             playerHitted = true;
-            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,basicAttackBasicDamage,basicAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
+        }
+    }
+    public void EarthHeavyAttackEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player) && !playerHitted)
+        {
+            playerHitted = true;
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
         }
     }
 }

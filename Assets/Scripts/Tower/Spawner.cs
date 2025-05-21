@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public GameManager gameManager;
     public GameObject[] enemyPrefabs; // Array que contiene los 4 tipos de enmigos
     public Tower tower; // Referencia a la torre
 
@@ -26,23 +27,42 @@ public class Spawner : MonoBehaviour
             Debug.Log("No hay track points");
         } */
     }
-    
+
     public void SpawnEnemy(Element activeElement)
     {
-        if(trackPoints.Length > 0)
+        if (trackPoints.Length > 0)
         {
             rndNum = Random.Range(0, trackPoints.Length); // Seleccionamos un track point aleatorio dentro del array
 
-            if(tower.enemiesInSecondZoneRange.Count < 3) // Verificamos los enemigos instanciados en la zona 
+            if (tower.enemiesInSecondZoneRange.Count < 3) // Verificamos los enemigos instanciados en la zona 
             {
                 foreach (GameObject enemy in enemyPrefabs) // Recorremos el array que contiene los 4 tipos de enemigos
                 {
-                    if(enemy.transform)
+                    if (enemy.transform)
                     {
-                        if(enemy.transform.GetChild(0).transform.GetComponent<EnemyAreaConfigurator>().activeElement == activeElement) // Verificamos que el activeElement del enemigo concuerde con el de la funcion
+                        if (enemy.transform.GetChild(0).transform.GetComponent<EnemyAreaConfigurator>().activeElement == activeElement) // Verificamos que el activeElement del enemigo concuerde con el de la funcion
                         {
-                            Debug.Log("-----> INSTANCIO");
-                            Instantiate(enemy, trackPoints[rndNum].transform.position, Quaternion.identity); // Instanciamos el enemigo
+                            // Debug.Log("-----> INSTANCIO");
+                            GameObject newEnemy = Instantiate(enemy, trackPoints[rndNum].transform.position, Quaternion.identity,gameManager.transform); // Instanciamos el enemigo
+                            newEnemy.GetComponentInChildren<Enemy>().tower = tower;
+                            if (activeElement == Element.Earth)
+                            {
+                                newEnemy.GetComponentInChildren<Enemy>().enemyLevel = gameManager.earthLevel;
+                            }
+                            else if (activeElement == Element.Water)
+                            {
+                                newEnemy.GetComponentInChildren<Enemy>().enemyLevel = gameManager.waterLevel;
+                            }
+                            else if (activeElement == Element.Fire)
+                            {
+                                newEnemy.GetComponentInChildren<Enemy>().enemyLevel = gameManager.fireLevel;
+                            }
+                            else if (activeElement == Element.Electric)
+                            {
+                                newEnemy.GetComponentInChildren<Enemy>().enemyLevel = gameManager.electricLevel;
+                            }
+                            Debug.Log("Enemy Level Set: " + newEnemy.GetComponentInChildren<Enemy>().enemyLevel + " Element: " + activeElement);
+                            newEnemy.GetComponentInChildren<Enemy>().SetStatsByLevel();
                             tower.isOnCooldown = true; // Activamos el cooldown    
                         }
                     }
@@ -50,7 +70,7 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("NO PUEDO CREAR TANTOS ENEMIGOS");
+                // Debug.Log("NO PUEDO CREAR TANTOS ENEMIGOS");
             }
         }
     }
@@ -84,7 +104,7 @@ public class Spawner : MonoBehaviour
 
 
 
-    
+
     /* public void SpawnEnemy(int pos)
     {
         int spawnPointX = Random.Range(36, 38); // Coordenada X

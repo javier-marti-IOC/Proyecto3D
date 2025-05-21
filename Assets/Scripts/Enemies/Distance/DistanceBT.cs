@@ -17,6 +17,7 @@ public class DistanceBT : Enemy
     public int teleportChance;
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
+    public ParticleSystem teleportParticles;
 
     [Header("Chase")]
     public float stoppingDistance = 8f;
@@ -25,27 +26,25 @@ public class DistanceBT : Enemy
 
     [Header("Electric Basic Attack")]
     public Transform hand;
-    public LineRenderer lightningLine;
-    public Light attackLight;
-    public float electricAttackRange = 10f;
+    public float electricAttackRange = 8f;
     public GameObject impactPosition;
+    public RayoController lightningEffectBasicAttack;
+    public RayoController lightningEffectHeavyAttack;
 
     [Header("Electric Heavy Attack")]
     public ParticleSystem lightningArea;
     public float heavyAttackDelay = 2f;
-    public float heavyAttackRadius = 2f;
     public float lightningHeight = 10f;
     private Vector3 pendingHeavyAttackPosition;
     private ParticleSystem activeHeavyParticles;
     public GameObject heavyAttackZoneTrigger;
+    private bool isAttacking = false;
+    private bool hitted = false;
 
 
     // Start is called before the first frame update
-
-
     void Start()
     {
-        base.Awake();
 
         if (activeElement == Element.Electric)
         {
@@ -62,58 +61,82 @@ public class DistanceBT : Enemy
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
-            //ME ESTA LLAMANDO LA TORRE?
-            if (towerCalling)
+            if (!hitted)
             {
-                TowerChase();
-            }
-            else
-            {
-                //El enemigo detecta al player
-                if (playerDetected)
+                //ME ESTA LLAMANDO LA TORRE?
+                if (towerCalling)
                 {
-                    if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+                    TowerChase();
+                }
+                else
+                {
+                    //El enemigo detecta al player
+                    if (playerDetected)
                     {
-                        CheckLookingPlayer();
-
-                        if (foundLookingPlayer)
+                        if (!player.GetComponent<VikingController>().EnemyDetecion(this))
                         {
-                            // SetLookingPlayersActive(false);
-                            Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
-                            switch (activeElement)
+                            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
+                            animator.SetInteger(Constants.state, 0);
+                        }
+                        else
+                        {
+                            if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                             {
-                                case Element.Water:
-                                    if (cooldownHeavyAttack <= 0)
-                                    {
-                                        //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state, 3);
-                                    }
-                                    else
-                                    {
-                                        //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state, 2);
-                                    }
-                                    break;
-                                case Element.Electric:
-                                    //Funcionalidad enemigo electrico
-                                    if (isPlayerInTeleportZone)
-                                    {
-                                        teleportCooldownTimer -= Time.deltaTime;
-                                        timerTeleportFunction += Time.deltaTime;
+                                CheckLookingPlayer();
 
-                                        if (timerTeleportFunction >= 1f)
-                                        {
-                                            timerTeleportFunction = 0f;
-                                            int tp = TeleportProbability();
-                                            Debug.Log("Teleport Probability: " + tp);
-
-                                            bool cooldownReady = teleportCooldownTimer <= 0;
-                                            bool luckyTeleport = tp <= teleportChance;
-
-                                            if (cooldownReady || luckyTeleport)
+                                if (foundLookingPlayer)
+                                {
+                                    // SetLookingPlayersActive(false);
+                                    Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
+                                    switch (activeElement)
+                                    {
+                                        case Element.Water:
+                                            if (cooldownHeavyAttack <= 0)
                                             {
-                                                TeleportToSafeZone();
-                                                teleportCooldownTimer = teleportCooldownTime;
+                                                //transform.LookAt(player.transform);
+                                                animator.SetInteger(Constants.state, 3);
+                                            }
+                                            else
+                                            {
+                                                //transform.LookAt(player.transform);
+                                                animator.SetInteger(Constants.state, 2);
+                                            }
+                                            break;
+                                        case Element.Electric:
+                                            //Funcionalidad enemigo electrico
+                                            if (isPlayerInTeleportZone)
+                                            {
+                                                teleportCooldownTimer -= Time.deltaTime;
+                                                timerTeleportFunction += Time.deltaTime;
+
+                                                if (timerTeleportFunction >= 1f)
+                                                {
+                                                    timerTeleportFunction = 0f;
+                                                    int tp = TeleportProbability();
+                                                    Debug.Log("Teleport Probability: " + tp);
+
+                                                    bool cooldownReady = teleportCooldownTimer <= 0;
+                                                    bool luckyTeleport = tp <= teleportChance;
+
+                                                    if (cooldownReady || luckyTeleport)
+                                                    {
+                                                        TeleportToSafeZone();
+                                                        teleportCooldownTimer = teleportCooldownTime;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (cooldownHeavyAttack <= 0)
+                                                        {
+                                                            //transform.LookAt(player.transform);
+                                                            animator.SetInteger(Constants.state, 3);
+                                                        }
+                                                        else
+                                                        {
+                                                            //transform.LookAt(player.transform);
+                                                            animator.SetInteger(Constants.state, 2);
+                                                        }
+                                                    }
+                                                }
                                             }
                                             else
                                             {
@@ -128,56 +151,46 @@ public class DistanceBT : Enemy
                                                     animator.SetInteger(Constants.state, 2);
                                                 }
                                             }
-                                        }
+                                            break;
+                                        default:
+                                            break;
                                     }
-                                    else
-                                    {
-                                        if (cooldownHeavyAttack <= 0)
-                                        {
-                                            //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 3);
-                                        }
-                                        else
-                                        {
-                                            //transform.LookAt(player.transform);
-                                            animator.SetInteger(Constants.state, 2);
-                                        }
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            // agent.radius = 5f;
-                            CheckAgentSpeed();
-                            // animator.SetInteger(Constants.state, 1);
+                                }
+                                else
+                                {
+                                    // agent.radius = 5f;
+                                    CheckAgentSpeed();
+                                    // animator.SetInteger(Constants.state, 1);
 
-                            Chase(3f);
+                                    Chase(3f);
+                                }
+                            }
+                            else
+                            {
+                                CheckAgentSpeed();
+                                // animator.SetInteger(Constants.state, 1);
+
+                                Chase(stoppingDistance);
+
+                            }
                         }
                     }
                     else
                     {
-                        CheckAgentSpeed();
-                        // animator.SetInteger(Constants.state, 1);
-
-                        Chase(stoppingDistance);
-
+                        SetLookingPlayersActive(false);
+                        Patrol();
                     }
-
-
-                }
-                else
-                {
-                    SetLookingPlayersActive(false);
-                    Patrol();
                 }
             }
+            else
+            {
+                animator.SetInteger(Constants.state, 4);
+            }
+
         }
         else
         {
-            Dying();
+            Dying(true);
         }
     }
     private void SetLookingPlayersActive(bool active)
@@ -193,7 +206,10 @@ public class DistanceBT : Enemy
     private void CheckLookingPlayer()
     {
         SetLookingPlayersActive(true);
-        agent.SetDestination(player.transform.position);
+        if (!isAttacking)
+        {
+            agent.SetDestination(player.transform.position);
+        }
 
         if (lookAtPlayers.Any(lookAtPlayer => lookAtPlayer.GetComponent<LookAtPlayer>().CentralRay()))
         {
@@ -205,7 +221,6 @@ public class DistanceBT : Enemy
         }
 
     }
-
 
     public void TeleportZoneEnter(Collider other)
     {
@@ -249,12 +264,21 @@ public class DistanceBT : Enemy
 
     private void TeleportToSafeZone()
     {
+        Vector3 originalPosition = transform.position;
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * teleportDistance;
-        randomDirection += transform.position;
+        randomDirection += originalPosition;
 
         if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, teleportDistance, NavMesh.AllAreas))
         {
+            // Instanciar partículas donde desaparece
+            Instantiate(teleportParticles, originalPosition, Quaternion.identity).Play();
+
+            // Mover al enemigo
             transform.position = hit.position;
+
+            // Instanciar partículas donde aparece
+            Instantiate(teleportParticles, hit.position, Quaternion.identity).Play();
+
             Debug.Log("Teletransportado a nueva posición: " + hit.position);
         }
         else
@@ -263,11 +287,14 @@ public class DistanceBT : Enemy
         }
     }
 
+
     public void ShootLightning()
     {
         if (player == null) return;
 
-        //Vector3 direction = (player.transform.position - hand.position).normalized;
+        isAttacking = true;
+        agent.isStopped = true;
+
         Vector3 direction = (impactPosition.transform.position - hand.position).normalized;
         RaycastHit hit;
 
@@ -290,18 +317,18 @@ public class DistanceBT : Enemy
             endPoint = hand.position + direction * electricAttackRange;
         }
 
-        lightningLine.SetPosition(0, hand.position);
-        lightningLine.SetPosition(1, endPoint);
-        lightningLine.enabled = true;
+        //Cridar a la funció del rayo Controller
+        lightningEffectBasicAttack.PlayLightning(hand.position, endPoint, 0.1f);
 
-        attackLight.enabled = true;
-
-        Invoke(nameof(DisableLightningVisuals), 0.1f);
+        Invoke(nameof(EndEnemyAttack), 1.5f);
     }
 
     public void StartHeavyAttack()
     {
         if (player == null) return;
+
+        isAttacking = true;
+        agent.isStopped = true;
 
         // Guardar posició actual del player
         pendingHeavyAttackPosition = player.transform.position;
@@ -317,6 +344,7 @@ public class DistanceBT : Enemy
 
         // Executar atac amb delay
         Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
+        Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
     }
 
     private void ExecuteHeavyAttack()
@@ -331,13 +359,9 @@ public class DistanceBT : Enemy
         Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
         Vector3 end = pendingHeavyAttackPosition;
 
-        // Posició inicial i final visualment
-        lightningLine.SetPosition(0, start);
-        lightningLine.SetPosition(1, end);
-        lightningLine.enabled = true; // Activar visualització
+        //Cridar a la funció del rayo Controller
+        lightningEffectHeavyAttack.PlayLightning(start, end, 0.1f);
 
-        attackLight.enabled = true;
-        Invoke(nameof(DisableLightningVisuals), 0.1f);
 
         if (isPlayerInHeavyAttackZone)
         {
@@ -347,17 +371,14 @@ public class DistanceBT : Enemy
         }
         heavyAttackZoneTrigger.SetActive(false);
     }
-
-
-    private void DisableLightningVisuals()
+    private void EndEnemyAttack()
     {
-        lightningLine.enabled = false;
-        attackLight.enabled = false;
+        isAttacking = false;
+        agent.isStopped = false;
     }
 
     public void ResetHeavyAttackCooldown()
     {
-        //playerHitted = false;
         cooldownHeavyAttack = UnityEngine.Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
 
@@ -372,12 +393,32 @@ public class DistanceBT : Enemy
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 
-    public override void Dying()
+
+
+    public override void HealthTaken(int damageTaken)
     {
-        Debug.Log("Muelto");
-        tower.enemiesInSecondZoneRange.Remove(gameObject);
-        tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
-        Instantiate(drop, dropPosition.position, Quaternion.identity, null);
-        Utils.DestroyRoot(gameObject);
+        base.HealthTaken(damageTaken);
+        hitted = true;
+        agent.isStopped = true;
+        hitParticle.SetActive(true);
+        if (ghost != null) Destroy(ghost);
+
+        playerDetectorDown.SetActive(false);
+        playerDetectorUp.SetActive(false);
+        minDistanceChase.SetActive(false);
+        SetLookingPlayersActive(false);
+        Invoke(nameof(SetFalseHitted), 0.5f);
+    }
+    // Método compatible con Animation Event
+    public void SetHittedFalse()
+    {
+        // hitted = false;
+        agent.isStopped = false;
+        hitParticle.SetActive(false);
+    }
+
+    private void SetFalseHitted()
+    {
+        hitted = false;
     }
 }
