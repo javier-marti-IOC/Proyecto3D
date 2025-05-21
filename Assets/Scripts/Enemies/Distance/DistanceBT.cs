@@ -177,8 +177,6 @@ public class DistanceBT : Enemy
             }
             else
             {
-                Debug.Log("Animacion de hit");
-
                 animator.SetInteger(Constants.state, 4);
             }
 
@@ -407,6 +405,7 @@ public class DistanceBT : Enemy
     {
         base.HealthTaken(damageTaken);
         hitted = true;
+        agent.isStopped = true;
         if (ghost != null) Destroy(ghost);
 
         playerDetectorDown.SetActive(false);
@@ -418,5 +417,6 @@ public class DistanceBT : Enemy
     public void SetHittedFalse()
     {
         hitted = false;
+        agent.isStopped = false;
     }
 }
