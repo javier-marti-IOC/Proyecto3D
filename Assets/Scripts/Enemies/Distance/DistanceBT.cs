@@ -68,6 +68,7 @@ public class DistanceBT : Enemy
     //Update is called once per frame
     void Update()
     {
+        if (!isBTEnabled) return;
         cooldownHeavyAttack -= Time.deltaTime;
         //Esta el enemigo vivo?
         if (healthPoints > 0)
@@ -417,7 +418,6 @@ public class DistanceBT : Enemy
 
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
-        minDistanceChase.SetActive(false);
         SetLookingPlayersActive(false);
         Invoke(nameof(SetFalseHitted), 0.5f);
     }

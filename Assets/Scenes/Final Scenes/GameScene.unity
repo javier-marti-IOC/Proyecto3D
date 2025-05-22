@@ -12800,12 +12800,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761517112}
   m_CullTransparentMesh: 1
---- !u!1 &1780383056 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 519550388307287755, guid: 4c3ad61932925774cbe04b2b9df7e533,
-    type: 3}
-  m_PrefabInstance: {fileID: 360144305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1781792760 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4394024465495034179, guid: acf3421d74432b8448e4f0be10029697,
@@ -18243,16 +18237,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 126554037317453137, guid: efae5789b8220d646af2cde96c051f19,
+    - target: {fileID: 616210127881075506, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
-      propertyPath: m_Layer
-      value: 7
+      propertyPath: m_Radius
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 616210127881075506, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
-      propertyPath: deathHUD
-      value: 
-      objectReference: {fileID: 1780383056}
+      propertyPath: maxEnemies
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: elementsHUD
@@ -18263,11 +18262,6 @@ PrefabInstance:
       propertyPath: vikingHealthHUD
       value: 
       objectReference: {fileID: 434484317}
-    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
-        type: 3}
-      propertyPath: vikingElementsHUD
-      value: 
-      objectReference: {fileID: 434484316}
     - target: {fileID: 6067303905638269387, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: progressManager
@@ -18327,11 +18321,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Viking
-      objectReference: {fileID: 0}
-    - target: {fileID: 9113744238655452588, guid: efae5789b8220d646af2cde96c051f19,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

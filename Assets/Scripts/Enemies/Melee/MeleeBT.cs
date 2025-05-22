@@ -31,6 +31,7 @@ public class MeleeBT : Enemy
 
     void Update()
     {
+        if (!isBTEnabled) return;
         cooldownHeavyAttack -= Time.deltaTime;
         //Esta el enemigo vivo?
         if (healthPoints > 0)
