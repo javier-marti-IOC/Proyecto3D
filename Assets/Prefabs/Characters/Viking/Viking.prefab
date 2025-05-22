@@ -5565,11 +5565,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 75
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &144978306005680548
 MonoBehaviour:
@@ -7082,7 +7082,7 @@ MonoBehaviour:
   isRolling: 0
   rollCooldown: 0
   enemiesInCombat: []
-  maxEnemies: 2
+  maxEnemies: 5
   healParticles: {fileID: 4967606259284499030}
 --- !u!136 &5119653336814344007
 CapsuleCollider:

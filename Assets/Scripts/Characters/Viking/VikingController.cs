@@ -315,7 +315,7 @@ public class VikingController : MonoBehaviour
         }
         if (other.CompareTag(Constants.tower))
         {
-            if (other.GetComponent<Tower>().activeElement == activeElement && !isBasicAttack)
+            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement,activeElement) < 0 && !isBasicAttack)
             {
                 if (activeElement == Element.Earth) earthMana = 0;
                 else if (activeElement == Element.Water) waterMana = 0;
