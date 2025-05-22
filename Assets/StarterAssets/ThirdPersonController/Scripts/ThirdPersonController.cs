@@ -27,6 +27,7 @@ namespace StarterAssets
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
+        public AudioSource footstepAudioSource;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
         [Space(10)]
@@ -398,10 +399,17 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                if (FootstepAudioClips.Length > 0)
+                // if (FootstepAudioClips.Length > 0)
+                // {
+                //     var index = Random.Range(0, FootstepAudioClips.Length);
+                //     AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                // }
+                if (FootstepAudioClips.Length > 0 && footstepAudioSource != null)
                 {
                     var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    footstepAudioSource.clip = FootstepAudioClips[index];
+                    //footstepAudioSource.volume = FootstepAudioVolume;
+                    footstepAudioSource.Play();
                 }
             }
         }

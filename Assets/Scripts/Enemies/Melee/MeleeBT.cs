@@ -18,13 +18,13 @@ public class MeleeBT : Enemy
     public float heavyAttackDelay = 2f;
     public float fireZoneDuration;
 
-        [Header("EarthEnemy AudioSources")]
+    [Header("EarthEnemy AudioSources")]
     public AudioSource audioEarthDeath;
     public AudioSource audioEarthBasicAttack;
     public AudioSource audioEarthHeavyAttack;
     public AudioSource audioEarthHit;
 
-        [Header("FireEnemy AudioSources")]
+    [Header("FireEnemy AudioSources")]
     public AudioSource audioFireDeath;
     public AudioSource audioFireBasicAttack;
     public AudioSource audioFireHit;
@@ -202,6 +202,7 @@ public class MeleeBT : Enemy
     {
         playerHitted = false;
         heavyAttackCollider.enabled = true;
+        audioEarthHeavyAttack.Play();
     }
 
     public void HeavyAttackDisabled()
@@ -210,17 +211,17 @@ public class MeleeBT : Enemy
         heavyAttackCollider.enabled = false;
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
-    
-        public void ResetHeavyAttackCooldown()
+
+    public void ResetHeavyAttackCooldown()
     {
         cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
     }
-        private void EndEnemyAttack()
+    private void EndEnemyAttack()
     {
         isAttacking = false;
         agent.isStopped = false;
     }
-    
+
     public void StartHeavyAttack()
     {
         if (player == null) return;
@@ -232,10 +233,10 @@ public class MeleeBT : Enemy
 
         AudioManager.Instance.Play("FireInvoke");
         GameObject zone = Instantiate(fireZonePrefab, pendingHeavyAttackPosition + Vector3.up * 0.01f, Quaternion.identity);
-        
+
         // Pasar referencia del enemigo a la zona
         zone.GetComponent<FireZone>().Initialize(this);
-        
+
         Destroy(zone, fireZoneDuration);
 
         Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
@@ -263,7 +264,11 @@ public class MeleeBT : Enemy
         if (other.CompareTag(Constants.player) && !playerHitted)
         {
             playerHitted = true;
-            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement,heavyAttackBasicDamage,heavyAttackElementalDamage,other.GetComponent<VikingController>().activeElement));
+            other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
         }
+    }
+    public void EarthHeavyAttackSound()
+    {
+        audioEarthHeavyAttack.Play();
     }
 }

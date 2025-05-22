@@ -52,6 +52,7 @@ public class DistanceBT : Enemy
     public AudioSource audioElectricBasicAttack;
     public AudioSource audioElectricHeavyAttack;
     public AudioSource audioElectricHit;
+    public AudioSource audioElectricTeleport;
 
     // Start is called before the first frame update
     void Start()
@@ -281,6 +282,8 @@ public class DistanceBT : Enemy
 
         if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, teleportDistance, NavMesh.AllAreas))
         {
+            // Instancia sonido teleport
+            audioElectricTeleport.Play();
             // Instanciar partículas donde desaparece
             Instantiate(teleportParticles, originalPosition, Quaternion.identity).Play();
 
@@ -409,6 +412,15 @@ public class DistanceBT : Enemy
 
     public override void HealthTaken(int damageTaken)
     {
+        if (audioWaterHit != null)
+        {
+            audioWaterHit.Play();
+        }
+        else if (audioElectricHit != null)
+        {
+            audioElectricHit.Play();
+        }
+
         base.HealthTaken(damageTaken);
         hitted = true;
         agent.isStopped = true;

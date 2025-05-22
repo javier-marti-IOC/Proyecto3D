@@ -172,7 +172,7 @@ MonoBehaviour:
   ambience:
   - name: AmbienceVolcano
     clip: {fileID: 8300000, guid: 33721e91a858d784599e731018aa566f, type: 3}
-    volume: 1
+    volume: 0.9
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: AmbienceCavern
     clip: {fileID: 8300000, guid: 2e61d96e6872f864e851f7c7d60f453c, type: 3}
-    volume: 0.4
+    volume: 0.45
     pitch: 1
     loop: 1
     playOnAwake: 0
