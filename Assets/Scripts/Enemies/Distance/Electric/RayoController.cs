@@ -16,7 +16,6 @@ public class RayoController : MonoBehaviour
     private bool isActive = false;
     private Vector3 startPoint;
     private Vector3 endPoint;
-    
 
     public void PlayLightning(Vector3 start, Vector3 end, float duration)
     {
