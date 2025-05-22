@@ -201,14 +201,12 @@ public class Tower : MonoBehaviour
         InstantiateDeathTowerParticles();
         Utils.ReplaceMaterials(materials, colors);
 
-        /* 
-            if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
-            {
-                Utils.ReplaceTrees(trees, newTrees);
-                Debug.Log("--->>>> CAMBIANDO ARBOLES");
-            } 
-        */
-
+        if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
+        {
+            Utils.ReplaceTrees(trees, newTrees);
+            Debug.Log("--->>>> CAMBIANDO ARBOLES");
+        }
+       
         ChangeEnvironmentParticles();
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         progressManager.SaveGame();
