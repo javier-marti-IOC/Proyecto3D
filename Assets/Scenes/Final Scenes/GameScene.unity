@@ -1922,140 +1922,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: ab1d772e5e8c03348adb20d24f97d174, type: 3}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[3].name
-      value: manaDrop
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: ab1d772e5e8c03348adb20d24f97d174, type: 3}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[4].name
-      value: goldDrop
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[5].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5956389a550acfb479fb6297d85bd97e, type: 3}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[5].name
-      value: PickUpGoldOrbe
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[6].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: ce06451aba31d184eae3d6a357ed3a7b, type: 3}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[6].name
-      value: EarthEnemyDie
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[3].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[4].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[5].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[6].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[3].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[4].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[5].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[6].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: ambience.Array.data[3].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: ambience.Array.data[4].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: ambience.Array.data[3].volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: ambience.Array.data[4].volume
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[3].outputGroup
-      value: 
-      objectReference: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
-        type: 2}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[4].outputGroup
-      value: 
-      objectReference: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
-        type: 2}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[5].outputGroup
-      value: 
-      objectReference: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
-        type: 2}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: sfx.Array.data[6].outputGroup
-      value: 
-      objectReference: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
-        type: 2}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: ambience.Array.data[3].playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15248,7 +15114,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 47bc385d44119d04681fe306750195f8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15257,7 +15123,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 4
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -15267,28 +15133,46 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.25
-      value: 1
-      inSlope: -4.0016
-      outSlope: -4.0016
+      time: 0.049775697
+      value: 0.9999771
+      inSlope: -7.7339187
+      outSlope: -7.7339187
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07784681
+    - serializedVersion: 3
+      time: 0.21573181
+      value: 0.36889648
+      inSlope: -1.5914675
+      outSlope: -1.5914675
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.28283203
+      outWeight: 0.19545293
+    - serializedVersion: 3
+      time: 0.41257325
+      value: 0.15542603
+      inSlope: -0.62524897
+      outSlope: -0.62524897
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.49671936
-      value: 0.37911987
-      inSlope: -1.1710128
-      outSlope: -1.1710128
+      time: 0.81257325
+      value: 0.025817871
+      inSlope: -0.15631224
+      outSlope: -0.15631224
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33767894
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -0.2501
-      outSlope: -0.2501
+      value: 0.0008178726
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -19607,6 +19491,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1849675769167904673, guid: 29cd42040db366444866b01779675dc0,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1976381021298030417, guid: 29cd42040db366444866b01779675dc0,
         type: 3}
       propertyPath: m_Name
@@ -20068,7 +19957,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 47bc385d44119d04681fe306750195f8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -20077,7 +19966,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 4
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -20087,28 +19976,46 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.25
-      value: 1
-      inSlope: -4.0016
-      outSlope: -4.0016
+      time: 0.049775697
+      value: 0.9999771
+      inSlope: -7.7339187
+      outSlope: -7.7339187
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07784681
+    - serializedVersion: 3
+      time: 0.21573181
+      value: 0.36889648
+      inSlope: -1.5914675
+      outSlope: -1.5914675
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.28283203
+      outWeight: 0.19545293
+    - serializedVersion: 3
+      time: 0.41257325
+      value: 0.15542603
+      inSlope: -0.62524897
+      outSlope: -0.62524897
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.49671936
-      value: 0.37911987
-      inSlope: -1.1710128
-      outSlope: -1.1710128
+      time: 0.81257325
+      value: 0.025817871
+      inSlope: -0.15631224
+      outSlope: -0.15631224
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33767894
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -0.2501
-      outSlope: -0.2501
+      value: 0.0008178726
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -21800,7 +21707,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 47bc385d44119d04681fe306750195f8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21809,7 +21716,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 4
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -21819,28 +21726,46 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.25
-      value: 1
-      inSlope: -4.0016
-      outSlope: -4.0016
+      time: 0.049775697
+      value: 0.9999771
+      inSlope: -7.7339187
+      outSlope: -7.7339187
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07784681
+    - serializedVersion: 3
+      time: 0.21573181
+      value: 0.36889648
+      inSlope: -1.5914675
+      outSlope: -1.5914675
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.28283203
+      outWeight: 0.19545293
+    - serializedVersion: 3
+      time: 0.41257325
+      value: 0.15542603
+      inSlope: -0.62524897
+      outSlope: -0.62524897
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.49671936
-      value: 0.37911987
-      inSlope: -1.1710128
-      outSlope: -1.1710128
+      time: 0.81257325
+      value: 0.025817871
+      inSlope: -0.15631224
+      outSlope: -0.15631224
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33767894
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -0.2501
-      outSlope: -0.2501
+      value: 0.0008178726
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -22459,7 +22384,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 47bc385d44119d04681fe306750195f8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -22468,7 +22393,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 4
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -22478,28 +22403,46 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.25
-      value: 1
-      inSlope: -4.0016
-      outSlope: -4.0016
+      time: 0.049775697
+      value: 0.9999771
+      inSlope: -7.7339187
+      outSlope: -7.7339187
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07784681
+    - serializedVersion: 3
+      time: 0.21573181
+      value: 0.36889648
+      inSlope: -1.5914675
+      outSlope: -1.5914675
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.28283203
+      outWeight: 0.19545293
+    - serializedVersion: 3
+      time: 0.41257325
+      value: 0.15542603
+      inSlope: -0.62524897
+      outSlope: -0.62524897
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.49671936
-      value: 0.37911987
-      inSlope: -1.1710128
-      outSlope: -1.1710128
+      time: 0.81257325
+      value: 0.025817871
+      inSlope: -0.15631224
+      outSlope: -0.15631224
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33767894
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -0.2501
-      outSlope: -0.2501
+      value: 0.0008178726
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

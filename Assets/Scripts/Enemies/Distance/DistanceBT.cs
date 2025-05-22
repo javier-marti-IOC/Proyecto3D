@@ -41,6 +41,17 @@ public class DistanceBT : Enemy
     private bool isAttacking = false;
     private bool hitted = false;
 
+    [Header("WaterEnemy AudioSources")]
+    public AudioSource audioWaterDeath;
+    public AudioSource audioWaterBasicAttack;
+    public AudioSource audioWaterHeavyAttack;
+    public AudioSource audioWaterHit;
+
+        [Header("ElectricEnemy AudioSources")]
+    public AudioSource audioElectricDeath;
+    public AudioSource audioElectricBasicAttack;
+    public AudioSource audioElectricHeavyAttack;
+    public AudioSource audioElectricHit;
 
     // Start is called before the first frame update
     void Start()
@@ -384,12 +395,13 @@ public class DistanceBT : Enemy
 
     public void PlayerHitted()
     {
-        player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
-
+        AudioManager.Instance?.Play("HitMarker");
+        player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));       
     }
 
     public void PlayerHeavyHitted()
     {
+        AudioManager.Instance?.Play("HitMarker");
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 

@@ -10,13 +10,24 @@ public class MeleeBT : Enemy
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
-
-    public GameObject fireZonePrefab;
-
     private bool isAttacking;
     private Vector3 pendingHeavyAttackPosition;
+
+    [Header("FireEnemy properties")]
+    public GameObject fireZonePrefab;
     public float heavyAttackDelay = 2f;
     public float fireZoneDuration;
+
+        [Header("EarthEnemy AudioSources")]
+    public AudioSource audioEarthDeath;
+    public AudioSource audioEarthBasicAttack;
+    public AudioSource audioEarthHeavyAttack;
+    public AudioSource audioEarthHit;
+
+        [Header("FireEnemy AudioSources")]
+    public AudioSource audioFireDeath;
+    public AudioSource audioFireBasicAttack;
+    public AudioSource audioFireHit;
 
     void Update()
     {

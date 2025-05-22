@@ -807,11 +807,19 @@ MonoBehaviour:
   basicAttackElementalDamage: 3
   heavyAttackBasicDamage: 8
   heavyAttackElementalDamage: 15
+  hitParticle: {fileID: 0}
   basicAttackCollider: {fileID: 4022295023652936646}
   heavyAttackCollider: {fileID: 3680562767165459182}
   fireZonePrefab: {fileID: 0}
   heavyAttackDelay: 2
   fireZoneDuration: 0
+  audioEarthDeath: {fileID: 6346817168078946480}
+  audioEarthBasicAttack: {fileID: 2251327889258133066}
+  audioEarthHeavyAttack: {fileID: 8175105045864105531}
+  audioEarthHit: {fileID: 7223220976770251647}
+  audioFireDeath: {fileID: 0}
+  audioFireBasicAttack: {fileID: 0}
+  audioFireHit: {fileID: 0}
 --- !u!136 &3996392098834329733
 CapsuleCollider:
   m_ObjectHideFlags: 0
