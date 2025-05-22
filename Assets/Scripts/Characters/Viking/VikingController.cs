@@ -330,6 +330,7 @@ public class VikingController : MonoBehaviour
     {
         if (!isRolling)
         {
+            AudioManager.Instance?.Play("HitMarker");
             healthPoints -= healthTaken;
             vikingHealthHUD.SetHealth(healthPoints);
         }

@@ -330,7 +330,7 @@ public class DistanceBT : Enemy
         {
             endPoint = hit.point;
             Debug.DrawRay(hand.position, direction * electricAttackRange, Color.red, 1f);
-
+            audioElectricBasicAttack.Play();
             if (hit.collider.CompareTag(Constants.player))
             {
                 // Fer pupa al player
@@ -393,6 +393,7 @@ public class DistanceBT : Enemy
 
         //Cridar a la funció del rayo Controller
         lightningEffectHeavyAttack.PlayLightning(start, end, 0.1f);
+        audioElectricHeavyAttack.Play();
 
         GameObject lightningFlash = new GameObject("LightningFlash");
         lightningFlash.transform.position = start;
@@ -452,13 +453,11 @@ public class DistanceBT : Enemy
 
     public void PlayerHitted()
     {
-        AudioManager.Instance?.Play("HitMarker");
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 
     public void PlayerHeavyHitted()
     {
-        AudioManager.Instance?.Play("HitMarker");
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 

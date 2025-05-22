@@ -206,7 +206,7 @@ public class Tower : MonoBehaviour
             Utils.ReplaceTrees(trees, newTrees);
             Debug.Log("--->>>> CAMBIANDO ARBOLES");
         }
-       
+        AudioManager.Instance?.Play("RestoreElement");
         ChangeEnvironmentParticles();
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         progressManager.SaveGame();

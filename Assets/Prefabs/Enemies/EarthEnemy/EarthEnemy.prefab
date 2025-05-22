@@ -655,6 +655,7 @@ Transform:
   - {fileID: 2758932900976268014}
   - {fileID: 5199815715457683201}
   - {fileID: 3383887799465661057}
+  - {fileID: 2195018140698825665}
   m_Father: {fileID: 5266112368966858884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5951800270343828975
@@ -787,6 +788,7 @@ MonoBehaviour:
   tower: {fileID: 0}
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}
+  isBTEnabled: 0
   towerCalling: 0
   playerInAttackRange: 0
   towerInRange: 0
@@ -800,7 +802,6 @@ MonoBehaviour:
   pointPatrol: {fileID: 545377662752634713}
   playerDetectorDown: {fileID: 437806569291530884}
   playerDetectorUp: {fileID: 1449607660537794907}
-  minDistanceChase: {fileID: 0}
   basicAttackBasicDamage: 5
   basicAttackElementalDamage: 3
   heavyAttackBasicDamage: 8
@@ -1672,7 +1673,7 @@ Transform:
   - {fileID: 455927050925273237}
   - {fileID: 9065300976566662317}
   - {fileID: 5204646795617306886}
-  m_Father: {fileID: 5266112368966858884}
+  m_Father: {fileID: 3049353640354573260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3003362596886858366
 GameObject:
@@ -2145,7 +2146,6 @@ Transform:
   m_Children:
   - {fileID: 3049353640354573260}
   - {fileID: 4054839547387364221}
-  - {fileID: 2195018140698825665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5556613846609960980
