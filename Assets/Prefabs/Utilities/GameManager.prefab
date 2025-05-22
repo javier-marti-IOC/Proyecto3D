@@ -106,10 +106,10 @@ MonoBehaviour:
   - {fileID: 7667530231095019427}
   - {fileID: 6591143629466761417}
   - {fileID: 416706414925979554}
-  earthTowerSpawnersPositions: {fileID: 0}
-  waterTowerSpawnersPositions: {fileID: 0}
-  fireTowerSpawnersPositions: {fileID: 0}
-  electricTowerSpawnersPositions: {fileID: 0}
+  earthTowerSpawnersPositions: {fileID: 4207821237399703735}
+  waterTowerSpawnersPositions: {fileID: 7759362180245323660}
+  fireTowerSpawnersPositions: {fileID: 8423776715311753553}
+  electricTowerSpawnersPositions: {fileID: 4224246376903369798}
   earthLevel: 1
   waterLevel: 1
   fireLevel: 1
@@ -409,6 +409,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1532574298870260714}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4207821237399703735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3396245369473200989, guid: f5d27d8d4e5f30640b0fc5cdccc3b0c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532574298870260714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4224246376903369798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3448426384043558828, guid: f5d27d8d4e5f30640b0fc5cdccc3b0c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532574298870260714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4301319547941900515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3383777144827769609, guid: f5d27d8d4e5f30640b0fc5cdccc3b0c9,
@@ -517,6 +529,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1532574298870260714}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &7759362180245323660 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9145129684291378278, guid: f5d27d8d4e5f30640b0fc5cdccc3b0c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532574298870260714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7799211725810460157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8752905899446650391, guid: f5d27d8d4e5f30640b0fc5cdccc3b0c9,
@@ -526,6 +544,12 @@ Transform:
 --- !u!4 &8170548838200757108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7216828004626983070, guid: f5d27d8d4e5f30640b0fc5cdccc3b0c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532574298870260714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8423776715311753553 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7035617121578191547, guid: f5d27d8d4e5f30640b0fc5cdccc3b0c9,
     type: 3}
   m_PrefabInstance: {fileID: 1532574298870260714}
   m_PrefabAsset: {fileID: 0}

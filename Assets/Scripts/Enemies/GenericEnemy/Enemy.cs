@@ -260,6 +260,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void PlayerDetected()
     {
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
         playerDetected = true;
         hudPanelCanvas.SetActive(true);
     }

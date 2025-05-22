@@ -69,9 +69,9 @@ public class MeleeBT : Enemy
                     {
                         if (playerInAttackRange)
                         {
+                            agent.SetDestination(transform.position);
                             if (activeElement == Element.Earth)
                             {
-                                agent.SetDestination(transform.position);
                                 if (cooldownHeavyAttack < 0)
                                 {
                                     Debug.Log("HEAVY ATTACK");
