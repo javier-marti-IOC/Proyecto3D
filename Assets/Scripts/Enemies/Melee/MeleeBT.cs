@@ -225,12 +225,12 @@ public class MeleeBT : Enemy
 
     public void StartHeavyAttack()
     {
-        if (player == null) return;
+        //if (player == null) return;
 
         isAttacking = true;
         agent.isStopped = true;
 
-        pendingHeavyAttackPosition = player.transform.position;
+        pendingHeavyAttackPosition = transform.position; //player.transform.position;
 
         AudioManager.Instance.Play("FireInvoke");
         GameObject zone = Instantiate(fireZonePrefab, pendingHeavyAttackPosition + Vector3.up * 0.01f, Quaternion.identity);
