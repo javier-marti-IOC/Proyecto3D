@@ -47,7 +47,7 @@ public class DistanceBT : Enemy
     public AudioSource audioWaterHeavyAttack;
     public AudioSource audioWaterHit;
 
-        [Header("ElectricEnemy AudioSources")]
+    [Header("ElectricEnemy AudioSources")]
     public AudioSource audioElectricDeath;
     public AudioSource audioElectricBasicAttack;
     public AudioSource audioElectricHeavyAttack;
@@ -69,7 +69,6 @@ public class DistanceBT : Enemy
     //Update is called once per frame
     void Update()
     {
-        cooldownHeavyAttack -= Time.deltaTime;
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
@@ -98,6 +97,7 @@ public class DistanceBT : Enemy
 
                                 if (foundLookingPlayer)
                                 {
+                                    cooldownHeavyAttack -= Time.deltaTime;
                                     // SetLookingPlayersActive(false);
                                     Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
                                     switch (activeElement)
@@ -399,7 +399,7 @@ public class DistanceBT : Enemy
     public void PlayerHitted()
     {
         AudioManager.Instance?.Play("HitMarker");
-        player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));       
+        player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 
     public void PlayerHeavyHitted()
