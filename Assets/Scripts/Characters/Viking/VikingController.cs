@@ -152,6 +152,7 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.EarthStopBlink();
                         activeElement = Element.None;
+                        earthMana = 0;
                     }
                 }
                 else if (activeElement == Element.Water)
@@ -162,6 +163,7 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.WaterStopBlink();
                         activeElement = Element.None;
+                        waterMana = 0;
                     }
                 }
                 else if (activeElement == Element.Fire)
@@ -173,6 +175,7 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.FireStopBlink();
                         activeElement = Element.None;
+                        fireMana = 0;
                     }
                 }
                 else if (activeElement == Element.Electric)
@@ -183,6 +186,7 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.LightningStopBlink();
                         activeElement = Element.None;
+                        electricMana = 0;
                     }
                 }
             }
@@ -318,7 +322,7 @@ public class VikingController : MonoBehaviour
                 else if (activeElement == Element.Fire) fireMana = 0;
                 else if (activeElement == Element.Electric) electricMana = 0;
                 Debug.Log("TowerHit");
-                other.GetComponent<Tower>().HealthTaken(20);
+                other.GetComponent<Tower>().HealthTaken(200);
             }
         }
     }
