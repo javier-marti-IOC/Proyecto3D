@@ -409,7 +409,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -527,10 +527,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 28235a1e85306ea419122ee7eb1b727b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.3
+  m_Pitch: 1.3
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -538,7 +538,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -655,6 +655,7 @@ Transform:
   - {fileID: 2758932900976268014}
   - {fileID: 5199815715457683201}
   - {fileID: 3383887799465661057}
+  - {fileID: 2195018140698825665}
   m_Father: {fileID: 5266112368966858884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5951800270343828975
@@ -787,6 +788,7 @@ MonoBehaviour:
   tower: {fileID: 0}
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}
+  isBTEnabled: 0
   towerCalling: 0
   playerInAttackRange: 0
   towerInRange: 0
@@ -800,7 +802,6 @@ MonoBehaviour:
   pointPatrol: {fileID: 545377662752634713}
   playerDetectorDown: {fileID: 437806569291530884}
   playerDetectorUp: {fileID: 1449607660537794907}
-  minDistanceChase: {fileID: 0}
   basicAttackBasicDamage: 5
   basicAttackElementalDamage: 3
   heavyAttackBasicDamage: 8
@@ -1282,7 +1283,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1672,7 +1673,7 @@ Transform:
   - {fileID: 455927050925273237}
   - {fileID: 9065300976566662317}
   - {fileID: 5204646795617306886}
-  m_Father: {fileID: 5266112368966858884}
+  m_Father: {fileID: 3049353640354573260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3003362596886858366
 GameObject:
@@ -2145,7 +2146,6 @@ Transform:
   m_Children:
   - {fileID: 3049353640354573260}
   - {fileID: 4054839547387364221}
-  - {fileID: 2195018140698825665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5556613846609960980
@@ -2581,7 +2581,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 345a59a315f661a44ac0bc647db13547, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2592,7 +2592,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2721,7 +2721,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

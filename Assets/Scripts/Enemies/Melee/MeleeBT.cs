@@ -189,6 +189,14 @@ public class MeleeBT : Enemy
 
     public void BasicAttackActivated()
     {
+        if (activeElement == Element.Fire)
+        {
+            audioFireBasicAttack.Play();
+        }
+        else
+        {
+           audioEarthBasicAttack.Play(); 
+        }
         playerHitted = false;
         basicAttackCollider.enabled = true;
     }
@@ -267,6 +275,18 @@ public class MeleeBT : Enemy
             playerHitted = true;
             other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
         }
+    }
+    public override void HealthTaken(int damageTaken)
+    {
+        if (activeElement == Element.Fire)
+        {
+            audioFireHit.Play();
+        }
+        else
+        {
+            audioEarthHit.Play();
+        }
+        base.HealthTaken(damageTaken);
     }
     public void EarthHeavyAttackSound()
     {

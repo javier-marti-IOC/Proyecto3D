@@ -124,6 +124,61 @@ MonoBehaviour:
     outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
       type: 2}
     source: {fileID: 0}
+  - name: RestoreElement
+    clip: {fileID: 8300000, guid: a13aec0038ab06c40acfd655ab539f2d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PlayerBasicAttack
+    clip: {fileID: 8300000, guid: 45ce3fe37892f2e46b1b6b15ba0dcc3c, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PlayerHeavyAttack
+    clip: {fileID: 8300000, guid: d8f791ff72e8e9d4390e78a428f7f483, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PlayerDash
+    clip: {fileID: 8300000, guid: 1bdd083b912aa2040be40b7e6db978db, type: 3}
+    volume: 0.4
+    pitch: 1.2
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: a120ee13592c0634cb9cde3578aececb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   ui:
   - name: HoverButton
     clip: {fileID: 8300000, guid: 3d5dce41f6097524aac39ae92776089d, type: 3}

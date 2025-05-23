@@ -95,7 +95,6 @@ Transform:
   m_Children:
   - {fileID: 2930473188395620805}
   - {fileID: 2193596074768377105}
-  - {fileID: 7264401050709297317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &713383870359684360
@@ -286,7 +285,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1030,7 +1029,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5e30345c04506c14287c77d9828e8f1c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1040,8 +1039,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 7
+  MinDistance: 2
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1375,9 +1374,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: eb835d1aed231d840977638e27e8d991, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1386,7 +1385,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1690,6 +1689,7 @@ Transform:
   - {fileID: 2727995020381516810}
   - {fileID: 7010081571361868272}
   - {fileID: 6346444341726650662}
+  - {fileID: 7264401050709297317}
   m_Father: {fileID: 261588070261010515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1588179956799177392
@@ -2166,7 +2166,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 638bc70cefb6af843b6f9bf7e6e5c097, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2175,7 +2175,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 12
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -2442,7 +2442,7 @@ Transform:
   - {fileID: 8101139518661284718}
   - {fileID: 5277437895329743325}
   - {fileID: 383098040304874758}
-  m_Father: {fileID: 261588070261010515}
+  m_Father: {fileID: 2930473188395620805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9213500110782867527
 GameObject:
