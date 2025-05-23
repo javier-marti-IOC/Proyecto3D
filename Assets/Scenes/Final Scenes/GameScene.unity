@@ -10492,6 +10492,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8455052802132300959}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1534208324 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4550019344957744107, guid: acf3421d74432b8448e4f0be10029697,
+    type: 3}
+  m_PrefabInstance: {fileID: 8455052802132300959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1556019204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 626062255531937668, guid: acf3421d74432b8448e4f0be10029697,
@@ -12618,7 +12624,7 @@ Transform:
   m_GameObject: {fileID: 1886491871}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.00808004, z: -0, w: 0.9999674}
-  m_LocalPosition: {x: 6.49, y: 5.87, z: 13.31}
+  m_LocalPosition: {x: 6.41, y: 5.87, z: 18.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12637,6 +12643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressManager: {fileID: 608557183}
+  tutorialsEndDoor: {fileID: 0}
 --- !u!114 &1886491874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17463,17 +17470,17 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 72.43
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -111.88
+      value: -112
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -19285,6 +19292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assets
       objectReference: {fileID: 0}
+    - target: {fileID: 4550019344957744107, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5206674548401870801, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19334,6 +19346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983906512749246547, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20043,6 +20060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialsEndDoor: {fileID: 1886491871}
+  tutorialsEndDoorAnimator: {fileID: 1534208324}
 --- !u!23 &9214845935487372070
 MeshRenderer:
   m_ObjectHideFlags: 0
