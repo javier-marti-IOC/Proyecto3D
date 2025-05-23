@@ -7,6 +7,15 @@ public class Tutorial : MonoBehaviour
     [Header("Progress Manager")]
     public ProgressManager progressManager;
     public ProgressData progressData;
+    public GameObject tutorialsEndDoor;
+
+    void Start()
+    {
+        if (ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Tutorial))
+        {
+
+        }
+    }
 
     public void OnTriggerEnter(Collider other)
     {
