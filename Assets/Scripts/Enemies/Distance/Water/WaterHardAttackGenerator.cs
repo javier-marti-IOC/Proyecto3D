@@ -6,6 +6,7 @@ public class WaterHardAttackGenerator : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform middleHands;
+    public AudioSource waterHeavyAttack;
 
     public void ShootBullets()
     {
@@ -16,6 +17,7 @@ public class WaterHardAttackGenerator : MonoBehaviour
         Vector3 flatForward = GetComponent<Enemy>().transform.forward;
         flatForward.y = 0f;
         flatForward.Normalize();
+        waterHeavyAttack.Play();
         
         for (int i = 0; i < angles.Length; i++)
         {

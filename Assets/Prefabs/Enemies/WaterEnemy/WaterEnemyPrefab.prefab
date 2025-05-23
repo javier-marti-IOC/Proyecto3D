@@ -193,7 +193,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -367,7 +367,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -583,7 +583,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1c8eb9aed27323048846ac96ef374c9c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -593,8 +593,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 7
+  MinDistance: 3
+  MaxDistance: 14
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -807,9 +807,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2c7aafad4f1079f478513c2a51864ec7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -818,7 +818,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 7
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -936,18 +936,18 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 363941e9c54f13f4e92ca73171ff6705, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.7
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 7
+  MinDistance: 3
+  MaxDistance: 14
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1609,8 +1609,6 @@ MonoBehaviour:
   lightningHeight: 10
   heavyAttackZoneTrigger: {fileID: 0}
   audioWaterDeath: {fileID: 1292219862161640013}
-  audioWaterBasicAttack: {fileID: 3664219114584143988}
-  audioWaterHeavyAttack: {fileID: 5855057375514117926}
   audioWaterHit: {fileID: 4381324918653006367}
   audioElectricDeath: {fileID: 0}
   audioElectricBasicAttack: {fileID: 0}
@@ -1676,6 +1674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6184481934479858873, guid: f5deed40d086f3d43bdd549c9c462034, type: 3}
   rightHand: {fileID: 366944622599903638}
+  waterBasicAttack: {fileID: 3664219114584143988}
 --- !u!114 &6014419297763684134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1691,6 +1690,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6184481934479858873, guid: 784765f86c64b6e4d8dfa93e51d42990,
     type: 3}
   middleHands: {fileID: 7309241171208174538}
+  waterHeavyAttack: {fileID: 5855057375514117926}
 --- !u!4 &917795614414523819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,

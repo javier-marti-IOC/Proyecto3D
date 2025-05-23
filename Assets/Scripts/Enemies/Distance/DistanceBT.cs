@@ -47,8 +47,6 @@ public class DistanceBT : Enemy
 
     [Header("WaterEnemy AudioSources")]
     public AudioSource audioWaterDeath;
-    public AudioSource audioWaterBasicAttack;
-    public AudioSource audioWaterHeavyAttack;
     public AudioSource audioWaterHit;
 
     [Header("ElectricEnemy AudioSources")]
