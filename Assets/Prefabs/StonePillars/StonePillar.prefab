@@ -4873,7 +4873,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 138.78, y: -119.99, z: -81.27}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9879, y: 1.9879, z: 1.9879}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2704167398805336677}
@@ -4907,7 +4907,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 69bbdbc8f1f121345935a7dfbe40d78a, type: 2}
+  - {fileID: 2100000, guid: 5ccf4829ab028aa45a1f0aeb9fe5503a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4965,10 +4965,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower_id: 0
   stonePillarPhrases:
-  - "El Destructor venci\xF3 al Guardi\xE1n, apagando la \xFAltima esperanza."
-  - "Con su victoria, tom\xF3 el poder y desat\xF3 el caos sin control."
-  - "Las torres elementales fueron corrompidas, el mundo se pudri\xF3 en su sombra."
-  - "Lo que antes florec\xEDa, ahora es desolaci\xF3n y cenizas."
+  - "Vas ser ven\xE7ut pel Destructor, Guardi\xE0. Amb la seva vict\xF2ria, va desfermar
+    el caos sense control."
+  - El Destructor va repartir el seu poder en quatre altars per corrompre els elements.
+  - "El m\xF3n es va podrir a la seva ombra. El que abans floria ara \xE9s desolaci\xF3."
+  - "Troba els altars i destrueix-los, restaura el m\xF3n.  "
   textHUD: {fileID: 0}
 --- !u!65 &4126845980547460901
 BoxCollider:
@@ -4989,5 +4990,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 2.5, z: 2.5}
-  m_Center: {x: 0.0068269223, y: 0.9852256, z: 0.011132538}
+  m_Size: {x: 2.5, y: 2.5, z: 7.935938}
+  m_Center: {x: 0.0068272534, y: 0.98522574, z: 2.7291033}

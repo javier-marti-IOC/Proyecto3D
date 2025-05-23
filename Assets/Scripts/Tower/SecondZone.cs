@@ -18,6 +18,7 @@ public class SecondZone : MonoBehaviour
             {
                 if (enemy.activeElement == tower.activeElement)
                 {
+                    Debug.Log("TOWER ENRMY IN");
                     enemy.towerInRange = true;
                     tower.enemiesInSecondZoneRange.Add(enemy.gameObject);
                     enemy.tower = tower;
@@ -39,6 +40,7 @@ public class SecondZone : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
+        Debug.Log("SOMEONE EXIT");
         if (other.CompareTag(Constants.enemy))
         {
             enemy = other.gameObject.GetComponent<Enemy>();
@@ -46,6 +48,7 @@ public class SecondZone : MonoBehaviour
             {
                 if (enemy.activeElement == tower.activeElement)
                 {
+                    Debug.Log("TOWER ENRMY OUT");
                     enemy.towerInRange = false;
                     tower.enemiesInSecondZoneRange.Remove(enemy.gameObject);
                     tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);

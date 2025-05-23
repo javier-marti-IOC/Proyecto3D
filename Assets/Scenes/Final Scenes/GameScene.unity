@@ -2641,11 +2641,6 @@ PrefabInstance:
       propertyPath: optionsPanel
       value: 
       objectReference: {fileID: 1041800072}
-    - target: {fileID: 519550388307287755, guid: 4c3ad61932925774cbe04b2b9df7e533,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1865865411619855509, guid: 4c3ad61932925774cbe04b2b9df7e533,
         type: 3}
       propertyPath: m_Name
@@ -2656,16 +2651,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1231213283449546699}
-    - target: {fileID: 2170381233860673445, guid: 4c3ad61932925774cbe04b2b9df7e533,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlacePlayerOnSafeZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 2170381233860673445, guid: 4c3ad61932925774cbe04b2b9df7e533,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StarterAssets.ThirdPersonController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 3266241277236621654, guid: 4c3ad61932925774cbe04b2b9df7e533,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2776,6 +2761,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 245706941}
+    - target: {fileID: 8012742986081643362, guid: 4c3ad61932925774cbe04b2b9df7e533,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 608557183}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3730,26 +3720,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1342002}
     m_Modifications:
-    - target: {fileID: 742381745005058058, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5ccf4829ab028aa45a1f0aeb9fe5503a, type: 2}
-    - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.9879
-      objectReference: {fileID: 0}
-    - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.9879
-      objectReference: {fileID: 0}
-    - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.9879
-      objectReference: {fileID: 0}
     - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9629,6 +9599,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383125607}
   m_CullTransparentMesh: 1
+--- !u!1 &1392955276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1692811939455807229, guid: f4103e33610233a448ebbe64c4303885,
+    type: 3}
+  m_PrefabInstance: {fileID: 193484584109215839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1407722556 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6415062625724502105, guid: acf3421d74432b8448e4f0be10029697,
@@ -10648,6 +10624,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1583203098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 318350618345815949, guid: 4c3ad61932925774cbe04b2b9df7e533,
+    type: 3}
+  m_PrefabInstance: {fileID: 360144305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57352892249fc654bbb15e2bba322104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1586963761 stripped
@@ -13824,7 +13812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &89584935081638767
 GameObject:
   m_ObjectHideFlags: 0
@@ -13950,6 +13938,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1692811939455807229, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4273564369668946386, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
       propertyPath: m_IsActive
@@ -13969,6 +13962,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.z
       value: 68.95323
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428012530724937466, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4428012530724937466, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
@@ -14057,9 +14055,19 @@ PrefabInstance:
       objectReference: {fileID: 1882725846}
     - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
+      propertyPath: infoPanelHUD
+      value: 
+      objectReference: {fileID: 434484318}
+    - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
       propertyPath: progressManager
       value: 
       objectReference: {fileID: 608557183}
+    - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
+      propertyPath: secondZoneObject
+      value: 
+      objectReference: {fileID: 1392955276}
     - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
       propertyPath: trees.Array.size
@@ -14544,6 +14552,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3490794810959690439, guid: e94b771bfe9fb1449b661d6ceefa5c7c,
+        type: 3}
+      propertyPath: infoPanelHUD
+      value: 
+      objectReference: {fileID: 434484318}
     - target: {fileID: 5610898983645610086, guid: e94b771bfe9fb1449b661d6ceefa5c7c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14664,6 +14677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondZoneObject: {fileID: 7700816882797455955}
   activeElement: 4
   max_life: 100
   life: 0
@@ -15516,7 +15530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &2107996370880628263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15639,6 +15653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower HUD - Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976381021298030417, guid: 29cd42040db366444866b01779675dc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15858,6 +15877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondZoneObject: {fileID: 0}
   activeElement: 4
   max_life: 100
   life: 0
@@ -17430,21 +17450,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 616210127881075506, guid: efae5789b8220d646af2cde96c051f19,
-        type: 3}
-      propertyPath: m_Radius
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 616210127881075506, guid: efae5789b8220d646af2cde96c051f19,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
-      propertyPath: maxEnemies
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1583203098}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: elementsHUD
@@ -18179,6 +18189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondZoneObject: {fileID: 0}
   activeElement: 1
   max_life: 100
   life: 0
@@ -18472,7 +18483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &7702561368813262032
 GameObject:
   m_ObjectHideFlags: 0
@@ -18740,6 +18751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondZoneObject: {fileID: 73315298630927852}
   activeElement: 3
   max_life: 100
   life: 0
@@ -18988,6 +19000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondZoneObject: {fileID: 2066918939394190987}
   activeElement: 2
   max_life: 100
   life: 0
@@ -19673,6 +19686,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower HUD - Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1976381021298030417, guid: 29cd42040db366444866b01779675dc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19877,6 +19895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondZoneObject: {fileID: 0}
   activeElement: 5
   max_life: 100
   life: 0
