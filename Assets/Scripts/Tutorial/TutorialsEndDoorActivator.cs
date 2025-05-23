@@ -7,6 +7,7 @@ public class TutorialsEndDoorActivator : MonoBehaviour
     public GameObject tutorialsEndDoor;
 
     public Animator tutorialsEndDoorAnimator;
+    public Collider tutorialsEndsDoorCollider;
 
     // Cuando se destruya la torre del tutorial:
     // 1. Activamos el collider que guardara partida 
@@ -15,7 +16,7 @@ public class TutorialsEndDoorActivator : MonoBehaviour
     {
         if (!tutorialsEndDoor.activeSelf)
         {
-            tutorialsEndDoor.SetActive(true);
+            //tutorialsEndsDoorCollider.isTrigger = true;
             if (tutorialsEndDoorAnimator.enabled == false)
             {
                 Debug.Log("--->>>>> ANIMACION PUERTA ACTIVADA");

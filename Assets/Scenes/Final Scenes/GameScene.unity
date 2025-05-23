@@ -12200,6 +12200,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817296327}
   m_CullTransparentMesh: 1
+--- !u!1 &1825879587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8983906512749246547, guid: acf3421d74432b8448e4f0be10029697,
+    type: 3}
+  m_PrefabInstance: {fileID: 8455052802132300959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844848611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1726281316739608177, guid: acf3421d74432b8448e4f0be10029697,
@@ -12602,7 +12608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1886491872
 Transform:
   m_ObjectHideFlags: 0
@@ -12612,7 +12618,7 @@ Transform:
   m_GameObject: {fileID: 1886491871}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.00808004, z: -0, w: 0.9999674}
-  m_LocalPosition: {x: 6.41, y: 5.87, z: 18.06}
+  m_LocalPosition: {x: 6.35, y: 5.87, z: 22.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12631,7 +12637,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressManager: {fileID: 608557183}
-  tutorialsEndDoor: {fileID: 0}
+  tutorialsEndDoor: {fileID: 1825879587}
+  tutorialsTower: {fileID: 5560677525297152809}
 --- !u!114 &1886491874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15220,7 +15227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &1706879880105879930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19912,7 +19919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondZoneObject: {fileID: 0}
+  secondZoneObject: {fileID: 1685940080605513654}
   activeElement: 5
   max_life: 100
   life: 0
@@ -20080,6 +20087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialsEndDoor: {fileID: 1886491871}
   tutorialsEndDoorAnimator: {fileID: 1534208324}
+  tutorialsEndsDoorCollider: {fileID: 1886491875}
 --- !u!23 &9214845935487372070
 MeshRenderer:
   m_ObjectHideFlags: 0
