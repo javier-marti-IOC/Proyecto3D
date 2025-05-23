@@ -12674,7 +12674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5578578264071083407
 Transform:
   m_ObjectHideFlags: 0
@@ -12709,7 +12709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &793737789484153748
 Transform:
   m_ObjectHideFlags: 0
@@ -25809,7 +25809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1405209942661287294
 Transform:
   m_ObjectHideFlags: 0
@@ -36951,6 +36951,10 @@ MonoBehaviour:
   fireMana: 100
   waterMana: 100
   electricMana: 100
+  earthEffect: {fileID: 6213702968337224164}
+  waterEffect: {fileID: 1534744037796975675}
+  fireEffect: {fileID: 2236201775567318713}
+  electricEffect: {fileID: 2235071924921495066}
   vikingHealthHUD: {fileID: 0}
   elementsHUD: {fileID: 0}
   pauseMenu: {fileID: 0}

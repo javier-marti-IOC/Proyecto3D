@@ -6,7 +6,15 @@ public class LifeDrops : MonoBehaviour
 {
     public AudioSource audioOrbeBounce;
     public float minImpactVelocity = 0.2f;
-    
+    private float autoDestrucion = 5f;
+    void Update()
+    {
+        autoDestrucion -= Time.deltaTime;
+        if (autoDestrucion < 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constants.player))

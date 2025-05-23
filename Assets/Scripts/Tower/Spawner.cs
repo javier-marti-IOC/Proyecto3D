@@ -63,7 +63,6 @@ public class Spawner : MonoBehaviour
                                 {
                                     newEnemy.GetComponentInChildren<Enemy>().enemyLevel = gameManager.electricLevel;
                                 }
-                                Debug.Log("Enemy Level Set: " + newEnemy.GetComponentInChildren<Enemy>().enemyLevel + " Element: " + activeElement);
                                 newEnemy.GetComponentInChildren<Enemy>().SetStatsByLevel();
                                 tower.isOnCooldown = true; // Activamos el cooldown   
                             }    

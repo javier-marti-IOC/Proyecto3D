@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public InfoPanelHUD infoPanelHUD;
     // Enemies Prefabs
     public GameObject EarthEnemy;
     public GameObject WaterEnemy;
@@ -290,13 +291,14 @@ public class GameManager : MonoBehaviour
             e.GetComponent<Enemy>().SetStatsByLevel();
         }
     }
-    public void ResetEnemies()
+    public void ResetEnemies(Element element)
     {
+        infoPanelHUD.ShowText("Els altres elements han guanyat poder");
         enemies = GameObject.FindGameObjectsWithTag(Constants.enemy);
         for (int i = enemies.Length - 1; i >= 0; i--)
         {
             enemies[i].GetComponent<Enemy>().Dying(false);
         }
-        EnemiesGenerator(Element.None);
+        EnemiesGenerator(element);
     }
 }
