@@ -315,7 +315,7 @@ public class VikingController : MonoBehaviour
         }
         if (other.CompareTag(Constants.tower))
         {
-            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement,activeElement) < 0 && !isBasicAttack)
+            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement, activeElement) < 0 && !isBasicAttack)
             {
                 if (activeElement == Element.Earth) earthMana = 0;
                 else if (activeElement == Element.Water) waterMana = 0;
@@ -375,7 +375,7 @@ public class VikingController : MonoBehaviour
     //Recollir Drops
     public void CollectMana(Element element)
     {
-        
+
         int mana = 25;
         if (element == Element.None)
         {
@@ -440,5 +440,20 @@ public class VikingController : MonoBehaviour
         healthPoints += 30;
         if (healthPoints > 100) healthPoints = 100;
         vikingHealthHUD.SetHealth(healthPoints);
+    }
+
+    // Funciones para reproducir sonidos de ataque, se llaman en la animación
+    public void PlayBasicAttackSound()
+    {
+        AudioManager.Instance?.Play("PlayerBasicAttack");
+    }
+
+    public void PlayHeavyAttackSound()
+    {
+        AudioManager.Instance?.Play("PlayerHeavyAttack");
+    }
+    public void PlayDashSound()
+    {
+        AudioManager.Instance?.Play("PlayerDash");
     }
 }
