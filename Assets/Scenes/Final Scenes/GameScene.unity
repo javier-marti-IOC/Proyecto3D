@@ -17199,6 +17199,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
+      propertyPath: oppositeOrbSpawnGenerator
+      value: 
+      objectReference: {fileID: 780948803}
+    - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
       propertyPath: corruptedClouds.Array.size
       value: 14
       objectReference: {fileID: 0}
@@ -17787,6 +17792,7 @@ MonoBehaviour:
   - {fileID: 1439608978}
   - {fileID: 1519814087}
   - {fileID: 137654074}
+  oppositeOrbSpawnGenerator: {fileID: 1138503425}
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 2179221042044478196}
@@ -19226,6 +19232,7 @@ MonoBehaviour:
   trees: []
   newTrees: []
   corruptedClouds: []
+  oppositeOrbSpawnGenerator: {fileID: 0}
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 4087727388005900729}
@@ -21657,6 +21664,7 @@ MonoBehaviour:
   trees: []
   newTrees: []
   corruptedClouds: []
+  oppositeOrbSpawnGenerator: {fileID: 0}
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 6536182112660341854}
@@ -22252,6 +22260,7 @@ MonoBehaviour:
   - {fileID: 283855265}
   - {fileID: 2097303297}
   - {fileID: 106194755}
+  oppositeOrbSpawnGenerator: {fileID: 752271915}
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 8495088772060843339}
@@ -22525,6 +22534,7 @@ MonoBehaviour:
   - {fileID: 859929218}
   - {fileID: 2115909189}
   - {fileID: 121602157}
+  oppositeOrbSpawnGenerator: {fileID: 1034768221}
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 7516439649489331756}
@@ -23478,6 +23488,7 @@ MonoBehaviour:
   trees: []
   newTrees: []
   corruptedClouds: []
+  oppositeOrbSpawnGenerator: {fileID: 0}
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 7171208662733737745}
