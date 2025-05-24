@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ed974cd396cd54896ab010310f7996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbPrefab: {fileID: 8518313805689136268, guid: 0608f8e5e64414f46ac3d5c0126c20cb,
+  orbPrefab: {fileID: 4280553628134071422, guid: 82410f60f44de304baedaf7c930bdd9a,
     type: 3}
   trajectory: 1
   speed: 5

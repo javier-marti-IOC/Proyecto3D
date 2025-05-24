@@ -35,6 +35,7 @@ public class Tower : MonoBehaviour
     public GameObject[] trees;
     public Mesh[] newTrees;
     public GameObject[] corruptedClouds;
+    public GameObject oppositeOrbSpawnGenerator;
 
 
 
@@ -67,6 +68,13 @@ public class Tower : MonoBehaviour
                 Debug.Log("--->>>> CAMBIANDO ARBOLES");
             }
             Destroy(transform.parent.gameObject);
+            if (oppositeOrbSpawnGenerator != null)
+            {    
+                if (oppositeOrbSpawnGenerator.activeSelf)
+                {
+                    Destroy(oppositeOrbSpawnGenerator);
+                }
+            }
         }
         else
         {
@@ -207,7 +215,13 @@ public class Tower : MonoBehaviour
         if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
         {
             Utils.ReplaceTrees(trees, newTrees);
-            Debug.Log("--->>>> CAMBIANDO ARBOLES");
+            // Debug.Log("--->>>> CAMBIANDO ARBOLES");
+        }
+        if (activeElement == Element.None)
+        {
+            ProgressManager.Instance.Data.tutorial = true;
+            progressManager.SaveGame();
+            // Debug.Log("---->>>>>>>>>>>>>> TORRE DEL TUTORIAL DESTRUIDA");
         }
         AudioManager.Instance?.Play("RestoreElement");
         ChangeEnvironmentParticles();
@@ -231,6 +245,13 @@ public class Tower : MonoBehaviour
         progressManager.SaveGame();
         progressManager.checkDestroyedTowers();
         gameManager.ResetEnemies(activeElement);
+        if (oppositeOrbSpawnGenerator != null)
+        {    
+            if (oppositeOrbSpawnGenerator.activeSelf)
+            {
+                Destroy(oppositeOrbSpawnGenerator);
+            }
+        }
         Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
     }
 
