@@ -17,6 +17,7 @@ public class TriggerActivator : MonoBehaviour
     public ProgressManager progressManager;
     public ProgressData progressData;
     public GameObject rocksFallingWall;
+    public AudioSource rocksFallingSound;
 
     void Start()
     {
@@ -34,7 +35,7 @@ public class TriggerActivator : MonoBehaviour
         if (alreadyActivated || !other.CompareTag(playerTag) || rocksFallingWall.activeSelf) return;
 
         alreadyActivated = true;
-
+        rocksFallingSound.Play();
         // Activar los objetos inmediatos
         foreach (GameObject obj in objectsToActivate)
         {
