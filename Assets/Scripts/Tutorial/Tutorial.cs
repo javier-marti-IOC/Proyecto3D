@@ -41,8 +41,8 @@ public class Tutorial : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Comparamos el tag 
         {
-            ProgressManager.Instance.Data.tutorial = true;
-            progressManager.SaveGame();
+            // ProgressManager.Instance.Data.tutorial = true;
+            // progressManager.SaveGame();
             Debug.Log("----->>>>> TUTORIAL COMPLETADO");
         }
     }

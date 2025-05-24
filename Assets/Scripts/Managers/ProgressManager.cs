@@ -28,6 +28,13 @@ public class ProgressManager : MonoBehaviour
     public GameObject continueBtn;
     public Button newGameBtn;
 
+    private bool earthTowerDestroyed;
+    private bool fireTowerDestroyed;
+    private bool waterTowerDestroyed;
+    private bool electricTowerDestroyed;
+
+    public PauseMenu pauseMenu;
+
     private void Awake()
     {
         if (Instance == null)
@@ -63,7 +70,7 @@ public class ProgressManager : MonoBehaviour
     void Start()
     {
         // Guardamos la ruta donde queremos generar el JSON
-        saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+            saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
         // Si el archivo no existe, generamos el objeto del JSON con todo a 0
         if (!File.Exists(saveFilePath))
         {
@@ -80,6 +87,15 @@ public class ProgressManager : MonoBehaviour
         if (progressData == null)
         {
             progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
+        }
+        checkDestroyedTowers();
+        if (pauseMenu != null)
+        {
+            if (pauseMenu.endGamePanel.activeSelf)
+            {
+                pauseMenu.TogglePause();
+                Debug.Log("Desactivado panel fin partida");
+            }
         }
     }
 
@@ -186,6 +202,44 @@ public class ProgressManager : MonoBehaviour
         progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
         Debug.Log("DATA GUARDADA: " + loadProgressData);
         return true;
+    }
+    public void checkDestroyedTowers()
+    {
+        if (progressData.towerActiveElements.Count > 0)
+        {
+            for (int i = 0; i < progressData.towerActiveElements.Count; i++)
+            {
+                if (progressData.towerActiveElements[i] == Element.Earth)
+                {
+                    //Debug.Log("-->>>> TORRE DE TIERRA ENCONTRADA");
+                    earthTowerDestroyed = true;
+                }
+                if (progressData.towerActiveElements[i] == Element.Fire)
+                {
+                    //Debug.Log("-->>>> TORRE DE TIERRA ENCONTRADA");
+                    fireTowerDestroyed = true;
+                }
+                if (progressData.towerActiveElements[i] == Element.Water)
+                {
+
+                    //Debug.Log("-->>>> TORRE DE TIERRA ENCONTRADA");
+                    waterTowerDestroyed = true;
+                }
+                if (progressData.towerActiveElements[i] == Element.Electric)
+                {
+
+                    //Debug.Log("-->>>> TORRE DE TIERRA ENCONTRADA");
+                    electricTowerDestroyed = true;
+                }
+            }
+            if (earthTowerDestroyed && fireTowerDestroyed && waterTowerDestroyed && electricTowerDestroyed)
+            {
+                if (pauseMenu != null)
+                {
+                    pauseMenu.ToggleEndgame();
+                }
+            }
+        }
     }
 }
 

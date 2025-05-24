@@ -260,6 +260,7 @@ public abstract class Enemy : MonoBehaviour
                 Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
             }
         }
+        Debug.Log("Destruir enemigo");
         Destroy(transform.parent.gameObject);
     }
 

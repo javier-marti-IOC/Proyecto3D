@@ -129,7 +129,7 @@ namespace StarterAssets
 
         public ProgressManager progressManager;
         public ProgressData progressData;
-        private void Awake()
+        void Awake()
         {
             // get a reference to our main camera
             if (_mainCamera == null)
@@ -138,7 +138,7 @@ namespace StarterAssets
             }
         }
 
-        private void Start()
+        void Start()
         {
             if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
             {
@@ -173,7 +173,7 @@ namespace StarterAssets
             //_jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
-        private void Update()
+        void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
             if (dead == false && !vikingController.OnAction)
@@ -184,7 +184,7 @@ namespace StarterAssets
             }
         }
 
-        private void LateUpdate()
+        void LateUpdate()
         {
             CameraRotation();
         }
