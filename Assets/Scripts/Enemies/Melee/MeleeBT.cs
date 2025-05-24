@@ -280,13 +280,14 @@ public class MeleeBT : Enemy
     {
         if (activeElement == Element.Fire)
         {
-            audioFireHit.Play();
+            audioFireHit?.Play();
         }
-        else
+        else if(activeElement == Element.Earth)
         {
-            audioEarthHit.Play();
+            audioEarthHit?.Play();
         }
         base.HealthTaken(damageTaken);
+
     }
     public void EarthHeavyAttackSound()
     {

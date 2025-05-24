@@ -21,6 +21,7 @@ public class TutorialsEndDoorActivator : MonoBehaviour
             {
                 Debug.Log("--->>>>> ANIMACION PUERTA ACTIVADA");
                 tutorialsEndDoorAnimator.enabled = true;
+                AudioManager.Instance?.Play("openDoor");
             }
         }
     }

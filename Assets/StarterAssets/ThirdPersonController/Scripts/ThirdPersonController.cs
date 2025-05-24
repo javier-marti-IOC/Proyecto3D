@@ -192,6 +192,7 @@ namespace StarterAssets
         // Colocar el player en el tunel inicial
         public void PlacePlayerOnTutorialZone()
         {
+            AudioManager.Instance?.Play("landslideTutorial");
             transform.position = new Vector3(72, -5, -112);
         }
         // Colocar el player en la zona azucar
