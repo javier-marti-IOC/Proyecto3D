@@ -6566,6 +6566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   continueBtn: {fileID: 0}
   newGameBtn: {fileID: 0}
+  pauseMenu: {fileID: 1583203098}
 --- !u!4 &616704468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
