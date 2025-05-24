@@ -34,6 +34,7 @@ public class Tower : MonoBehaviour
     public GameObject[] environmentParticles;
     public GameObject[] trees;
     public Mesh[] newTrees;
+    public GameObject[] corruptedClouds;
 
 
 
@@ -59,6 +60,7 @@ public class Tower : MonoBehaviour
         {
             Utils.ReplaceMaterials(materials, colors);
             ChangeEnvironmentParticles();
+            Utils.DestroyCorruptedClouds(corruptedClouds);
             if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
             {
                 Utils.ReplaceTrees(trees, newTrees);
@@ -201,7 +203,7 @@ public class Tower : MonoBehaviour
         }
         InstantiateDeathTowerParticles();
         Utils.ReplaceMaterials(materials, colors);
-
+        Utils.DestroyCorruptedClouds(corruptedClouds);
         if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
         {
             Utils.ReplaceTrees(trees, newTrees);

@@ -38,4 +38,15 @@ public static class Utils
         }
     }
 
+    public static void DestroyCorruptedClouds(GameObject[] corruptedClouds)
+    {
+        if (corruptedClouds.Length > 0)
+        {    
+            foreach (GameObject corruptedCloud in corruptedClouds)
+            {
+                corruptedCloud.SetActive(false);
+            }
+        }
+    }
+
 }
