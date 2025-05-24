@@ -12,6 +12,7 @@ public class InfoPanelHUD : MonoBehaviour
 
     public void ShowText(string newText)
     {
+        Debug.Log("POP UP");
         panelText.text = newText;
         animator.Play("Show");
     }

@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class MinDistanceChase : MonoBehaviour
 {
-    private Enemy enemy;
-    void Awake()
-    {
-        enemy = gameObject.GetComponentInParent<Enemy>();
-    }
-
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constants.player))
+        if (other.CompareTag(Constants.enemy))
         {
-            enemy.PlayerDetected();
+            other.gameObject.GetComponent<Enemy>().PlayerDetected();
         }
     }
 }

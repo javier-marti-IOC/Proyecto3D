@@ -12,14 +12,16 @@ public class PauseMenu : MonoBehaviour
     public GameObject pausePanel;
     public GameObject exitPanel;
     public GameObject deathPanel;
+    public GameObject endGamePanel;
 
     public Button selectedButton;
     public Button selectedDeathButton;
+    public Button endGameButton;
     private bool isPaused = false;
 
     void Update()
     {
-        if (deathPanel.activeInHierarchy == false)
+        if (deathPanel.activeInHierarchy == false && endGamePanel.activeInHierarchy == false)
         {
             if (pausePanel.activeInHierarchy && Input.GetKeyDown(KeyCode.JoystickButton1))
             {
@@ -50,6 +52,8 @@ public class PauseMenu : MonoBehaviour
             pausePanel.SetActive(false);
             hudPanel.SetActive(true);
             exitPanel.SetActive(false);
+            endGamePanel.SetActive(false);
+            deathPanel.SetActive(false);
 
         }
     }
@@ -59,6 +63,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
+        hudPanel.SetActive(true);
     }
     public void backToMenu()
     { // Script para volver al menu principal
@@ -72,5 +77,15 @@ public class PauseMenu : MonoBehaviour
         hudPanel.SetActive(false);
         deathPanel.SetActive(true);
         selectedDeathButton.Select();
+    }
+
+    public void ToggleEndgame()
+    {
+        isPaused = !isPaused;
+
+        Time.timeScale = 0f;
+        hudPanel.SetActive(false);
+        endGamePanel.SetActive(true);
+        endGameButton.Select();
     }
 }

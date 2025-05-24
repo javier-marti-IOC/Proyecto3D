@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
+    public GameObject secondZoneObject;
     [Header("Torre")]
     public Element activeElement;
     public int max_life;
@@ -33,6 +34,7 @@ public class Tower : MonoBehaviour
     public GameObject[] environmentParticles;
     public GameObject[] trees;
     public Mesh[] newTrees;
+    public GameObject[] corruptedClouds;
 
 
 
@@ -54,6 +56,24 @@ public class Tower : MonoBehaviour
     void Start()
     {
         this.life = max_life;
+        if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
+        {
+            Utils.ReplaceMaterials(materials, colors);
+            ChangeEnvironmentParticles();
+            Utils.DestroyCorruptedClouds(corruptedClouds);
+            if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
+            {
+                Utils.ReplaceTrees(trees, newTrees);
+                Debug.Log("--->>>> CAMBIANDO ARBOLES");
+            }
+            Destroy(transform.parent.gameObject);
+        }
+        else
+        {
+            Utils.ReplaceMaterials(materials, corruptedColors);
+            ChangeEnvironmentParticlesOff();
+            secondZoneObject.SetActive(true);
+        }
     }
 
     void Update()
@@ -79,23 +99,6 @@ public class Tower : MonoBehaviour
             Utils.ReplaceMaterials(materials, corruptedColors);
             ChangeEnvironmentParticlesOff();
             Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
-        }
-
-        if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
-        {
-            int position = ProgressManager.Instance.Data.towerActiveElements.IndexOf(activeElement);
-                                                                                                    
-            Utils.ReplaceMaterials(materials, colors);
-            ChangeEnvironmentParticles();
-            for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
-            {
-                enemiesInSecondZoneRange[i].GetComponent<Enemy>().towerInRange = false;
-            }
-        }
-        else
-        {
-            Utils.ReplaceMaterials(materials, corruptedColors);
-            ChangeEnvironmentParticlesOff();
         }
 
         if (!secondZone.playerInSecondZoneRange && life != max_life)
@@ -200,19 +203,17 @@ public class Tower : MonoBehaviour
         }
         InstantiateDeathTowerParticles();
         Utils.ReplaceMaterials(materials, colors);
-
-        /* 
-            if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
-            {
-                Utils.ReplaceTrees(trees, newTrees);
-                Debug.Log("--->>>> CAMBIANDO ARBOLES");
-            } 
-        */
-
+        Utils.DestroyCorruptedClouds(corruptedClouds);
+        if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
+        {
+            Utils.ReplaceTrees(trees, newTrees);
+            Debug.Log("--->>>> CAMBIANDO ARBOLES");
+        }
+        AudioManager.Instance?.Play("RestoreElement");
         ChangeEnvironmentParticles();
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
         progressManager.SaveGame();
-        gameManager.ResetEnemies();
+        gameManager.ResetEnemies(activeElement);
         Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
     }
 

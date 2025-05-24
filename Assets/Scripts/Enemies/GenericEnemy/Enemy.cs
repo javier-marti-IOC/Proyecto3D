@@ -24,6 +24,7 @@ public abstract class Enemy : MonoBehaviour
     protected Animator animator;
 
     [Header("Booleans")]
+    public bool isBTEnabled;
     public bool towerCalling; // Booleana para saber cuando la torre nos esta llamando
     protected bool onAction; // Esta realizando alguna accion
     protected bool onCombat; // El enemigo esta en combate
@@ -62,7 +63,6 @@ public abstract class Enemy : MonoBehaviour
     protected bool playerDetected; // Detecto al player
     [SerializeField] protected GameObject playerDetectorDown;
     [SerializeField] protected GameObject playerDetectorUp;
-    [SerializeField] protected GameObject minDistanceChase;
 
     [Header("Damages")]
     [SerializeField] protected int basicAttackBasicDamage;
@@ -166,7 +166,6 @@ public abstract class Enemy : MonoBehaviour
         Destroy(ghost);
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
-        minDistanceChase.SetActive(false);
         agent.SetDestination(player.transform.position);
     }
     public void Chase(float stoppingDistance)
@@ -174,7 +173,6 @@ public abstract class Enemy : MonoBehaviour
         Destroy(ghost);
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
-        minDistanceChase.SetActive(false);
         agent.SetDestination(player.transform.position);
         agent.stoppingDistance = stoppingDistance;
     }
@@ -183,7 +181,6 @@ public abstract class Enemy : MonoBehaviour
         hudPanelCanvas.SetActive(false);
         playerDetectorDown.SetActive(true);
         playerDetectorUp.SetActive(true);
-        minDistanceChase.SetActive(true);
         playerDetected = false;
         player.GetComponent<VikingController>().RemoveEnemyDetection(this);
     }
@@ -192,7 +189,6 @@ public abstract class Enemy : MonoBehaviour
         Destroy(ghost);
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
-        minDistanceChase.SetActive(false);
         if (tower != null)
         {
             agent.SetDestination(tower.transform.position);
@@ -264,6 +260,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void PlayerDetected()
     {
+        cooldownHeavyAttack = Random.Range(minCooldownTimeInclusive, maxCooldownTimeExclusive);
         playerDetected = true;
         hudPanelCanvas.SetActive(true);
     }

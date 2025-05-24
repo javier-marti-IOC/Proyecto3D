@@ -80,6 +80,116 @@ MonoBehaviour:
     outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
       type: 2}
     source: {fileID: 0}
+  - name: manaDrop
+    clip: {fileID: 8300000, guid: ab1d772e5e8c03348adb20d24f97d174, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: goldDrop
+    clip: {fileID: 8300000, guid: ab1d772e5e8c03348adb20d24f97d174, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PickUpGoldOrbe
+    clip: {fileID: 8300000, guid: 5956389a550acfb479fb6297d85bd97e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: HitMarker
+    clip: {fileID: 8300000, guid: 5f74df2ebca45334ab8f8e0240a61efb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: RestoreElement
+    clip: {fileID: 8300000, guid: a13aec0038ab06c40acfd655ab539f2d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PlayerBasicAttack
+    clip: {fileID: 8300000, guid: 45ce3fe37892f2e46b1b6b15ba0dcc3c, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PlayerHeavyAttack
+    clip: {fileID: 8300000, guid: d8f791ff72e8e9d4390e78a428f7f483, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: PlayerDash
+    clip: {fileID: 8300000, guid: 6d24e54877bd7ac459388cc6873fec8d, type: 3}
+    volume: 0.4
+    pitch: 1.2
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: openDoor
+    clip: {fileID: 8300000, guid: a120ee13592c0634cb9cde3578aececb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: landslideTutorial
+    clip: {fileID: 8300000, guid: 1377a538be09c834cbfc9750d4b5ef8e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   ui:
   - name: HoverButton
     clip: {fileID: 8300000, guid: 3d5dce41f6097524aac39ae92776089d, type: 3}
@@ -128,7 +238,7 @@ MonoBehaviour:
   ambience:
   - name: AmbienceVolcano
     clip: {fileID: 8300000, guid: 33721e91a858d784599e731018aa566f, type: 3}
-    volume: 1
+    volume: 0.9
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -164,7 +274,7 @@ MonoBehaviour:
     volume: 0.3
     pitch: 1
     loop: 1
-    playOnAwake: 1
+    playOnAwake: 0
     spatialize: 0
     spatialBlend: 0
     outputGroup: {fileID: 6058387977715918536, guid: 36176d1c6022c4d4aa572482508b761b,
@@ -172,9 +282,9 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: AmbienceCavern
     clip: {fileID: 8300000, guid: 2e61d96e6872f864e851f7c7d60f453c, type: 3}
-    volume: 1
+    volume: 0.45
     pitch: 1
-    loop: 0
+    loop: 1
     playOnAwake: 0
     spatialize: 0
     spatialBlend: 0

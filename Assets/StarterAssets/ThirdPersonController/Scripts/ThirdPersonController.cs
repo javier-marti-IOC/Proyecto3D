@@ -27,6 +27,7 @@ namespace StarterAssets
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
+        public AudioSource footstepAudioSource;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
         [Space(10)]
@@ -191,7 +192,8 @@ namespace StarterAssets
         // Colocar el player en el tunel inicial
         public void PlacePlayerOnTutorialZone()
         {
-            transform.position = new Vector3(73, 5, -112);
+            AudioManager.Instance?.Play("landslideTutorial");
+            transform.position = new Vector3(72, -5, -112);
         }
         // Colocar el player en la zona azucar
         public void PlacePlayerOnSafeZone()
@@ -398,10 +400,17 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                if (FootstepAudioClips.Length > 0)
+                // if (FootstepAudioClips.Length > 0)
+                // {
+                //     var index = Random.Range(0, FootstepAudioClips.Length);
+                //     AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                // }
+                if (FootstepAudioClips.Length > 0 && footstepAudioSource != null)
                 {
                     var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    footstepAudioSource.clip = FootstepAudioClips[index];
+                    //footstepAudioSource.volume = FootstepAudioVolume;
+                    footstepAudioSource.Play();
                 }
             }
         }
@@ -410,7 +419,7 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                //AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
 

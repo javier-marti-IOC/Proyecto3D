@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class MaxDistanceChasing : MonoBehaviour
 {
-    private Enemy enemy;
-    void Awake()
-    {
-        enemy = gameObject.GetComponentInParent<Enemy>();
-    }
-
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(Constants.player))
+        if (other.CompareTag(Constants.enemy))
         {
-            enemy.StopChasing();
+            other.gameObject.GetComponent<Enemy>().StopChasing();
         }
     }
 }

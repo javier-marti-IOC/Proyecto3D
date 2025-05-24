@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public InfoPanelHUD infoPanelHUD;
     // Enemies Prefabs
     public GameObject EarthEnemy;
     public GameObject WaterEnemy;
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
     public List<Transform> waterEnemiesSpawnersPositions;
     public List<Transform> fireEnemiesSpawnersPositions;
     public List<Transform> electricEnemiesSpawnersPositions;
+    public Transform earthTowerSpawnersPositions;
+    public Transform waterTowerSpawnersPositions;
+    public Transform fireTowerSpawnersPositions;
+    public Transform electricTowerSpawnersPositions;
 
     // Get Level
     public int earthLevel = 1;
@@ -38,7 +43,7 @@ public class GameManager : MonoBehaviour
         waterLevel = 1;
         fireLevel = 1;
         electricLevel = 1;
-        EnemiesGenerator();
+        EnemiesGenerator(Element.None);
     }
     public int DamageCalulator(Element dealerElement, int dealerBasicDamage, int dealerElementalDamege, Element takerElement)
     {
@@ -120,36 +125,115 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EnemiesGenerator()
+    public void EnemiesGenerator(Element element)
     {
-        for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
+        for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                //Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
+        for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
                 Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i --)
+        for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                //Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
-        for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0;i -- )
+        for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
             {
-                //Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
+                Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
             }
         }
+        if (element != Element.Earth)
+        {
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(EarthEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(WaterEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(FireEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(ElectricEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+        }
+        if (element != Element.Water)
+        {
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(EarthEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(WaterEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(FireEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(ElectricEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+        }
+        
+        if (element != Element.Fire)
+        {
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(EarthEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(WaterEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(FireEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(ElectricEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+        }
+
+        if (element != Element.Electric)
+        {
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(EarthEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(WaterEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(FireEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+            for (int x = Random.Range(0, 2); x >= 0; x--)
+            {
+                Instantiate(ElectricEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
+            }
+        }
+
         if (FindObjectOfType<ProgressManager>().LoadData())
         {
             elementsLevel = FindObjectOfType<ProgressManager>().progressData.GetTowerActiveElements();
@@ -207,13 +291,14 @@ public class GameManager : MonoBehaviour
             e.GetComponent<Enemy>().SetStatsByLevel();
         }
     }
-    public void ResetEnemies()
+    public void ResetEnemies(Element element)
     {
+        infoPanelHUD.ShowText("Els altres elements han guanyat poder");
         enemies = GameObject.FindGameObjectsWithTag(Constants.enemy);
         for (int i = enemies.Length - 1; i >= 0; i--)
         {
             enemies[i].GetComponent<Enemy>().Dying(false);
         }
-        EnemiesGenerator();
+        EnemiesGenerator(element);
     }
 }

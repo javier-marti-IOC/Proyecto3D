@@ -32,15 +32,29 @@ public class DistanceBT : Enemy
     public RayoController lightningEffectHeavyAttack;
 
     [Header("Electric Heavy Attack")]
-    public ParticleSystem lightningArea;
+    public ParticleSystem lightningArea1;
+    public ParticleSystem lightningArea2;
+    public ParticleSystem lightningArea3;
     public float heavyAttackDelay = 2f;
     public float lightningHeight = 10f;
     private Vector3 pendingHeavyAttackPosition;
     private ParticleSystem activeHeavyParticles;
+    private ParticleSystem activeHeavyParticles2;
     public GameObject heavyAttackZoneTrigger;
     private bool isAttacking = false;
     private bool hitted = false;
+    private bool canApplyHeavyDamage = false;
 
+    [Header("WaterEnemy AudioSources")]
+    public AudioSource audioWaterDeath;
+    public AudioSource audioWaterHit;
+
+    [Header("ElectricEnemy AudioSources")]
+    public AudioSource audioElectricDeath;
+    public AudioSource audioElectricBasicAttack;
+    public AudioSource audioElectricHeavyAttack;
+    public AudioSource audioElectricHit;
+    public AudioSource audioElectricTeleport;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +71,7 @@ public class DistanceBT : Enemy
     //Update is called once per frame
     void Update()
     {
+        if (!isBTEnabled) return;
         cooldownHeavyAttack -= Time.deltaTime;
         //Esta el enemigo vivo?
         if (healthPoints > 0)
@@ -86,6 +101,7 @@ public class DistanceBT : Enemy
 
                                 if (foundLookingPlayer)
                                 {
+                                    cooldownHeavyAttack -= Time.deltaTime;
                                     // SetLookingPlayersActive(false);
                                     Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
                                     switch (activeElement)
@@ -245,6 +261,12 @@ public class DistanceBT : Enemy
         {
             isPlayerInHeavyAttackZone = true;
             Debug.Log("Player in Heavy Attack 2Zone");
+
+            if (canApplyHeavyDamage)
+            {
+                PlayerHeavyHitted();
+                canApplyHeavyDamage = false;
+            }
         }
     }
     public void HeavyAttackZoneExit(Collider other)
@@ -270,6 +292,8 @@ public class DistanceBT : Enemy
 
         if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, teleportDistance, NavMesh.AllAreas))
         {
+            // Instancia sonido teleport
+            audioElectricTeleport.Play();
             // Instanciar partículas donde desaparece
             Instantiate(teleportParticles, originalPosition, Quaternion.identity).Play();
 
@@ -304,7 +328,7 @@ public class DistanceBT : Enemy
         {
             endPoint = hit.point;
             Debug.DrawRay(hand.position, direction * electricAttackRange, Color.red, 1f);
-
+            audioElectricBasicAttack.Play();
             if (hit.collider.CompareTag(Constants.player))
             {
                 // Fer pupa al player
@@ -334,8 +358,10 @@ public class DistanceBT : Enemy
         pendingHeavyAttackPosition = player.transform.position;
 
         // Instanciar particules
-        activeHeavyParticles = Instantiate(lightningArea, pendingHeavyAttackPosition, Quaternion.identity);
+        activeHeavyParticles = Instantiate(lightningArea1, pendingHeavyAttackPosition, Quaternion.identity);
         activeHeavyParticles.Play();
+        activeHeavyParticles2 = Instantiate(lightningArea2, pendingHeavyAttackPosition, Quaternion.identity);
+        activeHeavyParticles2.Play();
 
         // Activar la zona
         Transform zone = heavyAttackZoneTrigger.transform;
@@ -354,6 +380,10 @@ public class DistanceBT : Enemy
         {
             Destroy(activeHeavyParticles.gameObject);
         }
+        if (activeHeavyParticles2 != null)
+        {
+            Destroy(activeHeavyParticles2.gameObject);
+        }
 
         // Definir inici i final del rayo
         Vector3 start = pendingHeavyAttackPosition + Vector3.up * lightningHeight;
@@ -361,7 +391,24 @@ public class DistanceBT : Enemy
 
         //Cridar a la funció del rayo Controller
         lightningEffectHeavyAttack.PlayLightning(start, end, 0.1f);
+        audioElectricHeavyAttack.Play();
 
+        GameObject lightningFlash = new GameObject("LightningFlash");
+        lightningFlash.transform.position = start;
+
+        Light light = lightningFlash.AddComponent<Light>();
+        light.type = LightType.Point;
+        light.color = new Color(1f, 229f / 255f, 0f); // #FFE500
+        light.intensity = 20f;
+        light.range = 50f;
+        light.shadows = LightShadows.None;
+
+        // Destruir la luz tras 0.1 segundos (aparición breve)
+        Destroy(lightningFlash, 0.1f);
+
+        Invoke(nameof(EnableHeavyAttackParticles), 0.1001f);
+
+        canApplyHeavyDamage = true;
 
         if (isPlayerInHeavyAttackZone)
         {
@@ -369,13 +416,33 @@ public class DistanceBT : Enemy
             Debug.Log("Player hit by heavy electric attack");
             PlayerHeavyHitted();
         }
-        heavyAttackZoneTrigger.SetActive(false);
+
+        Invoke(nameof(DisableHeavyAttackZone), 1f);
+        //heavyAttackZoneTrigger.SetActive(false);
     }
     private void EndEnemyAttack()
     {
         isAttacking = false;
         agent.isStopped = false;
     }
+
+    private void EnableHeavyAttackParticles()
+    {
+        activeHeavyParticles = Instantiate(lightningArea3, pendingHeavyAttackPosition, Quaternion.identity);
+        activeHeavyParticles.Play();
+        Invoke(nameof(DisableHeavyAttackParticles), 0.6f);
+    }
+    private void DisableHeavyAttackParticles()
+    {
+        Destroy(activeHeavyParticles.gameObject);
+    }
+
+    private void DisableHeavyAttackZone()
+    {
+        heavyAttackZoneTrigger.SetActive(false);
+        canApplyHeavyDamage = false;
+    }
+
 
     public void ResetHeavyAttackCooldown()
     {
@@ -385,7 +452,6 @@ public class DistanceBT : Enemy
     public void PlayerHitted()
     {
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
-
     }
 
     public void PlayerHeavyHitted()
@@ -397,6 +463,15 @@ public class DistanceBT : Enemy
 
     public override void HealthTaken(int damageTaken)
     {
+        if (audioWaterHit != null)
+        {
+            audioWaterHit.Play();
+        }
+        else if (audioElectricHit != null)
+        {
+            audioElectricHit.Play();
+        }
+
         base.HealthTaken(damageTaken);
         hitted = true;
         agent.isStopped = true;
@@ -405,7 +480,6 @@ public class DistanceBT : Enemy
 
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
-        minDistanceChase.SetActive(false);
         SetLookingPlayersActive(false);
         Invoke(nameof(SetFalseHitted), 0.5f);
     }

@@ -16,11 +16,15 @@ public class VikingController : MonoBehaviour
     private InputAction rollAction;
     private Vector2 dpadValue;
 
-    [Header("Mana Bars")]
+    [Header("Elements")]
     public int earthMana;
     public int fireMana;
     public int waterMana;
     public int electricMana;
+    public GameObject earthEffect;
+    public GameObject waterEffect;
+    public GameObject fireEffect;
+    public GameObject electricEffect;
 
     [Header("HUD")]
     public HealthHUD vikingHealthHUD;
@@ -70,6 +74,10 @@ public class VikingController : MonoBehaviour
         OnAction = false;
         swordCollider.enabled = false;
         isBasicAttack = true;
+        earthEffect.SetActive(false);
+        waterEffect.SetActive(false);
+        fireEffect.SetActive(false);
+        electricEffect.SetActive(false);
 
         //DPAD
         dpadAction = inputActions.FindAction("DPAD");
@@ -152,6 +160,8 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.EarthStopBlink();
                         activeElement = Element.None;
+                        earthMana = 0;
+                        earthEffect.SetActive(false);
                     }
                 }
                 else if (activeElement == Element.Water)
@@ -162,6 +172,8 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.WaterStopBlink();
                         activeElement = Element.None;
+                        waterMana = 0;
+                        waterEffect.SetActive(false);
                     }
                 }
                 else if (activeElement == Element.Fire)
@@ -173,6 +185,8 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.FireStopBlink();
                         activeElement = Element.None;
+                        fireMana = 0;
+                        fireEffect.SetActive(false);
                     }
                 }
                 else if (activeElement == Element.Electric)
@@ -183,6 +197,8 @@ public class VikingController : MonoBehaviour
                     {
                         elementsHUD.LightningStopBlink();
                         activeElement = Element.None;
+                        electricMana = 0;
+                        electricEffect.SetActive(false);
                     }
                 }
             }
@@ -195,54 +211,55 @@ public class VikingController : MonoBehaviour
         //ACtivar elemento nuevo
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
-            AudioManager.Instance?.Play("ActivateElement");
-            elementsHUD.earthReduce(earthMana);
+            earthEffect.SetActive(true);
             changed = true;
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
-            AudioManager.Instance?.Play("ActivateElement");
-            elementsHUD.waterReduce(waterMana);
+            waterEffect.SetActive(true);
             changed = true;
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
-            AudioManager.Instance?.Play("ActivateElement");
-            elementsHUD.fireReduce(fireMana);
+            fireEffect.SetActive(true);
             changed = true;
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
-            AudioManager.Instance?.Play("ActivateElement");
-            elementsHUD.lightningReduce(electricMana);
+            electricEffect.SetActive(true);
             changed = true;
         }
         //Desactivar elemento antiguo
         if (changed)
         {
+            AudioManager.Instance?.Play("ActivateElement");
             if (activeElement == Element.Earth)
             {
                 earthMana = 0;
                 elementsHUD.earthReduce(earthMana);
                 elementsHUD.EarthStopBlink();
+                earthEffect.SetActive(false);
             }
             else if (activeElement == Element.Water)
             {
                 waterMana = 0;
                 elementsHUD.waterReduce(waterMana);
                 elementsHUD.WaterStopBlink();
+                waterEffect.SetActive(false);
             }
             else if (activeElement == Element.Fire)
             {
                 fireMana = 0;
                 elementsHUD.fireReduce(fireMana);
                 elementsHUD.FireStopBlink();
+                fireEffect.SetActive(false);
             }
             else if (activeElement == Element.Electric)
             {
                 electricMana = 0;
                 elementsHUD.lightningReduce(electricMana);
                 elementsHUD.LightningStopBlink();
+                electricEffect.SetActive(false);
             }
             activeElement = element;
         }
@@ -311,14 +328,14 @@ public class VikingController : MonoBehaviour
         }
         if (other.CompareTag(Constants.tower))
         {
-            if (other.GetComponent<Tower>().activeElement == activeElement && !isBasicAttack)
+            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement, activeElement) < 0 && !isBasicAttack)
             {
                 if (activeElement == Element.Earth) earthMana = 0;
                 else if (activeElement == Element.Water) waterMana = 0;
                 else if (activeElement == Element.Fire) fireMana = 0;
                 else if (activeElement == Element.Electric) electricMana = 0;
                 Debug.Log("TowerHit");
-                other.GetComponent<Tower>().HealthTaken(20);
+                other.GetComponent<Tower>().HealthTaken(200);
             }
         }
     }
@@ -326,6 +343,7 @@ public class VikingController : MonoBehaviour
     {
         if (!isRolling)
         {
+            AudioManager.Instance?.Play("HitMarker");
             healthPoints -= healthTaken;
             vikingHealthHUD.SetHealth(healthPoints);
         }
@@ -370,7 +388,7 @@ public class VikingController : MonoBehaviour
     //Recollir Drops
     public void CollectMana(Element element)
     {
-        
+
         int mana = 25;
         if (element == Element.None)
         {
@@ -435,5 +453,20 @@ public class VikingController : MonoBehaviour
         healthPoints += 30;
         if (healthPoints > 100) healthPoints = 100;
         vikingHealthHUD.SetHealth(healthPoints);
+    }
+
+    // Funciones para reproducir sonidos de ataque, se llaman en la animación
+    public void PlayBasicAttackSound()
+    {
+        AudioManager.Instance?.Play("PlayerBasicAttack");
+    }
+
+    public void PlayHeavyAttackSound()
+    {
+        AudioManager.Instance?.Play("PlayerHeavyAttack");
+    }
+    public void PlayDashSound()
+    {
+        AudioManager.Instance?.Play("PlayerDash");
     }
 }
