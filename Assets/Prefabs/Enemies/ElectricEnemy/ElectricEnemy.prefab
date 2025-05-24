@@ -17361,8 +17361,6 @@ MonoBehaviour:
   lightningHeight: 10
   heavyAttackZoneTrigger: {fileID: 6150424103477509842}
   audioWaterDeath: {fileID: 0}
-  audioWaterBasicAttack: {fileID: 0}
-  audioWaterHeavyAttack: {fileID: 0}
   audioWaterHit: {fileID: 0}
   audioElectricDeath: {fileID: 6203347318031627386}
   audioElectricBasicAttack: {fileID: 3455169709146793080}

@@ -4336,6 +4336,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1138503426}
     m_Modifications:
+    - target: {fileID: 3325888720425279227, guid: aa4319fd44e04e64dbf789b1a798705a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3478836123580209689, guid: aa4319fd44e04e64dbf789b1a798705a,
         type: 3}
       propertyPath: m_Name
@@ -5322,6 +5327,11 @@ PrefabInstance:
     - target: {fileID: 341819779963142707, guid: 4cf1baa473146d94997c86c656fdad97,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 960413282869292809, guid: 4cf1baa473146d94997c86c656fdad97,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4481851622283625033, guid: 4cf1baa473146d94997c86c656fdad97,
@@ -12466,7 +12476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dda4e517c41a049a50c53ba2034c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textInfo: Utilitza un atac Elemental fort per ferir l'altar.
+  textInfo: Utilitza RB o RT per atacar a un enemic
   infoPanelHUD: {fileID: 434484318}
 --- !u!1 &1493518077
 GameObject:
@@ -13578,6 +13588,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3528329367361974887, guid: 0a20b0231c3727843ae15694b6f34d02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6930527823757047553, guid: 0a20b0231c3727843ae15694b6f34d02,
         type: 3}
       propertyPath: m_Name
@@ -14550,7 +14565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dda4e517c41a049a50c53ba2034c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textInfo: "Pots combatre fent \xFAs de RT o RB"
+  textInfo: "Pots combatre fent \xFAs de \"RT\" o \"RB\""
   infoPanelHUD: {fileID: 434484318}
 --- !u!65 &1783922384
 BoxCollider:
@@ -14784,6 +14799,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1034768222}
     m_Modifications:
+    - target: {fileID: 1693560743047200487, guid: 42515eda3a2a56a41a9a6dd74ab67c9f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5335938099473834327, guid: 42515eda3a2a56a41a9a6dd74ab67c9f,
         type: 3}
       propertyPath: m_Name
@@ -16869,9 +16889,19 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162528521889632136, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1692811939455807229, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195564632244323087, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4273564369668946386, guid: f4103e33610233a448ebbe64c4303885,
@@ -16934,6 +16964,11 @@ PrefabInstance:
       propertyPath: elementalManaDropSpawners.Array.data[1]
       value: 
       objectReference: {fileID: 1633251820}
+    - target: {fileID: 7042084270077872468, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7178450455195461210, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
       propertyPath: gameManager
@@ -17829,7 +17864,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4266601415628916184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18214,7 +18249,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2782484954634530495}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18284,6 +18319,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1138503426}
     m_Modifications:
+    - target: {fileID: 3325888720425279227, guid: aa4319fd44e04e64dbf789b1a798705a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3478836123580209689, guid: aa4319fd44e04e64dbf789b1a798705a,
         type: 3}
       propertyPath: m_Name
@@ -18628,6 +18668,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1034768222}
     m_Modifications:
+    - target: {fileID: 1693560743047200487, guid: 42515eda3a2a56a41a9a6dd74ab67c9f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5335938099473834327, guid: 42515eda3a2a56a41a9a6dd74ab67c9f,
         type: 3}
       propertyPath: m_Name
@@ -18722,7 +18767,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7702561368813262032}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -19400,7 +19445,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4870601712159257925}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -19547,7 +19592,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6790449950804729378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20392,6 +20437,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3528329367361974887, guid: 0a20b0231c3727843ae15694b6f34d02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6930527823757047553, guid: 0a20b0231c3727843ae15694b6f34d02,
         type: 3}
       propertyPath: m_Name
@@ -20474,7 +20524,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2904084763930254074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20849,7 +20899,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.002600685
+      value: 0.7399851
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -20859,7 +20909,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.99999666
+      value: -0.67262334
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -20874,7 +20924,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 540.298
+      value: -84.54
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -21809,7 +21859,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059580120982999048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -23154,7 +23204,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89584935081638767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -23245,6 +23295,11 @@ PrefabInstance:
     - target: {fileID: 341819779963142707, guid: 4cf1baa473146d94997c86c656fdad97,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 960413282869292809, guid: 4cf1baa473146d94997c86c656fdad97,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4481851622283625033, guid: 4cf1baa473146d94997c86c656fdad97,
@@ -23581,7 +23636,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5568670795583619328}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
