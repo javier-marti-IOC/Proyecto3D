@@ -9,6 +9,38 @@ public class SecondZone : MonoBehaviour
     public Enemy enemy;
     public bool playerInSecondZoneRange;
 
+    [Header("Elemental Mana Drop Spawners")]
+    public GameObject[] elementalManaDropSpawners;
+
+    // Activamos los spawners de orbes de mana
+    public void activateElementalManaDropSpawners()
+    {
+        if (elementalManaDropSpawners.Length > 0)
+        {
+            foreach (GameObject manaDropSpawner in elementalManaDropSpawners)
+            {
+                if (!manaDropSpawner.activeSelf)
+                {
+                    manaDropSpawner.SetActive(true);
+                }
+            }
+        }
+    }
+    // Desactivamos los spawners de orbes de mana
+    public void deactivateElementalManaDropSpawners()
+    {
+        if (elementalManaDropSpawners.Length > 0)
+        {    
+            foreach (GameObject manaDropSpawner in elementalManaDropSpawners)
+            {
+                if (manaDropSpawner.activeSelf)
+                {
+                    manaDropSpawner.SetActive(false);
+                }
+            }
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constants.enemy))
@@ -34,6 +66,7 @@ public class SecondZone : MonoBehaviour
         if (other.CompareTag(Constants.player))
         {
             playerInSecondZoneRange = true;
+            activateElementalManaDropSpawners();
             // Debug.Log("---->>>>>>> PLAYER EN ZONA");
         }
     }
@@ -59,6 +92,7 @@ public class SecondZone : MonoBehaviour
         if (other.CompareTag(Constants.player))
         {
             playerInSecondZoneRange = false;
+            deactivateElementalManaDropSpawners();
             // Debug.Log("---->>>>>>> PLAYER FUERA DE ZONA");
         }
     }
