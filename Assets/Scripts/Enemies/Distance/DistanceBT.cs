@@ -8,8 +8,7 @@ using UnityEngine.UIElements;
 
 public class DistanceBT : Enemy
 {
-    private bool isPlayerInTeleportZone;
-    private bool isPlayerInHeavyAttackZone;
+    private VikingController viking;
 
     [Header("Teleport Settings")]
     public float teleportCooldownTime;
@@ -17,6 +16,8 @@ public class DistanceBT : Enemy
     public int teleportChance;
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
+    private bool isPlayerInTeleportZone;
+    private bool isPlayerInHeavyAttackZone;
     public ParticleSystem teleportParticles;
 
     [Header("Chase")]
@@ -55,6 +56,7 @@ public class DistanceBT : Enemy
     public AudioSource audioElectricHeavyAttack;
     public AudioSource audioElectricHit;
     public AudioSource audioElectricTeleport;
+    public GameObject audioHeavyAttackPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -368,6 +370,15 @@ public class DistanceBT : Enemy
         zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
         zone.gameObject.SetActive(true);
 
+        if (healthPoints <= 0)
+        {
+            Destroy(activeHeavyParticles.gameObject);
+        }
+        if (healthPoints <= 0)
+        {
+            Destroy(activeHeavyParticles2.gameObject);
+        }
+
         // Executar atac amb delay
         Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
         Invoke(nameof(EndEnemyAttack), heavyAttackDelay + 0.3f);
@@ -376,11 +387,11 @@ public class DistanceBT : Enemy
     private void ExecuteHeavyAttack()
     {
         // Desactivar particules que hagin pogut quedar
-        if (activeHeavyParticles != null)
+        if (activeHeavyParticles != null || viking.healthPoints <= 0 || healthPoints <= 0)
         {
             Destroy(activeHeavyParticles.gameObject);
         }
-        if (activeHeavyParticles2 != null)
+        if (activeHeavyParticles2 != null || viking.healthPoints <= 0 || healthPoints <= 0)
         {
             Destroy(activeHeavyParticles2.gameObject);
         }
@@ -391,6 +402,7 @@ public class DistanceBT : Enemy
 
         //Cridar a la funció del rayo Controller
         lightningEffectHeavyAttack.PlayLightning(start, end, 0.1f);
+        audioHeavyAttackPosition.transform.position = lightningEffectHeavyAttack.transform.position;
         audioElectricHeavyAttack.Play();
 
         GameObject lightningFlash = new GameObject("LightningFlash");
@@ -418,7 +430,6 @@ public class DistanceBT : Enemy
         }
 
         Invoke(nameof(DisableHeavyAttackZone), 1f);
-        //heavyAttackZoneTrigger.SetActive(false);
     }
     private void EndEnemyAttack()
     {
