@@ -13,9 +13,25 @@ public class TriggerActivator : MonoBehaviour
 
     private bool alreadyActivated = false;
 
+    [Header("Progress Manager")]
+    public ProgressManager progressManager;
+    public ProgressData progressData;
+    public GameObject rocksFallingWall;
+
+    void Start()
+    {
+        if (ProgressManager.Instance.Data.tutorial == true)
+        {
+            if (rocksFallingWall != null && !rocksFallingWall.activeSelf)
+            {
+                rocksFallingWall.SetActive(true);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (alreadyActivated || !other.CompareTag(playerTag)) return;
+        if (alreadyActivated || !other.CompareTag(playerTag) || rocksFallingWall.activeSelf) return;
 
         alreadyActivated = true;
 

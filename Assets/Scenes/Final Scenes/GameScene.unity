@@ -12275,6 +12275,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8455052802132300959}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1795084669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2161145689497783916, guid: af86de5f787c7324b8bbd7480ea26393,
+    type: 3}
+  m_PrefabInstance: {fileID: 7709895635516301418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1799949110
 GameObject:
   m_ObjectHideFlags: 0
@@ -18996,6 +19002,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2161145689497783916, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137388943927127486, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: progressManager
+      value: 
+      objectReference: {fileID: 608557183}
+    - target: {fileID: 8137388943927127486, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: rocksFallingWall
+      value: 
+      objectReference: {fileID: 1795084669}
     - target: {fileID: 8328230984022944830, guid: af86de5f787c7324b8bbd7480ea26393,
         type: 3}
       propertyPath: m_Name
