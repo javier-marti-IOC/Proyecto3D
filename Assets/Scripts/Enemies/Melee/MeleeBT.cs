@@ -60,7 +60,7 @@ public class MeleeBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-                    if (!player.GetComponent<VikingController>().EnemyDetecion(this))
+                    if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1==-1)
                     {
                         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
                         animator.SetInteger(Constants.state, 0);

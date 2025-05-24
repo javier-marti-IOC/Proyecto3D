@@ -131,6 +131,24 @@ namespace StarterAssets
         public ProgressData progressData;
         void Awake()
         {
+            if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
+            {
+                Debug.Log("AAA");
+                if (ProgressManager.Instance.Data.tutorial == false)
+                {
+                    PlacePlayerOnTutorialZone();
+                }
+                else
+                {
+                    Debug.Log("BBB");
+                    PlacePlayerOnSafeZone();
+                }
+            }
+            else
+            {
+                Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
+            }
+
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -140,22 +158,6 @@ namespace StarterAssets
 
         void Start()
         {
-            if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
-            {
-                if (ProgressManager.Instance.Data.tutorial == false)
-                {
-                    PlacePlayerOnTutorialZone();
-                }
-                else
-                {
-                    PlacePlayerOnSafeZone();
-                }
-            }
-            else
-            {
-                Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
-            }
-
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
             _hasAnimator = TryGetComponent(out _animator);
