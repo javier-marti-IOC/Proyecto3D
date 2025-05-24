@@ -4005,11 +4005,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1342002}
     m_Modifications:
-    - target: {fileID: 742381745005058058, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5ccf4829ab028aa45a1f0aeb9fe5503a, type: 2}
     - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4386,11 +4381,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1342002}
     m_Modifications:
-    - target: {fileID: 742381745005058058, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5ccf4829ab028aa45a1f0aeb9fe5503a, type: 2}
     - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6534,11 +6524,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1342002}
     m_Modifications:
-    - target: {fileID: 742381745005058058, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5ccf4829ab028aa45a1f0aeb9fe5503a, type: 2}
     - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -19380,11 +19365,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assets
       objectReference: {fileID: 0}
-    - target: {fileID: 4550019344957744107, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5206674548401870801, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19434,11 +19414,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8983906512749246547, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
