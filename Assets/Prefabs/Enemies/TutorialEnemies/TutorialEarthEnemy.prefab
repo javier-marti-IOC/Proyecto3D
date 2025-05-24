@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4289bb44de22741a561f5de913dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeElement: 5
+  activeElement: 0
   normalSpeed: 3.5
   slowedSpeed: 2
   defaultAreaCost: 1
@@ -552,19 +552,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774a69988b761d040a713bae02426b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaDrop: {fileID: 2928080803187948343, guid: fcf63ae41115f0d469258919cd1612c9,
+  manaDrop: {fileID: 0}
+  goldDrop: {fileID: 2928080803187948343, guid: 02362d297301ea248b0990a4b80c853b,
     type: 3}
-  goldDrop: {fileID: 2928080803187948343, guid: fcf63ae41115f0d469258919cd1612c9,
-    type: 3}
-  lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
-    type: 3}
+  lifeDrop: {fileID: 0}
   dropPosition: {fileID: 3383887799465661057}
   enemyHUD: {fileID: 1174499256736905981}
   hudPanelCanvas: {fileID: 8426004555021005414}
-  activeElement: 5
+  activeElement: 0
   healthPoints: 0
-  maxHealthPoints: 100
-  enemyLevel: 1
+  maxHealthPoints: 20
+  enemyLevel: 0
   tower: {fileID: 0}
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}
@@ -582,10 +580,10 @@ MonoBehaviour:
   pointPatrol: {fileID: 545377662752634713}
   playerDetectorDown: {fileID: 437806569291530884}
   playerDetectorUp: {fileID: 1449607660537794907}
-  basicAttackBasicDamage: 5
-  basicAttackElementalDamage: 3
-  heavyAttackBasicDamage: 8
-  heavyAttackElementalDamage: 15
+  basicAttackBasicDamage: 2
+  basicAttackElementalDamage: 1
+  heavyAttackBasicDamage: 5
+  heavyAttackElementalDamage: 12
   hitParticle: {fileID: 0}
   basicAttackCollider: {fileID: 4022295023652936646}
   heavyAttackCollider: {fileID: 3680562767165459182}

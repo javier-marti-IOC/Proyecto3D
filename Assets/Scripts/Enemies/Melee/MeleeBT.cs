@@ -127,6 +127,10 @@ public class MeleeBT : Enemy
                                     }
                                 }
                             }
+                            else if (activeElement == Element.None)
+                            {
+                                animator.SetInteger(Constants.state, 2);
+                            }
                         }
                         else
                         {
