@@ -36666,6 +36666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8473638394004587737}
   - component: {fileID: 8620253860425985851}
+  - component: {fileID: 1619356389836616749}
   - component: {fileID: 9080953048028045882}
   - component: {fileID: 6067303905638269387}
   - component: {fileID: 6455240357015228509}
@@ -36724,6 +36725,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1619356389836616749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113744238655452588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c16baa13a3dc684db4358f3e8b2168a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSlopeLimit: 45
 --- !u!143 &9080953048028045882
 CharacterController:
   m_ObjectHideFlags: 0
@@ -36745,7 +36759,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1.8
   m_Radius: 0.28
-  m_SlopeLimit: 55
+  m_SlopeLimit: 45
   m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
