@@ -5196,7 +5196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6538029495652244230}
+  m_Father: {fileID: 2107500358928555347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &569330234992150046
 AudioSource:
@@ -6105,6 +6105,7 @@ Transform:
   m_Children:
   - {fileID: 149331980688302648}
   - {fileID: 8542001038303804708}
+  - {fileID: 2689162053902607317}
   - {fileID: 6538029495652244230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11370,6 +11371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1379295255589355254}
   - component: {fileID: 6971926826690671395}
+  - component: {fileID: 274678275801207209}
   m_Layer: 0
   m_Name: 
   m_TagString: Untagged
@@ -11455,6 +11457,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &274678275801207209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331504493288706263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &3338182029527256264
 GameObject:
   m_ObjectHideFlags: 0
@@ -17361,14 +17386,13 @@ MonoBehaviour:
   lightningHeight: 10
   heavyAttackZoneTrigger: {fileID: 6150424103477509842}
   audioWaterDeath: {fileID: 0}
-  audioWaterBasicAttack: {fileID: 0}
-  audioWaterHeavyAttack: {fileID: 0}
   audioWaterHit: {fileID: 0}
   audioElectricDeath: {fileID: 6203347318031627386}
   audioElectricBasicAttack: {fileID: 3455169709146793080}
   audioElectricHeavyAttack: {fileID: 569330234992150046}
   audioElectricHit: {fileID: 7459404903845628712}
   audioElectricTeleport: {fileID: 4677420368208652328}
+  audioHeavyAttackPosition: {fileID: 6150424103477509842}
 --- !u!136 &204749931202079738
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22591,8 +22615,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2689162053902607317}
+  m_Children: []
   m_Father: {fileID: 2107500358928555347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1828782538979959293
