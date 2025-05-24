@@ -17304,7 +17304,7 @@ MonoBehaviour:
   audioElectricBasicAttack: {fileID: 3455169709146793080}
   audioElectricHeavyAttack: {fileID: 569330234992150046}
   audioElectricHit: {fileID: 7459404903845628712}
-  audioElectricTeleport: {fileID: 0}
+  audioElectricTeleport: {fileID: 6199856602532361575}
   audioHeavyAttackPosition: {fileID: 6150424103477509842}
 --- !u!136 &204749931202079738
 CapsuleCollider:
