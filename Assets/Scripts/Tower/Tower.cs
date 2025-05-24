@@ -212,7 +212,24 @@ public class Tower : MonoBehaviour
         AudioManager.Instance?.Play("RestoreElement");
         ChangeEnvironmentParticles();
         ProgressManager.Instance.Data.towerActiveElements.Add(activeElement);
+        // if (activeElement == Element.Earth)
+        // {
+        //     progressManager.earthTowerDestroyed = true;
+        // }
+        // else if (activeElement == Element.Fire)
+        // {
+        //     progressManager.fireTowerDestroyed = true;
+        // }
+        // else if (activeElement == Element.Water)
+        // {
+        //     progressManager.waterTowerDestroyed = true;
+        // }
+        // else if(activeElement == Element.Electric)
+        // {
+        //     progressManager.electricTowerDestroyed = true;
+        // }
         progressManager.SaveGame();
+        progressManager.checkDestroyedTowers();
         gameManager.ResetEnemies(activeElement);
         Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
     }
