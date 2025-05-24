@@ -212,12 +212,17 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Dying(bool drops)
     {
         if (tower != null)
-        {
-            tower.enemiesInSecondZoneRange.Remove(gameObject);
-            tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
-        }
+            {
+                tower.enemiesInSecondZoneRange.Remove(gameObject);
+                tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
+            }
         player.GetComponent<VikingController>().RemoveEnemyDetection(this);
-        if (drops)
+        if (activeElement == Element.None)
+        {
+            AudioManager.Instance?.Play("goldDrop");
+            Instantiate(goldDrop, dropPosition.position, Quaternion.identity, null);
+        }
+        else if (drops)
         {
             //for random
             int random = Random.Range(0, 100);

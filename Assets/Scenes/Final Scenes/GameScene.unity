@@ -459,21 +459,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.713
-      objectReference: {fileID: 0}
-    - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.713
-      objectReference: {fileID: 0}
-    - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.713
-      objectReference: {fileID: 0}
-    - target: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 46.14
       objectReference: {fileID: 0}
@@ -532,36 +517,6 @@ PrefabInstance:
       propertyPath: textHUD
       value: 
       objectReference: {fileID: 434484319}
-    - target: {fileID: 4066713531779466214, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: tower_id
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4126845980547460901, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 3.5521479
-      objectReference: {fileID: 0}
-    - target: {fileID: 4126845980547460901, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.5000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4126845980547460901, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 4.1307163
-      objectReference: {fileID: 0}
-    - target: {fileID: 4126845980547460901, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.04434725
-      objectReference: {fileID: 0}
-    - target: {fileID: 4126845980547460901, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.8264986
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12457,13 +12412,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474350561}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.13482822, z: -0, w: 0.990869}
-  m_LocalPosition: {x: 40.15, y: 8.63, z: -20.87}
+  m_LocalRotation: {x: -0, y: -0.6011361, z: -0, w: 0.7991467}
+  m_LocalPosition: {x: 30.8, y: 8.63, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1309211665}
-  m_LocalEulerAnglesHint: {x: 0, y: -15.497, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -73.903, z: 0}
 --- !u!114 &1474350563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12510,7 +12465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dda4e517c41a049a50c53ba2034c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textInfo: Destrueix la torre per sanar la cova i sortir
+  textInfo: Utilitza un atac Elemental fort per ferir l'altar.
   infoPanelHUD: {fileID: 434484318}
 --- !u!1 &1493518077
 GameObject:
@@ -20878,7 +20833,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 72
+      value: 71.94
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -20888,12 +20843,12 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -112
+      value: -112.84
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.94468087
+      value: 0.002600685
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -20903,7 +20858,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.3279908
+      value: -0.99999666
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -20918,7 +20873,7 @@ PrefabInstance:
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 398.294
+      value: 540.298
       objectReference: {fileID: 0}
     - target: {fileID: 8473638394004587737, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
@@ -23449,7 +23404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondZoneObject: {fileID: 1685940080605513654}
-  activeElement: 5
+  activeElement: 0
   max_life: 100
   life: 0
   invoke_cost: 15

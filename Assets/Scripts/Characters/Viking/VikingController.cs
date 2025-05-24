@@ -337,6 +337,10 @@ public class VikingController : MonoBehaviour
                 Debug.Log("TowerHit");
                 other.GetComponent<Tower>().HealthTaken(200);
             }
+            else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None && !isBasicAttack)
+            {
+                other.GetComponent<Tower>().HealthTaken(50);
+            }
         }
     }
     public void HealthTaken(int healthTaken)
@@ -388,7 +392,6 @@ public class VikingController : MonoBehaviour
     //Recollir Drops
     public void CollectMana(Element element)
     {
-
         int mana = 25;
         if (element == Element.None)
         {
