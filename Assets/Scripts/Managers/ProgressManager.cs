@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Unity.VisualScripting.Dependencies.NCalc;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -37,19 +36,10 @@ public class ProgressManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+
 
         // Mueve la inicialización del progreso aquí
-        saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+        saveFilePath = Application.persistentDataPath + "/progressManager.json";
 
         if (!File.Exists(saveFilePath))
         {
@@ -69,8 +59,18 @@ public class ProgressManager : MonoBehaviour
 
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         // Guardamos la ruta donde queremos generar el JSON
-            saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+        saveFilePath = Application.persistentDataPath + "/progressManager.json";
         // Si el archivo no existe, generamos el objeto del JSON con todo a 0
         if (!File.Exists(saveFilePath))
         {
@@ -192,7 +192,7 @@ public class ProgressManager : MonoBehaviour
     }
     public bool LoadData()
     {
-        saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+        saveFilePath = Application.persistentDataPath + "/progressManager.json";
         if (!File.Exists(saveFilePath))
         {
             Debug.Log("FALSE");
@@ -242,61 +242,3 @@ public class ProgressManager : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            saveFilePath = Application.persistentDataPath + "/ProgressManager.json"; // Ruta del JSON
-            Debug.Log(saveFilePath);
-
-            if (File.Exists(saveFilePath))
-            {
-                string loadProgressData = File.ReadAllText(saveFilePath);
-                progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
-                Debug.Log("File existing");
-            }
-            else
-            {
-                string savePlayerData = JsonUtility.ToJson(progressData);
-                File.WriteAllText(saveFilePath, savePlayerData);
-                Debug.Log("Save file created at: " + saveFilePath);
-            }
-        }
-    }  */
