@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2853505, y: 2.0018694, z: 0.17607646}
-  m_Center: {x: 0.013996443, y: -0.44366884, z: -0.008971369}
+  m_Size: {x: 0.76305, y: 2.3280191, z: 0.17607646}
+  m_Center: {x: 0.036075905, y: -0.6067503, z: -0.008972249}
 --- !u!114 &5546922886871438127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12792,6 +12792,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 614212680208423561}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2720239731957917494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229316714964475365}
+  m_Layer: 0
+  m_Name: DeathParticlePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229316714964475365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720239731957917494}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.023742676, y: 1.84, z: 0.008152008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8473638394004587737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2838413363181673939
 GameObject:
@@ -36696,6 +36727,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 229316714964475365}
   - {fileID: 7350506736356637577}
   - {fileID: 8424257910727630021}
   - {fileID: 7972572213860145023}
@@ -36986,6 +37018,9 @@ MonoBehaviour:
   enemiesInCombat: []
   maxEnemies: 5
   healParticles: {fileID: 4967606259284499030}
+  deathParticle: {fileID: 8525769348104996679, guid: b7453c3d92a8984489aa77211c95a35b,
+    type: 3}
+  deathParticlePosition: {fileID: 229316714964475365}
 --- !u!136 &5119653336814344007
 CapsuleCollider:
   m_ObjectHideFlags: 0

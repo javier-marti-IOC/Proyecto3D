@@ -17163,6 +17163,7 @@ Transform:
   - {fileID: 3095523845383079939}
   - {fileID: 4706837290782322706}
   - {fileID: 2184018156853480961}
+  - {fileID: 5992485886668613544}
   - {fileID: 4915129082857986680}
   - {fileID: 6092340985092875376}
   - {fileID: 5181325054406352418}
@@ -17250,7 +17251,10 @@ MonoBehaviour:
     type: 3}
   lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
     type: 3}
+  deathParticle: {fileID: 3180198814569982686, guid: fe23fe18cd610c1469686474c642e46e,
+    type: 3}
   dropPosition: {fileID: 2184018156853480961}
+  deathPosition: {fileID: 5992485886668613544}
   enemyHUD: {fileID: 6529356935889863858}
   hudPanelCanvas: {fileID: 6997485962184069293}
   activeElement: 4
@@ -27332,6 +27336,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &6797512844498922558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5992485886668613544}
+  m_Layer: 0
+  m_Name: Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5992485886668613544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797512844498922558}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.041381817, y: -0.019895427, z: -0.014106895, w: 0.9988457}
+  m_LocalPosition: {x: 0.008244647, y: 1.795011, z: -0.0032268278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 149331980688302648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6828379924087982675
 GameObject:
   m_ObjectHideFlags: 0
