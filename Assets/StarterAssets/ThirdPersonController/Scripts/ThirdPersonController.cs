@@ -129,6 +129,8 @@ namespace StarterAssets
 
         public ProgressManager progressManager;
         public ProgressData progressData;
+        public Transform spawnTuto;
+         public Transform spawnSafe;
         void Awake()
         {
             // get a reference to our main camera
@@ -142,20 +144,17 @@ namespace StarterAssets
         {
             if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
             {
-                //Debug.Log("AAA");
                 if (ProgressManager.Instance.Data.tutorial == false)
                 {
-                    PlacePlayerOnTutorialZone();
+                    Invoke(nameof(PlacePlayerOnTutorialZone), 0.2f);
                 }
                 else
                 {
-                    //Debug.Log("BBB");
-                    PlacePlayerOnSafeZone();
+                    Invoke(nameof(PlacePlayerOnSafeZone), 0.2f);
                 }
             }
             else
             {
-                PlacePlayerOnSafeZone();
                 Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
             }
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
@@ -195,12 +194,12 @@ namespace StarterAssets
         public void PlacePlayerOnTutorialZone()
         {
             AudioManager.Instance?.Play("landslideTutorial");
-            transform.position = new Vector3(72, -5, -112);
+            gameObject.transform.position = spawnTuto.position;
         }
         // Colocar el player en la zona azucar
         public void PlacePlayerOnSafeZone()
         {
-            transform.position = new Vector3(88, 0.5f, 14);
+            gameObject.transform.position = spawnSafe.position;
         }
 
         private void AssignAnimationIDs()
