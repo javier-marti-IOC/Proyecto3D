@@ -7,7 +7,7 @@ public class Drops : MonoBehaviour
     public Element element;
     public AudioSource audioOrbeBounce;
     public float minImpactVelocity = 0.2f;
-    private float autoDestrucion = 5f;
+    private float autoDestrucion = 10f;
     void Update()
     {
         autoDestrucion -= Time.deltaTime;
