@@ -90,7 +90,7 @@ public class DistanceBT : Enemy
                     //El enemigo detecta al player
                     if (playerDetected)
                     {
-                        if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1==-1)
+                        if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1 == -1)
                         {
                             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
                             animator.SetInteger(Constants.state, 0);
@@ -360,24 +360,18 @@ public class DistanceBT : Enemy
         pendingHeavyAttackPosition = player.transform.position;
 
         // Instanciar particules
-        activeHeavyParticles = Instantiate(lightningArea1, pendingHeavyAttackPosition, Quaternion.identity,transform);
+        //particulas1 = Instantiate(new GameObject(), pendingHeavyAttackPosition, Quaternion.identity);
+        particulas1 = new GameObject("HeavyAttackParticlesContainer");
+        particulas1.transform.position = pendingHeavyAttackPosition;
+        activeHeavyParticles = Instantiate(lightningArea1, pendingHeavyAttackPosition, Quaternion.identity, particulas1.transform);
         activeHeavyParticles.Play();
-        activeHeavyParticles2 = Instantiate(lightningArea2, pendingHeavyAttackPosition, Quaternion.identity,transform);
+        activeHeavyParticles2 = Instantiate(lightningArea2, pendingHeavyAttackPosition, Quaternion.identity, particulas1.transform);
         activeHeavyParticles2.Play();
 
         // Activar la zona
         Transform zone = heavyAttackZoneTrigger.transform;
         zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
         zone.gameObject.SetActive(true);
-
-        if (healthPoints <= 0)
-        {
-            Destroy(activeHeavyParticles.gameObject);
-        }
-        if (healthPoints <= 0)
-        {
-            Destroy(activeHeavyParticles2.gameObject);
-        }
 
         // Executar atac amb delay
         Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
@@ -386,14 +380,21 @@ public class DistanceBT : Enemy
 
     private void ExecuteHeavyAttack()
     {
+
         // Desactivar particules que hagin pogut quedar
-        if (activeHeavyParticles != null || viking.healthPoints <= 0 || healthPoints <= 0)
+        /*if (activeHeavyParticles != null || viking.healthPoints <= 0)
         {
-            Destroy(activeHeavyParticles.gameObject);
+            Destroy(particulas1);
         }
-        if (activeHeavyParticles2 != null || viking.healthPoints <= 0 || healthPoints <= 0)
+        if (activeHeavyParticles2 != null || viking.healthPoints <= 0)
         {
-            Destroy(activeHeavyParticles2.gameObject);
+            Destroy(particulas1);
+        }*/
+
+        if (particulas1 != null)
+        {
+            Destroy(particulas1);
+            particulas1 = null;
         }
 
         // Definir inici i final del rayo

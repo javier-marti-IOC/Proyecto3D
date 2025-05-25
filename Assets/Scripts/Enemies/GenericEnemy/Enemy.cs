@@ -18,6 +18,7 @@ public abstract class Enemy : MonoBehaviour
     public Tower tower;
     public GameManager gameManager;
     public GameObject ghostAgent;
+    protected GameObject particulas1;
 
     [Header("Animation ID")]
     private int animIDSpeed;
@@ -211,11 +212,16 @@ public abstract class Enemy : MonoBehaviour
     }
     public virtual void Dying(bool drops)
     {
+        if (activeElement == Element.Electric && particulas1 != null)
+        {
+            Destroy(particulas1);
+        }
+        
         if (tower != null)
-            {
-                tower.enemiesInSecondZoneRange.Remove(gameObject);
-                tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
-            }
+        {
+            tower.enemiesInSecondZoneRange.Remove(gameObject);
+            tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
+        }
         player.GetComponent<VikingController>().RemoveEnemyDetection(this);
         if (activeElement == Element.None)
         {
