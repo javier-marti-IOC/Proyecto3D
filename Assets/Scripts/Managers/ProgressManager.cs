@@ -70,7 +70,7 @@ public class ProgressManager : MonoBehaviour
     void Start()
     {
         // Guardamos la ruta donde queremos generar el JSON
-            saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
+        saveFilePath = Application.persistentDataPath + "/ProgressManager.json";
         // Si el archivo no existe, generamos el objeto del JSON con todo a 0
         if (!File.Exists(saveFilePath))
         {
@@ -89,6 +89,7 @@ public class ProgressManager : MonoBehaviour
             progressData = new ProgressData { tutorial = false, towerActiveElements = new List<Element>() };
         }
         checkDestroyedTowers();
+        musicMenu();
         if (pauseMenu != null)
         {
             if (pauseMenu.endGamePanel.activeSelf)
@@ -238,7 +239,18 @@ public class ProgressManager : MonoBehaviour
                 {
                     pauseMenu.ToggleEndgame();
                 }
-            }
+            }  
+        }
+    }
+    public void musicMenu()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0 && earthTowerDestroyed && fireTowerDestroyed && waterTowerDestroyed && electricTowerDestroyed)
+        {
+            AudioManager.Instance?.Play("menuMusicHealed");
+        }
+            else if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            AudioManager.Instance?.Play("menuMusicCorrupted");
         }
     }
 }
