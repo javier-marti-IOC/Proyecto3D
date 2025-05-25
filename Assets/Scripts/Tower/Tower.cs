@@ -259,7 +259,7 @@ public class Tower : MonoBehaviour
     {
         if (increase)
         {
-            this.life += 1; // Incrementamos el valor de la vida
+            this.life += 20; // Incrementamos el valor de la vida
 
             if (this.life > max_life) // Si se pasa del limite de vida establecido, se rebaja hasta se vida maxima
             {

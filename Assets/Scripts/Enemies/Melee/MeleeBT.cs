@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class MeleeBT : Enemy
 {
+    private bool hitted;
     private bool playerInSecurityDistance;
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
@@ -60,7 +61,7 @@ public class MeleeBT : Enemy
                 //El enemigo detecta al player
                 if (playerDetected)
                 {
-                    if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1==-1)
+                    if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1 == -1)
                     {
                         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
                         animator.SetInteger(Constants.state, 0);
@@ -86,13 +87,35 @@ public class MeleeBT : Enemy
                             }
                             else if (activeElement == Element.Fire)
                             {
-                                // Esta el player usando el elemento de agua
-                                if (player.GetComponent<VikingController>().activeElement == Element.Water)
+                                /* // Esta el player usando el elemento de agua
+                                 if (player.GetComponent<VikingController>().activeElement == Element.Water)
+                                 {
+                                     // Esta a una distancia prudencial del player?
+                                     if (playerInSecurityDistance)
+                                     {*/
+                                // Tiene cooldown de ataque en area?
+                                if (cooldownHeavyAttack < 0)
                                 {
-                                    // Esta a una distancia prudencial del player?
-                                    if (playerInSecurityDistance)
-                                    {
-                                        // Tiene cooldown de ataque en area?
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state, 3);
+                                }
+                                else
+                                {
+                                    // Se queda mirandolo
+                                    animator.SetInteger(Constants.state, 2);
+                                }/*
+                                        }
+                                        else
+                                        {
+                                            // Alejarse
+                                            Vector3 direction = transform.position - player.transform.position; // Ir en direccion contraria
+                                            Vector3 newPosition = transform.position + direction * 0.1f; // Calcula la nueva posicion en la direccion opuesta
+                                            agent.SetDestination(newPosition);
+                                        }
+
+                                    }
+                                    else
+                                    { // Tiene cooldown de ataque en area?
                                         if (cooldownHeavyAttack < 0)
                                         {
                                             //transform.LookAt(player.transform);
@@ -100,32 +123,10 @@ public class MeleeBT : Enemy
                                         }
                                         else
                                         {
-                                            // Se queda mirandolo
-                                            transform.LookAt(player.transform);
+                                            //transform.LookAt(player.transform);
+                                            animator.SetInteger(Constants.state, 2);
                                         }
-                                    }
-                                    else
-                                    {
-                                        // Alejarse
-                                        Vector3 direction = transform.position - player.transform.position; // Ir en direccion contraria
-                                        Vector3 newPosition = transform.position + direction * 0.1f; // Calcula la nueva posicion en la direccion opuesta
-                                        agent.SetDestination(newPosition);
-                                    }
-
-                                }
-                                else
-                                { // Tiene cooldown de ataque en area?
-                                    if (cooldownHeavyAttack < 0)
-                                    {
-                                        //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state, 3);
-                                    }
-                                    else
-                                    {
-                                        //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state, 2);
-                                    }
-                                }
+                                    }*/
                             }
                             else if (activeElement == Element.None)
                             {
@@ -199,7 +200,7 @@ public class MeleeBT : Enemy
         }
         else
         {
-           audioEarthBasicAttack.Play(); 
+            audioEarthBasicAttack.Play();
         }
         playerHitted = false;
         basicAttackCollider.enabled = true;
@@ -280,18 +281,21 @@ public class MeleeBT : Enemy
             other.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, other.GetComponent<VikingController>().activeElement));
         }
     }
+
     public override void HealthTaken(int damageTaken)
     {
         if (activeElement == Element.Fire)
         {
             audioFireHit?.Play();
         }
-        else if(activeElement == Element.Earth)
+        else if (activeElement == Element.Earth)
         {
             audioEarthHit?.Play();
         }
         base.HealthTaken(damageTaken);
-
+        hitParticle.SetActive(false);
+        hitParticle.SetActive(true);
+        if (ghost != null) Destroy(ghost);
     }
     public void EarthHeavyAttackSound()
     {
