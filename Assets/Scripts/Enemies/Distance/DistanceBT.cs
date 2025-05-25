@@ -360,7 +360,6 @@ public class DistanceBT : Enemy
         pendingHeavyAttackPosition = player.transform.position;
 
         // Instanciar particules
-        //particulas1 = Instantiate(new GameObject(), pendingHeavyAttackPosition, Quaternion.identity);
         particulas1 = new GameObject("HeavyAttackParticlesContainer");
         particulas1.transform.position = pendingHeavyAttackPosition;
         activeHeavyParticles = Instantiate(lightningArea1, pendingHeavyAttackPosition, Quaternion.identity, particulas1.transform);
@@ -382,15 +381,6 @@ public class DistanceBT : Enemy
     {
 
         // Desactivar particules que hagin pogut quedar
-        /*if (activeHeavyParticles != null || viking.healthPoints <= 0)
-        {
-            Destroy(particulas1);
-        }
-        if (activeHeavyParticles2 != null || viking.healthPoints <= 0)
-        {
-            Destroy(particulas1);
-        }*/
-
         if (particulas1 != null)
         {
             Destroy(particulas1);
