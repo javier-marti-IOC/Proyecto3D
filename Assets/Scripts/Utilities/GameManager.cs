@@ -130,109 +130,49 @@ public class GameManager : MonoBehaviour
     {
         for (int i = earthEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
-            }
+            Instantiate(EarthEnemy, earthEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
         }
         for (int i = waterEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
-            }
+            Instantiate(WaterEnemy, waterEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
         }
         for (int i = fireEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
-            }
+            Instantiate(FireEnemy, fireEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
         }
         for (int i = electricEnemiesSpawnersPositions.Count - 1; i >= 0; i--)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
-            }
+            Instantiate(ElectricEnemy, electricEnemiesSpawnersPositions[i].position, Quaternion.identity, null);
         }
         if (element != Element.Earth)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(EarthEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(WaterEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(FireEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(ElectricEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
+            Instantiate(EarthEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(WaterEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(FireEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(ElectricEnemy, earthTowerSpawnersPositions.position, Quaternion.identity, null);
         }
         if (element != Element.Water)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(EarthEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(WaterEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(FireEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(ElectricEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
+            Instantiate(EarthEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(WaterEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(FireEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(ElectricEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
         }
 
         if (element != Element.Fire)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(EarthEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(WaterEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(FireEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(ElectricEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
+            Instantiate(EarthEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(WaterEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(FireEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(ElectricEnemy, fireTowerSpawnersPositions.position, Quaternion.identity, null);
         }
 
         if (element != Element.Electric)
         {
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(EarthEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(WaterEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(FireEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
-            for (int x = Random.Range(0, 2); x >= 0; x--)
-            {
-                Instantiate(ElectricEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
-            }
+            Instantiate(EarthEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(WaterEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(FireEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
+            Instantiate(ElectricEnemy, electricTowerSpawnersPositions.position, Quaternion.identity, null);
         }
 
         if (FindObjectOfType<ProgressManager>().LoadData())

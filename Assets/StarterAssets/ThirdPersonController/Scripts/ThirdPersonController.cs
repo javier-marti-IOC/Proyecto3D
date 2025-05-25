@@ -131,6 +131,15 @@ namespace StarterAssets
         public ProgressData progressData;
         void Awake()
         {
+            // get a reference to our main camera
+            if (_mainCamera == null)
+            {
+                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            }
+        }
+
+        void Start()
+        {
             if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
             {
                 //Debug.Log("AAA");
@@ -146,18 +155,9 @@ namespace StarterAssets
             }
             else
             {
+                PlacePlayerOnSafeZone();
                 Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
             }
-
-            // get a reference to our main camera
-            if (_mainCamera == null)
-            {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            }
-        }
-
-        void Start()
-        {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
             _hasAnimator = TryGetComponent(out _animator);
@@ -200,7 +200,7 @@ namespace StarterAssets
         // Colocar el player en la zona azucar
         public void PlacePlayerOnSafeZone()
         {
-            transform.position = new Vector3(96, 0, 21);
+            transform.position = new Vector3(88, 0.5f, 14);
         }
 
         private void AssignAnimationIDs()

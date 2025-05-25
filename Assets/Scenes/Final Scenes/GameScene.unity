@@ -20884,6 +20884,16 @@ PrefabInstance:
       objectReference: {fileID: 434484317}
     - target: {fileID: 6067303905638269387, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
+      propertyPath: MoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067303905638269387, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: SprintSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067303905638269387, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
       propertyPath: progressManager
       value: 
       objectReference: {fileID: 608557183}
