@@ -37,75 +37,73 @@ public class MeleeBT : Enemy
         //Esta el enemigo vivo?
         if (healthPoints > 0)
         {
-            if (!hitted)
+            //ME ESTA LLAMANDO LA TORRE?
+            if (towerCalling)
             {
-                //ME ESTA LLAMANDO LA TORRE?
-                if (towerCalling)
+                //Estoy en la zona de curacion?
+                if (onHealZone)
                 {
-                    //Estoy en la zona de curacion?
-                    if (onHealZone)
+                    //Esta la torre en cooldown
+                    if (tower.GetComponent<TowerBT>().onCooldown)
                     {
-                        //Esta la torre en cooldown
-                        if (tower.GetComponent<TowerBT>().onCooldown)
-                        {
-                            towerCalling = false;
-                        }
-                    }
-                    else
-                    {
-                        //Me acerco
-                        //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
-                        TowerChase();
+                        towerCalling = false;
                     }
                 }
                 else
                 {
-                    //El enemigo detecta al player
-                    if (playerDetected)
+                    //Me acerco
+                    //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
+                    TowerChase();
+                }
+            }
+            else
+            {
+                //El enemigo detecta al player
+                if (playerDetected)
+                {
+                    if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1 == -1)
                     {
-                        if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1 == -1)
+                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
+                        animator.SetInteger(Constants.state, 0);
+                    }
+                    else
+                    {
+                        if (playerInAttackRange)
                         {
-                            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
-                            animator.SetInteger(Constants.state, 0);
-                        }
-                        else
-                        {
-                            if (playerInAttackRange)
+                            agent.SetDestination(transform.position);
+                            if (activeElement == Element.Earth)
                             {
-                                agent.SetDestination(transform.position);
-                                if (activeElement == Element.Earth)
+                                if (cooldownHeavyAttack < 0)
                                 {
-                                    if (cooldownHeavyAttack < 0)
-                                    {
-                                        Debug.Log("HEAVY ATTACK");
-                                        //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state, 3);
-                                    }
-                                    else
-                                    {
-                                        //transform.LookAt(player.transform);
-                                        animator.SetInteger(Constants.state, 2);
-                                    }
+                                    Debug.Log("HEAVY ATTACK");
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state, 3);
                                 }
-                                else if (activeElement == Element.Fire)
+                                else
                                 {
-                                   /* // Esta el player usando el elemento de agua
-                                    if (player.GetComponent<VikingController>().activeElement == Element.Water)
-                                    {
-                                        // Esta a una distancia prudencial del player?
-                                        if (playerInSecurityDistance)
-                                        {*/
-                                            // Tiene cooldown de ataque en area?
-                                            if (cooldownHeavyAttack < 0)
-                                            {
-                                                //transform.LookAt(player.transform);
-                                                animator.SetInteger(Constants.state, 3);
-                                            }
-                                            else
-                                            {
-                                                // Se queda mirandolo
-                                                transform.LookAt(player.transform);
-                                            }/*
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state, 2);
+                                }
+                            }
+                            else if (activeElement == Element.Fire)
+                            {
+                                /* // Esta el player usando el elemento de agua
+                                 if (player.GetComponent<VikingController>().activeElement == Element.Water)
+                                 {
+                                     // Esta a una distancia prudencial del player?
+                                     if (playerInSecurityDistance)
+                                     {*/
+                                // Tiene cooldown de ataque en area?
+                                if (cooldownHeavyAttack < 0)
+                                {
+                                    //transform.LookAt(player.transform);
+                                    animator.SetInteger(Constants.state, 3);
+                                }
+                                else
+                                {
+                                    // Se queda mirandolo
+                                    animator.SetInteger(Constants.state, 2);
+                                }/*
                                         }
                                         else
                                         {
@@ -129,40 +127,35 @@ public class MeleeBT : Enemy
                                             animator.SetInteger(Constants.state, 2);
                                         }
                                     }*/
-                                }
-                                else if (activeElement == Element.None)
-                                {
-                                    animator.SetInteger(Constants.state, 2);
-                                }
                             }
-                            else
+                            else if (activeElement == Element.None)
                             {
-                                animator.SetInteger(Constants.state, 0);
-                                if (!attacking)
-                                {
-                                    CheckAgentSpeed();
-                                    Chase();
-                                }
+                                animator.SetInteger(Constants.state, 2);
                             }
-                        }
-                    }
-                    else
-                    {
-                        CheckAgentSpeed();
-                        if (towerInRange)
-                        {
-                            TowerPatrol();
                         }
                         else
                         {
-                            Patrol();
+                            animator.SetInteger(Constants.state, 0);
+                            if (!attacking)
+                            {
+                                CheckAgentSpeed();
+                                Chase();
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                animator.SetInteger(Constants.state, 4);
+                else
+                {
+                    CheckAgentSpeed();
+                    if (towerInRange)
+                    {
+                        TowerPatrol();
+                    }
+                    else
+                    {
+                        Patrol();
+                    }
+                }
             }
         }
         else
@@ -300,23 +293,12 @@ public class MeleeBT : Enemy
             audioEarthHit?.Play();
         }
         base.HealthTaken(damageTaken);
-        if (activeElement == Element.Fire)
-        {
-            hitted = true;
-            agent.isStopped = true;
-        }
         hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
-        Invoke(nameof(SetFalseHitted), 0.5f);
     }
     public void EarthHeavyAttackSound()
     {
         audioEarthHeavyAttack.Play();
-    }
-
-    private void SetFalseHitted()
-    {
-        hitted = false;
     }
 }
