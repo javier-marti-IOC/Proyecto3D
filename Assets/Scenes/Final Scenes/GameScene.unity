@@ -738,6 +738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textInfo: Troba una forma de sortir de la cova
   infoPanelHUD: {fileID: 434484318}
+  activated: 0
 --- !u!65 &33164422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2851,6 +2852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textInfo: Utilitza "B" per rodar o esquivar
   infoPanelHUD: {fileID: 434484318}
+  activated: 0
 --- !u!65 &235523929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4880,7 +4882,7 @@ PrefabInstance:
     - target: {fileID: 5765962170490217951, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
       propertyPath: collisionMask.m_Bits
-      value: 127
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409498, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
@@ -5035,6 +5037,11 @@ PrefabInstance:
       propertyPath: textHUD
       value: 
       objectReference: {fileID: 434484319}
+    - target: {fileID: 4066713531779466214, guid: aa3b8bad8e050294882c5089bc0d5164,
+        type: 3}
+      propertyPath: tower_id
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13046,6 +13053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textInfo: Utilitza RB o RT per atacar a un enemic
   infoPanelHUD: {fileID: 434484318}
+  activated: 0
 --- !u!1 &1493518077
 GameObject:
   m_ObjectHideFlags: 0
@@ -15222,7 +15230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1783922382
 Transform:
   m_ObjectHideFlags: 0
@@ -15232,7 +15240,7 @@ Transform:
   m_GameObject: {fileID: 1783922381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.3210717, z: -0, w: 0.94705486}
-  m_LocalPosition: {x: 0.32, y: 6.15, z: -42.05}
+  m_LocalPosition: {x: 0.32, y: 2.37, z: -42.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15250,8 +15258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dda4e517c41a049a50c53ba2034c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textInfo: "Pots combatre fent \xFAs de \"RT\" o \"RB\""
+  textInfo: 
   infoPanelHUD: {fileID: 434484318}
+  activated: 0
 --- !u!65 &1783922384
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16152,7 +16161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7058824}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.92156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21605,6 +21614,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 259013401306281115, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1194227487271163418, guid: af86de5f787c7324b8bbd7480ea26393,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21656,6 +21670,66 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2161145689497783916, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265860642526901161, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338051025005177305, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962995420844460730, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429988326611272691, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642212371563846758, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947589969164050584, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209232898669936131, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691843106577040578, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201916821164998262, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285792889392078264, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847153486729060747, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7956544129118568971, guid: af86de5f787c7324b8bbd7480ea26393,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -22386,6 +22460,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 35.527
       objectReference: {fileID: 0}
+    - target: {fileID: 1271071785132901122, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68fedeb1ff418eb46a0b7254254b7b59, type: 2}
     - target: {fileID: 1517725220070672372, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_LocalPosition.y

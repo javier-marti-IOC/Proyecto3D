@@ -158,7 +158,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: PlayerDash
-    clip: {fileID: 8300000, guid: 6d24e54877bd7ac459388cc6873fec8d, type: 3}
+    clip: {fileID: 8300000, guid: 0d96aa14fc86c2248aff5c1bd9e3ac49, type: 3}
     volume: 0.4
     pitch: 1.2
     loop: 0
