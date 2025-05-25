@@ -53,11 +53,11 @@ public class GameManager : MonoBehaviour
         switch (ElementInteraction(dealerElement, takerElement))
         {
             case 1:
-                return (int)(basicDamageRange + (elementDamageRange * 1.5f));
+                return (int)(basicDamageRange + (elementDamageRange * 2f));
             case 0:
                 return (int)(basicDamageRange + elementDamageRange);
             case -1:
-                return (int)(basicDamageRange + (elementDamageRange * 0.75f));
+                return (int)(basicDamageRange + (elementDamageRange * 0.5f));
         }
         return 0;
     }
