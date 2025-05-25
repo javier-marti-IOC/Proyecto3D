@@ -484,7 +484,14 @@ public class DistanceBT : Enemy
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
         SetLookingPlayersActive(false);
-        Invoke(nameof(SetFalseHitted), 0.5f);
+        if (activeElement == Element.Electric)
+        {
+            Invoke(nameof(SetFalseHitted), 0.2f);
+        }
+        else
+        {
+            Invoke(nameof(SetFalseHitted), 0.5f);
+        }
     }
     // Método compatible con Animation Event
     public void SetHittedFalse()
