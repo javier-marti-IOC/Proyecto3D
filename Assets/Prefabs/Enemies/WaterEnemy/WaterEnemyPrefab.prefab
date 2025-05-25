@@ -313,6 +313,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 16
+--- !u!1 &2801562022563655014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2492859460338524810}
+  m_Layer: 0
+  m_Name: Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2492859460338524810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2801562022563655014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 917795614414523819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3859051198028927708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,6 +1465,10 @@ PrefabInstance:
       addedObject: {fileID: 5732543632236977345}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
         type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2492859460338524810}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423913955446511639}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
@@ -1560,7 +1595,10 @@ MonoBehaviour:
     type: 3}
   lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
     type: 3}
+  deathParticle: {fileID: 6889689005713631110, guid: 9d16cc97404ba3349ad7cab41204f1d6,
+    type: 3}
   dropPosition: {fileID: 5732543632236977345}
+  deathPosition: {fileID: 2492859460338524810}
   enemyHUD: {fileID: 5731537666881477339}
   hudPanelCanvas: {fileID: 8361632850504355524}
   activeElement: 2
@@ -1615,6 +1653,7 @@ MonoBehaviour:
   audioElectricHeavyAttack: {fileID: 0}
   audioElectricHit: {fileID: 0}
   audioElectricTeleport: {fileID: 0}
+  audioHeavyAttackPosition: {fileID: 0}
 --- !u!195 &258517528031875190
 NavMeshAgent:
   m_ObjectHideFlags: 0

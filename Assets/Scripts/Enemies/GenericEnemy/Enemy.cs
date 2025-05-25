@@ -7,7 +7,9 @@ public abstract class Enemy : MonoBehaviour
     public GameObject manaDrop;
     public GameObject goldDrop;
     public GameObject lifeDrop;
+    public GameObject deathParticle;
     public Transform dropPosition;
+    public Transform deathPosition;
     public EnemyHUD enemyHUD;
     public GameObject hudPanelCanvas;
     public Element activeElement;
@@ -265,6 +267,11 @@ public abstract class Enemy : MonoBehaviour
             {
                 Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
             }
+        }
+        // 💥 Partículas de muerte
+        if (deathParticle != null)
+        {
+            Instantiate(deathParticle, deathPosition.position, Quaternion.identity, null);
         }
         Debug.Log("Destruir enemigo");
         Destroy(transform.parent.gameObject);
