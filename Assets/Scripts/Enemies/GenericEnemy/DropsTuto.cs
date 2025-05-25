@@ -7,7 +7,7 @@ public class DropsTuto : MonoBehaviour
     public Element element;
     public AudioSource audioOrbeBounce;
     public float minImpactVelocity = 0.2f;
-    private float autoDestrucion = 5f;
+    private float autoDestrucion = 10;
     private GameManager gameManager;
     void Awake()
     {
