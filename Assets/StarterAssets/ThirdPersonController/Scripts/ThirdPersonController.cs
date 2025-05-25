@@ -129,25 +129,18 @@ namespace StarterAssets
 
         public ProgressManager progressManager;
         public ProgressData progressData;
-        private void Awake()
-        {
-            // get a reference to our main camera
-            if (_mainCamera == null)
-            {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            }
-        }
-
-        private void Start()
+        void Awake()
         {
             if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
             {
+                //Debug.Log("AAA");
                 if (ProgressManager.Instance.Data.tutorial == false)
                 {
                     PlacePlayerOnTutorialZone();
                 }
                 else
                 {
+                    //Debug.Log("BBB");
                     PlacePlayerOnSafeZone();
                 }
             }
@@ -156,6 +149,15 @@ namespace StarterAssets
                 Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
             }
 
+            // get a reference to our main camera
+            if (_mainCamera == null)
+            {
+                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            }
+        }
+
+        void Start()
+        {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
             _hasAnimator = TryGetComponent(out _animator);
@@ -173,7 +175,7 @@ namespace StarterAssets
             //_jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
-        private void Update()
+        void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
             if (dead == false && !vikingController.OnAction)
@@ -184,7 +186,7 @@ namespace StarterAssets
             }
         }
 
-        private void LateUpdate()
+        void LateUpdate()
         {
             CameraRotation();
         }

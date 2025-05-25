@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public InfoPanelHUD infoPanelHUD;
+    private bool firstTimeDPADHelp;
     // Enemies Prefabs
     public GameObject EarthEnemy;
     public GameObject WaterEnemy;
@@ -52,11 +53,11 @@ public class GameManager : MonoBehaviour
         switch (ElementInteraction(dealerElement, takerElement))
         {
             case 1:
-                return (int)(basicDamageRange + (elementDamageRange * 1.5f));
+                return (int)(basicDamageRange + (elementDamageRange * 2f));
             case 0:
                 return (int)(basicDamageRange + elementDamageRange);
             case -1:
-                return (int)(basicDamageRange + (elementDamageRange * 0.75f));
+                return (int)(basicDamageRange + (elementDamageRange * 0.5f));
         }
         return 0;
     }
@@ -193,7 +194,7 @@ public class GameManager : MonoBehaviour
                 Instantiate(ElectricEnemy, waterTowerSpawnersPositions.position, Quaternion.identity, null);
             }
         }
-        
+
         if (element != Element.Fire)
         {
             for (int x = Random.Range(0, 2); x >= 0; x--)
@@ -263,10 +264,10 @@ public class GameManager : MonoBehaviour
                     electricLevel = i + 1;
                     electricLeveled = true;
                 }
-                if (!earthLeveled) earthLevel = i + 2;
-                if (!waterLeveled) waterLevel = i + 2;
-                if (!fireLeveled) fireLevel = i + 2;
-                if (!electricLeveled) electricLevel = i + 2;
+                if (!earthLeveled) earthLevel = i + 1;
+                if (!waterLeveled) waterLevel = i + 1;
+                if (!fireLeveled) fireLevel = i + 1;
+                if (!electricLeveled) electricLevel = i + 1;
             }
         }
         enemies = GameObject.FindGameObjectsWithTag(Constants.enemy);
@@ -293,12 +294,32 @@ public class GameManager : MonoBehaviour
     }
     public void ResetEnemies(Element element)
     {
-        infoPanelHUD.ShowText("Els altres elements han guanyat poder");
+        if (element != Element.None)
+        {
+            infoPanelHUD.ShowText("Els altres elements han guanyat poder.");
+        }
         enemies = GameObject.FindGameObjectsWithTag(Constants.enemy);
         for (int i = enemies.Length - 1; i >= 0; i--)
         {
             enemies[i].GetComponent<Enemy>().Dying(false);
         }
         EnemiesGenerator(element);
+    }
+    public void ResetEnemies()
+    {
+        enemies = GameObject.FindGameObjectsWithTag(Constants.enemy);
+        for (int i = enemies.Length - 1; i >= 0; i--)
+        {
+            enemies[i].GetComponent<Enemy>().Dying(false);
+        }
+        EnemiesGenerator(Element.None);
+    }
+    public void DPADHelp()
+    {
+        if (!firstTimeDPADHelp)
+        {
+            firstTimeDPADHelp = true;
+            infoPanelHUD.ShowText("Utilitza la creueta per canviar l'element.");
+        }
     }
 }

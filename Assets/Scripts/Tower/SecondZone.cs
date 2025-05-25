@@ -73,7 +73,6 @@ public class SecondZone : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        Debug.Log("SOMEONE EXIT");
         if (other.CompareTag(Constants.enemy))
         {
             enemy = other.gameObject.GetComponent<Enemy>();

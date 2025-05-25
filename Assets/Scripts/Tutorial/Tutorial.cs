@@ -30,7 +30,7 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
-        if (ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Tutorial))
+        if (ProgressManager.Instance.Data.towerActiveElements.Contains(Element.None))
         {
             tutorialsEndDoor.GetComponent<Animator>().enabled = false;
             tutorialsEndDoor.transform.rotation = Quaternion.Euler(0f, -144.157f, 0f);
@@ -41,8 +41,8 @@ public class Tutorial : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Comparamos el tag 
         {
-            ProgressManager.Instance.Data.tutorial = true;
-            progressManager.SaveGame();
+            // ProgressManager.Instance.Data.tutorial = true;
+            // progressManager.SaveGame();
             Debug.Log("----->>>>> TUTORIAL COMPLETADO");
         }
     }

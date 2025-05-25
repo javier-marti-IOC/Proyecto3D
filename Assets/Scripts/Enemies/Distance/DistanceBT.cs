@@ -8,8 +8,7 @@ using UnityEngine.UIElements;
 
 public class DistanceBT : Enemy
 {
-    private bool isPlayerInTeleportZone;
-    private bool isPlayerInHeavyAttackZone;
+    private VikingController viking;
 
     [Header("Teleport Settings")]
     public float teleportCooldownTime;
@@ -17,6 +16,8 @@ public class DistanceBT : Enemy
     public int teleportChance;
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
+    private bool isPlayerInTeleportZone;
+    private bool isPlayerInHeavyAttackZone;
     public ParticleSystem teleportParticles;
 
     [Header("Chase")]
@@ -55,6 +56,7 @@ public class DistanceBT : Enemy
     public AudioSource audioElectricHeavyAttack;
     public AudioSource audioElectricHit;
     public AudioSource audioElectricTeleport;
+    public GameObject audioHeavyAttackPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +90,7 @@ public class DistanceBT : Enemy
                     //El enemigo detecta al player
                     if (playerDetected)
                     {
-                        if (!player.GetComponent<VikingController>().EnemyDetecion(this))
+                        if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1 == -1)
                         {
                             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
                             animator.SetInteger(Constants.state, 0);
@@ -358,9 +360,11 @@ public class DistanceBT : Enemy
         pendingHeavyAttackPosition = player.transform.position;
 
         // Instanciar particules
-        activeHeavyParticles = Instantiate(lightningArea1, pendingHeavyAttackPosition, Quaternion.identity);
+        particulas1 = new GameObject("HeavyAttackParticlesContainer");
+        particulas1.transform.position = pendingHeavyAttackPosition;
+        activeHeavyParticles = Instantiate(lightningArea1, pendingHeavyAttackPosition, Quaternion.identity, particulas1.transform);
         activeHeavyParticles.Play();
-        activeHeavyParticles2 = Instantiate(lightningArea2, pendingHeavyAttackPosition, Quaternion.identity);
+        activeHeavyParticles2 = Instantiate(lightningArea2, pendingHeavyAttackPosition, Quaternion.identity, particulas1.transform);
         activeHeavyParticles2.Play();
 
         // Activar la zona
@@ -375,14 +379,12 @@ public class DistanceBT : Enemy
 
     private void ExecuteHeavyAttack()
     {
+
         // Desactivar particules que hagin pogut quedar
-        if (activeHeavyParticles != null)
+        if (particulas1 != null)
         {
-            Destroy(activeHeavyParticles.gameObject);
-        }
-        if (activeHeavyParticles2 != null)
-        {
-            Destroy(activeHeavyParticles2.gameObject);
+            Destroy(particulas1);
+            particulas1 = null;
         }
 
         // Definir inici i final del rayo
@@ -391,6 +393,7 @@ public class DistanceBT : Enemy
 
         //Cridar a la funció del rayo Controller
         lightningEffectHeavyAttack.PlayLightning(start, end, 0.1f);
+        audioHeavyAttackPosition.transform.position = lightningEffectHeavyAttack.transform.position;
         audioElectricHeavyAttack.Play();
 
         GameObject lightningFlash = new GameObject("LightningFlash");
@@ -418,7 +421,6 @@ public class DistanceBT : Enemy
         }
 
         Invoke(nameof(DisableHeavyAttackZone), 1f);
-        //heavyAttackZoneTrigger.SetActive(false);
     }
     private void EndEnemyAttack()
     {
@@ -475,13 +477,21 @@ public class DistanceBT : Enemy
         base.HealthTaken(damageTaken);
         hitted = true;
         agent.isStopped = true;
+        hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
 
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
         SetLookingPlayersActive(false);
-        Invoke(nameof(SetFalseHitted), 0.5f);
+        if (activeElement == Element.Electric)
+        {
+            Invoke(nameof(SetFalseHitted), 0.2f);
+        }
+        else
+        {
+            Invoke(nameof(SetFalseHitted), 0.5f);
+        }
     }
     // Método compatible con Animation Event
     public void SetHittedFalse()

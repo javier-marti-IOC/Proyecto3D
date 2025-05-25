@@ -6,7 +6,7 @@ public class LifeDrops : MonoBehaviour
 {
     public AudioSource audioOrbeBounce;
     public float minImpactVelocity = 0.2f;
-    private float autoDestrucion = 5f;
+    private float autoDestrucion = 10;
     void Update()
     {
         autoDestrucion -= Time.deltaTime;

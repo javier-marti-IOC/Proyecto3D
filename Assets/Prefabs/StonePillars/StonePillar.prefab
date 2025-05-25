@@ -4873,7 +4873,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 138.78, y: -119.99, z: -81.27}
-  m_LocalScale: {x: 1.9879, y: 1.9879, z: 1.9879}
+  m_LocalScale: {x: 1.713, y: 1.713, z: 1.713}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2704167398805336677}
@@ -4963,14 +4963,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529fee7825a3faf4db3be40525d816dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower_id: 0
+  tower_id: 4
   stonePillarPhrases:
   - "Vas ser ven\xE7ut pel Destructor, Guardi\xE0. Amb la seva vict\xF2ria, va desfermar
     el caos sense control."
   - El Destructor va repartir el seu poder en quatre altars per corrompre els elements.
   - "El m\xF3n es va podrir a la seva ombra. El que abans floria ara \xE9s desolaci\xF3."
   - "Troba els altars i destrueix-los, restaura el m\xF3n.  "
-  - Destrueix la torre amb l'element contrari fent un atac carregat.
+  - Destrueix l'altar amb l'element contrari fent un atac carregat.
   textHUD: {fileID: 0}
 --- !u!65 &4126845980547460901
 BoxCollider:
@@ -4991,5 +4991,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 2.5, z: 7.935938}
-  m_Center: {x: 0.0068272534, y: 0.98522574, z: 2.7291033}
+  m_Size: {x: 3.5521479, y: 2.5000005, z: 4.1307163}
+  m_Center: {x: -0.04434725, y: 0.98522574, z: 0.8264986}

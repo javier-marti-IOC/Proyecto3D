@@ -58,6 +58,8 @@ public class VikingController : MonoBehaviour
     [Header("Heal")]
     public GameObject healParticles;
     private float healParticlesTimer;
+    public GameObject deathParticle;
+    public Transform deathParticlePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -335,7 +337,11 @@ public class VikingController : MonoBehaviour
                 else if (activeElement == Element.Fire) fireMana = 0;
                 else if (activeElement == Element.Electric) electricMana = 0;
                 Debug.Log("TowerHit");
-                other.GetComponent<Tower>().HealthTaken(200);
+                other.GetComponent<Tower>().HealthTaken(34);
+            }
+            else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None && !isBasicAttack)
+            {
+                other.GetComponent<Tower>().HealthTaken(50);
             }
         }
     }
@@ -353,6 +359,10 @@ public class VikingController : MonoBehaviour
         //animator.SetTrigger("Dying");
         OnAction = true;
         pauseMenu.ToggleDeath();
+        if (deathParticle != null && deathParticlePosition != null)
+        {
+            Instantiate(deathParticle, deathParticlePosition.position, Quaternion.identity, null);
+        }
         healthPoints = 100;
     }
 
@@ -388,7 +398,6 @@ public class VikingController : MonoBehaviour
     //Recollir Drops
     public void CollectMana(Element element)
     {
-
         int mana = 25;
         if (element == Element.None)
         {

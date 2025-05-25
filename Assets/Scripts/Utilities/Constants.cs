@@ -26,6 +26,5 @@ public enum Element
         Earth,
         Water,
         Fire,
-        Electric,
-        Tutorial
+        Electric
     };

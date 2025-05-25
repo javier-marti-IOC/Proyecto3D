@@ -7,7 +7,9 @@ public abstract class Enemy : MonoBehaviour
     public GameObject manaDrop;
     public GameObject goldDrop;
     public GameObject lifeDrop;
+    public GameObject deathParticle;
     public Transform dropPosition;
+    public Transform deathPosition;
     public EnemyHUD enemyHUD;
     public GameObject hudPanelCanvas;
     public Element activeElement;
@@ -18,6 +20,7 @@ public abstract class Enemy : MonoBehaviour
     public Tower tower;
     public GameManager gameManager;
     public GameObject ghostAgent;
+    protected GameObject particulas1;
 
     [Header("Animation ID")]
     private int animIDSpeed;
@@ -211,13 +214,23 @@ public abstract class Enemy : MonoBehaviour
     }
     public virtual void Dying(bool drops)
     {
+        if (activeElement == Element.Electric && particulas1 != null)
+        {
+            Destroy(particulas1);
+        }
+        
         if (tower != null)
         {
             tower.enemiesInSecondZoneRange.Remove(gameObject);
             tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
         }
         player.GetComponent<VikingController>().RemoveEnemyDetection(this);
-        if (drops)
+        if (activeElement == Element.None)
+        {
+            AudioManager.Instance?.Play("goldDrop");
+            Instantiate(goldDrop, dropPosition.position, Quaternion.identity, null);
+        }
+        else if (drops)
         {
             //for random
             int random = Random.Range(0, 100);
@@ -255,6 +268,12 @@ public abstract class Enemy : MonoBehaviour
                 Instantiate(lifeDrop, dropPosition.position, Quaternion.identity, null);
             }
         }
+        // 💥 Partículas de muerte
+        if (deathParticle != null)
+        {
+            Instantiate(deathParticle, deathPosition.position, Quaternion.identity, null);
+        }
+        Debug.Log("Destruir enemigo");
         Destroy(transform.parent.gameObject);
     }
 

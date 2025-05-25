@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7356433545462378021}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6300073276784740541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 261588070261010515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireEnemyPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4963750739993989509}
   - component: {fileID: 10780419313183154}
   - component: {fileID: 1380270859503039394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerSecurityMaxDistanceCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5760396644733243591}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5447653425244742484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5132331903988123982}
   - component: {fileID: 1513151597304851846}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AudioDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6748499675038574358}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 6346444341726650662}
   - component: {fileID: 710511689716974832}
   - component: {fileID: 2925195198628946821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HeavyAttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 191675823690572866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Drops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2134228219060398192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2719515413949437772}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3953217661635907602}
   - component: {fileID: 5498789317856582359}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerDetectorDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8976946361429468734}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:HeadTop_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7427916890839642469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,72 +662,6 @@ Transform:
   - {fileID: 2644580786543528329}
   m_Father: {fileID: 2859655343118117307}
   m_LocalEulerAnglesHint: {x: -39.401276, y: 8.376675, z: -1.5010374}
---- !u!1 &3366142960989975752
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8909045096696944355}
-  - component: {fileID: 6345827220654515156}
-  - component: {fileID: 390274906638197574}
-  m_Layer: 0
-  m_Name: PlayerInAttackRangeCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8909045096696944355
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3366142960989975752}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2930473188395620805}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6345827220654515156
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3366142960989975752}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 1}
---- !u!114 &390274906638197574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3366142960989975752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91272912cf576884bab13646948c28db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3435936955325373845
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2859655343118117307}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7132753897784633665}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,7 +735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6793561549913361322}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +767,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2193596074768377105}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PointPatrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -864,7 +798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3193716467844333840}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,7 +830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6780034394481279611}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,6 +853,37 @@ Transform:
   - {fileID: 6695720230249604055}
   m_Father: {fileID: 7132753897784633665}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4603124882841901464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9143572431399918955}
+  m_Layer: 6
+  m_Name: Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9143572431399918955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4603124882841901464}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2930473188395620805}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4919009767862889805
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,7 +895,7 @@ GameObject:
   - component: {fileID: 2733921967737434693}
   - component: {fileID: 2887880512060137164}
   - component: {fileID: 5140376918426482336}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerSecurityMinDistanceCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -986,6 +951,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeBT: {fileID: 5073826984564960317}
+--- !u!1 &5010987925578046653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3255421164750045463}
+  - component: {fileID: 3961762854671227909}
+  - component: {fileID: 3767930777512898867}
+  m_Layer: 6
+  m_Name: PlayerInAttackRangeCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3255421164750045463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010987925578046653}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2930473188395620805}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3961762854671227909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010987925578046653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91272912cf576884bab13646948c28db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3767930777512898867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010987925578046653}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0.75}
 --- !u!1 &5129250767035067737
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5277437895329743325}
   - component: {fileID: 3628870200630090127}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AudioHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,7 +1155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5199751292330203490}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,7 +1187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 89803624572651479}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,7 +1223,7 @@ GameObject:
   - component: {fileID: 5863019888947990457}
   - component: {fileID: 5390101715618489086}
   - component: {fileID: 8233771148996887690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1308,7 +1339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8463561004009056248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1341,7 +1372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8101139518661284718}
   - component: {fileID: 5213094168911813252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AudioBasicAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1470,7 +1501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5946871995845535922}
   - component: {fileID: 388196518856202748}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,7 +1608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2727995020381516810}
   - component: {fileID: 3290240336984460679}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerDetectorUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1621,7 +1652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6182819972690354896}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1659,7 +1690,7 @@ GameObject:
   - component: {fileID: 8761287664093615416}
   - component: {fileID: 1871423876827958751}
   - component: {fileID: 79780363703065823}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1679,16 +1710,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3255421164750045463}
   - {fileID: 191675823690572866}
+  - {fileID: 9143572431399918955}
   - {fileID: 5760396644733243591}
   - {fileID: 5946871995845535922}
-  - {fileID: 8909045096696944355}
   - {fileID: 2733921967737434693}
   - {fileID: 4963750739993989509}
   - {fileID: 3953217661635907602}
   - {fileID: 2727995020381516810}
   - {fileID: 7010081571361868272}
   - {fileID: 6346444341726650662}
+  - {fileID: 8615714254684631898}
   - {fileID: 7264401050709297317}
   m_Father: {fileID: 261588070261010515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1773,7 +1806,10 @@ MonoBehaviour:
     type: 3}
   lifeDrop: {fileID: 1224382770130604681, guid: 2f4fb254c7f2bb54bbd1bd24271eaa75,
     type: 3}
+  deathParticle: {fileID: 3800959641992006503, guid: e68106ea24235bf4eab60a029b536c29,
+    type: 3}
   dropPosition: {fileID: 191675823690572866}
+  deathPosition: {fileID: 9143572431399918955}
   enemyHUD: {fileID: 9214985350115137338}
   hudPanelCanvas: {fileID: 4927724937117680421}
   activeElement: 3
@@ -1801,7 +1837,7 @@ MonoBehaviour:
   basicAttackElementalDamage: 4
   heavyAttackBasicDamage: 6
   heavyAttackElementalDamage: 10
-  hitParticle: {fileID: 0}
+  hitParticle: {fileID: 3991030864778018307}
   basicAttackCollider: {fileID: 4202588707592247184}
   heavyAttackCollider: {fileID: 0}
   fireZonePrefab: {fileID: 7101652737239434452, guid: 935e5c07041c3a444acec6944d62fec7,
@@ -1886,7 +1922,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2644580786543528329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1918,7 +1954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7750564792704508338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1949,7 +1985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4337660455339270848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1982,7 +2018,7 @@ GameObject:
   - component: {fileID: 2498365897467600832}
   - component: {fileID: 6773105905464883618}
   - component: {fileID: 8959758218747808628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2098,7 +2134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 890253541115752900}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2131,7 +2167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 383098040304874758}
   - component: {fileID: 4166665543722214346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AudioElemental
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2286,7 +2322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1478394121293576124}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2320,7 +2356,7 @@ GameObject:
   - component: {fileID: 6695720230249604055}
   - component: {fileID: 4202588707592247184}
   - component: {fileID: 5666336797695328083}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BasicAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2386,7 +2422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6086132702312596608}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2418,7 +2454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7264401050709297317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AudioSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2453,7 +2489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2862247994227302928}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2476,6 +2512,91 @@ Transform:
   - {fileID: 2134228219060398192}
   m_Father: {fileID: 6300073276784740541}
   m_LocalEulerAnglesHint: {x: 1.6377943, y: -1.0200925, z: 25.319546}
+--- !u!1001 &650201800798433605
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2930473188395620805}
+    m_Modifications:
+    - target: {fileID: 4496569877739228998, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_Name
+      value: Hit_Particle_Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496569877739228998, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f807ad1fa57e86947bb4c90aad0ecf0b, type: 3}
+--- !u!1 &3991030864778018307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4496569877739228998, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 650201800798433605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8615714254684631898 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9121145358739030559, guid: f807ad1fa57e86947bb4c90aad0ecf0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 650201800798433605}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1383721722582820848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2538,6 +2659,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fire_Soft_Attack_Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215547509809835164, guid: df8b57a4ebb7d6d42a6d6e694d17d0f9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738043602691379369, guid: df8b57a4ebb7d6d42a6d6e694d17d0f9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2613,6 +2744,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_Soft_Attack_Particle
       objectReference: {fileID: 0}
+    - target: {fileID: 6215547509809835164, guid: df8b57a4ebb7d6d42a6d6e694d17d0f9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738043602691379369, guid: df8b57a4ebb7d6d42a6d6e694d17d0f9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2636,6 +2777,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fire_Enemy_Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623769044024498491, guid: 226ca9e829c21c241ac7c9ec534a5ddb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749783198724711494, guid: 226ca9e829c21c241ac7c9ec534a5ddb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7454812877098927625, guid: 226ca9e829c21c241ac7c9ec534a5ddb,
         type: 3}
@@ -2706,6 +2857,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2930473188395620805}
     m_Modifications:
+    - target: {fileID: 259002339948626903, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
         type: 3}
       propertyPath: enemyScript
@@ -2816,15 +2972,75 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1849675769167904673, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1976381021298030417, guid: 2bb5242eaff695744941ef457daf9ead,
         type: 3}
       propertyPath: m_Name
       value: Enemy HUD - Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1976381021298030417, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367256454446170073, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361045485553059239, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567476352188224276, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4152138625236287757, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678441645492434153, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4678441645492434153, guid: 2bb5242eaff695744941ef457daf9ead,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624351707239335442, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936971248669765825, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991572692932494711, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926314156421829454, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137155350122336113, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
