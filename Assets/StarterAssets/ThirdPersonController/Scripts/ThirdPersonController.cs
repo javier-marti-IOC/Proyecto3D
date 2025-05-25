@@ -133,14 +133,14 @@ namespace StarterAssets
         {
             if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
             {
-                Debug.Log("AAA");
+                //Debug.Log("AAA");
                 if (ProgressManager.Instance.Data.tutorial == false)
                 {
                     PlacePlayerOnTutorialZone();
                 }
                 else
                 {
-                    Debug.Log("BBB");
+                    //Debug.Log("BBB");
                     PlacePlayerOnSafeZone();
                 }
             }

@@ -58,6 +58,8 @@ public class VikingController : MonoBehaviour
     [Header("Heal")]
     public GameObject healParticles;
     private float healParticlesTimer;
+    public GameObject deathParticle;
+    public Transform deathParticlePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -357,6 +359,10 @@ public class VikingController : MonoBehaviour
         //animator.SetTrigger("Dying");
         OnAction = true;
         pauseMenu.ToggleDeath();
+        if (deathParticle != null && deathParticlePosition != null)
+        {
+            Instantiate(deathParticle, deathParticlePosition.position, Quaternion.identity, null);
+        }
         healthPoints = 100;
     }
 
