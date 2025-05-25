@@ -477,13 +477,21 @@ public class DistanceBT : Enemy
         base.HealthTaken(damageTaken);
         hitted = true;
         agent.isStopped = true;
+        hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
 
         playerDetectorDown.SetActive(false);
         playerDetectorUp.SetActive(false);
         SetLookingPlayersActive(false);
-        Invoke(nameof(SetFalseHitted), 0.5f);
+        if (activeElement == Element.Electric)
+        {
+            Invoke(nameof(SetFalseHitted), 0.2f);
+        }
+        else
+        {
+            Invoke(nameof(SetFalseHitted), 0.5f);
+        }
     }
     // Método compatible con Animation Event
     public void SetHittedFalse()
