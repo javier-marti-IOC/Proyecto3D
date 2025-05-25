@@ -4970,7 +4970,7 @@ MonoBehaviour:
   - El Destructor va repartir el seu poder en quatre altars per corrompre els elements.
   - "El m\xF3n es va podrir a la seva ombra. El que abans floria ara \xE9s desolaci\xF3."
   - "Troba els altars i destrueix-los, restaura el m\xF3n.  "
-  - Destrueix la torre amb l'element contrari fent un atac carregat.
+  - Destrueix l'altar amb l'element contrari fent un atac carregat.
   textHUD: {fileID: 0}
 --- !u!65 &4126845980547460901
 BoxCollider:
