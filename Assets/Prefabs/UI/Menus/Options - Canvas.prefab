@@ -849,8 +849,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.2675, y: -22}
-  m_SizeDelta: {x: 1127.8425, y: 484.0689}
+  m_AnchoredPosition: {x: -5.2675, y: -47.3714}
+  m_SizeDelta: {x: 1009.616, y: 433.3261}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6070838771773364249
 CanvasRenderer:
@@ -1166,6 +1166,7 @@ GameObject:
   - component: {fileID: 7458580529748882979}
   - component: {fileID: 5877199807864372854}
   - component: {fileID: 6003324980171067044}
+  - component: {fileID: 3474933153239790053}
   m_Layer: 5
   m_Name: Options - Canvas
   m_TagString: Untagged
@@ -1293,6 +1294,19 @@ MonoBehaviour:
   environmentSlider: {fileID: 2623228226611499780}
   uiSlider: {fileID: 8457534372461869056}
   sfxSlider: {fileID: 4444652067782009891}
+--- !u!114 &3474933153239790053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6307849133133644861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4546d8b005adb5f4e88eb37bd8a981f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSensibilty: {fileID: 5663007662672259382}
 --- !u!1 &6568577141212042763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3207,7 +3221,7 @@ PrefabInstance:
     - target: {fileID: 3701086826817500863, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_Name
-      value: Master Slider Volume
+      value: Camera Sensivility Slider
       objectReference: {fileID: 0}
     - target: {fileID: 4687792006065517550, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
@@ -3332,17 +3346,17 @@ PrefabInstance:
     - target: {fileID: 8323574328882545263, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_Name
-      value: Master - Volume
+      value: Camera Sensivility
       objectReference: {fileID: 0}
     - target: {fileID: 8323574328882545263, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8503536279865457748, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_text
-      value: Sensibilidad
+      value: "Sensibilitat C\xE0mera"
       objectReference: {fileID: 0}
     - target: {fileID: 8503536279865457748, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
@@ -3363,13 +3377,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
+        type: 3}
       propertyPath: m_MinValue
-      value: 0.0001
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
+        type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
@@ -3380,7 +3409,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 6003324980171067044}
+      objectReference: {fileID: 3474933153239790053}
     - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3389,12 +3418,12 @@ PrefabInstance:
     - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetMasterVolume
+      value: SetCameraSensibility
       objectReference: {fileID: 0}
     - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VolumeSettings, Assembly-CSharp
+      value: ControlSettings, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
         type: 3}
@@ -3406,6 +3435,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a549efe97f80f04e9edfc5bf00dc3e3, type: 3}
+--- !u!114 &5663007662672259382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8912704931096881262, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3830103257964069208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6578124875901236804 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7957142724556306204, guid: 8a549efe97f80f04e9edfc5bf00dc3e3,

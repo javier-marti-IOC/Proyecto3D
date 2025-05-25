@@ -4876,8 +4876,18 @@ PrefabInstance:
       objectReference: {fileID: 1231213283449546690}
     - target: {fileID: 5765962170490217951, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
+      propertyPath: mouseSensitivity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765962170490217951, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
       propertyPath: minCameraDistance
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765962170490217951, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+        type: 3}
+      propertyPath: joystickSensitivity
+      value: 146
       objectReference: {fileID: 0}
     - target: {fileID: 5765962170490217951, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
