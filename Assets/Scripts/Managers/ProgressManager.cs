@@ -147,9 +147,9 @@ public class ProgressManager : MonoBehaviour
     // Funcion para cargar partida
     public void LoadGame()
     {
+        LoadData();
         if (File.Exists(saveFilePath))
         {
-            LoadData();
             SceneManager.LoadScene(1);
             Debug.Log("Partida cargada con exito!");
         }
@@ -195,7 +195,7 @@ public class ProgressManager : MonoBehaviour
         saveFilePath = Application.persistentDataPath + "/progressManager.json";
         if (!File.Exists(saveFilePath))
         {
-            Debug.Log("FALSE");
+            Debug.Log("NO FILEEE");
             return false;
         }
         string loadProgressData = File.ReadAllText(saveFilePath);

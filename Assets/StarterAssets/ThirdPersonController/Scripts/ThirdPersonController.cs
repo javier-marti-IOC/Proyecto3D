@@ -130,7 +130,7 @@ namespace StarterAssets
         public ProgressManager progressManager;
         public ProgressData progressData;
         public Transform spawnTuto;
-         public Transform spawnSafe;
+        public Transform spawnSafe;
         void Awake()
         {
             // get a reference to our main camera
@@ -190,16 +190,20 @@ namespace StarterAssets
             CameraRotation();
         }
 
-        // Colocar el player en el tunel inicial
         public void PlacePlayerOnTutorialZone()
         {
             AudioManager.Instance?.Play("landslideTutorial");
-            gameObject.transform.position = spawnTuto.position;
+
+            _controller.enabled = false;
+            transform.position = spawnTuto.position;
+            _controller.enabled = true;
         }
-        // Colocar el player en la zona azucar
+
         public void PlacePlayerOnSafeZone()
         {
-            gameObject.transform.position = spawnSafe.position;
+            _controller.enabled = false;
+            transform.position = spawnSafe.position;
+            _controller.enabled = true;
         }
 
         private void AssignAnimationIDs()

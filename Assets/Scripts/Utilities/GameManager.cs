@@ -177,6 +177,7 @@ public class GameManager : MonoBehaviour
 
         if (FindObjectOfType<ProgressManager>().LoadData())
         {
+            Debug.Log("GameManger HaveData");
             elementsLevel = FindObjectOfType<ProgressManager>().progressData.GetTowerActiveElements();
             earthLeveled = false;
             waterLeveled = false;
@@ -186,22 +187,22 @@ public class GameManager : MonoBehaviour
             {
                 if (elementsLevel[i] == Element.Earth)
                 {
-                    earthLevel = i + 1;
+                    earthLevel = i;
                     earthLeveled = true;
                 }
                 else if (elementsLevel[i] == Element.Water)
                 {
-                    waterLevel = i + 1;
+                    waterLevel = i;
                     waterLeveled = true;
                 }
                 else if (elementsLevel[i] == Element.Fire)
                 {
-                    fireLevel = i + 1;
+                    fireLevel = i;
                     fireLeveled = true;
                 }
                 else if (elementsLevel[i] == Element.Electric)
                 {
-                    electricLevel = i + 1;
+                    electricLevel = i;
                     electricLeveled = true;
                 }
                 if (!earthLeveled) earthLevel = i + 1;

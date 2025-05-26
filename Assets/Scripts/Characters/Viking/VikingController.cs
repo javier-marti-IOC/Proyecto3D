@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class VikingController : MonoBehaviour
 {
 
+    public GameObject body;
     //DPAD
     [SerializeField] private InputActionAsset inputActions;
     private InputAction dpadAction;
@@ -116,7 +117,7 @@ public class VikingController : MonoBehaviour
             rollCooldown -= Time.deltaTime;
             reduceMana -= Time.deltaTime;
 
-            if (!OnAction)
+            if (!OnAction && GetComponent<ThirdPersonController>().Grounded)
             {
                 //DPAD
                 dpadValue = dpadAction.ReadValue<Vector2>();
@@ -342,6 +343,18 @@ public class VikingController : MonoBehaviour
             else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None && !isBasicAttack)
             {
                 other.GetComponent<Tower>().HealthTaken(50);
+                earthMana = 0;
+                elementsHUD.earthReduce(earthMana);
+                elementsHUD.EarthStopBlink();
+                waterMana = 0;
+                elementsHUD.waterReduce(waterMana);
+                elementsHUD.WaterStopBlink();
+                fireMana = 0;
+                elementsHUD.fireReduce(fireMana);
+                elementsHUD.FireStopBlink();
+                electricMana = 0;
+                elementsHUD.lightningReduce(electricMana);
+                elementsHUD.LightningStopBlink();
             }
         }
     }
@@ -358,6 +371,8 @@ public class VikingController : MonoBehaviour
     {
         //animator.SetTrigger("Dying");
         OnAction = true;
+        GetComponent<ThirdPersonController>().enabled = false;
+        body.SetActive(false);
         pauseMenu.ToggleDeath();
         if (deathParticle != null && deathParticlePosition != null)
         {

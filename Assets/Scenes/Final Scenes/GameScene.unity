@@ -691,6 +691,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21843103}
   m_CullTransparentMesh: 1
+--- !u!1 &29031136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3754494917646539681, guid: efae5789b8220d646af2cde96c051f19,
+    type: 3}
+  m_PrefabInstance: {fileID: 5805544570605361665}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &33164419
 GameObject:
   m_ObjectHideFlags: 0
@@ -20222,8 +20228,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 30, y: 2.3675888, z: 30}
-  m_Center: {x: 0, y: -0.5337904, z: 0}
+  m_Size: {x: 44.74427, y: 9.064772, z: 96.08676}
+  m_Center: {x: 7.372108, y: 1.3509816, z: 1.7992935}
 --- !u!114 &3175037739597166909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20511,8 +20517,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 30, y: 2.3675888, z: 30}
-  m_Center: {x: 0, y: -0.5337904, z: 0}
+  m_Size: {x: 51.00319, y: 2.367589, z: 47.696117}
+  m_Center: {x: 17.76454, y: -0.5337904, z: 1.0468044}
 --- !u!33 &4032409811860794792
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20659,8 +20665,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 30, y: 2.3675888, z: 30}
-  m_Center: {x: 0, y: -0.5337904, z: 0}
+  m_Size: {x: 58.71878, y: 9.087646, z: 60.144802}
+  m_Center: {x: 4.9119024, y: 2.8262267, z: -7.482401}
 --- !u!33 &4842774681921522160
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20939,11 +20945,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 675733591221554487, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 29031136}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1583203098}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: spawnSafe
+      value: 
+      objectReference: {fileID: 1594878477}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: spawnTuto
+      value: 
+      objectReference: {fileID: 1817539989}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: elementsHUD
@@ -20954,6 +20980,16 @@ PrefabInstance:
       propertyPath: vikingHealthHUD
       value: 
       objectReference: {fileID: 434484317}
+    - target: {fileID: 3754494917646539681, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295956704038832077, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6067303905638269387, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: MoveSpeed
@@ -21028,6 +21064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080953048028045882, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9113744238655452588, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
