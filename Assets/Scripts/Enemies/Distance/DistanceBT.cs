@@ -367,10 +367,6 @@ public class DistanceBT : Enemy
         activeHeavyParticles2 = Instantiate(lightningArea2, pendingHeavyAttackPosition, Quaternion.identity, particulas1.transform);
         activeHeavyParticles2.Play();
 
-        // Activar la zona
-        Transform zone = heavyAttackZoneTrigger.transform;
-        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
-        zone.gameObject.SetActive(true);
 
         // Executar atac amb delay
         Invoke(nameof(ExecuteHeavyAttack), heavyAttackDelay);
@@ -395,6 +391,11 @@ public class DistanceBT : Enemy
         lightningEffectHeavyAttack.PlayLightning(start, end, 0.1f);
         audioHeavyAttackPosition.transform.position = lightningEffectHeavyAttack.transform.position;
         audioElectricHeavyAttack.Play();
+
+        // Activar la zona
+        Transform zone = heavyAttackZoneTrigger.transform;
+        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
+        zone.gameObject.SetActive(true);
 
         GameObject lightningFlash = new GameObject("LightningFlash");
         lightningFlash.transform.position = start;

@@ -45,7 +45,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 36176d1c6022c4d4aa572482508b761b, type: 2}
-  music: []
+  music:
+  - name: menuMusicCorrupted
+    clip: {fileID: 8300000, guid: 9f77d6792b259d14fbbaa0b29cf426fe, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 217158595611478940, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: menuMusicHealed
+    clip: {fileID: 8300000, guid: 29bc7a03722923346bd610621be52c53, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 217158595611478940, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   sfx:
   - name: FireInvoke
     clip: {fileID: 8300000, guid: f521ca752bfc1bc47a907954356b3908, type: 3}

@@ -1210,7 +1210,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1381,7 +1381,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 675988628}
   m_Follow: {fileID: 755891871}
   m_Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 75
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -1479,11 +1479,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: music.Array.size
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
