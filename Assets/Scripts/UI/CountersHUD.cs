@@ -11,7 +11,10 @@ public class CountersHUD : MonoBehaviour
 
     public void Start()
     {
-        countersPanel.SetActive(false);
+        if (countersPanel != null)
+        {
+            countersPanel.SetActive(false);
+        }  
     }
     
     // Mostrar solo el BoxText

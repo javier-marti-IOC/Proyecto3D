@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class AmbientCavernZoneTrigger : MonoBehaviour
 {
+    [Header("Collider principal del jugador")]
+    public Collider playerCollider;  // arrástralo desde el inspector
+
     private bool isPlayerInside = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (Time.deltaTime == 0f) return;
+        if (other == playerCollider && !isPlayerInside)
         {
+            Debug.Log("OnTriggerEnter Cavern");
             isPlayerInside = true;
             AudioManager.Instance.Stop("AmbienceForest");
             AudioManager.Instance.Play("AmbienceCavern");
@@ -16,8 +21,10 @@ public class AmbientCavernZoneTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && isPlayerInside)
+        if (Time.deltaTime == 0f) return;
+        if (other == playerCollider && isPlayerInside)
         {
+            Debug.Log("OnTriggerExit Cavern");
             isPlayerInside = false;
             AudioManager.Instance.Stop("AmbienceCavern");
             AudioManager.Instance.Play("AmbienceForest");
