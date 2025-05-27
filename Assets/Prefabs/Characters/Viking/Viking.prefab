@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5546922886871438127}
   m_Layer: 7
   m_Name: SwordCollider
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12792,6 +12792,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 614212680208423561}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2554683058851403750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848466642718982779}
+  m_Layer: 8
+  m_Name: SlashPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &848466642718982779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554683058851403750}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.571, z: 1.623}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8473638394004587737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2720239731957917494
 GameObject:
@@ -36734,6 +36765,7 @@ Transform:
   - {fileID: 9203462609262442492}
   - {fileID: 8261054411121880387}
   - {fileID: 8171607694478969439}
+  - {fileID: 848466642718982779}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8620253860425985851
@@ -36809,7 +36841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
-  SprintSpeed: 10
+  SprintSpeed: 7
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
@@ -36844,6 +36876,8 @@ MonoBehaviour:
   dead: 0
   vikingController: {fileID: 3023389732709961547}
   progressManager: {fileID: 0}
+  spawnTuto: {fileID: 0}
+  spawnSafe: {fileID: 0}
 --- !u!114 &6455240357015228509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36991,6 +37025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57e3633691c8824c8a86d0a73bc2430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 3754494917646539681}
   inputActions: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e,
     type: 3}
   earthMana: 100
@@ -37007,6 +37042,8 @@ MonoBehaviour:
   animator: {fileID: 8620253860425985851}
   healthPoints: 1
   swordCollider: {fileID: 1053238006340951725}
+  slash: {fileID: 0}
+  slashPosition: {fileID: 0}
   activeElement: 0
   basicAttackBasicDamage: 4
   basicAttackMagicDamage: 6
@@ -37087,6 +37124,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8473638394004587737}
     m_Modifications:
+    - target: {fileID: 3131952209474733871, guid: fcb1256d70438464f81b3265de510261,
+        type: 3}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5941370138075001901, guid: fcb1256d70438464f81b3265de510261,
         type: 3}
       propertyPath: m_Name
