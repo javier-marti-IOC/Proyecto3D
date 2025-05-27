@@ -21994,16 +21994,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7908162883964319492, guid: 989681a6e44cbe847a92854565245e30,
-        type: 3}
-      propertyPath: m_Shadows.m_Bias
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7908162883964319492, guid: 989681a6e44cbe847a92854565245e30,
-        type: 3}
-      propertyPath: m_Shadows.m_Strength
-      value: 0.646
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23408,11 +23398,6 @@ PrefabInstance:
     - target: {fileID: 3754494917646539681, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4464592027740793172, guid: efae5789b8220d646af2cde96c051f19,
-        type: 3}
-      propertyPath: UVModule.enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5295956704038832077, guid: efae5789b8220d646af2cde96c051f19,

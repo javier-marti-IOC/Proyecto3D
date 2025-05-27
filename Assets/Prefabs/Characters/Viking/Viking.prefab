@@ -36844,6 +36844,8 @@ MonoBehaviour:
   dead: 0
   vikingController: {fileID: 3023389732709961547}
   progressManager: {fileID: 0}
+  spawnTuto: {fileID: 0}
+  spawnSafe: {fileID: 0}
 --- !u!114 &6455240357015228509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36991,6 +36993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57e3633691c8824c8a86d0a73bc2430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   inputActions: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e,
     type: 3}
   earthMana: 100
@@ -37087,6 +37090,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8473638394004587737}
     m_Modifications:
+    - target: {fileID: 3131952209474733871, guid: fcb1256d70438464f81b3265de510261,
+        type: 3}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5941370138075001901, guid: fcb1256d70438464f81b3265de510261,
         type: 3}
       propertyPath: m_Name
