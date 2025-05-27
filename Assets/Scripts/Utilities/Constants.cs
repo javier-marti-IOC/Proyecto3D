@@ -18,6 +18,7 @@ public class Constants : MonoBehaviour
     public const string waterBullet = "WaterBullet";
     public const string speed = "Speed";
     public const string drop = "Drop";
+    public const string sword = "Sword";
 }
 
 public enum Element

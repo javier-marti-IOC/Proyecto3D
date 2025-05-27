@@ -15,6 +15,7 @@ TagManager:
   - ProgressManager
   - WaterBullet
   - Drop
+  - Sword
   layers:
   - Default
   - TransparentFX
