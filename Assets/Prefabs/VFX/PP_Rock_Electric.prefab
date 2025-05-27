@@ -115,6 +115,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6775921665259609571}
     m_Modifications:
+    - target: {fileID: 15438868461493017, guid: 3283beb218beca244b657f21665e6c6d,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 21.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 15438868461493017, guid: 3283beb218beca244b657f21665e6c6d,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 15438868461493017, guid: 3283beb218beca244b657f21665e6c6d,
+        type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 932773195859157285, guid: 3283beb218beca244b657f21665e6c6d,
         type: 3}
       propertyPath: m_LocalPosition.x
