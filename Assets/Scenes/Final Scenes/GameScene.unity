@@ -20055,7 +20055,7 @@ MonoBehaviour:
   materials: []
   corruptedColors: []
   colors: []
-  deathTowerParticles: {fileID: 7474336141603242480, guid: 83a16b77799c4a54ab8f68f5563bb442,
+  deathTowerParticles: {fileID: 7474336141603242480, guid: 92e530c7724509e4ba24a6be02f4c9bf,
     type: 3}
   environmentParticles:
   - {fileID: 915802600}
@@ -23187,7 +23187,7 @@ MonoBehaviour:
   - {r: 0.7372549, g: 0.64705884, b: 0.5764706, a: 0}
   - {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 0}
   - {r: 0.5176471, g: 0.5176471, b: 0.5176471, a: 0}
-  deathTowerParticles: {fileID: 7474336141603242480, guid: 83a16b77799c4a54ab8f68f5563bb442,
+  deathTowerParticles: {fileID: 7474336141603242480, guid: 8c00387563b1fb84893e0f0b0aa5ca72,
     type: 3}
   environmentParticles:
   - {fileID: 8455052802132300960}
@@ -23393,7 +23393,7 @@ MonoBehaviour:
   colors:
   - {r: 0.27450982, g: 0.50980395, b: 0.69803923, a: 0}
   - {r: 0.6039216, g: 0.63529414, b: 0.7058824, a: 0}
-  deathTowerParticles: {fileID: 7474336141603242480, guid: 83a16b77799c4a54ab8f68f5563bb442,
+  deathTowerParticles: {fileID: 7474336141603242480, guid: ce63ceee824bec84c89d7a91842a7131,
     type: 3}
   environmentParticles:
   - {fileID: 1183611287}
