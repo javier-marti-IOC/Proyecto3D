@@ -129,26 +129,10 @@ namespace StarterAssets
 
         public ProgressManager progressManager;
         public ProgressData progressData;
+        public Transform spawnTuto;
+        public Transform spawnSafe;
         void Awake()
         {
-            if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
-            {
-                //Debug.Log("AAA");
-                if (ProgressManager.Instance.Data.tutorial == false)
-                {
-                    PlacePlayerOnTutorialZone();
-                }
-                else
-                {
-                    //Debug.Log("BBB");
-                    PlacePlayerOnSafeZone();
-                }
-            }
-            else
-            {
-                Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
-            }
-
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -158,6 +142,21 @@ namespace StarterAssets
 
         void Start()
         {
+            if (ProgressManager.Instance != null && ProgressManager.Instance.Data != null)
+            {
+                if (ProgressManager.Instance.Data.tutorial == false)
+                {
+                    Invoke(nameof(PlacePlayerOnTutorialZone), 0.2f);
+                }
+                else
+                {
+                    Invoke(nameof(PlacePlayerOnSafeZone), 0.2f);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("ProgressManager.Instance o ProgressManager.Instance.Data es null en Awake de ThirdPersonController.");
+            }
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
             _hasAnimator = TryGetComponent(out _animator);
@@ -191,16 +190,20 @@ namespace StarterAssets
             CameraRotation();
         }
 
-        // Colocar el player en el tunel inicial
         public void PlacePlayerOnTutorialZone()
         {
             AudioManager.Instance?.Play("landslideTutorial");
-            transform.position = new Vector3(72, -5, -112);
+
+            _controller.enabled = false;
+            transform.position = spawnTuto.position;
+            _controller.enabled = true;
         }
-        // Colocar el player en la zona azucar
+
         public void PlacePlayerOnSafeZone()
         {
-            transform.position = new Vector3(96, 0, 21);
+            _controller.enabled = false;
+            transform.position = spawnSafe.position;
+            _controller.enabled = true;
         }
 
         private void AssignAnimationIDs()

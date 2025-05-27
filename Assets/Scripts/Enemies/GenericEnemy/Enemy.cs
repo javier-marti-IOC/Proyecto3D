@@ -222,6 +222,11 @@ public abstract class Enemy : MonoBehaviour
         if (tower != null)
         {
             tower.enemiesInSecondZoneRange.Remove(gameObject);
+            if (tower.enemiesInHealRange.Contains(gameObject))
+            {
+                tower.enemiesInHealRange.Remove(gameObject);
+                tower.firstZoneContact = false;
+            }
             tower.CheckSecondZoneCount(tower.enemiesInSecondZoneRange);
         }
         player.GetComponent<VikingController>().RemoveEnemyDetection(this);

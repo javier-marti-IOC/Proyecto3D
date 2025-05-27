@@ -4854,7 +4854,7 @@ GameObject:
   - component: {fileID: 8138952964093046518}
   - component: {fileID: 2991564962849319898}
   m_Layer: 0
-  m_Name: FX_Tower_Death_Big
+  m_Name: FX_TowerElectric_Death_Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4959,7 +4959,7 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 3
       minScalar: 2
       maxCurve:
@@ -5448,7 +5448,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 1
     gravitySource: 0
-    maxNumParticles: 200
+    maxNumParticles: 250
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5714,7 +5714,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 250
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6152,19 +6152,19 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.038047332, g: 0.27314883, b: 0.8962264, a: 1}
-        key1: {r: 0.120016046, g: 0.8773585, b: 0.34141847, a: 1}
-        key2: {r: 0.58029264, g: 0.12967247, b: 0.8867924, a: 1}
-        key3: {r: 0.11372546, g: 0.90588236, b: 0.3581316, a: 1}
-        key4: {r: 0.5803922, g: 0.12941177, b: 0.8862746, a: 1}
+        key0: {r: 0.33991265, g: 0.3764706, b: 0, a: 1}
+        key1: {r: 1, g: 0.9880786, b: 0, a: 1}
+        key2: {r: 1, g: 1, b: 1, a: 1}
+        key3: {r: 1, g: 1, b: 1, a: 1}
+        key4: {r: 1, g: 1, b: 1, a: 1}
         key5: {r: 1, g: 1, b: 1, a: 0}
         key6: {r: 1, g: 1, b: 1, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 9638
-        ctime1: 22745
-        ctime2: 33346
-        ctime3: 46260
-        ctime4: 55705
+        ctime0: 0
+        ctime1: 64769
+        ctime2: 65342
+        ctime3: 65342
+        ctime4: 65342
         ctime5: 65342
         ctime6: 65342
         ctime7: 0
@@ -6177,8 +6177,8 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
-        m_NumColorKeys: 6
+        m_ColorSpace: 0
+        m_NumColorKeys: 2
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2

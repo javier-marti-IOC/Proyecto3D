@@ -318,6 +318,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8137388943927127486, guid: af86de5f787c7324b8bbd7480ea26393,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8328230984022944830, guid: af86de5f787c7324b8bbd7480ea26393,
         type: 3}
       propertyPath: m_Name
@@ -486,6 +491,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 767106055078633283, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3863578781731793210, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_Name
@@ -682,12 +692,12 @@ PrefabInstance:
     - target: {fileID: 2590738219220933718, guid: 2b540a1eb00a1a3448b3bd2359e53c67,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2590738219220933718, guid: 2b540a1eb00a1a3448b3bd2359e53c67,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6307849133133644861, guid: 2b540a1eb00a1a3448b3bd2359e53c67,
         type: 3}
@@ -702,17 +712,17 @@ PrefabInstance:
     - target: {fileID: 8370260280997884598, guid: 2b540a1eb00a1a3448b3bd2359e53c67,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370260280997884598, guid: 2b540a1eb00a1a3448b3bd2359e53c67,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370260280997884598, guid: 2b540a1eb00a1a3448b3bd2359e53c67,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1205,7 +1215,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1376,7 +1386,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 675988628}
   m_Follow: {fileID: 755891871}
   m_Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 75
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -1474,11 +1484,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
-        type: 3}
-      propertyPath: music.Array.size
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

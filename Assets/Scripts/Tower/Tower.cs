@@ -207,7 +207,7 @@ public class Tower : MonoBehaviour
     {
         for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
         {
-            enemiesInSecondZoneRange[i].GetComponent<Enemy>().Dying(true);
+            enemiesInSecondZoneRange[i].GetComponent<Enemy>().Dying(activeElement != Element.None);
         }
         InstantiateDeathTowerParticles();
         Utils.ReplaceMaterials(materials, colors);
