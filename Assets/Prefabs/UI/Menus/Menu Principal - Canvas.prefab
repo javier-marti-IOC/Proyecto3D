@@ -735,6 +735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266ff3fa850715a4aa3f8e4a3660b01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsPanel: {fileID: 0}
+  exitPanel: {fileID: 2481124132949358257}
+  newGamePanel: {fileID: 6123033319667526712}
 --- !u!1 &6123033319667526712
 GameObject:
   m_ObjectHideFlags: 0
