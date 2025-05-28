@@ -23,22 +23,60 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused = false;
     private InputAction pauseAction;
 
+    private InputAction cancelAction;
+
     void Awake()
     {
         var playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         pauseAction = playerInput.actions["Pause"];
+        cancelAction = playerInput.actions["Cancel"];
+        
         pauseAction.performed += OnPausePerformed;
+        cancelAction.performed += OnCancelPerformed;
     }
 
     void OnDestroy()
     {
         pauseAction.performed -= OnPausePerformed;
+        cancelAction.performed -= OnCancelPerformed;
     }
+
+    private void OnCancelPerformed(InputAction.CallbackContext context)
+{
+    Debug.Log("Cancel");
+    
+    if (optionsPanel.activeInHierarchy)
+    {
+        // Llamar manualmente a la función GoBack del BackToPanel
+        BackToPanel backScript = optionsPanel.GetComponent<BackToPanel>();
+        if (backScript != null)
+        {
+            backScript.GoBack();
+            return;
+        }
+    }
+    if (exitPanel.activeInHierarchy)
+    {
+        // Llamar manualmente a la función GoBack del BackToPanel
+        BackToPanel backScript = exitPanel.GetComponent<BackToPanel>();
+        if (backScript != null)
+        {
+            backScript.GoBack();
+            return;
+        }
+    }
+
+    // Si no estamos en opciones, se puede cerrar el menú de pausa
+        if (pausePanel.activeInHierarchy && !deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy)
+        {
+            TogglePause();
+        }
+}
 
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
         // Solo permitir pausar si no estás muerto o en final de partida
-        if (!deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy && !optionsPanel.activeSelf)
+        if (!deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy && !optionsPanel.activeSelf && !exitPanel.activeInHierarchy)
         {
             TogglePause();
         }
@@ -47,7 +85,7 @@ public class PauseMenu : MonoBehaviour
     public void TogglePause()
     {
         
-        if (!deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy && !optionsPanel.activeSelf) // NO BORRAR
+        if (!deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy && !optionsPanel.activeSelf && !exitPanel.activeInHierarchy) // NO BORRAR
         {  
             isPaused = !isPaused;  
             if (isPaused)
