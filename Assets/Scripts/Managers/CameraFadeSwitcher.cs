@@ -6,6 +6,7 @@ public class CameraFadeSwitcher : MonoBehaviour
     public Image fadeImage;
     public Camera cameraFrom;
     public Camera cameraTo;
+    public GameObject compassBar; // Compass Bar que se desactiva temporalmente
     public float fadeDuration = 1f;
     public float waitDuration = 5f;
 
@@ -26,12 +27,23 @@ public class CameraFadeSwitcher : MonoBehaviour
     private float startAlpha = 0f;
     private float endAlpha = 0f;
 
+    private bool wasCompassBarActive = false;
+
     void Update()
     {
         switch (currentState)
         {
             case FadeState.FadingOutToSecond:
-                HandleFade(FadeState.FadingInToSecond, () => SwitchCameras(cameraFrom, cameraTo));
+                HandleFade(FadeState.FadingInToSecond, () =>
+                {
+                    // Guardar y desactivar Compass Bar
+                    if (compassBar != null)
+                    {
+                        wasCompassBarActive = compassBar.activeSelf;
+                        compassBar.SetActive(false);
+                    }
+                    SwitchCameras(cameraFrom, cameraTo);
+                });
                 break;
 
             case FadeState.FadingInToSecond:
@@ -47,7 +59,15 @@ public class CameraFadeSwitcher : MonoBehaviour
                 break;
 
             case FadeState.FadingOutToFirst:
-                HandleFade(FadeState.FadingInToFirst, () => SwitchCameras(cameraTo, cameraFrom));
+                HandleFade(FadeState.FadingInToFirst, () =>
+                {
+                    SwitchCameras(cameraTo, cameraFrom);
+                    // Restaurar Compass Bar si estaba activo antes
+                    if (compassBar != null && wasCompassBarActive)
+                    {
+                        compassBar.SetActive(true);
+                    }
+                });
                 break;
 
             case FadeState.FadingInToFirst:
@@ -81,8 +101,10 @@ public class CameraFadeSwitcher : MonoBehaviour
         {
             SetFadeAlpha(endAlpha);
             onFadeComplete?.Invoke();
+
             if (nextState == FadeState.WaitingOnSecond)
                 waitTimer = 0f;
+
             StartFade(endAlpha, endAlpha == 1f ? 0f : 1f, nextState);
         }
     }
