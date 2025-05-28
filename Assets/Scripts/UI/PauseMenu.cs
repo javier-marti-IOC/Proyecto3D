@@ -3,72 +3,84 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
+    [Header("Paneles")]
     public GameObject hudPanel;
     public GameObject optionsPanel;
-    [Header("Panel del menú de pausa")]
     public GameObject pausePanel;
     public GameObject exitPanel;
     public GameObject deathPanel;
     public GameObject endGamePanel;
 
+    [Header("Botones por defecto")]
     public Button selectedButton;
     public Button selectedDeathButton;
     public Button endGameButton;
-    private bool isPaused = false;
 
-    void Update()
+    private bool isPaused = false;
+    private InputAction pauseAction;
+
+    void Awake()
     {
-        if (deathPanel.activeInHierarchy == false && endGamePanel.activeInHierarchy == false)
+        var playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        pauseAction = playerInput.actions["Pause"];
+        pauseAction.performed += OnPausePerformed;
+    }
+
+    void OnDestroy()
+    {
+        pauseAction.performed -= OnPausePerformed;
+    }
+
+    private void OnPausePerformed(InputAction.CallbackContext context)
+    {
+        // Solo permitir pausar si no estás muerto o en final de partida
+        if (!deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy && !optionsPanel.activeSelf)
         {
-            if (pausePanel.activeInHierarchy && Input.GetKeyDown(KeyCode.JoystickButton1))
-            {
-                TogglePause();
-            }
-            // Botón Start de mando Xbox o tecla Escape
-            if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape) && optionsPanel.activeSelf == false)
-            {
-                TogglePause();
-            }
+            TogglePause();
         }
     }
 
     public void TogglePause()
     {
-        isPaused = !isPaused;
-
-        if (isPaused)
-        {
-            Time.timeScale = 0f;
-            pausePanel.SetActive(true);
-            selectedButton.Select();
-            hudPanel.SetActive(false);
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            pausePanel.SetActive(false);
-            hudPanel.SetActive(true);
-            exitPanel.SetActive(false);
-            endGamePanel.SetActive(false);
-            deathPanel.SetActive(false);
-
+        
+        if (!deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy && !optionsPanel.activeSelf) // NO BORRAR
+        {  
+            isPaused = !isPaused;  
+            if (isPaused)
+            {
+                Time.timeScale = 0f;
+                pausePanel.SetActive(true);
+                selectedButton.Select();
+                hudPanel.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                pausePanel.SetActive(false);
+                hudPanel.SetActive(true);
+                exitPanel.SetActive(false);
+                endGamePanel.SetActive(false);
+                deathPanel.SetActive(false);
+            }
         }
     }
 
-    public void ResumeGame() // Script para boton continuar
+    public void ResumeGame() // Botón "Continuar"
     {
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
         hudPanel.SetActive(true);
     }
-    public void backToMenu()
-    { // Script para volver al menu principal
+
+    public void backToMenu() // Botón "Volver al menú principal"
+    {
         SceneManager.LoadScene(0);
-        Debug.Log("Sortir al ménu");
+        Debug.Log("Sortir al menú");
         Time.timeScale = 1f;
     }
 
@@ -81,8 +93,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ToggleEndgame()
     {
-        isPaused = !isPaused;
-
+        isPaused = true;
         Time.timeScale = 0f;
         hudPanel.SetActive(false);
         endGamePanel.SetActive(true);
