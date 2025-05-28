@@ -36,6 +36,8 @@ public class VikingController : MonoBehaviour
     public Animator animator;
     public int healthPoints;
     public Collider swordCollider;
+    public GameObject slash;
+    public Transform slashPosition;
     public Element activeElement;
     private bool isBasicAttack;
     public int basicAttackBasicDamage;
@@ -304,6 +306,10 @@ public class VikingController : MonoBehaviour
     public void ColliderAttackEnable()
     {
         swordCollider.enabled = true;
+        if (activeElement != Element.None)
+        {
+            Instantiate(slash,swordCollider.transform.position,Quaternion.identity,null);
+        }
     }
 
     public void ColliderAttackDisable()
@@ -314,7 +320,7 @@ public class VikingController : MonoBehaviour
     {
         if (other.CompareTag(Constants.enemy))
         {
-            ResetEnemyDetection(other.GetComponent<Enemy>());
+            //ResetEnemyDetection(other.GetComponent<Enemy>());
             int damageDeal;
             if (isBasicAttack)
             {
@@ -329,7 +335,7 @@ public class VikingController : MonoBehaviour
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
         }
-        if (other.CompareTag(Constants.tower))
+        else if (other.CompareTag(Constants.tower))
         {
             if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement, activeElement) < 0 && !isBasicAttack)
             {
@@ -357,6 +363,20 @@ public class VikingController : MonoBehaviour
                 elementsHUD.LightningStopBlink();
             }
         }
+        //else if (other.CompareTag(Constants.seta))
+        {
+            
+        }
+    }
+    public void SlashAttackEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.enemy))
+        {
+            int damageDeal;
+            damageDeal = gameManager.DamageCalulator(activeElement, 0, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+            other.GetComponent<Enemy>().HealthTaken(damageDeal);
+            Debug.Log("Slash Attack Damage Deal: " + damageDeal);
+        }
     }
     public void HealthTaken(int healthTaken)
     {
@@ -376,7 +396,7 @@ public class VikingController : MonoBehaviour
         pauseMenu.ToggleDeath();
         if (deathParticle != null && deathParticlePosition != null)
         {
-            Instantiate(deathParticle, deathParticlePosition.position, Quaternion.identity, null);
+            Instantiate(deathParticle,slashPosition.position,Quaternion.identity,null);
         }
         healthPoints = 100;
     }
