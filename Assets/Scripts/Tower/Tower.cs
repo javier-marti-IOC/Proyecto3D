@@ -54,6 +54,9 @@ public class Tower : MonoBehaviour
     [Header("TowerHud")]
     public TowerHUD towerHUD;
 
+    [Header("CameraSwitcher")]
+    public CameraFadeSwitcher cameraFadeSwitcher;
+
     void Start()
     {
         this.life = max_life;
@@ -251,6 +254,14 @@ public class Tower : MonoBehaviour
             {
                 Destroy(oppositeOrbSpawnGenerator);
             }
+        }
+        if (cameraFadeSwitcher != null)
+        {
+            cameraFadeSwitcher.SwitchCameraWithFade();
+        }
+        else
+        {
+            Debug.Log("---->>>> NO EXISTE EL CAMERA FADE SWITCHER");
         }
         Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
     }
