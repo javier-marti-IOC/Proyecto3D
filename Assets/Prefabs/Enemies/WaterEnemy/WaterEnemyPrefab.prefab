@@ -59,11 +59,11 @@ GameObject:
   - component: {fileID: 7509891186798767051}
   m_Layer: 6
   m_Name: PlayerDetectorUp
-  m_TagString: Untagged
+  m_TagString: Detector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5950306790103220796
 Transform:
   m_ObjectHideFlags: 0
@@ -280,11 +280,11 @@ GameObject:
   - component: {fileID: 814200369992187095}
   m_Layer: 6
   m_Name: PlayerDetectorDown
-  m_TagString: Untagged
+  m_TagString: Detector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1423913955446511639
 Transform:
   m_ObjectHideFlags: 0
@@ -344,6 +344,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 917795614414523819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2911445244033788859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392131968293247298}
+  - component: {fileID: 541017557789792354}
+  - component: {fileID: 7035470984739717158}
+  m_Layer: 0
+  m_Name: MinDistanceChase
+  m_TagString: Detector
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &392131968293247298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2911445244033788859}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.792, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 917795614414523819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &541017557789792354
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2911445244033788859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7035470984739717158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2911445244033788859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cddc29852e2bc4abd44e1711904e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3859051198028927708
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +799,72 @@ Transform:
   - {fileID: 24805176573916612}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8009069354436127214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6282167102387586964}
+  - component: {fileID: 4422960140770927115}
+  - component: {fileID: 3511874510558451484}
+  m_Layer: 0
+  m_Name: MaxDistanceChasing
+  m_TagString: Detector
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6282167102387586964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8009069354436127214}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 917795614414523819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4422960140770927115
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8009069354436127214}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3511874510558451484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8009069354436127214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55f97726016854abcfe425b0ccd1e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8197902087064171356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,6 +1735,14 @@ PrefabInstance:
       addedObject: {fileID: 2492859460338524810}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
         type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 6282167102387586964}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 392131968293247298}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423913955446511639}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21257b4a0feff544cabd08daf2d40fdf,
@@ -1769,6 +1909,11 @@ MonoBehaviour:
   lookAtPlayers:
   - {fileID: 993764451183703474}
   - {fileID: 222972871648877456}
+  collidersDetectors:
+  - {fileID: 8009069354436127214}
+  - {fileID: 2911445244033788859}
+  - {fileID: 1961920292286216563}
+  - {fileID: 437362043903965274}
   hand: {fileID: 0}
   electricAttackRange: 10
   impactPosition: {fileID: 0}
