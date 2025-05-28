@@ -260,7 +260,7 @@ public class MeleeBT : Enemy
     {
         if (playerCollider.TryGetComponent(out VikingController vc))
         {
-            int dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
+            int[] dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
             vc.HealthTaken(dmg);
         }
     }
@@ -282,7 +282,7 @@ public class MeleeBT : Enemy
         }
     }
 
-    public override void HealthTaken(int damageTaken)
+    public override void HealthTaken(int[] damageTaken,Element element)
     {
         if (activeElement == Element.Fire)
         {
@@ -292,7 +292,7 @@ public class MeleeBT : Enemy
         {
             audioEarthHit?.Play();
         }
-        base.HealthTaken(damageTaken);
+        base.HealthTaken(damageTaken,element);
         hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);

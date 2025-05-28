@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,8 @@ public abstract class Enemy : MonoBehaviour
     public GameManager gameManager;
     public GameObject ghostAgent;
     protected GameObject particulas1;
+    public GameObject hitNumberBasic;
+    public GameObject hitNumberElemental;
 
     [Header("Animation ID")]
     private int animIDSpeed;
@@ -206,11 +209,48 @@ public abstract class Enemy : MonoBehaviour
     {
         attacking = false;
     }
-    public virtual void HealthTaken(int damageTaken)
+    public virtual void HealthTaken(int[] damageTaken,Element element)
     {
-        healthPoints -= damageTaken;
+        Debug.Log("Basic damage taken: " + damageTaken[0] + " Elemental damage taken: " + damageTaken[1]);
+        if (damageTaken[0] > 0)
+        {
+            hitNumberBasic.SetActive(true);
+            hitNumberBasic.GetComponent<TextMeshProUGUI>().text = damageTaken[0] + "";
+            Invoke(nameof(HideHitNumberBasic), 0.98f);
+        }
+        if (damageTaken[1] > 0)
+        {
+            hitNumberElemental.SetActive(true);
+            hitNumberElemental.GetComponent<TextMeshProUGUI>().text = damageTaken[1] + "";
+            if (element == Element.Earth)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.green;
+            }
+            else if (element == Element.Water)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.blue;
+            }
+            else if (element == Element.Fire)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.red;
+            }
+            else if (element == Element.Electric)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.yellow;
+            }
+            Invoke(nameof(HideHitNumberElemental), 0.98f);
+        }
+        healthPoints -= damageTaken[0] + damageTaken[1];
         enemyHUD.UpdateHealth(healthPoints);
         PlayerDetected();
+    }
+    private void HideHitNumberBasic()
+    {
+        hitNumberBasic.SetActive(false);
+    }
+    private void HideHitNumberElemental()
+    {
+        hitNumberElemental.SetActive(false);
     }
     public virtual void Dying(bool drops)
     {
@@ -218,7 +258,7 @@ public abstract class Enemy : MonoBehaviour
         {
             Destroy(particulas1);
         }
-        
+
         if (tower != null)
         {
             tower.enemiesInSecondZoneRange.Remove(gameObject);
