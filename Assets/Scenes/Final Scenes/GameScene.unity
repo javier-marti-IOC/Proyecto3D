@@ -5764,23 +5764,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7.400003, y: 0.6500025, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 877910710}
-  - {fileID: 921710657}
-  - {fileID: 2142682608}
-  - {fileID: 1601459035}
-  - {fileID: 1976499687}
-  - {fileID: 1617247557}
-  - {fileID: 1666742093}
-  - {fileID: 584124454}
-  - {fileID: 1437074125}
-  - {fileID: 1925066764}
-  - {fileID: 1624515473}
-  - {fileID: 930619091}
-  - {fileID: 1746531598}
-  - {fileID: 742901751}
-  - {fileID: 909912302}
-  m_Father: {fileID: 473463319}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -12500,7 +12485,7 @@ PrefabInstance:
         type: 3}
       propertyPath: vikingHealthHUD
       value: 
-      objectReference: {fileID: 434484317}
+      objectReference: {fileID: 821832025}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: heavyAttackMagicDamage
@@ -15011,3 +14996,4 @@ SceneRoots:
   - {fileID: 1817539989}
   - {fileID: 1594878477}
   - {fileID: 1943011733}
+  - {fileID: 1237361127}
