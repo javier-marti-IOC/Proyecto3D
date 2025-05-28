@@ -25,6 +25,9 @@ public class DistanceBT : Enemy
     public GameObject[] lookAtPlayers;
     private bool foundLookingPlayer = false;
 
+    [Header("Colliders Detectors")]
+    public GameObject[] collidersDetectors;
+
     [Header("Electric Basic Attack")]
     public Transform hand;
     public float electricAttackRange = 8f;
@@ -80,23 +83,25 @@ public class DistanceBT : Enemy
         {
             if (!hitted)
             {
-                //ME ESTA LLAMANDO LA TORRE?
-                if (towerCalling)
+                if (!attacking)
                 {
-                    TowerChase();
-                }
-                else
-                {
-                    //El enemigo detecta al player
-                    if (playerDetected)
+                    //ME ESTA LLAMANDO LA TORRE?
+                    if (towerCalling)
                     {
-                        if (/*!player.GetComponent<VikingController>().EnemyDetecion(this)*/1 == -1)
+                        TowerChase();
+                    }
+                    else
+                    {
+                        //El enemigo detecta al player
+                        if (playerDetected)
                         {
-                            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
-                            animator.SetInteger(Constants.state, 0);
-                        }
-                        else
-                        {
+                            /* if (!player.GetComponent<VikingController>().EnemyDetecion(this))
+                            {
+                                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - transform.position), 1 * Time.deltaTime);
+                                animator.SetInteger(Constants.state, 0);
+                            }
+                            else
+                            { */
                             if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                             {
                                 CheckLookingPlayer();
@@ -104,19 +109,19 @@ public class DistanceBT : Enemy
                                 if (foundLookingPlayer)
                                 {
                                     cooldownHeavyAttack -= Time.deltaTime;
-                                    // SetLookingPlayersActive(false);
+
                                     Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
                                     switch (activeElement)
                                     {
                                         case Element.Water:
                                             if (cooldownHeavyAttack <= 0)
                                             {
-                                                //transform.LookAt(player.transform);
+                                                attacking = true;
                                                 animator.SetInteger(Constants.state, 3);
                                             }
                                             else
                                             {
-                                                //transform.LookAt(player.transform);
+                                                attacking = true;
                                                 animator.SetInteger(Constants.state, 2);
                                             }
                                             break;
@@ -176,28 +181,29 @@ public class DistanceBT : Enemy
                                 }
                                 else
                                 {
-                                    // agent.radius = 5f;
                                     CheckAgentSpeed();
-                                    // animator.SetInteger(Constants.state, 1);
-
                                     Chase(3f);
                                 }
                             }
                             else
                             {
                                 CheckAgentSpeed();
-                                // animator.SetInteger(Constants.state, 1);
-
                                 Chase(stoppingDistance);
 
                             }
+                            /* } */
+                        }
+                        else
+                        {
+                            SetLookingPlayersActive(false);
+                            Patrol();
                         }
                     }
-                    else
-                    {
-                        SetLookingPlayersActive(false);
-                        Patrol();
-                    }
+                }
+                else
+                {
+                    Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
+
                 }
             }
             else
@@ -505,5 +511,16 @@ public class DistanceBT : Enemy
     private void SetFalseHitted()
     {
         hitted = false;
+    }
+
+    public void ActivateDetectors(bool active)
+    {
+        foreach (GameObject obj in collidersDetectors)
+        {
+            if (obj.activeSelf != active)
+            {
+                obj.SetActive(active);
+            }
+        }
     }
 }
