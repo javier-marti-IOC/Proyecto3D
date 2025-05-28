@@ -24,12 +24,16 @@ public class PauseMenu : MonoBehaviour
     private InputAction pauseAction;
 
     private InputAction cancelAction;
-
+    private PlayerInput playerInput;
     void Awake()
     {
-        var playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        playerInput.actions.FindActionMap("UI").Disable();
+        playerInput.actions.FindActionMap("Player").Enable();
+
         pauseAction = playerInput.actions["Pause"];
         cancelAction = playerInput.actions["Cancel"];
+        
         
         pauseAction.performed += OnPausePerformed;
         cancelAction.performed += OnCancelPerformed;
@@ -85,18 +89,22 @@ public class PauseMenu : MonoBehaviour
     public void TogglePause()
     {
         
-        if (!deathPanel.activeInHierarchy && !endGamePanel.activeInHierarchy && !optionsPanel.activeSelf && !exitPanel.activeInHierarchy) // NO BORRAR
+        if (!deathPanel.activeInHierarchy && !optionsPanel.activeSelf && !exitPanel.activeInHierarchy) // NO BORRAR
         {  
-            isPaused = !isPaused;  
+            isPaused = !isPaused;
             if (isPaused)
             {
                 Time.timeScale = 0f;
                 pausePanel.SetActive(true);
                 selectedButton.Select();
                 hudPanel.SetActive(false);
+                playerInput.actions.FindActionMap("Player").Disable();
+                playerInput.actions.FindActionMap("UI").Enable();
             }
             else
             {
+                playerInput.actions.FindActionMap("UI").Disable();
+                playerInput.actions.FindActionMap("Player").Enable();
                 Time.timeScale = 1f;
                 pausePanel.SetActive(false);
                 hudPanel.SetActive(true);
@@ -109,6 +117,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame() // Botón "Continuar"
     {
+        playerInput.actions.FindActionMap("UI").Disable();
+        playerInput.actions.FindActionMap("Player").Enable();
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);

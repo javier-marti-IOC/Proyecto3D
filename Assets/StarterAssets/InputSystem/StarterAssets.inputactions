@@ -343,6 +343,17 @@
                 },
                 {
                     "name": "",
+                    "id": "33b96e05-58ad-4e78-ba14-3c15d90a7825",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b10a75de-cb02-4c71-85f7-fe2d13434850",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -354,11 +365,33 @@
                 },
                 {
                     "name": "",
+                    "id": "9298d6d4-1297-4e9c-9828-12d35502268b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "BasicAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "64060069-1864-4545-bd16-dd0a78ef2a11",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "796d3ca6-03e5-4a4b-bd9d-4b31188226a5",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
                     "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
