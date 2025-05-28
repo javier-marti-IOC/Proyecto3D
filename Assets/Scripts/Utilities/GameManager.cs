@@ -46,20 +46,20 @@ public class GameManager : MonoBehaviour
         electricLevel = 1;
         EnemiesGenerator(Element.None);
     }
-    public int DamageCalulator(Element dealerElement, int dealerBasicDamage, int dealerElementalDamege, Element takerElement)
+    public int[] DamageCalulator(Element dealerElement, int dealerBasicDamage, int dealerElementalDamege, Element takerElement)
     {
         float basicDamageRange = Random.Range(dealerBasicDamage * 0.85f, dealerBasicDamage * 1.15f);
         float elementDamageRange = Random.Range(dealerElementalDamege * 0.85f, dealerElementalDamege * 1.15f);
         switch (ElementInteraction(dealerElement, takerElement))
         {
             case 1:
-                return (int)(basicDamageRange + (elementDamageRange * 2f));
+                return new int[]{(int)basicDamageRange,(int)(elementDamageRange * 2f)};
             case 0:
-                return (int)(basicDamageRange + elementDamageRange);
+                return new int[]{(int)basicDamageRange,(int)elementDamageRange};
             case -1:
-                return (int)(basicDamageRange + (elementDamageRange * 0.5f));
+                return new int[]{(int)basicDamageRange,(int)(elementDamageRange * 0.5f)};
         }
-        return 0;
+        return new int[]{0,0};
     }
     public int ElementInteraction(Element element1, Element element2)
     {

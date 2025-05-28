@@ -96,6 +96,7 @@ public class VikingController : MonoBehaviour
 
         //HUD
         vikingHealthHUD.SetHealth(healthPoints);
+        CollectMana(Element.None);
     }
 
     // Update is called once per frame
@@ -306,12 +307,34 @@ public class VikingController : MonoBehaviour
     public void ColliderAttackEnable()
     {
         swordCollider.enabled = true;
+    }
+    public void StartSlashAttack()
+    {
         if (activeElement != Element.None)
         {
-            Instantiate(slash,swordCollider.transform.position,Quaternion.identity,null);
+            Instantiate(slash, swordCollider.transform.position, Quaternion.identity, null);
+            if (activeElement == Element.Earth)
+            {
+                earthMana -= 35;
+                elementsHUD.earthReduce(earthMana);
+            }
+            else if (activeElement == Element.Water)
+            {
+                waterMana -= 35;
+                elementsHUD.waterReduce(waterMana);
+            }
+            else if (activeElement == Element.Fire)
+            {
+                fireMana -= 35;
+                elementsHUD.fireReduce(fireMana);
+            }
+            else if (activeElement == Element.Electric)
+            {
+                electricMana -= 35;
+                elementsHUD.lightningReduce(electricMana);
+            }
         }
     }
-
     public void ColliderAttackDisable()
     {
         swordCollider.enabled = false;
@@ -321,17 +344,24 @@ public class VikingController : MonoBehaviour
         if (other.CompareTag(Constants.enemy))
         {
             //ResetEnemyDetection(other.GetComponent<Enemy>());
-            int damageDeal;
+            int[] damageDeal;
             if (isBasicAttack)
             {
-                damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
-                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                if (activeElement == Element.None)
+                {
+                    damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, 0, other.GetComponent<Enemy>().activeElement);
+                }
+                else
+                {
+                    damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+                }
+                other.GetComponent<Enemy>().HealthTaken(damageDeal,activeElement);
                 Debug.Log("Basic Attack Damage Deal: " + damageDeal);
             }
             else
             {
-                damageDeal = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
-                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                damageDeal = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, 0, other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal,activeElement);
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
         }
@@ -368,22 +398,22 @@ public class VikingController : MonoBehaviour
             
         }
     }
-    public void SlashAttackEnter(Collider other)
+    public void SlashAttackEnter(Collider other,Element element)
     {
         if (other.CompareTag(Constants.enemy))
         {
-            int damageDeal;
-            damageDeal = gameManager.DamageCalulator(activeElement, 0, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
-            other.GetComponent<Enemy>().HealthTaken(damageDeal);
+            int[] damageDeal;
+            damageDeal = gameManager.DamageCalulator(element, 0, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+            other.GetComponent<Enemy>().HealthTaken(damageDeal,element);
             Debug.Log("Slash Attack Damage Deal: " + damageDeal);
         }
     }
-    public void HealthTaken(int healthTaken)
+    public void HealthTaken(int[] healthTaken)
     {
         if (!isRolling)
         {
             AudioManager.Instance?.Play("HitMarker");
-            healthPoints -= healthTaken;
+            healthPoints -= healthTaken[0] + healthTaken[1];
             vikingHealthHUD.SetHealth(healthPoints);
         }
     }
@@ -396,7 +426,7 @@ public class VikingController : MonoBehaviour
         pauseMenu.ToggleDeath();
         if (deathParticle != null && deathParticlePosition != null)
         {
-            Instantiate(deathParticle,slashPosition.position,Quaternion.identity,null);
+            Instantiate(deathParticle, deathParticlePosition.position, Quaternion.identity, null);
         }
         healthPoints = 100;
     }

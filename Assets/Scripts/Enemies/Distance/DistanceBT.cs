@@ -462,9 +462,7 @@ public class DistanceBT : Enemy
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 
-
-
-    public override void HealthTaken(int damageTaken)
+    public override void HealthTaken(int[] damageTaken,Element element)
     {
         if (audioWaterHit != null)
         {
@@ -475,7 +473,7 @@ public class DistanceBT : Enemy
             audioElectricHit.Play();
         }
 
-        base.HealthTaken(damageTaken);
+        base.HealthTaken(damageTaken, element);
         hitted = true;
         agent.isStopped = true;
         hitParticle.SetActive(false);

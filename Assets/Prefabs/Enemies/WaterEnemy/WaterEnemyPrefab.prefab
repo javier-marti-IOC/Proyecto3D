@@ -1742,6 +1742,8 @@ MonoBehaviour:
   tower: {fileID: 0}
   gameManager: {fileID: 0}
   ghostAgent: {fileID: 0}
+  hitNumberBasic: {fileID: 2076186999002146823}
+  hitNumberElemental: {fileID: 3982617659938926182}
   isBTEnabled: 0
   towerCalling: 0
   playerInAttackRange: 0
@@ -2069,6 +2071,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb5242eaff695744941ef457daf9ead, type: 3}
+--- !u!1 &2076186999002146823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6437997932821820887, guid: 2bb5242eaff695744941ef457daf9ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 5010329428883250640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3982617659938926182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8272371139307566006, guid: 2bb5242eaff695744941ef457daf9ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 5010329428883250640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5731537666881477339 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
