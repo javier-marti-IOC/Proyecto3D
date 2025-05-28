@@ -37042,13 +37042,13 @@ MonoBehaviour:
   animator: {fileID: 8620253860425985851}
   healthPoints: 1
   swordCollider: {fileID: 1053238006340951725}
-  slash: {fileID: 0}
-  slashPosition: {fileID: 0}
+  slash: {fileID: 2643252314603458116, guid: 4176118d2837dcd41ae77c1711350d7b, type: 3}
+  slashPosition: {fileID: 848466642718982779}
   activeElement: 0
   basicAttackBasicDamage: 4
   basicAttackMagicDamage: 6
   heavyAttackBasicDamage: 12
-  heavyAttackMagicDamage: 18
+  heavyAttackMagicDamage: 25
   OnAction: 0
   isRolling: 0
   rollCooldown: 0
