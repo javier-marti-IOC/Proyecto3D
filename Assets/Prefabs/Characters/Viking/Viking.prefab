@@ -36947,10 +36947,10 @@ MonoBehaviour:
   slash: {fileID: 2643252314603458116, guid: 4176118d2837dcd41ae77c1711350d7b, type: 3}
   slashPosition: {fileID: 848466642718982779}
   activeElement: 0
-  basicAttackBasicDamage: 4
-  basicAttackMagicDamage: 6
-  heavyAttackBasicDamage: 12
-  heavyAttackMagicDamage: 25
+  basicAttackBasicDamage: 10
+  basicAttackMagicDamage: 10
+  heavyAttackBasicDamage: 20
+  heavyAttackMagicDamage: 20
   OnAction: 0
   isRolling: 0
   rollCooldown: 0
@@ -36960,6 +36960,8 @@ MonoBehaviour:
   deathParticle: {fileID: 8525769348104996679, guid: b7453c3d92a8984489aa77211c95a35b,
     type: 3}
   deathParticlePosition: {fileID: 229316714964475365}
+  characterRenderer: {fileID: 7606740598230877565}
+  shineDuration: 0.25
 --- !u!136 &5119653336814344007
 CapsuleCollider:
   m_ObjectHideFlags: 0
