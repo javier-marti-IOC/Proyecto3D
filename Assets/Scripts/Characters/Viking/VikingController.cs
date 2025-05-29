@@ -49,6 +49,7 @@ public class VikingController : MonoBehaviour
     [Header("Booleans")]
     public bool OnAction;
     public bool isRolling;
+    private bool isSpendingMana;
 
     [Header("Cooldowns")]
     public float rollCooldown;
@@ -143,10 +144,12 @@ public class VikingController : MonoBehaviour
                 if (basicAttackAction.WasPerformedThisFrame() && !isRolling)
                 {
                     BasicAttack();
+                    if (activeElement != Element.None) isSpendingMana = true;
                 }
                 if (heavyAttackAction.ReadValue<float>() > 0.5f && !isRolling)
                 {
                     HeavyAttack();
+                    if (activeElement != Element.None) isSpendingMana = true;
                 }
                 if (rollAction.WasPerformedThisFrame() && rollCooldown < 0f)
                 {
@@ -155,12 +158,13 @@ public class VikingController : MonoBehaviour
                 }
             }
 
-            if (reduceMana < 0)
+            if (reduceMana < 0 && isSpendingMana)
             {
                 reduceMana = 0.5f;
                 if (activeElement == Element.Earth)
                 {
                     earthMana -= 1;
+                    earthEffect.SetActive(true);
                     elementsHUD.earthReduce(earthMana);
                     if (earthMana <= 0)
                     {
@@ -168,11 +172,13 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         earthMana = 0;
                         earthEffect.SetActive(false);
+                        isSpendingMana = false;
                     }
                 }
                 else if (activeElement == Element.Water)
                 {
                     waterMana -= 1;
+                    waterEffect.SetActive(true);
                     elementsHUD.waterReduce(waterMana);
                     if (waterMana <= 0)
                     {
@@ -180,12 +186,13 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         waterMana = 0;
                         waterEffect.SetActive(false);
+                        isSpendingMana = false;
                     }
                 }
                 else if (activeElement == Element.Fire)
                 {
                     fireMana -= 1;
-                    //if (fireMana <= 0) StopElementBlink(activeElement);
+                    fireEffect.SetActive(true);
                     elementsHUD.fireReduce(fireMana);
                     if (fireMana <= 0)
                     {
@@ -193,11 +200,13 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         fireMana = 0;
                         fireEffect.SetActive(false);
+                        isSpendingMana = false;
                     }
                 }
                 else if (activeElement == Element.Electric)
                 {
                     electricMana -= 1;
+                    electricEffect.SetActive(true);
                     elementsHUD.lightningReduce(electricMana);
                     if (electricMana <= 0)
                     {
@@ -205,6 +214,7 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         electricMana = 0;
                         electricEffect.SetActive(false);
+                        isSpendingMana = false;
                     }
                 }
             }
@@ -217,22 +227,22 @@ public class VikingController : MonoBehaviour
         //ACtivar elemento nuevo
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
-            earthEffect.SetActive(true);
+            elementsHUD.earthReduce(earthMana);
             changed = true;
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
-            waterEffect.SetActive(true);
+            elementsHUD.waterReduce(waterMana);
             changed = true;
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
-            fireEffect.SetActive(true);
+            elementsHUD.fireReduce(fireMana);
             changed = true;
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
-            electricEffect.SetActive(true);
+            elementsHUD.lightningReduce(electricMana);
             changed = true;
         }
         //Desactivar elemento antiguo
@@ -241,33 +251,46 @@ public class VikingController : MonoBehaviour
             AudioManager.Instance?.Play("ActivateElement");
             if (activeElement == Element.Earth)
             {
-                earthMana = 0;
-                elementsHUD.earthReduce(earthMana);
+                if (isSpendingMana)
+                {
+                    earthMana = 0;
+                    elementsHUD.earthReduce(earthMana);
+                    earthEffect.SetActive(false);
+                }
                 elementsHUD.EarthStopBlink();
-                earthEffect.SetActive(false);
             }
             else if (activeElement == Element.Water)
             {
-                waterMana = 0;
-                elementsHUD.waterReduce(waterMana);
+                if (isSpendingMana)
+                {
+                    waterMana = 0;
+                    elementsHUD.waterReduce(waterMana);
+                    waterEffect.SetActive(false);
+                }
                 elementsHUD.WaterStopBlink();
-                waterEffect.SetActive(false);
             }
             else if (activeElement == Element.Fire)
             {
-                fireMana = 0;
-                elementsHUD.fireReduce(fireMana);
+                if (isSpendingMana)
+                {
+                    fireMana = 0;
+                    elementsHUD.fireReduce(fireMana);
+                    fireEffect.SetActive(false);
+                }
                 elementsHUD.FireStopBlink();
-                fireEffect.SetActive(false);
             }
             else if (activeElement == Element.Electric)
             {
-                electricMana = 0;
-                elementsHUD.lightningReduce(electricMana);
+                if (isSpendingMana)
+                {
+                    electricMana = 0;
+                    elementsHUD.lightningReduce(electricMana);
+                    electricEffect.SetActive(false);
+                }
                 elementsHUD.LightningStopBlink();
-                electricEffect.SetActive(false);
             }
             activeElement = element;
+            isSpendingMana = false;
         }
     }
 
@@ -355,19 +378,19 @@ public class VikingController : MonoBehaviour
                 {
                     damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
                 }
-                other.GetComponent<Enemy>().HealthTaken(damageDeal,activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal, activeElement);
                 Debug.Log("Basic Attack Damage Deal: " + damageDeal);
             }
             else
             {
                 damageDeal = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, 0, other.GetComponent<Enemy>().activeElement);
-                other.GetComponent<Enemy>().HealthTaken(damageDeal,activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal, activeElement);
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
         }
         //else if (other.CompareTag(Constants.seta))
         {
-            
+
         }
     }
     public void SlashAttackEnter(Collider other, Element element)

@@ -33,6 +33,7 @@ public class ProgressManager : MonoBehaviour
     private bool electricTowerDestroyed;
 
     public PauseMenu pauseMenu;
+    private SaveGamePanel saveGamePanel;
 
     private void Awake()
     {
@@ -71,6 +72,7 @@ public class ProgressManager : MonoBehaviour
         }
         // Guardamos la ruta donde queremos generar el JSON
         saveFilePath = Application.persistentDataPath + "/progressManager.json";
+        saveGamePanel = FindObjectOfType<SaveGamePanel>();
         // Si el archivo no existe, generamos el objeto del JSON con todo a 0
         if (!File.Exists(saveFilePath))
         {
@@ -143,6 +145,10 @@ public class ProgressManager : MonoBehaviour
         else
         {
             Debug.LogError("ProgressData or towerActiveElements are null, cannot save.");
+        }
+        if (saveGamePanel != null)
+        {    
+            saveGamePanel.ShowPanel();
         }
     }
     // Funcion para cargar partida
