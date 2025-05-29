@@ -14168,11 +14168,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6982112819423782032, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
-      propertyPath: countersPanel
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6982112819423782032, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
       propertyPath: colliderPermitido
       value: 
       objectReference: {fileID: 1231213283449546707}
