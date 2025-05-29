@@ -50,6 +50,7 @@ public class VikingController : MonoBehaviour
     public bool OnAction;
     public bool isRolling;
     private bool isSpendingMana;
+    //private bool isShining;
 
     [Header("Cooldowns")]
     public float rollCooldown;
@@ -64,6 +65,27 @@ public class VikingController : MonoBehaviour
     private float healParticlesTimer;
     public GameObject deathParticle;
     public Transform deathParticlePosition;
+
+    [Header("Shine")]
+    public Renderer characterRenderer;
+/*     private Color shineNoneColor = Color.white;
+    private Color shineEarthColor = Color.green;
+    private Color shineWaterColor = Color.blue;
+    private Color shineFireColor = Color.red;
+    private Color shineElectricColor = Color.yellow;
+    private Color shineHealColor = Color.magenta; */
+    private Color shineNoneColor = new Color(0.735849f,0.6699003f,0.726575f);
+    private Color shineEarthColor = new Color(0.4196078f, 0.6745098f, 0.4f);
+    private Color shineWaterColor = new Color(0.2431373f, 0.4862745f, 0.6980392f);
+    private Color shineFireColor = new Color(0.7490196f, 0.2666667f, 0.282353f);
+    private Color shineElectricColor = new Color(0.8745098f, 0.8431373f, 0.3921569f);
+    private Color shineHealColor = new Color(0.4f, 0, 0.4319372f);
+    public float shineDuration;
+    private int shineElement;
+    private Material characterMaterial;
+    private bool isShiningUp = false;
+    private bool isShiningDown = false;
+    private float shineTimer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -97,6 +119,12 @@ public class VikingController : MonoBehaviour
 
         //HUD
         vikingHealthHUD.SetHealth(healthPoints);
+
+
+        characterMaterial = characterRenderer.material;
+        characterMaterial.EnableKeyword("_EMISSION");
+        characterMaterial.SetColor("_EmissionColor", Color.black);
+
         CollectMana(Element.None);
     }
 
@@ -218,6 +246,101 @@ public class VikingController : MonoBehaviour
                     }
                 }
             }
+        }
+        if (isShiningUp)
+        {
+            shineTimer += Time.deltaTime;
+            float t = shineTimer / shineDuration;
+            if (shineElement == 0)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineNoneColor, t));
+            }
+            else if (shineElement == 1)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineEarthColor, t));
+            }
+            else if (shineElement == 2)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineWaterColor, t));
+            }
+            else if (shineElement == 3)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineFireColor, t));
+            }
+            else if (shineElement == 4)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineElectricColor, t));
+            }
+            else if (shineElement == 5)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineHealColor, t));
+            }
+            if (t >= 1)
+            {
+                isShiningUp = false;
+                isShiningDown = true;
+                if (shineElement == 0)
+                {
+                    characterMaterial.SetColor("_EmissionColor", shineNoneColor);
+                }
+                else if (shineElement == 1)
+                {
+                    characterMaterial.SetColor("_EmissionColor", shineEarthColor);
+                }
+                else if (shineElement == 2)
+                {
+                    characterMaterial.SetColor("_EmissionColor", shineWaterColor);
+                }
+                else if (shineElement == 3)
+                {
+                    characterMaterial.SetColor("_EmissionColor", shineFireColor);
+                }
+                else if (shineElement == 4)
+                {
+                    characterMaterial.SetColor("_EmissionColor", shineElectricColor);
+                }
+                else if (shineElement == 5)
+                {
+                    characterMaterial.SetColor("_EmissionColor", shineHealColor);
+                }
+                shineTimer = 0;
+            }
+        }
+        if (isShiningDown)
+        {
+            shineTimer += Time.deltaTime;
+            float t = shineTimer / shineDuration;
+            if (shineElement == 0)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineNoneColor, Color.black, t));
+            }
+            else if (shineElement == 1)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineEarthColor, Color.black, t));
+            }
+            else if (shineElement == 2)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineWaterColor, Color.black, t));
+            }
+            else if (shineElement == 3)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineFireColor, Color.black, t));
+            }
+            else if (shineElement == 4)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineElectricColor, Color.black, t));
+            }
+            else if (shineElement == 5)
+            {
+                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineHealColor, Color.black, t));
+            }
+
+            if (t >= 1)
+            {
+                isShiningDown = false;
+                characterMaterial.SetColor("_EmissionColor", Color.black);
+            }
+            shineElement = -1;
         }
     }
 
@@ -510,6 +633,7 @@ public class VikingController : MonoBehaviour
                 electricMana = 100;
                 elementsHUD.lightningAdd(electricMana);
             }
+            shineElement = 0;
         }
         else
         {
@@ -519,27 +643,33 @@ public class VikingController : MonoBehaviour
                 earthMana += mana;
                 if (earthMana > 100) earthMana = 100;
                 elementsHUD.earthAdd(earthMana);
-
+                shineElement = 1;
             }
             else if (element == Element.Water && activeElement != Element.Water)
             {
                 waterMana += mana;
                 if (waterMana > 100) waterMana = 100;
                 elementsHUD.waterAdd(waterMana);
+                shineElement = 2;
             }
             else if (element == Element.Fire && activeElement != Element.Fire)
             {
                 fireMana += mana;
                 if (fireMana > 100) fireMana = 100;
                 elementsHUD.fireAdd(fireMana);
+                shineElement = 3;
             }
             else if (element == Element.Electric && activeElement != Element.Electric)
             {
                 electricMana += mana;
                 if (electricMana > 100) electricMana = 100;
                 elementsHUD.lightningAdd(electricMana);
+                shineElement = 4;
             }
         }
+        isShiningUp = true;
+        isShiningDown = false;
+        shineTimer = 0;
     }
     public void CollectLife()
     {
@@ -550,6 +680,9 @@ public class VikingController : MonoBehaviour
         healthPoints += 30;
         if (healthPoints > 100) healthPoints = 100;
         vikingHealthHUD.SetHealth(healthPoints);
+        shineElement = 5;
+        isShiningUp = true;
+        shineTimer = 0;
     }
 
     // Funciones para reproducir sonidos de ataque, se llaman en la animación
