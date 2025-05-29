@@ -9,11 +9,10 @@ public class InfoPanelHUD : MonoBehaviour
     public TextMeshProUGUI panelText; // TMP de BoxInfo
     public Animator animator; // Animator de BoxInfo
 
-
     public void ShowText(string newText)
     {
-        Debug.Log("POP UP");
+        Debug.Log("Show BoxInfo");
+        animator.Play("Complete");
         panelText.text = newText;
-        animator.Play("Show");
     }
 }
