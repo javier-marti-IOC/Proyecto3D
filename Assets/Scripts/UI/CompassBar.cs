@@ -21,7 +21,7 @@ public class CompassBar : MonoBehaviour
     public RectTransform westMarkerTransform;
 
     //MainCamera
-    public Transform cameraObjectTransform;
+    private Transform cameraObjectTransform;
 
     //Objectes fisics de l'escenari
     public Transform safeZoneObjectTransform;
@@ -29,7 +29,10 @@ public class CompassBar : MonoBehaviour
     public Transform waterTowerObjectTransform;
     public Transform fireTowerObjectTransform;
     public Transform electricTowerObjectTransform;
-
+    void Start()
+    {
+        cameraObjectTransform = Camera.main.transform;
+    }
     void Update()
     {
         //Posicions dels marcadors a la barra respecte els objectes fisics
