@@ -2208,6 +2208,7 @@ MonoBehaviour:
   compassBar: {fileID: 1719213227}
   fadeDuration: 1
   waitDuration: 4
+  progressManager: {fileID: 0}
 --- !u!1001 &360144305
 PrefabInstance:
   m_ObjectHideFlags: 0

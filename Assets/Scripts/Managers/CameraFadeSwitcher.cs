@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CameraFadeSwitcher : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class CameraFadeSwitcher : MonoBehaviour
         FadingInToSecond,
         WaitingOnSecond,
         FadingOutToFirst,
-        FadingInToFirst
+        FadingInToFirst,
+        FadingInToFinalScene
     }
 
     private FadeState currentState = FadeState.Idle;
@@ -29,8 +31,21 @@ public class CameraFadeSwitcher : MonoBehaviour
 
     private bool wasCompassBarActive = false;
 
+    [Header("Progress Manager")]
+    public ProgressManager progressManager;
+    public ProgressData progressData;
+
     void Update()
     {
+        if (
+            ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Earth) &&
+            ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Fire) &&
+            ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Water) &&
+            ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Electric)
+            )
+        {
+            currentState = FadeState.FadingInToFinalScene;
+        }
         switch (currentState)
         {
             case FadeState.FadingOutToSecond:
@@ -68,6 +83,10 @@ public class CameraFadeSwitcher : MonoBehaviour
                         compassBar.SetActive(true);
                     }
                 });
+                break;
+
+            case FadeState.FadingInToFinalScene:
+                Invoke("ActivateFinalScene", 5);
                 break;
 
             case FadeState.FadingInToFirst:
@@ -121,4 +140,9 @@ public class CameraFadeSwitcher : MonoBehaviour
         camOff.gameObject.SetActive(false);
         camOn.gameObject.SetActive(true);
     }
+
+    public void ActivateFinalScene()
+    {
+        SceneManager.LoadScene(3);
+    }  
 }

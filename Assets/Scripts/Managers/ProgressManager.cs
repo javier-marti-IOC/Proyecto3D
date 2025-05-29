@@ -237,7 +237,7 @@ public class ProgressManager : MonoBehaviour
             {
                 if (pauseMenu != null)
                 {
-                    pauseMenu.ToggleEndgame();
+                    //pauseMenu.ToggleEndgame();
                 }
             }  
         }
