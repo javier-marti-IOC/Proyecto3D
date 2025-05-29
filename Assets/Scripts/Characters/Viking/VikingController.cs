@@ -365,9 +365,23 @@ public class VikingController : MonoBehaviour
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
         }
+        //else if (other.CompareTag(Constants.seta))
+        {
+            
+        }
+    }
+    public void SlashAttackEnter(Collider other, Element element)
+    {
+        if (other.CompareTag(Constants.enemy))
+        {
+            int[] damageDeal;
+            damageDeal = gameManager.DamageCalulator(element, 0, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+            other.GetComponent<Enemy>().HealthTaken(damageDeal, element);
+            Debug.Log("Slash Attack Damage Deal: " + damageDeal);
+        }
         else if (other.CompareTag(Constants.tower))
         {
-            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement, activeElement) < 0 && !isBasicAttack)
+            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement, activeElement) < 0)
             {
                 if (activeElement == Element.Earth) earthMana = 0;
                 else if (activeElement == Element.Water) waterMana = 0;
@@ -376,9 +390,9 @@ public class VikingController : MonoBehaviour
                 Debug.Log("TowerHit");
                 other.GetComponent<Tower>().HealthTaken(34);
             }
-            else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None && !isBasicAttack)
+            else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None)
             {
-                other.GetComponent<Tower>().HealthTaken(50);
+                other.GetComponent<Tower>().HealthTaken(150);
                 earthMana = 0;
                 elementsHUD.earthReduce(earthMana);
                 elementsHUD.EarthStopBlink();
@@ -392,20 +406,6 @@ public class VikingController : MonoBehaviour
                 elementsHUD.lightningReduce(electricMana);
                 elementsHUD.LightningStopBlink();
             }
-        }
-        //else if (other.CompareTag(Constants.seta))
-        {
-            
-        }
-    }
-    public void SlashAttackEnter(Collider other,Element element)
-    {
-        if (other.CompareTag(Constants.enemy))
-        {
-            int[] damageDeal;
-            damageDeal = gameManager.DamageCalulator(element, 0, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
-            other.GetComponent<Enemy>().HealthTaken(damageDeal,element);
-            Debug.Log("Slash Attack Damage Deal: " + damageDeal);
         }
     }
     public void HealthTaken(int[] healthTaken)
