@@ -20,14 +20,16 @@ public class GraphicSettings : MonoBehaviour
 
     void Start()
     {
+
         PopulateResolutionDropdown();
         //PopulateQualityDropdown();
         PopulateScreenModeDropdown();
         // PopulateShadowsDropdown();
         // PopulateDrawDistanceDropdown();
         PopulateFPSLimitDropdown();
+        SetDefaultResolutionIfNeeded(); 
         LoadSettings();
-    }
+        }
 
     void PopulateResolutionDropdown()
     {
@@ -92,7 +94,7 @@ public class GraphicSettings : MonoBehaviour
 
     //     resolutions = Screen.resolutions;
     //     resolutionDropdown.ClearOptions();
-        
+
     //     if (resolutions.Length == 0)
     //     {
     //         Debug.LogError("No se encontraron resoluciones disponibles.");
@@ -234,9 +236,9 @@ public class GraphicSettings : MonoBehaviour
         // Opciones predefinidas para el límite de FPS
         List<string> options = new List<string>
         {
-            "30 FPS", 
-            "60 FPS", 
-            "120 FPS", 
+            "30 FPS",
+            "60 FPS",
+            "120 FPS",
             "144 FPS",
             "165 FPS",
             "Sin Límite"
@@ -327,7 +329,7 @@ public class GraphicSettings : MonoBehaviour
 
     public void SetFPSLimit(int index)
     {
-        int[] fpsLimits = { 30, 60, 120, 144, 165 -1 };
+        int[] fpsLimits = { 30, 60, 120, 144, 165 - 1 };
         if (index < 0 || index >= fpsLimits.Length)
         {
             Debug.LogWarning("Índice de límite de FPS inválido.");
@@ -342,7 +344,7 @@ public class GraphicSettings : MonoBehaviour
     public void LoadSettings()
     {
 
-        if (/*qualityDropdown == null ||*/ resolutionDropdown == null || screenModeDropdown == null || 
+        if (/*qualityDropdown == null ||*/ resolutionDropdown == null || screenModeDropdown == null ||
             vsyncToggle == null || fpsLimitDropdown == null) //|| shadowsDropdown == null || drawDistanceDropdown == null)
         {
             Debug.LogError("Uno o más elementos UI no están asignados en el Inspector.");
@@ -367,4 +369,30 @@ public class GraphicSettings : MonoBehaviour
         // drawDistanceDropdown.RefreshShownValue();
         fpsLimitDropdown.RefreshShownValue();
     }
+    
+    void SetDefaultResolutionIfNeeded()
+{
+    // Solo lo hace si no se ha guardado previamente
+    if (!PlayerPrefs.HasKey("ResolutionIndex") || !PlayerPrefs.HasKey("ScreenMode"))
+    {
+        // 1. Establecer resolución máxima
+        Resolution maxRes = Screen.resolutions[Screen.resolutions.Length - 1];
+        Screen.SetResolution(maxRes.width, maxRes.height, FullScreenMode.ExclusiveFullScreen);
+
+        // 2. Guardar el índice de resolución si coincide con una opción del dropdown
+        for (int i = 0; i < uniqueResolutionsList.Count; i++)
+        {
+            if (uniqueResolutionsList[i].width == maxRes.width && uniqueResolutionsList[i].height == maxRes.height)
+            {
+                PlayerPrefs.SetInt("ResolutionIndex", i);
+                break;
+            }
+        }
+
+        // 3. Establecer pantalla completa
+        Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        PlayerPrefs.SetInt("ScreenMode", 1); // 1 = Pantalla Completa
+        PlayerPrefs.Save();
+    }
+}
 }
