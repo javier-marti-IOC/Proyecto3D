@@ -160,6 +160,19 @@ public class DistanceBT : Enemy
                                                         }
                                                     }
                                                 }
+                                                else
+                                                {
+                                                    if (cooldownHeavyAttack <= 0)
+                                                        {
+                                                            //transform.LookAt(player.transform);
+                                                            animator.SetInteger(Constants.state, 3);
+                                                        }
+                                                        else
+                                                        {
+                                                            //transform.LookAt(player.transform);
+                                                            animator.SetInteger(Constants.state, 2);
+                                                        }
+                                                }
                                             }
                                             else
                                             {
