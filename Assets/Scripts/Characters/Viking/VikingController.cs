@@ -48,6 +48,7 @@ public class VikingController : MonoBehaviour
     public int heavyAttackBasicDamage;
     public int heavyAttackMagicDamage;
     private GameManager gameManager;
+    public GameObject hitParticles;
 
     [Header("Booleans")]
     public bool OnAction;
@@ -109,6 +110,7 @@ public class VikingController : MonoBehaviour
         waterEffect.SetActive(false);
         fireEffect.SetActive(false);
         electricEffect.SetActive(false);
+        hitParticles.SetActive(false);
 
         //DPAD
         dpadAction = inputActions.FindAction("DPAD");
@@ -562,6 +564,8 @@ public class VikingController : MonoBehaviour
     {
         if (!isRolling)
         {
+            hitParticles.SetActive(false);
+            hitParticles.SetActive(true);
             AudioManager.Instance?.Play("HitMarker");
             healthPoints -= healthTaken[0] + healthTaken[1];
             vikingHealthHUD.SetHealth(healthPoints);
