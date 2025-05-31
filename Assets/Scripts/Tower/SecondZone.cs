@@ -62,11 +62,14 @@ public class SecondZone : MonoBehaviour
                 Debug.Log("---->>>> NO EXISTE EL COMPONENTE ENEMY");
             }
         }
-
-        if (other.CompareTag(Constants.player))
+        else if (other.CompareTag(Constants.player))
         {
             playerInSecondZoneRange = true;
             activateElementalManaDropSpawners();
+            foreach (GameObject e in tower.enemiesInSecondZoneRange)
+            {
+                e.GetComponent<Enemy>().PlayerDetected();
+            }
             // Debug.Log("---->>>>>>> PLAYER EN ZONA");
         }
     }
