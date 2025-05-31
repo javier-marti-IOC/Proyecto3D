@@ -36,7 +36,10 @@ public class VikingController : MonoBehaviour
     public Animator animator;
     public int healthPoints;
     public Collider swordCollider;
-    public GameObject slash;
+    public GameObject slashEarth;
+    public GameObject slashWater;
+    public GameObject slashFire;
+    public GameObject slashElectric;
     public Transform slashPosition;
     public Element activeElement;
     private bool isBasicAttack;
@@ -456,30 +459,31 @@ public class VikingController : MonoBehaviour
     }
     public void StartSlashAttack()
     {
-        if (activeElement != Element.None)
-        {
-            Instantiate(slash, swordCollider.transform.position, Quaternion.identity, null);
+            
             if (activeElement == Element.Earth)
             {
+                Instantiate(slashEarth, swordCollider.transform.position, Quaternion.identity, null);
                 earthMana -= 35;
                 elementsHUD.earthReduce(earthMana);
             }
             else if (activeElement == Element.Water)
             {
+                Instantiate(slashWater, swordCollider.transform.position, Quaternion.identity, null);
                 waterMana -= 35;
                 elementsHUD.waterReduce(waterMana);
             }
             else if (activeElement == Element.Fire)
             {
+                Instantiate(slashFire, swordCollider.transform.position, Quaternion.identity, null);
                 fireMana -= 35;
                 elementsHUD.fireReduce(fireMana);
             }
             else if (activeElement == Element.Electric)
             {
+                Instantiate(slashElectric, swordCollider.transform.position, Quaternion.identity, null);
                 electricMana -= 35;
                 elementsHUD.lightningReduce(electricMana);
             }
-        }
     }
     public void ColliderAttackDisable()
     {

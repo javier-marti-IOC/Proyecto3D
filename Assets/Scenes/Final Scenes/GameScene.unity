@@ -2196,6 +2196,7 @@ MonoBehaviour:
   compassBar: {fileID: 1719213227}
   fadeDuration: 1
   waitDuration: 4
+  vikingController: {fileID: 1231213283449546713}
   progressManager: {fileID: 0}
 --- !u!1001 &360144305
 PrefabInstance:
@@ -2822,11 +2823,6 @@ PrefabInstance:
       propertyPath: textHUD
       value: 
       objectReference: {fileID: 821832027}
-    - target: {fileID: 4066713531779466214, guid: aa3b8bad8e050294882c5089bc0d5164,
-        type: 3}
-      propertyPath: tower_id
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7149,6 +7145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD - Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3113810301715026023, guid: 82221e59fa1f74941988f1ca9297cbdd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -87
+      objectReference: {fileID: 0}
     - target: {fileID: 7362301008561160560, guid: 82221e59fa1f74941988f1ca9297cbdd,
         type: 3}
       propertyPath: m_Pivot.x
@@ -10751,6 +10752,18 @@ CapsuleCollider:
     type: 3}
   m_PrefabInstance: {fileID: 5805544570605361665}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1231213283449546713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+    type: 3}
+  m_PrefabInstance: {fileID: 5805544570605361665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57e3633691c8824c8a86d0a73bc2430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1305530537195990101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5416764599852656340, guid: 42515eda3a2a56a41a9a6dd74ab67c9f,
@@ -12476,6 +12489,12 @@ PrefabInstance:
       objectReference: {fileID: 1583203098}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
+      propertyPath: slashFire
+      value: 
+      objectReference: {fileID: 2643252314603458116, guid: b0e6c30244b04264087206a600859d07,
+        type: 3}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
       propertyPath: spawnSafe
       value: 
       objectReference: {fileID: 1594878477}
@@ -12486,9 +12505,27 @@ PrefabInstance:
       objectReference: {fileID: 1817539989}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
+      propertyPath: slashEarth
+      value: 
+      objectReference: {fileID: 2643252314603458116, guid: 4176118d2837dcd41ae77c1711350d7b,
+        type: 3}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: slashWater
+      value: 
+      objectReference: {fileID: 2643252314603458116, guid: 67a58f128c79a124296b66986bfa7e86,
+        type: 3}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
       propertyPath: elementsHUD
       value: 
       objectReference: {fileID: 821832024}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: slashElectric
+      value: 
+      objectReference: {fileID: 2643252314603458116, guid: 856cb2ec17ce1be4cb01813681b7534d,
+        type: 3}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: slashPosition
