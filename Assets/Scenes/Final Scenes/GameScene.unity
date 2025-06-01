@@ -8351,29 +8351,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7709895635516301418}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1809344882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5112853825155495967, guid: acf3421d74432b8448e4f0be10029697,
-    type: 3}
-  m_PrefabInstance: {fileID: 8455052802132300959}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1809344888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809344882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94bd1ce218b9084a83324dcd3f7a47a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesList:
-  - {fileID: 1578319020}
-  trailPrefab: {fileID: 5421717728291646129, guid: 695518e90f36a4143a09f1d8ff5e3978,
-    type: 3}
-  pulseInterval: 0.01
 --- !u!1 &1817539988
 GameObject:
   m_ObjectHideFlags: 0
@@ -14247,14 +14224,15 @@ PrefabInstance:
       propertyPath: colliderPermitido
       value: 
       objectReference: {fileID: 1231213283449546707}
+    - target: {fileID: 9222282036299151567, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: enemiesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1578319020}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5112853825155495967, guid: acf3421d74432b8448e4f0be10029697,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1809344888}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acf3421d74432b8448e4f0be10029697, type: 3}
 --- !u!1 &8455052802132300960 stripped
 GameObject:
