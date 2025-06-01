@@ -10,6 +10,7 @@ public class CameraFadeSwitcher : MonoBehaviour
     public GameObject compassBar;
     public float fadeDuration = 1f;
     public float waitDuration = 5f;
+    public VikingController vikingController;
 
     private enum FadeState
     {
@@ -57,6 +58,7 @@ public class CameraFadeSwitcher : MonoBehaviour
         switch (currentState)
         {
             case FadeState.FadingOutToSecond:
+                vikingController.OnAction = true;
                 HandleFade(FadeState.FadingInToSecond, () =>
                 {
                     if (compassBar != null)
@@ -81,6 +83,7 @@ public class CameraFadeSwitcher : MonoBehaviour
                 break;
 
             case FadeState.FadingOutToFirst:
+                vikingController.OnAction = false;
                 HandleFade(FadeState.FadingInToFirst, () =>
                 {
                     SwitchCameras(cameraTo, cameraFrom);

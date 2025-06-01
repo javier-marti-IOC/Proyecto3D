@@ -17,7 +17,6 @@ public class DistanceBT : Enemy
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
     private bool isPlayerInTeleportZone;
-    private bool isPlayerInHeavyAttackZone;
     public ParticleSystem teleportParticles;
 
     [Header("Chase")]
@@ -160,6 +159,19 @@ public class DistanceBT : Enemy
                                                         }
                                                     }
                                                 }
+                                                else
+                                                {
+                                                    if (cooldownHeavyAttack <= 0)
+                                                        {
+                                                            //transform.LookAt(player.transform);
+                                                            animator.SetInteger(Constants.state, 3);
+                                                        }
+                                                        else
+                                                        {
+                                                            //transform.LookAt(player.transform);
+                                                            animator.SetInteger(Constants.state, 2);
+                                                        }
+                                                }
                                             }
                                             else
                                             {
@@ -267,11 +279,11 @@ public class DistanceBT : Enemy
     {
         if (other.CompareTag(Constants.player))
         {
-            isPlayerInHeavyAttackZone = true;
             Debug.Log("Player in Heavy Attack 2Zone");
 
             if (canApplyHeavyDamage)
             {
+                Debug.Log("Player hit by heavy electric attack");
                 PlayerHeavyHitted();
                 canApplyHeavyDamage = false;
             }
@@ -281,7 +293,6 @@ public class DistanceBT : Enemy
     {
         if (other.CompareTag(Constants.player))
         {
-            isPlayerInHeavyAttackZone = false;
             Debug.Log("Player out Heavy Attack Zone");
         }
     }
@@ -400,7 +411,7 @@ public class DistanceBT : Enemy
 
         // Activar la zona
         Transform zone = heavyAttackZoneTrigger.transform;
-        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
+        zone.position = end + Vector3.up * 0.01f;
         zone.gameObject.SetActive(true);
 
         GameObject lightningFlash = new GameObject("LightningFlash");
@@ -419,13 +430,6 @@ public class DistanceBT : Enemy
         Invoke(nameof(EnableHeavyAttackParticles), 0.1001f);
 
         canApplyHeavyDamage = true;
-
-        if (isPlayerInHeavyAttackZone)
-        {
-            //Player rep pupa
-            Debug.Log("Player hit by heavy electric attack");
-            PlayerHeavyHitted();
-        }
 
         Invoke(nameof(DisableHeavyAttackZone), 1f);
     }
