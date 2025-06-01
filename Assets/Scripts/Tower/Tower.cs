@@ -257,7 +257,7 @@ public class Tower : MonoBehaviour
         }
         if (cameraFadeSwitcher != null)
         {
-            cameraFadeSwitcher.SwitchCameraWithFade();
+            cameraFadeSwitcher.InitiateCameraSwitcher();
         }
         else
         {

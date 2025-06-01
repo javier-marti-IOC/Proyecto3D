@@ -184,4 +184,9 @@ public class CameraFadeSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
+
+    public void InitiateCameraSwitcher()
+    {
+        Invoke("SwitchCameraWithFade", 1.5f);
+    }
 }
