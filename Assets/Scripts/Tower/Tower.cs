@@ -36,6 +36,8 @@ public class Tower : MonoBehaviour
     public Mesh[] newTrees;
     public GameObject[] corruptedClouds;
     public GameObject oppositeOrbSpawnGenerator;
+    public GameObject hitTowerParticleEffect;
+    public GameObject healTowerParticleEffect;
 
 
 
@@ -59,6 +61,9 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
+        hitTowerParticleEffect.SetActive(false);
+        healTowerParticleEffect.SetActive(false);
+
         this.life = max_life;
         if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
@@ -72,7 +77,7 @@ public class Tower : MonoBehaviour
             }
             Destroy(transform.parent.gameObject);
             if (oppositeOrbSpawnGenerator != null)
-            {    
+            {
                 if (oppositeOrbSpawnGenerator.activeSelf)
                 {
                     Destroy(oppositeOrbSpawnGenerator);
@@ -85,6 +90,8 @@ public class Tower : MonoBehaviour
             ChangeEnvironmentParticlesOff();
             secondZoneObject.SetActive(true);
         }
+        
+        towerHUD.UpdateHealth(life);
     }
 
     void Update()
@@ -270,6 +277,8 @@ public class Tower : MonoBehaviour
     {
         if (increase)
         {
+            healTowerParticleEffect.SetActive(false);
+            healTowerParticleEffect.SetActive(true);
             this.life += 20; // Incrementamos el valor de la vida
 
             if (this.life > max_life) // Si se pasa del limite de vida establecido, se rebaja hasta se vida maxima
@@ -424,6 +433,8 @@ public class Tower : MonoBehaviour
     public void HealthTaken(int damage)
     {
         life -= damage;
+        hitTowerParticleEffect.SetActive(false);
+        hitTowerParticleEffect.SetActive(true);
         towerHUD.UpdateHealth(life);
     }
 
