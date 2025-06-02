@@ -121,8 +121,8 @@ public class CompassBar : MonoBehaviour
         markerTransform.anchoredPosition = new Vector2(compassBarTransform.rect.width * compassPosition, 0);
 
         // Escaladt per distancia i limitar-lo entre 0.5 i 1
-        float distance = Vector3.Distance(cameraObjectTransform.position, worldPosition);
+        /*float distance = Vector3.Distance(cameraObjectTransform.position, worldPosition);
         float scaleFactor = Mathf.Clamp(1 / (distance * 0.02f), 0.5f, 1f); // Escala relativa entre 0.5x y 1x
-        markerTransform.localScale = new Vector3(0.05470015f * scaleFactor, 1f * scaleFactor, 1f);
+        markerTransform.localScale = new Vector3(0.03769078f * scaleFactor, 0.94343f * scaleFactor, 0.94343f);*/
     }
 }
