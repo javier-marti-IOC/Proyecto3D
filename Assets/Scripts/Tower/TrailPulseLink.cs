@@ -24,7 +24,7 @@ public class TrailPulseLink : MonoBehaviour
 
     void Update()
     {
-        if (tower.enemiesInSecondZoneRange == null || trailPrefab == null || tower.enemiesInSecondZoneRange.Count == 0)
+        if (tower == null || tower.enemiesInSecondZoneRange == null || trailPrefab == null || tower.enemiesInSecondZoneRange.Count == 0)
             return;
 
         timer += Time.deltaTime;
