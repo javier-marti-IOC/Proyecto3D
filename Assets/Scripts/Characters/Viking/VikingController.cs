@@ -146,7 +146,7 @@ public class VikingController : MonoBehaviour
         characterMaterial.SetColor("_EmissionColor", Color.black);
         rightHornMaterial.SetColor("_EmissionColor", Color.black);
         leftHornMaterial.SetColor("_EmissionColor", Color.black);
-        CollectMana(Element.None);
+        //CollectMana(Element.None);
     }
 
     // Update is called once per frame
@@ -414,7 +414,7 @@ public class VikingController : MonoBehaviour
         //ACtivar elemento nuevo
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
-            elementsHUD.earthReduce(earthMana);
+            elementsHUD.EarthStartBlink();
             rightHornMaterial.color = Color.green;
             leftHornMaterial.color = Color.green;
             rightHornMaterial.SetColor("_EmissionColor", shineEarthColor);
@@ -423,7 +423,7 @@ public class VikingController : MonoBehaviour
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
-            elementsHUD.waterReduce(waterMana);
+            elementsHUD.WaterStartBlink();
             rightHornMaterial.color = Color.blue;
             leftHornMaterial.color = Color.blue;
             rightHornMaterial.SetColor("_EmissionColor", shineWaterColor);
@@ -432,7 +432,7 @@ public class VikingController : MonoBehaviour
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
-            elementsHUD.fireReduce(fireMana);
+            elementsHUD.FireStartBlink();
             rightHornMaterial.color = Color.red;
             leftHornMaterial.color = Color.red;
             rightHornMaterial.SetColor("_EmissionColor", shineFireColor);
@@ -441,7 +441,7 @@ public class VikingController : MonoBehaviour
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
-            elementsHUD.lightningReduce(electricMana);
+            elementsHUD.LightningStartBlink();
             rightHornMaterial.color = Color.yellow;
             leftHornMaterial.color = Color.yellow;
             rightHornMaterial.SetColor("_EmissionColor", shineElectricColor);
@@ -461,7 +461,14 @@ public class VikingController : MonoBehaviour
                     elementsHUD.earthReduce(earthMana);
                     earthEffect.SetActive(false);
                 }
-                elementsHUD.EarthStopBlink();
+                if (isSpendingMana)
+                {
+                    elementsHUD.EarthStopBlink();
+                }
+                else
+                {
+                    elementsHUD.EarthStopBlinkPreSelected();
+                }
             }
             else if (activeElement == Element.Water)
             {
@@ -471,7 +478,14 @@ public class VikingController : MonoBehaviour
                     elementsHUD.waterReduce(waterMana);
                     waterEffect.SetActive(false);
                 }
-                elementsHUD.WaterStopBlink();
+                if (isSpendingMana)
+                {
+                    elementsHUD.WaterStopBlink();
+                }
+                else
+                {
+                    elementsHUD.WaterStopBlinkPreSelected();
+                }
             }
             else if (activeElement == Element.Fire)
             {
@@ -481,7 +495,14 @@ public class VikingController : MonoBehaviour
                     elementsHUD.fireReduce(fireMana);
                     fireEffect.SetActive(false);
                 }
-                elementsHUD.FireStopBlink();
+                if (isSpendingMana)
+                {
+                    elementsHUD.FireStopBlink();
+                }
+                else
+                {
+                    elementsHUD.FireStopBlinkPreSelected();
+                }
             }
             else if (activeElement == Element.Electric)
             {
@@ -491,7 +512,14 @@ public class VikingController : MonoBehaviour
                     elementsHUD.lightningReduce(electricMana);
                     electricEffect.SetActive(false);
                 }
-                elementsHUD.LightningStopBlink();
+                if (isSpendingMana)
+                {
+                    elementsHUD.LightningStopBlink();
+                }
+                else
+                {
+                    elementsHUD.LightningStopBlinkPreSelected();
+                }
             }
             activeElement = element;
             isSpendingMana = false;
