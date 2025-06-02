@@ -260,6 +260,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 14881005}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &21081810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1605569216601288124, guid: c6e65d6cf0dd7de46bea7b7befb46ac6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7069698162787538177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &25150392
 GameObject:
   m_ObjectHideFlags: 0
@@ -18899,6 +18905,11 @@ PrefabInstance:
       propertyPath: elementsHUD
       value: 
       objectReference: {fileID: 821832024}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: lowHealthEffect
+      value: 
+      objectReference: {fileID: 21081810}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: vikingHealthHUD
