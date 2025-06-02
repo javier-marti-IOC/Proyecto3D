@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e80098171827e5459333235b3d1927a, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
-  name: Mage
-  dialogue:
-  - Hola, que tal?
-  - Voy bien.
-  - Soy de Gelida.
-  - 
-  playerDialogue:
-  - No mucho.
-  - "De d\xF3nde eres?"
-  - "Adi\xF3s..."
+  npcName: 
+  lines:
+  - npcIntroText: "\xBFQu\xE9 quieres saber sobre la corrupci\xF3n del fuego?"
+    options:
+    - question: "\xBFQu\xE9 pas\xF3 aqu\xED?"
+      answer: "La corrupci\xF3n del fuego ha consumido todo lo que toca..."
+    - question: "\xBFC\xF3mo puedo restaurar la torre?"
+      answer: Debes usar la gema de agua para purificarla.
+  - npcIntroText: "\xBFQu\xE9 quieres saber sobre la corrupci\xF3n del agua?"
+    options:
+    - question: "\xBFQu\xE9 pas\xF3 aqu\xED?"
+      answer: "El agua est\xE1 envenenada por una magia oscura..."
+    - question: "\xBFC\xF3mo puedo restaurar la torre?"
+      answer: Busca la gema de tierra para limpiar la torre.
