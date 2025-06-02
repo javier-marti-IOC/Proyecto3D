@@ -49,6 +49,7 @@ public class VikingController : MonoBehaviour
     public int heavyAttackMagicDamage;
     private GameManager gameManager;
     public GameObject hitParticles;
+    public GameObject lowHealthEffect;
 
     [Header("Booleans")]
     public bool OnAction;
@@ -117,6 +118,7 @@ public class VikingController : MonoBehaviour
         fireEffect.SetActive(false);
         electricEffect.SetActive(false);
         hitParticles.SetActive(false);
+        lowHealthEffect.SetActive(false);
 
         //DPAD
         dpadAction = inputActions.FindAction("DPAD");
@@ -157,6 +159,14 @@ public class VikingController : MonoBehaviour
         else
         {
             healParticlesTimer -= Time.deltaTime;
+        }
+        if (healthPoints <= 20)
+        {
+            lowHealthEffect.SetActive(true);
+        }
+        else
+        {
+            lowHealthEffect.SetActive(false);
         }
         if (healthPoints <= 0)
         {
