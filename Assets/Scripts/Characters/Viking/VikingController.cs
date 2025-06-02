@@ -460,9 +460,6 @@ public class VikingController : MonoBehaviour
                     earthMana = 0;
                     elementsHUD.earthReduce(earthMana);
                     earthEffect.SetActive(false);
-                }
-                if (isSpendingMana)
-                {
                     elementsHUD.EarthStopBlink();
                 }
                 else
@@ -477,9 +474,6 @@ public class VikingController : MonoBehaviour
                     waterMana = 0;
                     elementsHUD.waterReduce(waterMana);
                     waterEffect.SetActive(false);
-                }
-                if (isSpendingMana)
-                {
                     elementsHUD.WaterStopBlink();
                 }
                 else
@@ -494,9 +488,6 @@ public class VikingController : MonoBehaviour
                     fireMana = 0;
                     elementsHUD.fireReduce(fireMana);
                     fireEffect.SetActive(false);
-                }
-                if (isSpendingMana)
-                {
                     elementsHUD.FireStopBlink();
                 }
                 else
@@ -511,9 +502,6 @@ public class VikingController : MonoBehaviour
                     electricMana = 0;
                     elementsHUD.lightningReduce(electricMana);
                     electricEffect.SetActive(false);
-                }
-                if (isSpendingMana)
-                {
                     elementsHUD.LightningStopBlink();
                 }
                 else
