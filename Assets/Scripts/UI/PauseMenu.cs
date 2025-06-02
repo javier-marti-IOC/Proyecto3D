@@ -141,7 +141,11 @@ public class PauseMenu : MonoBehaviour
     {
         hudPanel.SetActive(false);
         deathPanel.SetActive(true);
+        playerInput.actions.FindActionMap("Player").Disable();
+        playerInput.actions.FindActionMap("UI").Enable();
         selectedDeathButton.Select();
+        
+        
     }
 
     public void ToggleEndgame()
