@@ -8,36 +8,48 @@ public class CompassBar : MonoBehaviour
     public RectTransform compassBarTransform;
 
     //Símbols
+    [Header("SafeZone")]
     public RectTransform safeZoneMarkerTransform;
+
+    [Header("EarthTower")]
     public RectTransform earthTowerMarkerTransform;
     public RectTransform earthTowerDestroyedMarkerTransform;
+
+    [Header("WaterTower")]
     public RectTransform waterTowerMarkerTransform;
     public RectTransform waterTowerDestroyedMarkerTransform;
+
+    [Header("FireTower")]
     public RectTransform fireTowerMarkerTransform;
     public RectTransform fireTowerDestroyedMarkerTransform;
+
+    [Header("ElectricTower")]
     public RectTransform electricTowerMarkerTransform;
     public RectTransform electricTowerDestroyedMarkerTransform;
 
     //Punts cardinals
-    public RectTransform northMarkerTransform;
-    public RectTransform southMarkerTransform;
-    public RectTransform eastMarkerTransform;
-    public RectTransform westMarkerTransform;
+    // [Header("Cardinal Points")]
+    // public RectTransform northMarkerTransform;
+    // public RectTransform southMarkerTransform;
+    // public RectTransform eastMarkerTransform;
+    // public RectTransform westMarkerTransform;
 
     //MainCamera
     private Transform cameraObjectTransform;
 
     //Objectes fisics de l'escenari
+    [Header("Physic Object Scenary")]
     public Transform safeZoneObjectTransform;
     public Transform earthTowerObjectTransform;
     public Transform waterTowerObjectTransform;
     public Transform fireTowerObjectTransform;
     public Transform electricTowerObjectTransform;
 
-    public ProgressManager pm;
+    private ProgressManager pm;
     void Start()
     {
         cameraObjectTransform = Camera.main.transform;
+        pm = FindObjectOfType<ProgressManager>();
     }
     void Update()
     {
@@ -97,10 +109,10 @@ public class CompassBar : MonoBehaviour
         }
 
         //Posicions fixes dels punts cardinals
-        SetMarkerPosition(northMarkerTransform, cameraObjectTransform.position + Vector3.forward * 1000);
-        SetMarkerPosition(southMarkerTransform, cameraObjectTransform.position + Vector3.back * 1000);
-        SetMarkerPosition(eastMarkerTransform, cameraObjectTransform.position + Vector3.right * 1000);
-        SetMarkerPosition(westMarkerTransform, cameraObjectTransform.position + Vector3.left * 1000);
+        // SetMarkerPosition(northMarkerTransform, cameraObjectTransform.position + Vector3.forward * 1000);
+        // SetMarkerPosition(southMarkerTransform, cameraObjectTransform.position + Vector3.back * 1000);
+        // SetMarkerPosition(eastMarkerTransform, cameraObjectTransform.position + Vector3.right * 1000);
+        // SetMarkerPosition(westMarkerTransform, cameraObjectTransform.position + Vector3.left * 1000);
     }
 
     private void SetMarkerPosition(RectTransform markerTransform, Vector3 worldPosition)
