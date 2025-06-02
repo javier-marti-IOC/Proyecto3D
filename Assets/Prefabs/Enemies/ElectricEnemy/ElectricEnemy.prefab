@@ -16689,7 +16689,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 250
@@ -16714,8 +16714,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeElement: 4
-  normalSpeed: 3
-  slowedSpeed: 1.5
+  normalSpeed: 5
+  slowedSpeed: 3.5
   defaultAreaCost: 1
   oppositeAreaCost: 10
 --- !u!114 &4273873093411085185
@@ -16778,6 +16778,7 @@ MonoBehaviour:
   lookAtPlayers:
   - {fileID: 6828379924087982675}
   - {fileID: 1843922218122099571}
+  collidersDetectors: []
   hand: {fileID: 749880238909680935}
   electricAttackRange: 10
   impactPosition: {fileID: 0}
