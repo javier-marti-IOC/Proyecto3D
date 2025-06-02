@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,11 +13,19 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI npcNameText;
     public TextMeshProUGUI npcDialogueText;
 
-    public Button[] optionButtons; // Asigna en inspector los 3 botones fijos
-    public TextMeshProUGUI[] optionButtonTexts; // Asigna los textos hijos de los botones en inspector
+    public GameObject optionButtonPrefab; // Prefab del botón (debe tener Button + TextMeshProUGUI)
+    public Transform optionsContainer;     // Contenedor donde se instanciarán los botones
 
     private int currentLineIndex = 0;
     private bool waitingForAnswer = false;
+    private List<GameObject> instantiatedButtons = new List<GameObject>();
+
+    private PlayerInput playerInput;
+
+    void Start()
+    {
+        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -33,21 +43,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (!dialogueUI.activeSelf || waitingForAnswer)
-            return;
-
-        if (optionButtons.Length > 0 && Input.GetKeyDown(KeyCode.H))
-            SelectOption(0);
-        if (optionButtons.Length > 1 && Input.GetKeyDown(KeyCode.J))
-            SelectOption(1);
-        if (optionButtons.Length > 2 && Input.GetKeyDown(KeyCode.K))
-            SelectOption(2);
-    }
-
     void ShowDialogue()
     {
+        playerInput.actions.FindActionMap("Player").Disable();   
+        playerInput.actions.FindActionMap("UI").Enable();
         dialogueUI.SetActive(true);
         currentLineIndex = 0;
         waitingForAnswer = false;
@@ -58,6 +57,8 @@ public class DialogueManager : MonoBehaviour
     void HideDialogue()
     {
         dialogueUI.SetActive(false);
+        playerInput.actions.FindActionMap("UI").Disable();
+        playerInput.actions.FindActionMap("Player").Enable();   
         ClearOptions();
     }
 
@@ -70,39 +71,54 @@ public class DialogueManager : MonoBehaviour
         }
 
         waitingForAnswer = false;
+        ClearOptions();
 
         DialogueLine line = npc.lines[lineIndex];
         npcDialogueText.text = line.npcIntroText;
 
-        int optionsToShow = Mathf.Min(line.options.Length, optionButtons.Length);
+        bool first = true;
 
-        string[] keyHints = { "H", "J", "K" }; // letras para cada botón
-
-        for (int i = 0; i < optionButtons.Length; i++)
+        // Crear botones de opciones normales
+        foreach (DialogueOption option in line.options)
         {
-            optionButtons[i].gameObject.SetActive(i < optionsToShow);
+            GameObject buttonObj = Instantiate(optionButtonPrefab, optionsContainer);
+            Button button = buttonObj.GetComponent<Button>();
+            TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
 
-            if (i < optionsToShow)
+            buttonText.text = option.question;
+
+            int optionIndex = instantiatedButtons.Count;
+            button.onClick.AddListener(() => SelectOption(optionIndex));
+
+            instantiatedButtons.Add(buttonObj);
+
+            if (first)
             {
-                int optionIndex = i;
-
-                optionButtons[i].onClick.RemoveAllListeners();
-
-                // Añadimos la letra + ": " antes de la pregunta
-                optionButtonTexts[i].text = $"({keyHints[i]}) {line.options[i].question}";
-
-                optionButtons[i].onClick.AddListener(() => SelectOption(optionIndex));
+                first = false;
+                EventSystem.current.SetSelectedGameObject(buttonObj);
             }
         }
+
+        // Añadir botón adicional "Cerrar"
+        GameObject closeButtonObj = Instantiate(optionButtonPrefab, optionsContainer);
+        Button closeButton = closeButtonObj.GetComponent<Button>();
+        TextMeshProUGUI closeText = closeButtonObj.GetComponentInChildren<TextMeshProUGUI>();
+
+        closeText.text = "Cerrar"; // Puedes cambiar el texto aquí
+
+        closeButton.onClick.AddListener(() => HideDialogue());
+
+        instantiatedButtons.Add(closeButtonObj);
     }
 
     void ClearOptions()
     {
-        for (int i = 0; i < optionButtons.Length; i++)
+        foreach (GameObject button in instantiatedButtons)
         {
-            optionButtons[i].onClick.RemoveAllListeners();
-            optionButtons[i].gameObject.SetActive(false);
+            Destroy(button);
         }
+
+        instantiatedButtons.Clear();
     }
 
     void SelectOption(int optionIndex)
@@ -114,17 +130,15 @@ public class DialogueManager : MonoBehaviour
         ClearOptions();
 
         DialogueLine line = npc.lines[currentLineIndex];
-
         string answer = line.options[optionIndex].answer;
 
         npcDialogueText.text = answer;
 
-        StartCoroutine(ReturnToOptionsAfterDelay(3f));
+        Invoke(nameof(ResetDialogueOptions), 3f);
     }
 
-    IEnumerator ReturnToOptionsAfterDelay(float delay)
+    void ResetDialogueOptions()
     {
-        yield return new WaitForSeconds(delay);
         waitingForAnswer = false;
         DisplayLine(currentLineIndex);
     }
