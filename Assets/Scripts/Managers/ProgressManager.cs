@@ -147,7 +147,7 @@ public class ProgressManager : MonoBehaviour
             Debug.LogError("ProgressData or towerActiveElements are null, cannot save.");
         }
         if (saveGamePanel != null)
-        {    
+        {
             saveGamePanel.ShowPanel();
         }
     }
@@ -245,7 +245,7 @@ public class ProgressManager : MonoBehaviour
                 {
                     //pauseMenu.ToggleEndgame();
                 }
-            }  
+            }
         }
     }
     public void musicMenu()
@@ -254,9 +254,26 @@ public class ProgressManager : MonoBehaviour
         {
             AudioManager.Instance?.Play("menuMusicHealed");
         }
-            else if(SceneManager.GetActiveScene().buildIndex == 0)
+        else if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             AudioManager.Instance?.Play("menuMusicCorrupted");
         }
+    }
+
+    public bool IsEarthTowerDestroyed()
+    {
+        return earthTowerDestroyed;
+    }
+    public bool IsWaterTowerDestroyed()
+    {
+        return waterTowerDestroyed;
+    }
+    public bool IsFireTowerDestroyed()
+    {
+        return fireTowerDestroyed;
+    }
+    public bool IsElectricTowerDestroyed()
+    {
+        return electricTowerDestroyed;
     }
 }

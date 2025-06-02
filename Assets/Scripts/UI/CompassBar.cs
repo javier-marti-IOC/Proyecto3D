@@ -10,10 +10,14 @@ public class CompassBar : MonoBehaviour
     //Símbols
     public RectTransform safeZoneMarkerTransform;
     public RectTransform earthTowerMarkerTransform;
+    public RectTransform earthTowerDestroyedMarkerTransform;
     public RectTransform waterTowerMarkerTransform;
+    public RectTransform waterTowerDestroyedMarkerTransform;
     public RectTransform fireTowerMarkerTransform;
+    public RectTransform fireTowerDestroyedMarkerTransform;
     public RectTransform electricTowerMarkerTransform;
-    
+    public RectTransform electricTowerDestroyedMarkerTransform;
+
     //Punts cardinals
     public RectTransform northMarkerTransform;
     public RectTransform southMarkerTransform;
@@ -29,6 +33,8 @@ public class CompassBar : MonoBehaviour
     public Transform waterTowerObjectTransform;
     public Transform fireTowerObjectTransform;
     public Transform electricTowerObjectTransform;
+
+    public ProgressManager pm;
     void Start()
     {
         cameraObjectTransform = Camera.main.transform;
@@ -37,10 +43,58 @@ public class CompassBar : MonoBehaviour
     {
         //Posicions dels marcadors a la barra respecte els objectes fisics
         SetMarkerPosition(safeZoneMarkerTransform, safeZoneObjectTransform.position);
-        SetMarkerPosition(earthTowerMarkerTransform, earthTowerObjectTransform.position);
-        SetMarkerPosition(waterTowerMarkerTransform, waterTowerObjectTransform.position);
-        SetMarkerPosition(fireTowerMarkerTransform, fireTowerObjectTransform.position);
-        SetMarkerPosition(electricTowerMarkerTransform, electricTowerObjectTransform.position);
+
+        if (pm.IsEarthTowerDestroyed())
+        {
+            earthTowerDestroyedMarkerTransform.gameObject.SetActive(true);
+            earthTowerMarkerTransform.gameObject.SetActive(false);
+            SetMarkerPosition(earthTowerDestroyedMarkerTransform, earthTowerObjectTransform.position);
+        }
+        else if (!pm.IsEarthTowerDestroyed())
+        {
+            earthTowerDestroyedMarkerTransform.gameObject.SetActive(false);
+            earthTowerMarkerTransform.gameObject.SetActive(true);
+            SetMarkerPosition(earthTowerMarkerTransform, earthTowerObjectTransform.position);
+        }
+
+        if (pm.IsWaterTowerDestroyed())
+        {
+            waterTowerDestroyedMarkerTransform.gameObject.SetActive(true);
+            waterTowerMarkerTransform.gameObject.SetActive(false);
+            SetMarkerPosition(waterTowerDestroyedMarkerTransform, waterTowerObjectTransform.position);
+        }
+        else if (!pm.IsWaterTowerDestroyed())
+        {
+            waterTowerDestroyedMarkerTransform.gameObject.SetActive(false);
+            waterTowerMarkerTransform.gameObject.SetActive(true);
+            SetMarkerPosition(waterTowerMarkerTransform, waterTowerObjectTransform.position);
+        }
+
+        if (pm.IsFireTowerDestroyed())
+        {
+            fireTowerDestroyedMarkerTransform.gameObject.SetActive(true);
+            fireTowerMarkerTransform.gameObject.SetActive(false);
+            SetMarkerPosition(fireTowerDestroyedMarkerTransform, fireTowerObjectTransform.position);
+        }
+        else if (!pm.IsFireTowerDestroyed())
+        {
+            fireTowerDestroyedMarkerTransform.gameObject.SetActive(false);
+            fireTowerMarkerTransform.gameObject.SetActive(true);
+            SetMarkerPosition(fireTowerMarkerTransform, fireTowerObjectTransform.position);
+        }
+
+        if (pm.IsElectricTowerDestroyed())
+        {
+            electricTowerDestroyedMarkerTransform.gameObject.SetActive(true);
+            electricTowerMarkerTransform.gameObject.SetActive(false);
+            SetMarkerPosition(electricTowerDestroyedMarkerTransform, electricTowerObjectTransform.position);
+        }
+        else if (!pm.IsElectricTowerDestroyed())
+        {
+            electricTowerDestroyedMarkerTransform.gameObject.SetActive(false);
+            electricTowerMarkerTransform.gameObject.SetActive(true);
+            SetMarkerPosition(electricTowerMarkerTransform, electricTowerObjectTransform.position);
+        }
 
         //Posicions fixes dels punts cardinals
         SetMarkerPosition(northMarkerTransform, cameraObjectTransform.position + Vector3.forward * 1000);
