@@ -8,36 +8,48 @@ public class CompassBar : MonoBehaviour
     public RectTransform compassBarTransform;
 
     //Símbols
+    [Header("SafeZone")]
     public RectTransform safeZoneMarkerTransform;
+
+    [Header("EarthTower")]
     public RectTransform earthTowerMarkerTransform;
     public RectTransform earthTowerDestroyedMarkerTransform;
+
+    [Header("WaterTower")]
     public RectTransform waterTowerMarkerTransform;
     public RectTransform waterTowerDestroyedMarkerTransform;
+
+    [Header("FireTower")]
     public RectTransform fireTowerMarkerTransform;
     public RectTransform fireTowerDestroyedMarkerTransform;
+
+    [Header("ElectricTower")]
     public RectTransform electricTowerMarkerTransform;
     public RectTransform electricTowerDestroyedMarkerTransform;
 
     //Punts cardinals
-    public RectTransform northMarkerTransform;
-    public RectTransform southMarkerTransform;
-    public RectTransform eastMarkerTransform;
-    public RectTransform westMarkerTransform;
+    // [Header("Cardinal Points")]
+    // public RectTransform northMarkerTransform;
+    // public RectTransform southMarkerTransform;
+    // public RectTransform eastMarkerTransform;
+    // public RectTransform westMarkerTransform;
 
     //MainCamera
     private Transform cameraObjectTransform;
 
     //Objectes fisics de l'escenari
+    [Header("Physic Object Scenary")]
     public Transform safeZoneObjectTransform;
     public Transform earthTowerObjectTransform;
     public Transform waterTowerObjectTransform;
     public Transform fireTowerObjectTransform;
     public Transform electricTowerObjectTransform;
 
-    public ProgressManager pm;
+    private ProgressManager pm;
     void Start()
     {
         cameraObjectTransform = Camera.main.transform;
+        pm = FindObjectOfType<ProgressManager>();
     }
     void Update()
     {
@@ -97,10 +109,10 @@ public class CompassBar : MonoBehaviour
         }
 
         //Posicions fixes dels punts cardinals
-        SetMarkerPosition(northMarkerTransform, cameraObjectTransform.position + Vector3.forward * 1000);
-        SetMarkerPosition(southMarkerTransform, cameraObjectTransform.position + Vector3.back * 1000);
-        SetMarkerPosition(eastMarkerTransform, cameraObjectTransform.position + Vector3.right * 1000);
-        SetMarkerPosition(westMarkerTransform, cameraObjectTransform.position + Vector3.left * 1000);
+        // SetMarkerPosition(northMarkerTransform, cameraObjectTransform.position + Vector3.forward * 1000);
+        // SetMarkerPosition(southMarkerTransform, cameraObjectTransform.position + Vector3.back * 1000);
+        // SetMarkerPosition(eastMarkerTransform, cameraObjectTransform.position + Vector3.right * 1000);
+        // SetMarkerPosition(westMarkerTransform, cameraObjectTransform.position + Vector3.left * 1000);
     }
 
     private void SetMarkerPosition(RectTransform markerTransform, Vector3 worldPosition)
@@ -121,8 +133,8 @@ public class CompassBar : MonoBehaviour
         markerTransform.anchoredPosition = new Vector2(compassBarTransform.rect.width * compassPosition, 0);
 
         // Escaladt per distancia i limitar-lo entre 0.5 i 1
-        float distance = Vector3.Distance(cameraObjectTransform.position, worldPosition);
+        /*float distance = Vector3.Distance(cameraObjectTransform.position, worldPosition);
         float scaleFactor = Mathf.Clamp(1 / (distance * 0.02f), 0.5f, 1f); // Escala relativa entre 0.5x y 1x
-        markerTransform.localScale = new Vector3(0.05470015f * scaleFactor, 1f * scaleFactor, 1f);
+        markerTransform.localScale = new Vector3(0.03769078f * scaleFactor, 0.94343f * scaleFactor, 0.94343f);*/
     }
 }

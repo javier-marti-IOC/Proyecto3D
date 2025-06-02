@@ -214,12 +214,13 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log("Basic damage taken: " + damageTaken[0] + " Elemental damage taken: " + damageTaken[1]);
         if (damageTaken[0] > 0)
         {
+            hitNumberBasic.SetActive(false);
             hitNumberBasic.SetActive(true);
             hitNumberBasic.GetComponent<TextMeshProUGUI>().text = damageTaken[0] + "";
-            Invoke(nameof(HideHitNumberBasic), 0.98f);
         }
         if (damageTaken[1] > 0)
         {
+            hitNumberElemental.SetActive(false);
             hitNumberElemental.SetActive(true);
             hitNumberElemental.GetComponent<TextMeshProUGUI>().text = damageTaken[1] + "";
             if (element == Element.Earth)
@@ -238,20 +239,12 @@ public abstract class Enemy : MonoBehaviour
             {
                 hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.yellow;
             }
-            Invoke(nameof(HideHitNumberElemental), 0.98f);
         }
         healthPoints -= damageTaken[0] + damageTaken[1];
         enemyHUD.UpdateHealth(healthPoints);
         PlayerDetected();
     }
-    private void HideHitNumberBasic()
-    {
-        hitNumberBasic.SetActive(false);
-    }
-    private void HideHitNumberElemental()
-    {
-        hitNumberElemental.SetActive(false);
-    }
+
     public virtual void Dying(bool drops)
     {
         if (activeElement == Element.Electric && particulas1 != null)
