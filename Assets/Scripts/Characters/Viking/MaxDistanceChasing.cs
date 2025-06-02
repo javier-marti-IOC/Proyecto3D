@@ -14,7 +14,7 @@ public class MaxDistanceChasing : MonoBehaviour
             }
             else
             {
-                other.gameObject.GetComponent<Enemy>().PlayerDetected();
+                other.gameObject.GetComponent<Enemy>().StopChasing();
             }
         }
     }
