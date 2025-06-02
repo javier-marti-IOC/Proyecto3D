@@ -124,6 +124,7 @@ public class PauseMenu : MonoBehaviour
     {
         playerInput.actions.FindActionMap("UI").Disable();
         playerInput.actions.FindActionMap("Player").Enable();
+        volumeSettings.SetMute(false);
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
