@@ -72,25 +72,31 @@ public class VikingController : MonoBehaviour
 
     [Header("Shine")]
     public Renderer characterRenderer;
-/*     private Color shineNoneColor = Color.white;
-    private Color shineEarthColor = Color.green;
-    private Color shineWaterColor = Color.blue;
-    private Color shineFireColor = Color.red;
-    private Color shineElectricColor = Color.yellow;
-    private Color shineHealColor = Color.magenta; */
-    private Color shineNoneColor = new Color(0.735849f,0.6699003f,0.726575f);
+    /*     private Color shineNoneColor = Color.white;
+        private Color shineEarthColor = Color.green;
+        private Color shineWaterColor = Color.blue;
+        private Color shineFireColor = Color.red;
+        private Color shineElectricColor = Color.yellow;
+        private Color shineHealColor = Color.magenta; */
+    private Color shineNoneColor = new Color(0.735849f, 0.6699003f, 0.726575f);
     private Color shineEarthColor = new Color(0.4196078f, 0.6745098f, 0.4f);
     private Color shineWaterColor = new Color(0.2431373f, 0.4862745f, 0.6980392f);
     private Color shineFireColor = new Color(0.7490196f, 0.2666667f, 0.282353f);
     private Color shineElectricColor = new Color(0.8745098f, 0.8431373f, 0.3921569f);
-    private Color shineHealColor = new Color(0.4f, 0, 0.4319372f);
+    private Color shineHealColor = new Color(1f, 0.5424528f, 0.9946172f);
+    private Color baseColor;
     public float shineDuration;
     private int shineElement;
     private Material characterMaterial;
+    private Material rightHornMaterial;
+    private Material leftHornMaterial;
     private bool isShiningUp = false;
     private bool isShiningDown = false;
     private float shineTimer = 0;
 
+    [Header("Horns")]
+    public Renderer rightHorn;
+    public Renderer leftHorn;
     // Start is called before the first frame update
     void Start()
     {
@@ -127,9 +133,17 @@ public class VikingController : MonoBehaviour
 
 
         characterMaterial = characterRenderer.material;
+        rightHornMaterial = rightHorn.material;
+        leftHornMaterial = leftHorn.material;
+        baseColor = characterMaterial.color;
+        rightHornMaterial.color = Color.white;
+        leftHornMaterial.color = Color.white;
         characterMaterial.EnableKeyword("_EMISSION");
+        rightHornMaterial.EnableKeyword("_EMISSION");
+        leftHornMaterial.EnableKeyword("_EMISSION");
         characterMaterial.SetColor("_EmissionColor", Color.black);
-
+        rightHornMaterial.SetColor("_EmissionColor", Color.black);
+        leftHornMaterial.SetColor("_EmissionColor", Color.black);
         CollectMana(Element.None);
     }
 
@@ -206,6 +220,10 @@ public class VikingController : MonoBehaviour
                         earthMana = 0;
                         earthEffect.SetActive(false);
                         isSpendingMana = false;
+                        rightHornMaterial.color = Color.white;
+                        leftHornMaterial.color = Color.white;
+                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
+                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
                     }
                 }
                 else if (activeElement == Element.Water)
@@ -220,6 +238,10 @@ public class VikingController : MonoBehaviour
                         waterMana = 0;
                         waterEffect.SetActive(false);
                         isSpendingMana = false;
+                        rightHornMaterial.color = Color.white;
+                        leftHornMaterial.color = Color.white;
+                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
+                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
                     }
                 }
                 else if (activeElement == Element.Fire)
@@ -234,6 +256,10 @@ public class VikingController : MonoBehaviour
                         fireMana = 0;
                         fireEffect.SetActive(false);
                         isSpendingMana = false;
+                        rightHornMaterial.color = Color.white;
+                        leftHornMaterial.color = Color.white;
+                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
+                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
                     }
                 }
                 else if (activeElement == Element.Electric)
@@ -248,6 +274,10 @@ public class VikingController : MonoBehaviour
                         electricMana = 0;
                         electricEffect.SetActive(false);
                         isSpendingMana = false;
+                        rightHornMaterial.color = Color.white;
+                        leftHornMaterial.color = Color.white;
+                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
+                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
                     }
                 }
             }
@@ -259,26 +289,32 @@ public class VikingController : MonoBehaviour
             if (shineElement == 0)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineNoneColor, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.white, t));
             }
             else if (shineElement == 1)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineEarthColor, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.white, t));
             }
             else if (shineElement == 2)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineWaterColor, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.blue, t));
             }
             else if (shineElement == 3)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineFireColor, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.red, t));
             }
             else if (shineElement == 4)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineElectricColor, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.yellow, t));
             }
             else if (shineElement == 5)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineHealColor, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.magenta, t));
             }
             if (t >= 1)
             {
@@ -287,26 +323,32 @@ public class VikingController : MonoBehaviour
                 if (shineElement == 0)
                 {
                     characterMaterial.SetColor("_EmissionColor", shineNoneColor);
+                    characterMaterial.SetColor("_BaseColor", Color.white);
                 }
                 else if (shineElement == 1)
                 {
                     characterMaterial.SetColor("_EmissionColor", shineEarthColor);
+                    characterMaterial.SetColor("_BaseColor", Color.green);
                 }
                 else if (shineElement == 2)
                 {
                     characterMaterial.SetColor("_EmissionColor", shineWaterColor);
+                    characterMaterial.SetColor("_BaseColor", Color.blue);
                 }
                 else if (shineElement == 3)
                 {
                     characterMaterial.SetColor("_EmissionColor", shineFireColor);
+                    characterMaterial.SetColor("_BaseColor", Color.red);
                 }
                 else if (shineElement == 4)
                 {
                     characterMaterial.SetColor("_EmissionColor", shineElectricColor);
+                    characterMaterial.SetColor("_BaseColor", Color.yellow);
                 }
                 else if (shineElement == 5)
                 {
                     characterMaterial.SetColor("_EmissionColor", shineHealColor);
+                    characterMaterial.SetColor("_BaseColor", Color.magenta);
                 }
                 shineTimer = 0;
             }
@@ -318,32 +360,39 @@ public class VikingController : MonoBehaviour
             if (shineElement == 0)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineNoneColor, Color.black, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.white, baseColor, t));
             }
             else if (shineElement == 1)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineEarthColor, Color.black, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.green, baseColor, t));
             }
             else if (shineElement == 2)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineWaterColor, Color.black, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.blue, baseColor, t));
             }
             else if (shineElement == 3)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineFireColor, Color.black, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.red, baseColor, t));
             }
             else if (shineElement == 4)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineElectricColor, Color.black, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.yellow, baseColor, t));
             }
             else if (shineElement == 5)
             {
                 characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineHealColor, Color.black, t));
+                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.magenta, baseColor, t));
             }
 
             if (t >= 1)
             {
                 isShiningDown = false;
                 characterMaterial.SetColor("_EmissionColor", Color.black);
+                characterMaterial.SetColor("_BaseColor", baseColor);
             }
             shineElement = -1;
         }
@@ -356,21 +405,38 @@ public class VikingController : MonoBehaviour
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
             elementsHUD.earthReduce(earthMana);
+            rightHornMaterial.color = Color.green;
+            leftHornMaterial.color = Color.green;
+            rightHornMaterial.SetColor("_EmissionColor", shineEarthColor);
+            leftHornMaterial.SetColor("_EmissionColor", shineEarthColor);
             changed = true;
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
             elementsHUD.waterReduce(waterMana);
+            rightHornMaterial.color = Color.blue;
+            leftHornMaterial.color = Color.blue;
+            rightHornMaterial.SetColor("_EmissionColor", shineWaterColor);
+            leftHornMaterial.SetColor("_EmissionColor", shineWaterColor);
             changed = true;
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
             elementsHUD.fireReduce(fireMana);
+            rightHornMaterial.color = Color.red;
+            leftHornMaterial.color = Color.red;
+            rightHornMaterial.SetColor("_EmissionColor", shineFireColor);
+            leftHornMaterial.SetColor("_EmissionColor", shineFireColor);
             changed = true;
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
             elementsHUD.lightningReduce(electricMana);
+            rightHornMaterial.color = Color.yellow;
+            leftHornMaterial.color = Color.yellow;
+            rightHornMaterial.SetColor("_EmissionColor", shineElectricColor);
+            leftHornMaterial.SetColor("_EmissionColor", shineElectricColor);
+
             changed = true;
         }
         //Desactivar elemento antiguo
@@ -461,31 +527,31 @@ public class VikingController : MonoBehaviour
     }
     public void StartSlashAttack()
     {
-            
-            if (activeElement == Element.Earth)
-            {
-                Instantiate(slashEarth, swordCollider.transform.position, Quaternion.identity, null);
-                earthMana -= 35;
-                elementsHUD.earthReduce(earthMana);
-            }
-            else if (activeElement == Element.Water)
-            {
-                Instantiate(slashWater, swordCollider.transform.position, Quaternion.identity, null);
-                waterMana -= 35;
-                elementsHUD.waterReduce(waterMana);
-            }
-            else if (activeElement == Element.Fire)
-            {
-                Instantiate(slashFire, swordCollider.transform.position, Quaternion.identity, null);
-                fireMana -= 35;
-                elementsHUD.fireReduce(fireMana);
-            }
-            else if (activeElement == Element.Electric)
-            {
-                Instantiate(slashElectric, swordCollider.transform.position, Quaternion.identity, null);
-                electricMana -= 35;
-                elementsHUD.lightningReduce(electricMana);
-            }
+
+        if (activeElement == Element.Earth)
+        {
+            Instantiate(slashEarth, swordCollider.transform.position, Quaternion.identity, null);
+            earthMana -= 35;
+            elementsHUD.earthReduce(earthMana);
+        }
+        else if (activeElement == Element.Water)
+        {
+            Instantiate(slashWater, swordCollider.transform.position, Quaternion.identity, null);
+            waterMana -= 35;
+            elementsHUD.waterReduce(waterMana);
+        }
+        else if (activeElement == Element.Fire)
+        {
+            Instantiate(slashFire, swordCollider.transform.position, Quaternion.identity, null);
+            fireMana -= 35;
+            elementsHUD.fireReduce(fireMana);
+        }
+        else if (activeElement == Element.Electric)
+        {
+            Instantiate(slashElectric, swordCollider.transform.position, Quaternion.identity, null);
+            electricMana -= 35;
+            elementsHUD.lightningReduce(electricMana);
+        }
     }
     public void ColliderAttackDisable()
     {
