@@ -23,7 +23,9 @@ public class OrbDropSpawner : MonoBehaviour
 
     [Header("Auto Spawn")]
     public bool autoSpawn = true;
-    public float spawnInterval = 5f; // <-- Cada 5 segundos
+    public float spawnIntervalMinInclusive;
+    public float spawnIntervalMaxExclusive;
+    private float spawnInterval = 5f; // <-- Cada 5 segundos
     private float timer = 0f;
 
     void Update()
@@ -35,7 +37,8 @@ public class OrbDropSpawner : MonoBehaviour
         if (timer >= spawnInterval)
         {
             SpawnOrb();
-            timer = 0f;
+            spawnInterval = Random.Range(spawnIntervalMinInclusive, spawnIntervalMaxExclusive);
+            timer = 0;
         }
     }
 
