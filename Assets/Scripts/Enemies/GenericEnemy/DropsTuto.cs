@@ -26,7 +26,7 @@ public class DropsTuto : MonoBehaviour
         if (other.CompareTag(Constants.player))
         {
             other.GetComponent<VikingController>().CollectMana(element);
-            gameManager.DPADHelp();
+            gameManager.EnterDPADHelp();
             Destroy(gameObject);
         }
     }

@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //BoxInfo
     public InfoPanelHUD infoPanelHUD;
-    private bool firstTimeDPADHelp;
+    private bool firstTimeEnterDPADHelp;
+    private bool firstTimeExitDPADHelp;
+    private bool isTutorial;
+    private bool firstTimeSlashAttackEnterHelp;
+    private bool firstTimeSlashAttackExitHelp;
+    private bool firstTimeEnterRollHelp;
+    private bool firstTimeExitRollHelp;
+    private bool firstTimeEnterAttackHelp;
+    private bool firstTimeExitAttackHelp;
     // Enemies Prefabs
     public GameObject EarthEnemy;
     public GameObject WaterEnemy;
@@ -53,13 +62,13 @@ public class GameManager : MonoBehaviour
         switch (ElementInteraction(dealerElement, takerElement))
         {
             case 1:
-                return new int[]{(int)basicDamageRange,(int)(elementDamageRange * 2f)};
+                return new int[] { (int)basicDamageRange, (int)(elementDamageRange * 2f) };
             case 0:
-                return new int[]{(int)basicDamageRange,(int)elementDamageRange};
+                return new int[] { (int)basicDamageRange, (int)elementDamageRange };
             case -1:
-                return new int[]{(int)basicDamageRange,(int)(elementDamageRange * 0.5f)};
+                return new int[] { (int)basicDamageRange, (int)(elementDamageRange * 0.5f) };
         }
-        return new int[]{0,0};
+        return new int[] { 0, 0 };
     }
     public int ElementInteraction(Element element1, Element element2)
     {
@@ -255,12 +264,90 @@ public class GameManager : MonoBehaviour
         }
         EnemiesGenerator(Element.None);
     }
-    public void DPADHelp()
+
+
+    public void EnterRollHelp()
     {
-        if (!firstTimeDPADHelp)
+        if (!firstTimeEnterRollHelp)
         {
-            firstTimeDPADHelp = true;
-            infoPanelHUD.ShowText("Utilitza la creueta per canviar l'element.");
+            firstTimeEnterRollHelp = true;
+            isTutorial = true;
+            infoPanelHUD.EnterText("Utilitza 'B' per rodar o esquivar.");
         }
     }
+
+    public void ExitRollHelp()
+    {
+        if (!firstTimeExitRollHelp && firstTimeEnterRollHelp && isTutorial)
+        {
+            firstTimeExitRollHelp = true;
+            infoPanelHUD.HideText();
+        }
+    }
+
+    public void EnterAttackHelp()
+    {
+        if (!firstTimeExitRollHelp && isTutorial)
+        {
+            firstTimeExitRollHelp = true;
+            infoPanelHUD.HideText();
+        }
+        if (!firstTimeEnterAttackHelp && isTutorial)
+        {
+            firstTimeEnterAttackHelp = true;
+            infoPanelHUD.EnterText("Utilitza 'RB' o 'RT' per Atacar a un enemic.");
+        }
+    }
+
+    public void ExitAttackHelp()
+    {
+        if (!firstTimeExitAttackHelp && firstTimeEnterAttackHelp && isTutorial)
+        {
+            firstTimeExitAttackHelp = true;
+            infoPanelHUD.HideText();
+        }
+    }
+
+
+    public void EnterDPADHelp()
+    {
+        if (!firstTimeExitAttackHelp && isTutorial)
+        {
+            firstTimeExitAttackHelp = true;
+            infoPanelHUD.HideText();
+        }
+        if (!firstTimeEnterDPADHelp && isTutorial)
+        {
+            firstTimeEnterDPADHelp = true;
+            infoPanelHUD.EnterText("Utilitza la creueta per canviar l'element.");
+        }
+    }
+
+    public void ExitDPADHelp()
+    {
+        if (!firstTimeExitDPADHelp && isTutorial && firstTimeEnterDPADHelp)
+        {
+            firstTimeExitDPADHelp = true;
+            infoPanelHUD.HideText();
+        }
+    }
+
+    public void EnterSlashAttackHelp()
+    {
+        if (!firstTimeSlashAttackEnterHelp && isTutorial && firstTimeExitDPADHelp)
+        {
+            firstTimeSlashAttackEnterHelp = true;
+            infoPanelHUD.EnterText("Utilitza 'RT' per utilitzar l'atac fort i vençer l'altar.");
+        }
+    }
+
+    public void ExitSlashAttackHelp()
+    {
+        if (!firstTimeSlashAttackExitHelp && isTutorial && firstTimeSlashAttackEnterHelp)
+        {
+            firstTimeSlashAttackExitHelp = true;
+            infoPanelHUD.HideText();
+        }
+    }
+    
 }

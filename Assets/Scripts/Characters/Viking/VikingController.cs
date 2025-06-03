@@ -452,6 +452,8 @@ public class VikingController : MonoBehaviour
         //Desactivar elemento antiguo
         if (changed)
         {
+            gameManager.ExitDPADHelp();
+            gameManager.EnterSlashAttackHelp();
             AudioManager.Instance?.Play("ActivateElement");
             if (activeElement == Element.Earth)
             {
@@ -517,6 +519,7 @@ public class VikingController : MonoBehaviour
     //Roll
     public void Roll()
     {
+        gameManager.ExitRollHelp();
         animator.SetTrigger("Roll");
     }
     public void InmunityEnable()
@@ -533,12 +536,15 @@ public class VikingController : MonoBehaviour
     //Combat
     public void BasicAttack()
     {
+        gameManager.ExitAttackHelp();
         animator.SetTrigger("SoftAttack");
         OnAction = true;
         isBasicAttack = true;
     }
     public void HeavyAttack()
     {
+        gameManager.ExitSlashAttackHelp();
+        gameManager.ExitAttackHelp();
         animator.SetTrigger("HardAttack");
         OnAction = true;
         isBasicAttack = false;

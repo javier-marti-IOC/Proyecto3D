@@ -215,6 +215,7 @@ public class Tower : MonoBehaviour
 
     public void DestroyTower()
     {
+        gameManager.ExitSlashAttackHelp();
         for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
         {
             enemiesInSecondZoneRange[i].GetComponent<Enemy>().Dying(activeElement != Element.None);

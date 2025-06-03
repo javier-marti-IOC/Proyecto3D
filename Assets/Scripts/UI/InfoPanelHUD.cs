@@ -15,4 +15,16 @@ public class InfoPanelHUD : MonoBehaviour
         animator.Play("Complete");
         panelText.text = newText;
     }
+
+    public void EnterText(string newText)
+    {
+        Debug.Log("Enter BoxInfo");
+        animator.SetTrigger("EnterBoxInfo");
+        panelText.text = newText;
+    }
+    public void HideText()
+    {
+        Debug.Log("Exit BoxInfo");
+        animator.SetTrigger("ExitBoxInfo");
+    }
 }
