@@ -65,6 +65,7 @@ public class HealOrbDropSpawner : MonoBehaviour
     {
         if (life <= 0)
         {
+            AudioManager.Instance?.Play("DestroyMushroom");
             Destroy(gameObject);
         }
     }
@@ -114,8 +115,13 @@ public class HealOrbDropSpawner : MonoBehaviour
         {
             SpawnOrb();
             hitParticleEffect.SetActive(false);
+
             hitParticleEffect.SetActive(true);
             life -= damageAmount;
+            if (life != 0)
+            {
+                AudioManager.Instance?.Play("HitMushroom");
+            }
         }
     }
 }

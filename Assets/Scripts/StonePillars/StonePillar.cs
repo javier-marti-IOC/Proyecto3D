@@ -11,8 +11,9 @@ public class StonePillar : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
+            AudioManager.Instance?.Play("Onomatopeia");
             textHUD.ChangeText(stonePillarPhrases[tower_id]);
             textHUD.ShowBoxText();
             // fadePanel.ShowPanel(stonePillarPhrases[tower_id]);
@@ -20,7 +21,7 @@ public class StonePillar : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             textHUD.HideBoxText();
             //fadePanel.HidePanel();

@@ -212,6 +212,28 @@ MonoBehaviour:
     outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
       type: 2}
     source: {fileID: 0}
+  - name: HitMushroom
+    clip: {fileID: 8300000, guid: 9100b15f77af39c478aa3075076590fc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
+  - name: DestroyMushroom
+    clip: {fileID: 8300000, guid: 5ccb0bae172f75348a4fd45fde771226, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+      type: 2}
+    source: {fileID: 0}
   ui:
   - name: HoverButton
     clip: {fileID: 8300000, guid: 3d5dce41f6097524aac39ae92776089d, type: 3}
@@ -329,7 +351,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
-    playOnAwake: 1
+    playOnAwake: 0
     spatialize: 0
     spatialBlend: 0
     outputGroup: {fileID: 6058387977715918536, guid: 36176d1c6022c4d4aa572482508b761b,

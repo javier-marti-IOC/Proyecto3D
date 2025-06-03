@@ -8,6 +8,7 @@ public class MagePillarSpawner : MonoBehaviour
     public GameObject player;
     public GameObject mageParticle;
     public Transform[] magePillarsTrackPoints;
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -49,5 +50,6 @@ public class MagePillarSpawner : MonoBehaviour
     private void InstanceMage()
     {
         magePrefab.SetActive(true);
+        audioSource.Play();
     }
 }
