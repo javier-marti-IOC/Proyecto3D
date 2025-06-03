@@ -198,6 +198,8 @@ public abstract class Enemy : MonoBehaviour
         if (tower != null)
         {
             agent.SetDestination(tower.transform.position);
+            agent.stoppingDistance = 0;
+            animator.SetInteger(Constants.state, 0);
         }
     }
     public void StartAttack()

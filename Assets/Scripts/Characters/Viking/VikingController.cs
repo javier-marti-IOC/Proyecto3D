@@ -635,7 +635,7 @@ public class VikingController : MonoBehaviour
                 else if (activeElement == Element.Fire) fireMana = 0;
                 else if (activeElement == Element.Electric) electricMana = 0;
                 Debug.Log("TowerHit");
-                other.GetComponent<Tower>().HealthTaken(34);
+                other.GetComponent<Tower>().HealthTaken(55);
             }
             else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None)
             {
