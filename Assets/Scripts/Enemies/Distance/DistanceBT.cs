@@ -220,6 +220,7 @@ public class DistanceBT : Enemy
             }
             else
             {
+                attacking = false;
                 animator.SetInteger(Constants.state, 4);
             }
 
@@ -499,7 +500,7 @@ public class DistanceBT : Enemy
         }
         else
         {
-            Invoke(nameof(SetFalseHitted), 0.5f);
+            Invoke(nameof(SetFalseHitted), 0.3f);
         }
     }
     // Método compatible con Animation Event

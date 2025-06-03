@@ -2440,6 +2440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
         type: 3}
+      propertyPath: iconTower
+      value: 
+      objectReference: {fileID: 4340663738583974474}
+    - target: {fileID: 721357924059334411, guid: 2bb5242eaff695744941ef457daf9ead,
+        type: 3}
       propertyPath: enemyScript
       value: 
       objectReference: {fileID: 163328105613637053}
@@ -2665,6 +2670,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6293356760083748851}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4340663738583974474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7740381595775784377, guid: 2bb5242eaff695744941ef457daf9ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 6293356760083748851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4899456536547675698 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1488478588259506625, guid: 2bb5242eaff695744941ef457daf9ead,
