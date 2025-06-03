@@ -12,7 +12,6 @@ public class MeleeBT : Enemy
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
-    private bool isAttacking;
     private Vector3 pendingHeavyAttackPosition;
 
     [Header("FireEnemy properties")]
@@ -239,7 +238,6 @@ public class MeleeBT : Enemy
     }
     private void EndEnemyAttack()
     {
-        isAttacking = false;
         agent.isStopped = false;
     }
 
@@ -247,7 +245,6 @@ public class MeleeBT : Enemy
     {
         //if (player == null) return;
 
-        isAttacking = true;
         agent.isStopped = true;
 
         pendingHeavyAttackPosition = transform.position; //player.transform.position;
