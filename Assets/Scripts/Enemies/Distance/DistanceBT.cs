@@ -44,7 +44,6 @@ public class DistanceBT : Enemy
     private ParticleSystem activeHeavyParticles;
     private ParticleSystem activeHeavyParticles2;
     public GameObject heavyAttackZoneTrigger;
-    private bool isAttacking = false;
     private bool hitted = false;
     private bool canApplyHeavyDamage = false;
 
@@ -115,12 +114,10 @@ public class DistanceBT : Enemy
                                         case Element.Water:
                                             if (cooldownHeavyAttack <= 0)
                                             {
-                                                attacking = true;
                                                 animator.SetInteger(Constants.state, 3);
                                             }
                                             else
                                             {
-                                                attacking = true;
                                                 animator.SetInteger(Constants.state, 2);
                                             }
                                             break;
@@ -162,15 +159,15 @@ public class DistanceBT : Enemy
                                                 else
                                                 {
                                                     if (cooldownHeavyAttack <= 0)
-                                                        {
-                                                            //transform.LookAt(player.transform);
-                                                            animator.SetInteger(Constants.state, 3);
-                                                        }
-                                                        else
-                                                        {
-                                                            //transform.LookAt(player.transform);
-                                                            animator.SetInteger(Constants.state, 2);
-                                                        }
+                                                    {
+                                                        //transform.LookAt(player.transform);
+                                                        animator.SetInteger(Constants.state, 3);
+                                                    }
+                                                    else
+                                                    {
+                                                        //transform.LookAt(player.transform);
+                                                        animator.SetInteger(Constants.state, 2);
+                                                    }
                                                 }
                                             }
                                             else
@@ -215,7 +212,7 @@ public class DistanceBT : Enemy
                 else
                 {
                     Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
-
+                    agent.SetDestination(transform.position);
                 }
             }
             else
@@ -243,10 +240,6 @@ public class DistanceBT : Enemy
     private void CheckLookingPlayer()
     {
         SetLookingPlayersActive(true);
-        if (!isAttacking)
-        {
-            agent.SetDestination(player.transform.position);
-        }
 
         if (lookAtPlayers.Any(lookAtPlayer => lookAtPlayer.GetComponent<LookAtPlayer>().CentralRay()))
         {
@@ -336,9 +329,6 @@ public class DistanceBT : Enemy
     {
         if (player == null) return;
 
-        isAttacking = true;
-        agent.isStopped = true;
-
         Vector3 direction = (impactPosition.transform.position - hand.position).normalized;
         RaycastHit hit;
 
@@ -370,9 +360,6 @@ public class DistanceBT : Enemy
     public void StartHeavyAttack()
     {
         if (player == null) return;
-
-        isAttacking = true;
-        agent.isStopped = true;
 
         // Guardar posició actual del player
         pendingHeavyAttackPosition = player.transform.position;
@@ -436,8 +423,7 @@ public class DistanceBT : Enemy
     }
     private void EndEnemyAttack()
     {
-        isAttacking = false;
-        agent.isStopped = false;
+        
     }
 
     private void EnableHeavyAttackParticles()
@@ -486,7 +472,7 @@ public class DistanceBT : Enemy
 
         base.HealthTaken(damageTaken, element);
         hitted = true;
-        agent.isStopped = true;
+        //agent.isStopped = true;
         hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
@@ -506,8 +492,6 @@ public class DistanceBT : Enemy
     // Método compatible con Animation Event
     public void SetHittedFalse()
     {
-        // hitted = false;
-        agent.isStopped = false;
         hitParticle.SetActive(false);
     }
 

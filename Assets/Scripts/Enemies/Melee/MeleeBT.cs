@@ -134,7 +134,7 @@ public class MeleeBT : Enemy
                                 animator.SetInteger(Constants.state, 2);
                             }
                         }
-                        else if (playerInMeleeRange)
+                        else if (playerInMeleeRange && !attacking)
                         {
                             Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
                         }
