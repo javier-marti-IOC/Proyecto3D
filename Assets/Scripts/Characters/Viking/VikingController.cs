@@ -514,6 +514,10 @@ public class VikingController : MonoBehaviour
             activeElement = element;
             isSpendingMana = false;
         }
+        else
+        {
+            AudioManager.Instance?.Play("ChangeElementError");
+        }
     }
 
     //Roll
