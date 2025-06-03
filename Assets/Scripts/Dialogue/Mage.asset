@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: 'Oriac el Savi:'
   lines:
-  - npcIntroText: "\xBFQu\xE9 quieres saber sobre la corrupci\xF3n del fuego?"
+  - npcIntroText: "Parla, Gu\xE0rdia. Quina \xE9s la teva necessitat?"
     options:
-    - question: "\xBFQu\xE9 pas\xF3 aqu\xED?"
-      answer: "La corrupci\xF3n del fuego ha consumido todo lo que toca..."
-    - question: "\xBFC\xF3mo puedo restaurar la torre?"
-      answer: Debes usar la gema de agua para purificarla.
-  - npcIntroText: "\xBFQu\xE9 quieres saber sobre la corrupci\xF3n del agua?"
-    options:
-    - question: "\xBFQu\xE9 pas\xF3 aqu\xED?"
-      answer: "El agua est\xE1 envenenada por una magia oscura..."
-    - question: "\xBFC\xF3mo puedo restaurar la torre?"
-      answer: Busca la gema de tierra para limpiar la torre.
+    - question: Ajudem amb el combat!
+      answer: "Quan combatis amb un element af\xED contra la debilitat de l\u2019enemic,
+        els teus atacs seran molt m\xE9s poderosos, i la seva for\xE7a, gaireb\xE9
+        inofensiva per a tu."
+    - question: Ajudem amb els altars!
+      answer: "Els altars dominen plenament les criatures sota la seva influ\xE8ncia,
+        fins al punt que aquestes donen la seva vida per restaurar-los."
+    - question: Ajudem amb els enemics!
+      answer: Hi ha enemics que perden agilitat quan trepitgen terres alienes a la
+        seva naturalesa elemental.

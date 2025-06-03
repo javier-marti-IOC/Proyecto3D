@@ -4972,8 +4972,12 @@ MonoBehaviour:
   - "El m\xF3n es va degradar sota la seva influ\xE8ncia. All\xF2 que abans prosperava,
     ara \xE9s nom\xE9s desolaci\xF3."
   - "Localitza els altars i destrueix-los per restaurar l\u2019equilibri del m\xF3n."
-  - "Fes servir un atac carregat amb l\u2019element oposat per eliminar l\u2019altar.
-    (este hay que borrarlo)"
+  - "Enlla\xE7ats per un dest\xED inexorable, el Destructor i el Gu\xE0rdia lluiten
+    eternament per governar els elements."
+  - "El temps i l\u2019origen d\u2019aquesta lluita eterna es perden en la foscor
+    de l\u2019oblit.  "
+  - "Quan els elements troben un nou amo, la batalla entre el Destructor i el Gu\xE0rdia
+    esclata amb una for\xE7a imparable.  "
   textHUD: {fileID: 0}
 --- !u!65 &4126845980547460901
 BoxCollider:

@@ -653,7 +653,7 @@ MonoBehaviour:
   minCooldownTimeInclusive: 4
   maxCooldownTimeExclusive: 7
   cooldownHeavyAttack: 0
-  ghostPrefab: {fileID: 9213525948635542194, guid: ae32a16c92a65754d9f4d0751eb554e3,
+  ghostPrefab: {fileID: 9213525948635542194, guid: 71e28801e0ccc3441a497dedb9065889,
     type: 3}
   safeDistance: 1
   pointPatrol: {fileID: 545377662752634713}

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbPrefab: {fileID: 8518313805689136268, guid: 0608f8e5e64414f46ac3d5c0126c20cb,
     type: 3}
-  trajectory: 0
+  trajectory: 1
   speed: 5
   angleInDegrees: 70
   randomSpread: 6
