@@ -8,6 +8,7 @@ public class MeleeBT : Enemy
 {
     private bool hitted;
     private bool playerInSecurityDistance;
+    private bool playerInMeleeRange;
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
@@ -133,6 +134,10 @@ public class MeleeBT : Enemy
                             {
                                 animator.SetInteger(Constants.state, 2);
                             }
+                        }
+                        else if (playerInMeleeRange)
+                        {
+                            Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
                         }
                         else
                         {
@@ -284,7 +289,7 @@ public class MeleeBT : Enemy
         }
     }
 
-    public override void HealthTaken(int[] damageTaken,Element element)
+    public override void HealthTaken(int[] damageTaken, Element element)
     {
         if (activeElement == Element.Fire)
         {
@@ -294,7 +299,7 @@ public class MeleeBT : Enemy
         {
             audioEarthHit?.Play();
         }
-        base.HealthTaken(damageTaken,element);
+        base.HealthTaken(damageTaken, element);
         hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
@@ -302,5 +307,21 @@ public class MeleeBT : Enemy
     public void EarthHeavyAttackSound()
     {
         audioEarthHeavyAttack.Play();
+    }
+
+    public void MeleeRangeTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            playerInMeleeRange = true;
+        }
+    }
+
+    public void MeleeRangeTriggerExit(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            playerInMeleeRange = false;
+        }
     }
 }
