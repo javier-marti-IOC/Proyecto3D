@@ -104,7 +104,7 @@ public class DialogueManager : MonoBehaviour
         Button closeButton = closeButtonObj.GetComponent<Button>();
         TextMeshProUGUI closeText = closeButtonObj.GetComponentInChildren<TextMeshProUGUI>();
 
-        closeText.text = "Cerrar"; // Puedes cambiar el texto aquí
+        closeText.text = "Tancar"; // Puedes cambiar el texto aquí
 
         closeButton.onClick.AddListener(() => HideDialogue());
 
@@ -139,7 +139,7 @@ void SelectOption(int optionIndex)
     Button closeButton = closeButtonObj.GetComponent<Button>();
     TextMeshProUGUI closeText = closeButtonObj.GetComponentInChildren<TextMeshProUGUI>();
 
-    closeText.text = "Cerrar";
+    closeText.text = "Tancar";
     closeButton.onClick.AddListener(() => HideDialogue());
 
     instantiatedButtons.Add(closeButtonObj);

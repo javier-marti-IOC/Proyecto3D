@@ -7160,6 +7160,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -112.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3155943155551959897, guid: 59977bd6bf77c554ba46903a735b00bc,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3434330653021985703, guid: 59977bd6bf77c554ba46903a735b00bc,
         type: 3}
       propertyPath: m_Pivot.x
