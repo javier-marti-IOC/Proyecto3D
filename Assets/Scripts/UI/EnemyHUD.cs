@@ -20,6 +20,9 @@ public class EnemyHUD : MonoBehaviour
     public Image borderLevel; // Borde para colorear del color del nivel
     public Image borderElement; // Borde para colorear del color de la clase del enemigo
 
+    [Header("Icon Tower")]
+    public Image iconTower; // Icono de la torre
+
     [Header("Level")]
     public TextMeshProUGUI levelText; // TextMeshPro del HUD que indica el nivel.
     // public Image levelFill1; // Primera barra de nivel
@@ -39,7 +42,7 @@ public class EnemyHUD : MonoBehaviour
     private float ghostDelayTimer = 0f;  // Temporizador para el retraso
     private bool waitingToReduce = false;
     private float maxHealth; // Vida maxima del enemigo
-    
+
     // COLORES
     Color32 healthColor = new Color32(93, 75, 122, 255); //rgb(93, 75, 122)
     Color32 healthGhostColor = new Color32(138, 93, 170, 255); // #6a4f96
@@ -63,7 +66,7 @@ public class EnemyHUD : MonoBehaviour
         healthBarGhost.fillAmount = 1f;
         UpdateHUD(); // Se actualiza el hud con los valores del enemigo por defecto.
         hudPanelCanvas.SetActive(false); // Se oculta el HUD por defecto.
-        
+        iconTower.enabled = false; // Por defecto desactivar el componente image del iconTower
     }
 
     // Mostrar el HUD
@@ -116,7 +119,8 @@ public class EnemyHUD : MonoBehaviour
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             fireIcon.gameObject.SetActive(true);
-
+            
+            iconTower.color = fireColor;
             borderElement.color = fireColor;
             fireIcon.color = fireColor;
         }
@@ -126,7 +130,8 @@ public class EnemyHUD : MonoBehaviour
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(true);
-
+            
+            iconTower.color = waterColor;
             borderElement.color = waterColor;
             waterIcon.color = waterColor;
         }
@@ -137,7 +142,7 @@ public class EnemyHUD : MonoBehaviour
             lightningIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(true);
 
-
+            iconTower.color = earthColor;
             borderElement.color = earthColor;
             earthIcon.color = earthColor;
         }
@@ -148,6 +153,7 @@ public class EnemyHUD : MonoBehaviour
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(true);
 
+            iconTower.color = lightningColor;
             borderElement.color = lightningColor;
             lightningIcon.color = lightningColor;
         }
@@ -155,7 +161,6 @@ public class EnemyHUD : MonoBehaviour
         // Asignar vida
         UpdateHealth(enemyScript.healthPoints);
     }
-    
 
     // Actualiza solo la vida del enemigo
     public void UpdateHealth(float newHealth)
@@ -178,7 +183,6 @@ public class EnemyHUD : MonoBehaviour
 
         actualHealth = newHealth;
         healthBar.fillAmount = newFill;
-        
     }
     private void Update()
     {
@@ -197,6 +201,14 @@ public class EnemyHUD : MonoBehaviour
         else if (healthBarGhost.fillAmount > targetFill)
         {
             healthBarGhost.fillAmount = Mathf.Lerp(healthBarGhost.fillAmount, targetFill, Time.deltaTime * reductionSpeed);
+        }
+    }
+
+    public void IconTower(bool activate)
+    {
+        if (iconTower != null)
+        {
+            iconTower.enabled = activate; 
         }
     }
 }

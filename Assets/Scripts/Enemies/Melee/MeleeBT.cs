@@ -54,6 +54,7 @@ public class MeleeBT : Enemy
                     //Me acerco
                     //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
                     TowerChase();
+                    enemyHUD.IconTower(true);
                 }
             }
             else
@@ -146,6 +147,7 @@ public class MeleeBT : Enemy
                 }
                 else
                 {
+                    enemyHUD.IconTower(false);
                     CheckAgentSpeed();
                     if (towerInRange)
                     {
