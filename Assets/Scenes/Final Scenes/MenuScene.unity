@@ -436,6 +436,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 757997700}
+    - target: {fileID: 4953040633076391996, guid: a5c99e67b5084a04486e4dde9b35a0de,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: db5aadc2edb19154aa1fe4b1ce115260,
+        type: 3}
     - target: {fileID: 5101785333836029386, guid: a5c99e67b5084a04486e4dde9b35a0de,
         type: 3}
       propertyPath: m_Pivot.x
@@ -535,6 +541,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220031797546854493, guid: a5c99e67b5084a04486e4dde9b35a0de,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220031797546854493, guid: a5c99e67b5084a04486e4dde9b35a0de,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 273.78
       objectReference: {fileID: 0}
     - target: {fileID: 5461597297361339897, guid: a5c99e67b5084a04486e4dde9b35a0de,
         type: 3}
@@ -1044,6 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587e777b28e4c324eb9693f7f84c95e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  progressManager: {fileID: 0}
   activeElement: 0
   corruptedClouds: []
   trees:
