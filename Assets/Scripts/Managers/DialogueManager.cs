@@ -121,21 +121,31 @@ public class DialogueManager : MonoBehaviour
         instantiatedButtons.Clear();
     }
 
-    void SelectOption(int optionIndex)
-    {
-        if (waitingForAnswer)
-            return;
+void SelectOption(int optionIndex)
+{
+    if (waitingForAnswer)
+        return;
 
-        waitingForAnswer = true;
-        ClearOptions();
+    waitingForAnswer = true;
+    ClearOptions();
 
-        DialogueLine line = npc.lines[currentLineIndex];
-        string answer = line.options[optionIndex].answer;
+    DialogueLine line = npc.lines[currentLineIndex];
+    string answer = line.options[optionIndex].answer;
 
-        npcDialogueText.text = answer;
+    npcDialogueText.text = answer;
 
-        Invoke(nameof(ResetDialogueOptions), 3f);
-    }
+    // Añadir botón "Cerrar" tras mostrar la respuesta
+    GameObject closeButtonObj = Instantiate(optionButtonPrefab, optionsContainer);
+    Button closeButton = closeButtonObj.GetComponent<Button>();
+    TextMeshProUGUI closeText = closeButtonObj.GetComponentInChildren<TextMeshProUGUI>();
+
+    closeText.text = "Cerrar";
+    closeButton.onClick.AddListener(() => HideDialogue());
+
+    instantiatedButtons.Add(closeButtonObj);
+    EventSystem.current.SetSelectedGameObject(closeButtonObj); // Opcional: selecciona el botón "Cerrar"
+}
+
 
     void ResetDialogueOptions()
     {
