@@ -268,8 +268,10 @@ public class GameManager : MonoBehaviour
 
     public void EnterRollHelp()
     {
+        Debug.Log(1);
         if (!firstTimeEnterRollHelp)
         {
+            Debug.Log(2);
             firstTimeEnterRollHelp = true;
             isTutorial = true;
             infoPanelHUD.EnterText("Utilitza 'B' per rodar o esquivar.");

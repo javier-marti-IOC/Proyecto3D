@@ -1725,7 +1725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 235523927}
   - component: {fileID: 235523929}
-  - component: {fileID: 235523928}
+  - component: {fileID: 235523930}
   m_Layer: 0
   m_Name: TriggerInfoCueva1
   m_TagString: Untagged
@@ -1748,21 +1748,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1309211665}
   m_LocalEulerAnglesHint: {x: 0, y: -5.328, z: 0}
---- !u!114 &235523928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235523926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13dda4e517c41a049a50c53ba2034c70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textInfo: Utilitza "B" per rodar o esquivar
-  infoPanelHUD: {fileID: 821832026}
-  activated: 0
 --- !u!65 &235523929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1784,6 +1769,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 20.1, y: 14.32, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &235523930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235523926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb40ad7dbcba9d408fb079c118c6411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 1
+  gameManager: {fileID: 1882725846}
 --- !u!1 &239584008
 GameObject:
   m_ObjectHideFlags: 0
@@ -13766,12 +13765,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1474350561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13dda4e517c41a049a50c53ba2034c70, type: 3}
+  m_Script: {fileID: 11500000, guid: feb40ad7dbcba9d408fb079c118c6411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textInfo: Utilitza RB o RT per atacar a un enemic
-  infoPanelHUD: {fileID: 821832026}
-  activated: 0
+  num: 2
+  gameManager: {fileID: 1882725846}
 --- !u!4 &1478131510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586497162805686946, guid: aa3b8bad8e050294882c5089bc0d5164,
@@ -13836,6 +13834,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HUD - Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 866795298832628967, guid: 82221e59fa1f74941988f1ca9297cbdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 921677482407833860, guid: 82221e59fa1f74941988f1ca9297cbdd,
         type: 3}
@@ -14036,6 +14039,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8696076306526100415, guid: 82221e59fa1f74941988f1ca9297cbdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

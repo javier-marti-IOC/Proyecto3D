@@ -211,6 +211,7 @@ public abstract class Enemy : MonoBehaviour
     }
     public virtual void HealthTaken(int[] damageTaken,Element element)
     {
+        gameManager.ExitAttackHelp();
         Debug.Log("Basic damage taken: " + damageTaken[0] + " Elemental damage taken: " + damageTaken[1]);
         if (damageTaken[0] > 0)
         {

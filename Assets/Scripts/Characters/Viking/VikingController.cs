@@ -536,15 +536,12 @@ public class VikingController : MonoBehaviour
     //Combat
     public void BasicAttack()
     {
-        gameManager.ExitAttackHelp();
         animator.SetTrigger("SoftAttack");
         OnAction = true;
         isBasicAttack = true;
     }
     public void HeavyAttack()
     {
-        gameManager.ExitSlashAttackHelp();
-        gameManager.ExitAttackHelp();
         animator.SetTrigger("HardAttack");
         OnAction = true;
         isBasicAttack = false;
