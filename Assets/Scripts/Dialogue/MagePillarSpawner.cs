@@ -6,6 +6,7 @@ public class MagePillarSpawner : MonoBehaviour
 {
     public GameObject magePrefab;
     public GameObject player;
+    public GameObject mageParticle;
     public Transform[] magePillarsTrackPoints;
 
     void Start()
@@ -14,6 +15,7 @@ public class MagePillarSpawner : MonoBehaviour
         {
             player = GameObject.FindWithTag(Constants.player);
         }
+        mageParticle.SetActive(false);
     }
 
     void Update()
@@ -29,7 +31,7 @@ public class MagePillarSpawner : MonoBehaviour
             }
         }
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constants.player))
@@ -38,8 +40,14 @@ public class MagePillarSpawner : MonoBehaviour
             {
                 int rndTrackPoint = Random.Range(0, magePillarsTrackPoints.Length);
                 magePrefab.transform.position = magePillarsTrackPoints[rndTrackPoint].position;
-                magePrefab.SetActive(true);
+                mageParticle.SetActive(true);
+                Invoke("InstanceMage", 1f);
             }
         }
+    }
+
+    private void InstanceMage()
+    {
+        magePrefab.SetActive(true);
     }
 }
