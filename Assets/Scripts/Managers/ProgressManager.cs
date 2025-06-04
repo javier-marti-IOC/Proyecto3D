@@ -103,34 +103,34 @@ public class ProgressManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // Guardar data
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            SaveGame();
-        }
-        // Cargar data
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (File.Exists(saveFilePath))
-            {
-                LoadData();
-            }
-            else
-            {
-                Debug.Log("There is no save files to load!");
-            }
-        }
+    // void Update()
+    // {
+    //     // Guardar data
+    //     if (Input.GetKeyDown(KeyCode.X))
+    //     {
+    //         SaveGame();
+    //     }
+    //     // Cargar data
+    //     if (Input.GetKeyDown(KeyCode.Z))
+    //     {
+    //         if (File.Exists(saveFilePath))
+    //         {
+    //             LoadData();
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("There is no save files to load!");
+    //         }
+    //     }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (File.Exists(saveFilePath))
-            {
-                DeleteSavedFile();
-            }
-        }
-    }
+    //     if (Input.GetKeyDown(KeyCode.E))
+    //     {
+    //         if (File.Exists(saveFilePath))
+    //         {
+    //             DeleteSavedFile();
+    //         }
+    //     }
+    // }
 
 
 

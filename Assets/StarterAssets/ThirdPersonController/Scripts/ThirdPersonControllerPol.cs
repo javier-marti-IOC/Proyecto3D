@@ -164,20 +164,20 @@ namespace StarterAssets
 
             if (dead == false) 
             {
-                if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton5))
-                {
-                    SoftAttack();
-                }
+                // if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton5))
+                // {
+                //     SoftAttack();
+                // }
 
-                if(Input.GetMouseButtonDown(1))
-                {
-                    HardAttack();
-                }
-                if(Input.GetKeyDown(KeyCode.H))
-                {
-                    Roll();
-                    DodgeBackward();
-                }
+                // if(Input.GetMouseButtonDown(1))
+                // {
+                //     HardAttack();
+                // }
+                // if(Input.GetKeyDown(KeyCode.H))
+                // {
+                //     Roll();
+                //     DodgeBackward();
+                // }
 
                 JumpAndGravity();
                 GroundedCheck();

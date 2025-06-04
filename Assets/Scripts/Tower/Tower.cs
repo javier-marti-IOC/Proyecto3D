@@ -96,28 +96,28 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) // Restar vida
-        {
-            life = life - 5;
-            towerHUD.UpdateHealth(life);
-        }
+        // if (Input.GetKeyDown(KeyCode.L)) // Restar vida
+        // {
+        //     life = life - 5;
+        //     towerHUD.UpdateHealth(life);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.P)) // Sumar vida
-        {
-            life += 5;
-            towerHUD.UpdateHealth(life);
-            if (life > max_life)
-            {
-                life = max_life;
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.P)) // Sumar vida
+        // {
+        //     life += 5;
+        //     towerHUD.UpdateHealth(life);
+        //     if (life > max_life)
+        //     {
+        //         life = max_life;
+        //     }
+        // }
 
-        if (Input.GetKeyDown(KeyCode.M)) // Reiniciar materiales
-        {
-            Utils.ReplaceMaterials(materials, corruptedColors);
-            ChangeEnvironmentParticlesOff();
-            Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
-        }
+        // if (Input.GetKeyDown(KeyCode.M)) // Reiniciar materiales
+        // {
+        //     Utils.ReplaceMaterials(materials, corruptedColors);
+        //     ChangeEnvironmentParticlesOff();
+        //     Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
+        // }
 
         if (!secondZone.playerInSecondZoneRange && life != max_life)
         {

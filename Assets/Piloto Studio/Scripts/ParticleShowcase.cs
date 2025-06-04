@@ -71,28 +71,28 @@ namespace PilotoStudio
         }
 
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                ActivatePrevious();
-            }
+        // private void Update()
+        // {
+        //     if (Input.GetKeyDown(KeyCode.Q))
+        //     {
+        //         ActivatePrevious();
+        //     }
 
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                ActivateNext();
-            }
+        //     if (Input.GetKeyDown(KeyCode.W))
+        //     {
+        //         ActivateNext();
+        //     }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
+        //     if (Input.GetKeyDown(KeyCode.Space))
+        //     {
           
-                if (particles[currentlyActive].TryGetComponent<ParticleSystem>(out ParticleSystem ps))
-                {
-                    ps.Play();
-                }
-                PostUpdateLogic() ;
-            }
-        }
+        //         if (particles[currentlyActive].TryGetComponent<ParticleSystem>(out ParticleSystem ps))
+        //         {
+        //             ps.Play();
+        //         }
+        //         PostUpdateLogic() ;
+        //     }
+        // }
 
     }
 }
