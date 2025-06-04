@@ -18,6 +18,7 @@ public class MagePillar : MonoBehaviour
         {
             if (!magePanel.activeSelf)
             {
+                AudioManager.Instance?.Play("Onomatopeia");
                 magePanel.SetActive(true);
                 if (phrasePosition >= 0 && phrasePosition <= mageAdvices.Length)
                 {
