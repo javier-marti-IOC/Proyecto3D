@@ -13,6 +13,7 @@ public class StonePillar : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Stone Pillar Enter");
             AudioManager.Instance?.Play("Onomatopeia");
             textHUD.ChangeText(stonePillarPhrases[tower_id]);
             textHUD.ShowBoxText();
@@ -23,6 +24,7 @@ public class StonePillar : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Stone Pillar Exit");
             textHUD.HideBoxText();
             //fadePanel.HidePanel();
         }
