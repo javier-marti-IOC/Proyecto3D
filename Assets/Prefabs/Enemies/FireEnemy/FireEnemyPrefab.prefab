@@ -1893,8 +1893,8 @@ MonoBehaviour:
   playerInAttackRange: 0
   towerInRange: 0
   playerHitted: 0
-  minCooldownTimeInclusive: 12
-  maxCooldownTimeExclusive: 20
+  minCooldownTimeInclusive: 8
+  maxCooldownTimeExclusive: 14
   cooldownHeavyAttack: 0
   ghostPrefab: {fileID: 9213525948635542194, guid: 6a0e919fd5e59fa48a6bb656b176cdd0,
     type: 3}
