@@ -89,11 +89,14 @@ public class VikingController : MonoBehaviour
     public float shineDuration;
     private int shineElement;
     private Material characterMaterial;
-    private Material rightHornMaterial;
-    private Material leftHornMaterial;
     private bool isShiningUp = false;
     private bool isShiningDown = false;
     private float shineTimer = 0;
+    public Material noneMaterial;
+    public Material earthMaterial;
+    public Material waterMaterial;
+    public Material fireMaterial;
+    public Material electricMaterial;
 
     [Header("Horns")]
     public Renderer rightHorn;
@@ -135,18 +138,11 @@ public class VikingController : MonoBehaviour
 
 
         characterMaterial = characterRenderer.material;
-        rightHornMaterial = rightHorn.material;
-        leftHornMaterial = leftHorn.material;
+        noneMaterial = rightHorn.material;
         baseColor = characterMaterial.color;
-        rightHornMaterial.color = Color.white;
-        leftHornMaterial.color = Color.white;
         characterMaterial.EnableKeyword("_EMISSION");
-        rightHornMaterial.EnableKeyword("_EMISSION");
-        leftHornMaterial.EnableKeyword("_EMISSION");
         characterMaterial.SetColor("_EmissionColor", Color.black);
-        rightHornMaterial.SetColor("_EmissionColor", Color.black);
-        leftHornMaterial.SetColor("_EmissionColor", Color.black);
-        //CollectMana(Element.None);
+        CollectMana(Element.None);
     }
 
     // Update is called once per frame
@@ -230,10 +226,8 @@ public class VikingController : MonoBehaviour
                         earthMana = 0;
                         earthEffect.SetActive(false);
                         isSpendingMana = false;
-                        rightHornMaterial.color = Color.white;
-                        leftHornMaterial.color = Color.white;
-                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
-                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
                 else if (activeElement == Element.Water)
@@ -248,10 +242,8 @@ public class VikingController : MonoBehaviour
                         waterMana = 0;
                         waterEffect.SetActive(false);
                         isSpendingMana = false;
-                        rightHornMaterial.color = Color.white;
-                        leftHornMaterial.color = Color.white;
-                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
-                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
                 else if (activeElement == Element.Fire)
@@ -266,10 +258,8 @@ public class VikingController : MonoBehaviour
                         fireMana = 0;
                         fireEffect.SetActive(false);
                         isSpendingMana = false;
-                        rightHornMaterial.color = Color.white;
-                        leftHornMaterial.color = Color.white;
-                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
-                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
                 else if (activeElement == Element.Electric)
@@ -284,14 +274,38 @@ public class VikingController : MonoBehaviour
                         electricMana = 0;
                         electricEffect.SetActive(false);
                         isSpendingMana = false;
-                        rightHornMaterial.color = Color.white;
-                        leftHornMaterial.color = Color.white;
-                        rightHornMaterial.SetColor("_EmissionColor", Color.black);
-                        leftHornMaterial.SetColor("_EmissionColor", Color.black);
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
             }
         }
+        // if (isShiningUp)
+        // {
+        //     shineTimer += Time.deltaTime;
+        //     float t = shineTimer / shineDuration;
+        //     if (shineElement == 1)
+        //     {
+        //         characterRenderer.material = earthMaterial;
+        //     }
+        //     if (t >= 1)
+        //     {
+        //         isShiningUp = false;
+        //         isShiningDown = true;
+        //         shineTimer = 0;
+        //     }
+        // }
+        // if (isShiningDown)
+        // {
+        //     shineTimer += Time.deltaTime;
+        //     float t = shineTimer / shineDuration;
+        //     if (t >= 1)
+        //     {
+        //         isShiningDown = false;
+        //         characterRenderer.material = noneMaterial;
+        //     }
+        //     shineElement = -1;
+        // }
         if (isShiningUp)
         {
             shineTimer += Time.deltaTime;
@@ -415,37 +429,29 @@ public class VikingController : MonoBehaviour
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
             elementsHUD.EarthStartBlink();
-            rightHornMaterial.color = Color.green;
-            leftHornMaterial.color = Color.green;
-            rightHornMaterial.SetColor("_EmissionColor", shineEarthColor);
-            leftHornMaterial.SetColor("_EmissionColor", shineEarthColor);
+            rightHorn.material = earthMaterial;
+            leftHorn.material = earthMaterial;
             changed = true;
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
             elementsHUD.WaterStartBlink();
-            rightHornMaterial.color = Color.blue;
-            leftHornMaterial.color = Color.blue;
-            rightHornMaterial.SetColor("_EmissionColor", shineWaterColor);
-            leftHornMaterial.SetColor("_EmissionColor", shineWaterColor);
+            rightHorn.material = waterMaterial;
+            leftHorn.material = waterMaterial;
             changed = true;
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
             elementsHUD.FireStartBlink();
-            rightHornMaterial.color = Color.red;
-            leftHornMaterial.color = Color.red;
-            rightHornMaterial.SetColor("_EmissionColor", shineFireColor);
-            leftHornMaterial.SetColor("_EmissionColor", shineFireColor);
+            rightHorn.material = fireMaterial;
+            leftHorn.material = fireMaterial;
             changed = true;
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
             elementsHUD.LightningStartBlink();
-            rightHornMaterial.color = Color.yellow;
-            leftHornMaterial.color = Color.yellow;
-            rightHornMaterial.SetColor("_EmissionColor", shineElectricColor);
-            leftHornMaterial.SetColor("_EmissionColor", shineElectricColor);
+            rightHorn.material = electricMaterial;
+            leftHorn.material = electricMaterial;
 
             changed = true;
         }

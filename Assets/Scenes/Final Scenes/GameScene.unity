@@ -22134,6 +22134,26 @@ PrefabInstance:
       objectReference: {fileID: 821832024}
     - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
+      propertyPath: fireMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 2803b4384ddde5d499176fb0d0e5fc22, type: 2}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: noneMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e4217e20b4adeac49984d5e0ca211a9c, type: 2}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: earthMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 9262251bc9731d14ebf8801bca8eec0f, type: 2}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: waterMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 210ab6bdb5b79d849a02b1e8dd292ef8, type: 2}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
       propertyPath: lowHealthEffect
       value: 
       objectReference: {fileID: 21081810}
@@ -22142,6 +22162,11 @@ PrefabInstance:
       propertyPath: vikingHealthHUD
       value: 
       objectReference: {fileID: 821832025}
+    - target: {fileID: 3023389732709961547, guid: efae5789b8220d646af2cde96c051f19,
+        type: 3}
+      propertyPath: electricMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ebd8d2c3af99a464bacd0eea62861519, type: 2}
     - target: {fileID: 6067303905638269387, guid: efae5789b8220d646af2cde96c051f19,
         type: 3}
       propertyPath: spawnSafe
