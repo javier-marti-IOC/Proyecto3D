@@ -48,7 +48,8 @@ public class CameraFadeSwitcher : MonoBehaviour
             ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Earth) &&
             ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Fire) &&
             ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Water) &&
-            ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Electric))
+            ProgressManager.Instance.Data.towerActiveElements.Contains(Element.Electric) &&
+            ProgressManager.Instance.Data.continuePlaying == false)
         {
             finalSequenceStarted = true;
             fadeImage.gameObject.SetActive(true);

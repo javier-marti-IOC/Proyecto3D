@@ -11,6 +11,7 @@ public class ProgressData
 {
     public bool tutorial;
     public List<Element> towerActiveElements;
+    public bool continuePlaying;
 
     public List<Element> GetTowerActiveElements()
     {
@@ -154,6 +155,21 @@ public class ProgressManager : MonoBehaviour
     // Funcion para cargar partida
     public void LoadGame()
     {
+        LoadData();
+        if (File.Exists(saveFilePath))
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Partida cargada con exito!");
+        }
+        else
+        {
+            Debug.Log("There is no save files to load!");
+        }
+    }
+    public void LoadGameFromFinalScene()
+    {
+        ProgressManager.Instance.Data.continuePlaying = true;
+        SaveGame();
         LoadData();
         if (File.Exists(saveFilePath))
         {
