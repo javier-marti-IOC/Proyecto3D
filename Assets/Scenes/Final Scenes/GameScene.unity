@@ -15332,11 +15332,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3971243875582974008, guid: 82221e59fa1f74941988f1ca9297cbdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5926567837962344632, guid: 82221e59fa1f74941988f1ca9297cbdd,
         type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
       objectReference: {fileID: 0}
+    - target: {fileID: 6664807644951035341, guid: 82221e59fa1f74941988f1ca9297cbdd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c0cd35188c7f9df4b9a53a74194bb416,
+        type: 3}
     - target: {fileID: 7362301008561160560, guid: 82221e59fa1f74941988f1ca9297cbdd,
         type: 3}
       propertyPath: m_Pivot.x
@@ -24432,6 +24443,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.23
       objectReference: {fileID: 0}
+    - target: {fileID: 4140999448026599109, guid: acf3421d74432b8448e4f0be10029697,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c0cd35188c7f9df4b9a53a74194bb416,
+        type: 3}
     - target: {fileID: 4364269000680710197, guid: acf3421d74432b8448e4f0be10029697,
         type: 3}
       propertyPath: m_IsActive
