@@ -106,6 +106,7 @@ public class VolumeSettings : MonoBehaviour
         isPaused = mute;
         if (mute)
         {
+            audioMixer.SetFloat("Music", -80f);
             audioMixer.SetFloat("Environment", -80f);
             audioMixer.SetFloat("SFX", -80f);
             // Puedes mutear también otros canales si quieres
