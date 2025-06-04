@@ -55,6 +55,7 @@ public class VikingController : MonoBehaviour
     public bool OnAction;
     public bool isRolling;
     private bool isSpendingMana;
+    private bool ChangeElementErrorPlayed;
     //private bool isShining;
 
     [Header("Cooldowns")]
@@ -73,30 +74,17 @@ public class VikingController : MonoBehaviour
 
     [Header("Shine")]
     public Renderer characterRenderer;
-    /*     private Color shineNoneColor = Color.white;
-        private Color shineEarthColor = Color.green;
-        private Color shineWaterColor = Color.blue;
-        private Color shineFireColor = Color.red;
-        private Color shineElectricColor = Color.yellow;
-        private Color shineHealColor = Color.magenta; */
-    private Color shineNoneColor = new Color(0.735849f, 0.6699003f, 0.726575f);
-    private Color shineEarthColor = new Color(0.4196078f, 0.6745098f, 0.4f);
-    private Color shineWaterColor = new Color(0.2431373f, 0.4862745f, 0.6980392f);
-    private Color shineFireColor = new Color(0.7490196f, 0.2666667f, 0.282353f);
-    private Color shineElectricColor = new Color(0.8745098f, 0.8431373f, 0.3921569f);
-    private Color shineHealColor = new Color(1f, 0.5424528f, 0.9946172f);
-    private Color baseColor;
     public float shineDuration;
     private int shineElement;
-    private Material characterMaterial;
     private bool isShiningUp = false;
-    private bool isShiningDown = false;
     private float shineTimer = 0;
+    public Material baseMaterial;
     public Material noneMaterial;
     public Material earthMaterial;
     public Material waterMaterial;
     public Material fireMaterial;
     public Material electricMaterial;
+    public Material healMaterial;
 
     [Header("Horns")]
     public Renderer rightHorn;
@@ -135,14 +123,7 @@ public class VikingController : MonoBehaviour
 
         //HUD
         vikingHealthHUD.SetHealth(healthPoints);
-
-
-        characterMaterial = characterRenderer.material;
-        noneMaterial = rightHorn.material;
-        baseColor = characterMaterial.color;
-        characterMaterial.EnableKeyword("_EMISSION");
-        characterMaterial.SetColor("_EmissionColor", Color.black);
-        CollectMana(Element.None);
+        //CollectMana(Element.None);
     }
 
     // Update is called once per frame
@@ -280,150 +261,50 @@ public class VikingController : MonoBehaviour
                 }
             }
         }
-        // if (isShiningUp)
-        // {
-        //     shineTimer += Time.deltaTime;
-        //     float t = shineTimer / shineDuration;
-        //     if (shineElement == 1)
-        //     {
-        //         characterRenderer.material = earthMaterial;
-        //     }
-        //     if (t >= 1)
-        //     {
-        //         isShiningUp = false;
-        //         isShiningDown = true;
-        //         shineTimer = 0;
-        //     }
-        // }
-        // if (isShiningDown)
-        // {
-        //     shineTimer += Time.deltaTime;
-        //     float t = shineTimer / shineDuration;
-        //     if (t >= 1)
-        //     {
-        //         isShiningDown = false;
-        //         characterRenderer.material = noneMaterial;
-        //     }
-        //     shineElement = -1;
-        // }
         if (isShiningUp)
         {
             shineTimer += Time.deltaTime;
             float t = shineTimer / shineDuration;
             if (shineElement == 0)
             {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineNoneColor, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.white, t));
+                characterRenderer.material = noneMaterial;
             }
             else if (shineElement == 1)
             {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineEarthColor, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.white, t));
+                characterRenderer.material = earthMaterial;
             }
             else if (shineElement == 2)
             {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineWaterColor, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.blue, t));
+                characterRenderer.material = waterMaterial;
             }
             else if (shineElement == 3)
             {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineFireColor, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.red, t));
+                characterRenderer.material = fireMaterial;
             }
             else if (shineElement == 4)
             {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineElectricColor, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.yellow, t));
+                characterRenderer.material = electricMaterial;
             }
             else if (shineElement == 5)
             {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(Color.black, shineHealColor, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(baseColor, Color.magenta, t));
+                characterRenderer.material = healMaterial;
             }
             if (t >= 1)
             {
                 isShiningUp = false;
-                isShiningDown = true;
-                if (shineElement == 0)
-                {
-                    characterMaterial.SetColor("_EmissionColor", shineNoneColor);
-                    characterMaterial.SetColor("_BaseColor", Color.white);
-                }
-                else if (shineElement == 1)
-                {
-                    characterMaterial.SetColor("_EmissionColor", shineEarthColor);
-                    characterMaterial.SetColor("_BaseColor", Color.green);
-                }
-                else if (shineElement == 2)
-                {
-                    characterMaterial.SetColor("_EmissionColor", shineWaterColor);
-                    characterMaterial.SetColor("_BaseColor", Color.blue);
-                }
-                else if (shineElement == 3)
-                {
-                    characterMaterial.SetColor("_EmissionColor", shineFireColor);
-                    characterMaterial.SetColor("_BaseColor", Color.red);
-                }
-                else if (shineElement == 4)
-                {
-                    characterMaterial.SetColor("_EmissionColor", shineElectricColor);
-                    characterMaterial.SetColor("_BaseColor", Color.yellow);
-                }
-                else if (shineElement == 5)
-                {
-                    characterMaterial.SetColor("_EmissionColor", shineHealColor);
-                    characterMaterial.SetColor("_BaseColor", Color.magenta);
-                }
+                characterRenderer.material = baseMaterial;
                 shineTimer = 0;
             }
-        }
-        if (isShiningDown)
-        {
-            shineTimer += Time.deltaTime;
-            float t = shineTimer / shineDuration;
-            if (shineElement == 0)
-            {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineNoneColor, Color.black, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.white, baseColor, t));
-            }
-            else if (shineElement == 1)
-            {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineEarthColor, Color.black, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.green, baseColor, t));
-            }
-            else if (shineElement == 2)
-            {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineWaterColor, Color.black, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.blue, baseColor, t));
-            }
-            else if (shineElement == 3)
-            {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineFireColor, Color.black, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.red, baseColor, t));
-            }
-            else if (shineElement == 4)
-            {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineElectricColor, Color.black, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.yellow, baseColor, t));
-            }
-            else if (shineElement == 5)
-            {
-                characterMaterial.SetColor("_EmissionColor", Color.Lerp(shineHealColor, Color.black, t));
-                characterMaterial.SetColor("_BaseColor", Color.Lerp(Color.magenta, baseColor, t));
-            }
-
-            if (t >= 1)
-            {
-                isShiningDown = false;
-                characterMaterial.SetColor("_EmissionColor", Color.black);
-                characterMaterial.SetColor("_BaseColor", baseColor);
-            }
-            shineElement = -1;
         }
     }
 
     private void ChangeElement(Element element)
     {
+        if (element == activeElement)
+        {
+            ChangeElementErrorPlayed = true;
+            Invoke(nameof(ErrorPlayed), 1.5f);
+        }
         bool changed = false;
         //ACtivar elemento nuevo
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
@@ -458,6 +339,8 @@ public class VikingController : MonoBehaviour
         //Desactivar elemento antiguo
         if (changed)
         {
+            ChangeElementErrorPlayed = true;
+            Invoke(nameof(ErrorPlayed), 1.5f);
             gameManager.ExitDPADHelp();
             gameManager.EnterSlashAttackHelp();
             AudioManager.Instance?.Play("ActivateElement");
@@ -520,10 +403,17 @@ public class VikingController : MonoBehaviour
             activeElement = element;
             isSpendingMana = false;
         }
-        else
+        else if (!ChangeElementErrorPlayed)
         {
             AudioManager.Instance?.Play("ChangeElementError");
+            ChangeElementErrorPlayed = true;
+            Invoke(nameof(ErrorPlayed), 1.5f);
         }
+    }
+
+    private void ErrorPlayed()
+    {
+        ChangeElementErrorPlayed = false;
     }
 
     //Roll
@@ -781,7 +671,6 @@ public class VikingController : MonoBehaviour
             }
         }
         isShiningUp = true;
-        isShiningDown = false;
         shineTimer = 0;
     }
     public void CollectLife()
