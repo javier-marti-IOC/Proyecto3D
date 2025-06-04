@@ -271,6 +271,7 @@ public class Tower : MonoBehaviour
         {
             Debug.Log("---->>>> NO EXISTE EL CAMERA FADE SWITCHER");
         }
+        AudioManager.Instance?.Stop("musicTower");
         Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
     }
 

@@ -248,6 +248,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2704167398805336677, guid: aa3b8bad8e050294882c5089bc0d5164,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704167398805336677, guid: aa3b8bad8e050294882c5089bc0d5164,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.079
+      objectReference: {fileID: 0}
     - target: {fileID: 2704167398805336679, guid: aa3b8bad8e050294882c5089bc0d5164,
         type: 3}
       propertyPath: ShapeModule.type
@@ -2041,6 +2051,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
         type: 3}
+      propertyPath: music.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
       propertyPath: ui.Array.data[4].clip
       value: 
       objectReference: {fileID: 8300000, guid: eee01cff2c118d2418608e5c81440ca6, type: 3}
@@ -2056,12 +2071,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
         type: 3}
+      propertyPath: sfx.Array.data[16].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 16e95cd946b24044a8a905857fdfb82c, type: 3}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: sfx.Array.data[16].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: sfx.Array.data[16].name
+      value: MusicTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
       propertyPath: ui.Array.data[4].volume
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
         type: 3}
+      propertyPath: music.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 16e95cd946b24044a8a905857fdfb82c, type: 3}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: music.Array.data[2].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: music.Array.data[2].name
+      value: musicTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
       propertyPath: sfx.Array.data[15].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: sfx.Array.data[16].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: music.Array.data[2].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
@@ -2071,9 +2126,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
         type: 3}
+      propertyPath: sfx.Array.data[16].volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: music.Array.data[2].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
       propertyPath: sfx.Array.data[15].outputGroup
       value: 
       objectReference: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+        type: 2}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: sfx.Array.data[16].outputGroup
+      value: 
+      objectReference: {fileID: -3499362975362188445, guid: 36176d1c6022c4d4aa572482508b761b,
+        type: 2}
+    - target: {fileID: 7903258526095875689, guid: 7c45a1940b8ae0f46849bc582ff2c110,
+        type: 3}
+      propertyPath: music.Array.data[2].outputGroup
+      value: 
+      objectReference: {fileID: 217158595611478940, guid: 36176d1c6022c4d4aa572482508b761b,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2612,6 +2689,75 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8455052802132300959}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &314968678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314968679}
+  - component: {fileID: 314968681}
+  - component: {fileID: 314968680}
+  m_Layer: 0
+  m_Name: MusicTowerZoneTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &314968679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314968678}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.1694662, z: -0, w: 0.98553604}
+  m_LocalPosition: {x: 7.58, y: 0, z: 16.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1029982558}
+  m_LocalEulerAnglesHint: {x: 0, y: -19.514, z: 0}
+--- !u!114 &314968680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314968678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5610c6f56d7937647be6ceee1efcdf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 1231213283449546712}
+  fadeDuration: 2
+  maxVolume: 0.125
+--- !u!65 &314968681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314968678}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 43.47761, y: 12.653446, z: 63.346825}
+  m_Center: {x: -2.6989381, y: 1.0558071, z: -7.9321547}
 --- !u!1 &317678645 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8413666744155079777, guid: acf3421d74432b8448e4f0be10029697,
@@ -5182,6 +5328,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 497858936}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &794713813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794713814}
+  - component: {fileID: 794713816}
+  - component: {fileID: 794713815}
+  m_Layer: 0
+  m_Name: MusicTowerZoneTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &794713814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794713813}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.65263575, z: -0, w: 0.75767183}
+  m_LocalPosition: {x: 8.32, y: 0, z: 8.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 743717400248930485}
+  m_LocalEulerAnglesHint: {x: 0, y: 278.51898, z: 0}
+--- !u!114 &794713815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794713813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5610c6f56d7937647be6ceee1efcdf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 1231213283449546712}
+  fadeDuration: 2
+  maxVolume: 0.125
+--- !u!65 &794713816
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794713813}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 69.12338, y: 12.653446, z: 63.445778}
+  m_Center: {x: -16.966175, y: 1.0558071, z: 7.206397}
 --- !u!1 &807081711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4461855537683023926, guid: acf3421d74432b8448e4f0be10029697,
@@ -6840,6 +7055,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1238843490651561831, guid: af86de5f787c7324b8bbd7480ea26393,
     type: 3}
   m_PrefabInstance: {fileID: 7709895635516301418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1029982558 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8643226077900690459, guid: f4103e33610233a448ebbe64c4303885,
+    type: 3}
+  m_PrefabInstance: {fileID: 193484584109215839}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1034768221
 GameObject:
@@ -15139,6 +15360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325079575866185022, guid: 82221e59fa1f74941988f1ca9297cbdd,
         type: 3}
+      propertyPath: m_text
+      value: Desant la partida...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325079575866185022, guid: 82221e59fa1f74941988f1ca9297cbdd,
+        type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
       objectReference: {fileID: 0}
@@ -15358,6 +15584,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2704167398805336677, guid: aa3b8bad8e050294882c5089bc0d5164,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704167398805336677, guid: aa3b8bad8e050294882c5089bc0d5164,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.069
+      objectReference: {fileID: 0}
     - target: {fileID: 2704167398805336679, guid: aa3b8bad8e050294882c5089bc0d5164,
         type: 3}
       propertyPath: ShapeModule.type
@@ -15419,6 +15655,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1547218454}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1551853033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1551853034}
+  - component: {fileID: 1551853036}
+  - component: {fileID: 1551853035}
+  m_Layer: 0
+  m_Name: MusicTowerZoneTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1551853034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551853033}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.3791155, z: -0, w: 0.92534935}
+  m_LocalPosition: {x: 11.78, y: 0, z: 1.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8945223068028654701}
+  m_LocalEulerAnglesHint: {x: 0, y: -44.558, z: 0}
+--- !u!114 &1551853035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551853033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5610c6f56d7937647be6ceee1efcdf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 1231213283449546712}
+  fadeDuration: 2
+  maxVolume: 0.125
+--- !u!135 &1551853036
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551853033}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 22
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1556019204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 626062255531937668, guid: acf3421d74432b8448e4f0be10029697,
@@ -17864,6 +18169,75 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 20.1, y: 14.32, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1888569556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1888569557}
+  - component: {fileID: 1888569559}
+  - component: {fileID: 1888569558}
+  m_Layer: 0
+  m_Name: MusicTowerZoneTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1888569557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888569556}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8426358, z: -0, w: 0.538484}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8640528334564998480}
+  m_LocalEulerAnglesHint: {x: 0, y: 114.839, z: 0}
+--- !u!114 &1888569558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888569556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5610c6f56d7937647be6ceee1efcdf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 1231213283449546712}
+  fadeDuration: 2
+  maxVolume: 0.125
+--- !u!65 &1888569559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888569556}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30.395283, y: 12.653446, z: 29.781115}
+  m_Center: {x: -9.240088, y: 1.0558071, z: -9.625852}
 --- !u!1 &1892946994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1505142609139143821, guid: acf3421d74432b8448e4f0be10029697,
@@ -18618,6 +18992,75 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7709895635516301418}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2068240932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2068240933}
+  - component: {fileID: 2068240935}
+  - component: {fileID: 2068240934}
+  m_Layer: 0
+  m_Name: MusicTowerZoneTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2068240933
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068240932}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9999988, z: -0, w: -0.0015798807}
+  m_LocalPosition: {x: 7.43, y: 0, z: -3.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7028022042135625482}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.181, z: 0}
+--- !u!114 &2068240934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068240932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5610c6f56d7937647be6ceee1efcdf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 1231213283449546712}
+  fadeDuration: 2
+  maxVolume: 0.125
+--- !u!65 &2068240935
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068240932}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 48.545437, y: 12.653446, z: 87.42295}
+  m_Center: {x: -5.23279, y: 1.0558071, z: -5.5704694}
 --- !u!114 &2085817386 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4078743147098503221, guid: 154c036aed6a5124c82fe2873a7db32e,
@@ -19514,6 +19957,11 @@ PrefabInstance:
       objectReference: {fileID: 533846980}
     - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
+      propertyPath: musicTowerZoneTrigger
+      value: 
+      objectReference: {fileID: 314968680}
+    - target: {fileID: 8822744985483429131, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
       propertyPath: hitTowerParticleEffect
       value: 
       objectReference: {fileID: 497116498}
@@ -19722,7 +20170,11 @@ PrefabInstance:
       objectReference: {fileID: 960475083}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8643226077900690459, guid: f4103e33610233a448ebbe64c4303885,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 314968679}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7319371129717331101, guid: f4103e33610233a448ebbe64c4303885,
         type: 3}
@@ -20260,6 +20712,7 @@ Transform:
   m_Children:
   - {fileID: 1917862860}
   - {fileID: 1451882474495755144}
+  - {fileID: 794713814}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -56.469, z: 0}
 --- !u!23 &864342241894958521
@@ -22557,6 +23010,7 @@ Transform:
   m_Children:
   - {fileID: 1718013361}
   - {fileID: 9222427197131320375}
+  - {fileID: 2068240933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -267.448, z: 0}
 --- !u!4 &7055720216772434726
@@ -25072,6 +25526,7 @@ Transform:
   m_Children:
   - {fileID: 1471468089}
   - {fileID: 7610374040594919021}
+  - {fileID: 1888569557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -288.088, z: 0}
 --- !u!1001 &8702664582261733502
@@ -25211,6 +25666,7 @@ Transform:
   m_Children:
   - {fileID: 452147939}
   - {fileID: 7086405902530004816}
+  - {fileID: 1551853034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -87.887, z: 0}
 --- !u!4 &8953622340762267713
