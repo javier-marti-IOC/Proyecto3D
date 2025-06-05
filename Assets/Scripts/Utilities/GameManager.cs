@@ -339,7 +339,7 @@ public class GameManager : MonoBehaviour
         if (!firstTimeSlashAttackEnterHelp && isTutorial && firstTimeExitDPADHelp)
         {
             firstTimeSlashAttackEnterHelp = true;
-            infoPanelHUD.EnterText("Utilitza 'RT' per utilitzar l'atac fort i vençer l'altar.");
+            infoPanelHUD.EnterText("Utilitza l'atac a distancia 'RT' + element per vençer l'altar.");
         }
     }
 
