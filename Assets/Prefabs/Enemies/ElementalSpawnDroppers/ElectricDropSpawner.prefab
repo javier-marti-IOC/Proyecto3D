@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5244552963362291386
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3478836123580209689}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.98839617, z: -0, w: -0.15189826}
+  m_LocalRotation: {x: -0, y: -0.98839605, z: 0, w: -0.15189902}
   m_LocalPosition: {x: -119.355, y: 3.47, z: -136.884}
   m_LocalScale: {x: 0.13674137, y: 0.13674137, z: 0.13674137}
   m_ConstrainProportionsScale: 0
@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3478836123580209689}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -101,7 +101,8 @@ MonoBehaviour:
   trajectory: 1
   speed: 2
   angleInDegrees: 5
-  randomSpread: 0.5
+  randomSpread: 6
   gravity: -9.81
   autoSpawn: 1
-  spawnInterval: 5
+  spawnIntervalMinInclusive: 7
+  spawnIntervalMaxExclusive: 14

@@ -34,6 +34,7 @@ Transform:
   m_LocalScale: {x: 7.382189, y: 7.382189, z: 7.382189}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2387522544452383648}
   - {fileID: 7832268342928580854}
   - {fileID: 8429355400367474249}
   m_Father: {fileID: 0}
@@ -132,6 +133,7 @@ MonoBehaviour:
   randomSpread: 0.5
   gravity: -9.81
   lifeOrbSpawnPosition: {fileID: 7832268342928580854}
+  hitParticleEffect: {fileID: 2995143508746804152}
 --- !u!1 &4804853403036660060
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,8 +5124,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9141798434485281484}
   serializedVersion: 8
-  lengthInSec: 1
-  simulationSpeed: 1
+  lengthInSec: 1.5
+  simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -5197,7 +5199,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5368,8 +5370,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
-      minScalar: 0.05
+      scalar: 0.3
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5951,7 +5953,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6381,7 +6383,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -6389,8 +6391,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.3647059, g: 0.29411766, b: 0.47843137, a: 0}
-        key1: {r: 0.3647059, g: 0.29411766, b: 0.47843137, a: 0.4117647}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0.3647059, g: 0.29411766, b: 0.47843137, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6406,7 +6408,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 26407
+        atime1: 52313
         atime2: 65535
         atime3: 0
         atime4: 0
@@ -9923,3 +9925,88 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1001 &487152581679596141
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6679826967869441824}
+    m_Modifications:
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2176
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409881978596940245, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_Name
+      value: Hit_Particle_Mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409881978596940245, guid: 1af8b748f0861724082087f241e06a84,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1af8b748f0861724082087f241e06a84, type: 3}
+--- !u!4 &2387522544452383648 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2873465525826974157, guid: 1af8b748f0861724082087f241e06a84,
+    type: 3}
+  m_PrefabInstance: {fileID: 487152581679596141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2995143508746804152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3409881978596940245, guid: 1af8b748f0861724082087f241e06a84,
+    type: 3}
+  m_PrefabInstance: {fileID: 487152581679596141}
+  m_PrefabAsset: {fileID: 0}

@@ -241,6 +241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 8822744985483429131}
   enemy: {fileID: 0}
+  playerInSecondZoneRange: 0
+  elementalManaDropSpawners: []
 --- !u!1 &2768513532295956250
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,11 +625,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de30272d47a20214f8c3978a96d64af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondZoneObject: {fileID: 0}
   activeElement: 1
   max_life: 100
   life: 0
   invoke_cost: 15
   isOnCooldown: 0
+  remainingTime: 10
+  cooldownTime: 10
   firstZoneContact: 0
   secondZoneContact: 0
   secondZone: {fileID: 5886450292770307475}
@@ -665,13 +670,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  remainingTime: 10
-  cooldownTime: 10
+  trees: []
+  newTrees: []
+  corruptedClouds: []
+  oppositeOrbSpawnGenerator: {fileID: 0}
   enemiesInHealRange: []
   enemiesInSecondZoneRange: []
   spawner: {fileID: 7178450455195461210}
   progressManager: {fileID: 0}
+  gameManager: {fileID: 0}
   towerHUD: {fileID: 4425790219626840479}
+  cameraFadeSwitcher: {fileID: 0}
 --- !u!114 &7178450455195461210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,6 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb13ae3918480b24fa5610fff8571228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   enemyPrefabs:
   - {fileID: 5997274429968177521, guid: 89126174ddcda454f9bb9c4264e26609, type: 3}
   - {fileID: 5426825163228388641, guid: 15ee454afb8051549af8b36f9917a845, type: 3}
@@ -865,6 +875,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849675769167904673, guid: 29cd42040db366444866b01779675dc0,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1976381021298030417, guid: 29cd42040db366444866b01779675dc0,
         type: 3}

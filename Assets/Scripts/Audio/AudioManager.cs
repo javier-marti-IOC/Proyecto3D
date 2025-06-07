@@ -93,4 +93,13 @@ public class AudioManager : MonoBehaviour
             return Mathf.Pow(10f, dbVolume / 20f);
         return 1f;
     }
+
+    public AudioSource GetAudioSourceByName(string name)
+    {
+        if (soundDictionary.TryGetValue(name, out var s))
+            return s.source;
+
+        Debug.LogWarning("No se encontró el AudioSource para: " + name);
+        return null;
+    }
 }

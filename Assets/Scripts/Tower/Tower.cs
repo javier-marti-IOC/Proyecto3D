@@ -36,6 +36,8 @@ public class Tower : MonoBehaviour
     public Mesh[] newTrees;
     public GameObject[] corruptedClouds;
     public GameObject oppositeOrbSpawnGenerator;
+    public GameObject hitTowerParticleEffect;
+    public GameObject healTowerParticleEffect;
 
 
 
@@ -59,6 +61,9 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
+        hitTowerParticleEffect.SetActive(false);
+        healTowerParticleEffect.SetActive(false);
+
         this.life = max_life;
         if (ProgressManager.Instance.Data.towerActiveElements.Contains(activeElement))
         {
@@ -72,7 +77,7 @@ public class Tower : MonoBehaviour
             }
             Destroy(transform.parent.gameObject);
             if (oppositeOrbSpawnGenerator != null)
-            {    
+            {
                 if (oppositeOrbSpawnGenerator.activeSelf)
                 {
                     Destroy(oppositeOrbSpawnGenerator);
@@ -85,32 +90,34 @@ public class Tower : MonoBehaviour
             ChangeEnvironmentParticlesOff();
             secondZoneObject.SetActive(true);
         }
+        
+        towerHUD.UpdateHealth(life);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) // Restar vida
-        {
-            life = life - 5;
-            towerHUD.UpdateHealth(life);
-        }
+        // if (Input.GetKeyDown(KeyCode.L)) // Restar vida
+        // {
+        //     life = life - 5;
+        //     towerHUD.UpdateHealth(life);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.P)) // Sumar vida
-        {
-            life += 5;
-            towerHUD.UpdateHealth(life);
-            if (life > max_life)
-            {
-                life = max_life;
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.P)) // Sumar vida
+        // {
+        //     life += 5;
+        //     towerHUD.UpdateHealth(life);
+        //     if (life > max_life)
+        //     {
+        //         life = max_life;
+        //     }
+        // }
 
-        if (Input.GetKeyDown(KeyCode.M)) // Reiniciar materiales
-        {
-            Utils.ReplaceMaterials(materials, corruptedColors);
-            ChangeEnvironmentParticlesOff();
-            Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
-        }
+        // if (Input.GetKeyDown(KeyCode.M)) // Reiniciar materiales
+        // {
+        //     Utils.ReplaceMaterials(materials, corruptedColors);
+        //     ChangeEnvironmentParticlesOff();
+        //     Debug.Log("------- RESTAURANDO COLORES POR DEFECTO");
+        // }
 
         if (!secondZone.playerInSecondZoneRange && life != max_life)
         {
@@ -208,6 +215,7 @@ public class Tower : MonoBehaviour
 
     public void DestroyTower()
     {
+        gameManager.ExitSlashAttackHelp();
         for (int i = enemiesInSecondZoneRange.Count - 1; i >= 0; i--)
         {
             enemiesInSecondZoneRange[i].GetComponent<Enemy>().Dying(activeElement != Element.None);
@@ -257,12 +265,13 @@ public class Tower : MonoBehaviour
         }
         if (cameraFadeSwitcher != null)
         {
-            cameraFadeSwitcher.SwitchCameraWithFade();
+            cameraFadeSwitcher.InitiateCameraSwitcher();
         }
         else
         {
             Debug.Log("---->>>> NO EXISTE EL CAMERA FADE SWITCHER");
         }
+        AudioManager.Instance?.Stop("musicTower");
         Destroy(transform.parent.gameObject); // Destruye la torre si se queda sin vida
     }
 
@@ -270,6 +279,8 @@ public class Tower : MonoBehaviour
     {
         if (increase)
         {
+            healTowerParticleEffect.SetActive(false);
+            healTowerParticleEffect.SetActive(true);
             this.life += 20; // Incrementamos el valor de la vida
 
             if (this.life > max_life) // Si se pasa del limite de vida establecido, se rebaja hasta se vida maxima
@@ -424,6 +435,8 @@ public class Tower : MonoBehaviour
     public void HealthTaken(int damage)
     {
         life -= damage;
+        hitTowerParticleEffect.SetActive(false);
+        hitTowerParticleEffect.SetActive(true);
         towerHUD.UpdateHealth(life);
     }
 

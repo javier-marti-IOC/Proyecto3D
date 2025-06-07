@@ -126,7 +126,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot
+  m_Name: Snapshot - Gameplay
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 19fd7ec54329aa6439789f5a3d8edae6
   m_FloatValues: {}

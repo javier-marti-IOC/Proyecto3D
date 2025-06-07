@@ -17,7 +17,6 @@ public class DistanceBT : Enemy
     public float teleportDistance;
     private float timerTeleportFunction = 0f;
     private bool isPlayerInTeleportZone;
-    private bool isPlayerInHeavyAttackZone;
     public ParticleSystem teleportParticles;
 
     [Header("Chase")]
@@ -45,7 +44,6 @@ public class DistanceBT : Enemy
     private ParticleSystem activeHeavyParticles;
     private ParticleSystem activeHeavyParticles2;
     public GameObject heavyAttackZoneTrigger;
-    private bool isAttacking = false;
     private bool hitted = false;
     private bool canApplyHeavyDamage = false;
 
@@ -116,12 +114,10 @@ public class DistanceBT : Enemy
                                         case Element.Water:
                                             if (cooldownHeavyAttack <= 0)
                                             {
-                                                attacking = true;
                                                 animator.SetInteger(Constants.state, 3);
                                             }
                                             else
                                             {
-                                                attacking = true;
                                                 animator.SetInteger(Constants.state, 2);
                                             }
                                             break;
@@ -158,6 +154,19 @@ public class DistanceBT : Enemy
                                                             //transform.LookAt(player.transform);
                                                             animator.SetInteger(Constants.state, 2);
                                                         }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (cooldownHeavyAttack <= 0)
+                                                    {
+                                                        //transform.LookAt(player.transform);
+                                                        animator.SetInteger(Constants.state, 3);
+                                                    }
+                                                    else
+                                                    {
+                                                        //transform.LookAt(player.transform);
+                                                        animator.SetInteger(Constants.state, 2);
                                                     }
                                                 }
                                             }
@@ -203,11 +212,12 @@ public class DistanceBT : Enemy
                 else
                 {
                     Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
-
+                    agent.SetDestination(transform.position);
                 }
             }
             else
             {
+                attacking = false;
                 animator.SetInteger(Constants.state, 4);
             }
 
@@ -230,10 +240,6 @@ public class DistanceBT : Enemy
     private void CheckLookingPlayer()
     {
         SetLookingPlayersActive(true);
-        if (!isAttacking)
-        {
-            agent.SetDestination(player.transform.position);
-        }
 
         if (lookAtPlayers.Any(lookAtPlayer => lookAtPlayer.GetComponent<LookAtPlayer>().CentralRay()))
         {
@@ -267,11 +273,11 @@ public class DistanceBT : Enemy
     {
         if (other.CompareTag(Constants.player))
         {
-            isPlayerInHeavyAttackZone = true;
             Debug.Log("Player in Heavy Attack 2Zone");
 
             if (canApplyHeavyDamage)
             {
+                Debug.Log("Player hit by heavy electric attack");
                 PlayerHeavyHitted();
                 canApplyHeavyDamage = false;
             }
@@ -281,7 +287,6 @@ public class DistanceBT : Enemy
     {
         if (other.CompareTag(Constants.player))
         {
-            isPlayerInHeavyAttackZone = false;
             Debug.Log("Player out Heavy Attack Zone");
         }
     }
@@ -324,9 +329,6 @@ public class DistanceBT : Enemy
     {
         if (player == null) return;
 
-        isAttacking = true;
-        agent.isStopped = true;
-
         Vector3 direction = (impactPosition.transform.position - hand.position).normalized;
         RaycastHit hit;
 
@@ -358,9 +360,6 @@ public class DistanceBT : Enemy
     public void StartHeavyAttack()
     {
         if (player == null) return;
-
-        isAttacking = true;
-        agent.isStopped = true;
 
         // Guardar posició actual del player
         pendingHeavyAttackPosition = player.transform.position;
@@ -400,7 +399,7 @@ public class DistanceBT : Enemy
 
         // Activar la zona
         Transform zone = heavyAttackZoneTrigger.transform;
-        zone.position = pendingHeavyAttackPosition + Vector3.up * 0.01f;
+        zone.position = end + Vector3.up * 0.01f;
         zone.gameObject.SetActive(true);
 
         GameObject lightningFlash = new GameObject("LightningFlash");
@@ -420,19 +419,11 @@ public class DistanceBT : Enemy
 
         canApplyHeavyDamage = true;
 
-        if (isPlayerInHeavyAttackZone)
-        {
-            //Player rep pupa
-            Debug.Log("Player hit by heavy electric attack");
-            PlayerHeavyHitted();
-        }
-
         Invoke(nameof(DisableHeavyAttackZone), 1f);
     }
     private void EndEnemyAttack()
     {
-        isAttacking = false;
-        agent.isStopped = false;
+        
     }
 
     private void EnableHeavyAttackParticles()
@@ -468,9 +459,7 @@ public class DistanceBT : Enemy
         player.GetComponent<VikingController>().HealthTaken(gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, player.GetComponent<VikingController>().activeElement));
     }
 
-
-
-    public override void HealthTaken(int damageTaken)
+    public override void HealthTaken(int[] damageTaken,Element element)
     {
         if (audioWaterHit != null)
         {
@@ -481,9 +470,9 @@ public class DistanceBT : Enemy
             audioElectricHit.Play();
         }
 
-        base.HealthTaken(damageTaken);
+        base.HealthTaken(damageTaken, element);
         hitted = true;
-        agent.isStopped = true;
+        //agent.isStopped = true;
         hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
@@ -497,14 +486,12 @@ public class DistanceBT : Enemy
         }
         else
         {
-            Invoke(nameof(SetFalseHitted), 0.5f);
+            Invoke(nameof(SetFalseHitted), 0.3f);
         }
     }
     // Método compatible con Animation Event
     public void SetHittedFalse()
     {
-        // hitted = false;
-        agent.isStopped = false;
         hitParticle.SetActive(false);
     }
 

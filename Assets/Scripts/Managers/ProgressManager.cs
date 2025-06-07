@@ -11,6 +11,7 @@ public class ProgressData
 {
     public bool tutorial;
     public List<Element> towerActiveElements;
+    public bool continuePlaying;
 
     public List<Element> GetTowerActiveElements()
     {
@@ -33,6 +34,7 @@ public class ProgressManager : MonoBehaviour
     private bool electricTowerDestroyed;
 
     public PauseMenu pauseMenu;
+    private SaveGamePanel saveGamePanel;
 
     private void Awake()
     {
@@ -71,6 +73,7 @@ public class ProgressManager : MonoBehaviour
         }
         // Guardamos la ruta donde queremos generar el JSON
         saveFilePath = Application.persistentDataPath + "/progressManager.json";
+        saveGamePanel = FindObjectOfType<SaveGamePanel>();
         // Si el archivo no existe, generamos el objeto del JSON con todo a 0
         if (!File.Exists(saveFilePath))
         {
@@ -100,34 +103,34 @@ public class ProgressManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // Guardar data
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            SaveGame();
-        }
-        // Cargar data
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (File.Exists(saveFilePath))
-            {
-                LoadData();
-            }
-            else
-            {
-                Debug.Log("There is no save files to load!");
-            }
-        }
+    // void Update()
+    // {
+    //     // Guardar data
+    //     if (Input.GetKeyDown(KeyCode.X))
+    //     {
+    //         SaveGame();
+    //     }
+    //     // Cargar data
+    //     if (Input.GetKeyDown(KeyCode.Z))
+    //     {
+    //         if (File.Exists(saveFilePath))
+    //         {
+    //             LoadData();
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("There is no save files to load!");
+    //         }
+    //     }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (File.Exists(saveFilePath))
-            {
-                DeleteSavedFile();
-            }
-        }
-    }
+    //     if (Input.GetKeyDown(KeyCode.E))
+    //     {
+    //         if (File.Exists(saveFilePath))
+    //         {
+    //             DeleteSavedFile();
+    //         }
+    //     }
+    // }
 
 
 
@@ -144,10 +147,29 @@ public class ProgressManager : MonoBehaviour
         {
             Debug.LogError("ProgressData or towerActiveElements are null, cannot save.");
         }
+        if (saveGamePanel != null)
+        {
+            saveGamePanel.ShowPanel();
+        }
     }
     // Funcion para cargar partida
     public void LoadGame()
     {
+        LoadData();
+        if (File.Exists(saveFilePath))
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Partida cargada con exito!");
+        }
+        else
+        {
+            Debug.Log("There is no save files to load!");
+        }
+    }
+    public void LoadGameFromFinalScene()
+    {
+        ProgressManager.Instance.Data.continuePlaying = true;
+        SaveGame();
         LoadData();
         if (File.Exists(saveFilePath))
         {
@@ -237,9 +259,9 @@ public class ProgressManager : MonoBehaviour
             {
                 if (pauseMenu != null)
                 {
-                    pauseMenu.ToggleEndgame();
+                    //pauseMenu.ToggleEndgame();
                 }
-            }  
+            }
         }
     }
     public void musicMenu()
@@ -248,9 +270,26 @@ public class ProgressManager : MonoBehaviour
         {
             AudioManager.Instance?.Play("menuMusicHealed");
         }
-            else if(SceneManager.GetActiveScene().buildIndex == 0)
+        else if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             AudioManager.Instance?.Play("menuMusicCorrupted");
         }
+    }
+
+    public bool IsEarthTowerDestroyed()
+    {
+        return earthTowerDestroyed;
+    }
+    public bool IsWaterTowerDestroyed()
+    {
+        return waterTowerDestroyed;
+    }
+    public bool IsFireTowerDestroyed()
+    {
+        return fireTowerDestroyed;
+    }
+    public bool IsElectricTowerDestroyed()
+    {
+        return electricTowerDestroyed;
     }
 }

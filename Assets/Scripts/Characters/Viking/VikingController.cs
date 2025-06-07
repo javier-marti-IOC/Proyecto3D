@@ -36,7 +36,10 @@ public class VikingController : MonoBehaviour
     public Animator animator;
     public int healthPoints;
     public Collider swordCollider;
-    public GameObject slash;
+    public GameObject slashEarth;
+    public GameObject slashWater;
+    public GameObject slashFire;
+    public GameObject slashElectric;
     public Transform slashPosition;
     public Element activeElement;
     private bool isBasicAttack;
@@ -45,10 +48,15 @@ public class VikingController : MonoBehaviour
     public int heavyAttackBasicDamage;
     public int heavyAttackMagicDamage;
     private GameManager gameManager;
+    public GameObject hitParticles;
+    public GameObject lowHealthEffect;
 
     [Header("Booleans")]
     public bool OnAction;
     public bool isRolling;
+    private bool isSpendingMana;
+    private bool ChangeElementErrorPlayed;
+    //private bool isShining;
 
     [Header("Cooldowns")]
     public float rollCooldown;
@@ -64,6 +72,23 @@ public class VikingController : MonoBehaviour
     public GameObject deathParticle;
     public Transform deathParticlePosition;
 
+    [Header("Shine")]
+    public Renderer characterRenderer;
+    public float shineDuration;
+    private int shineElement;
+    private bool isShiningUp = false;
+    private float shineTimer = 0;
+    public Material baseMaterial;
+    public Material noneMaterial;
+    public Material earthMaterial;
+    public Material waterMaterial;
+    public Material fireMaterial;
+    public Material electricMaterial;
+    public Material healMaterial;
+
+    [Header("Horns")]
+    public Renderer rightHorn;
+    public Renderer leftHorn;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +108,8 @@ public class VikingController : MonoBehaviour
         waterEffect.SetActive(false);
         fireEffect.SetActive(false);
         electricEffect.SetActive(false);
+        hitParticles.SetActive(false);
+        lowHealthEffect.SetActive(false);
 
         //DPAD
         dpadAction = inputActions.FindAction("DPAD");
@@ -96,6 +123,7 @@ public class VikingController : MonoBehaviour
 
         //HUD
         vikingHealthHUD.SetHealth(healthPoints);
+        //CollectMana(Element.None);
     }
 
     // Update is called once per frame
@@ -108,6 +136,14 @@ public class VikingController : MonoBehaviour
         else
         {
             healParticlesTimer -= Time.deltaTime;
+        }
+        if (healthPoints <= 20)
+        {
+            lowHealthEffect.SetActive(true);
+        }
+        else
+        {
+            lowHealthEffect.SetActive(false);
         }
         if (healthPoints <= 0)
         {
@@ -142,10 +178,12 @@ public class VikingController : MonoBehaviour
                 if (basicAttackAction.WasPerformedThisFrame() && !isRolling)
                 {
                     BasicAttack();
+                    if (activeElement != Element.None) isSpendingMana = true;
                 }
                 if (heavyAttackAction.ReadValue<float>() > 0.5f && !isRolling)
                 {
                     HeavyAttack();
+                    if (activeElement != Element.None) isSpendingMana = true;
                 }
                 if (rollAction.WasPerformedThisFrame() && rollCooldown < 0f)
                 {
@@ -154,12 +192,13 @@ public class VikingController : MonoBehaviour
                 }
             }
 
-            if (reduceMana < 0)
+            if (reduceMana < 0 && isSpendingMana)
             {
                 reduceMana = 0.5f;
                 if (activeElement == Element.Earth)
                 {
                     earthMana -= 1;
+                    earthEffect.SetActive(true);
                     elementsHUD.earthReduce(earthMana);
                     if (earthMana <= 0)
                     {
@@ -167,11 +206,15 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         earthMana = 0;
                         earthEffect.SetActive(false);
+                        isSpendingMana = false;
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
                 else if (activeElement == Element.Water)
                 {
                     waterMana -= 1;
+                    waterEffect.SetActive(true);
                     elementsHUD.waterReduce(waterMana);
                     if (waterMana <= 0)
                     {
@@ -179,12 +222,15 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         waterMana = 0;
                         waterEffect.SetActive(false);
+                        isSpendingMana = false;
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
                 else if (activeElement == Element.Fire)
                 {
                     fireMana -= 1;
-                    //if (fireMana <= 0) StopElementBlink(activeElement);
+                    fireEffect.SetActive(true);
                     elementsHUD.fireReduce(fireMana);
                     if (fireMana <= 0)
                     {
@@ -192,11 +238,15 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         fireMana = 0;
                         fireEffect.SetActive(false);
+                        isSpendingMana = false;
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
                 else if (activeElement == Element.Electric)
                 {
                     electricMana -= 1;
+                    electricEffect.SetActive(true);
                     elementsHUD.lightningReduce(electricMana);
                     if (electricMana <= 0)
                     {
@@ -204,75 +254,172 @@ public class VikingController : MonoBehaviour
                         activeElement = Element.None;
                         electricMana = 0;
                         electricEffect.SetActive(false);
+                        isSpendingMana = false;
+                        rightHorn.material = noneMaterial;
+                        leftHorn.material = noneMaterial;
                     }
                 }
+            }
+        }
+        if (isShiningUp)
+        {
+            shineTimer += Time.deltaTime;
+            float t = shineTimer / shineDuration;
+            if (shineElement == 0)
+            {
+                characterRenderer.material = noneMaterial;
+            }
+            else if (shineElement == 1)
+            {
+                characterRenderer.material = earthMaterial;
+            }
+            else if (shineElement == 2)
+            {
+                characterRenderer.material = waterMaterial;
+            }
+            else if (shineElement == 3)
+            {
+                characterRenderer.material = fireMaterial;
+            }
+            else if (shineElement == 4)
+            {
+                characterRenderer.material = electricMaterial;
+            }
+            else if (shineElement == 5)
+            {
+                characterRenderer.material = healMaterial;
+            }
+            if (t >= 1)
+            {
+                isShiningUp = false;
+                characterRenderer.material = baseMaterial;
+                shineTimer = 0;
             }
         }
     }
 
     private void ChangeElement(Element element)
     {
+        if (element == activeElement)
+        {
+            ChangeElementErrorPlayed = true;
+            Invoke(nameof(ErrorPlayed), 1.5f);
+        }
         bool changed = false;
         //ACtivar elemento nuevo
         if (element == Element.Earth && earthMana == 100 && activeElement != Element.Earth)
         {
-            earthEffect.SetActive(true);
+            elementsHUD.EarthStartBlink();
+            rightHorn.material = earthMaterial;
+            leftHorn.material = earthMaterial;
             changed = true;
         }
         else if (element == Element.Water && waterMana == 100 && activeElement != Element.Water)
         {
-            waterEffect.SetActive(true);
+            elementsHUD.WaterStartBlink();
+            rightHorn.material = waterMaterial;
+            leftHorn.material = waterMaterial;
             changed = true;
         }
         else if (element == Element.Fire && fireMana == 100 && activeElement != Element.Fire)
         {
-            fireEffect.SetActive(true);
+            elementsHUD.FireStartBlink();
+            rightHorn.material = fireMaterial;
+            leftHorn.material = fireMaterial;
             changed = true;
         }
         else if (element == Element.Electric && electricMana == 100 && activeElement != Element.Electric)
         {
-            electricEffect.SetActive(true);
+            elementsHUD.LightningStartBlink();
+            rightHorn.material = electricMaterial;
+            leftHorn.material = electricMaterial;
+
             changed = true;
         }
         //Desactivar elemento antiguo
         if (changed)
         {
+            ChangeElementErrorPlayed = true;
+            Invoke(nameof(ErrorPlayed), 1.5f);
+            gameManager.ExitDPADHelp();
+            gameManager.EnterSlashAttackHelp();
             AudioManager.Instance?.Play("ActivateElement");
             if (activeElement == Element.Earth)
             {
-                earthMana = 0;
-                elementsHUD.earthReduce(earthMana);
-                elementsHUD.EarthStopBlink();
-                earthEffect.SetActive(false);
+                if (isSpendingMana)
+                {
+                    earthMana = 0;
+                    elementsHUD.earthReduce(earthMana);
+                    earthEffect.SetActive(false);
+                    elementsHUD.EarthStopBlink();
+                }
+                else
+                {
+                    elementsHUD.EarthStopBlinkPreSelected();
+                }
             }
             else if (activeElement == Element.Water)
             {
-                waterMana = 0;
-                elementsHUD.waterReduce(waterMana);
-                elementsHUD.WaterStopBlink();
-                waterEffect.SetActive(false);
+                if (isSpendingMana)
+                {
+                    waterMana = 0;
+                    elementsHUD.waterReduce(waterMana);
+                    waterEffect.SetActive(false);
+                    elementsHUD.WaterStopBlink();
+                }
+                else
+                {
+                    elementsHUD.WaterStopBlinkPreSelected();
+                }
             }
             else if (activeElement == Element.Fire)
             {
-                fireMana = 0;
-                elementsHUD.fireReduce(fireMana);
-                elementsHUD.FireStopBlink();
-                fireEffect.SetActive(false);
+                if (isSpendingMana)
+                {
+                    fireMana = 0;
+                    elementsHUD.fireReduce(fireMana);
+                    fireEffect.SetActive(false);
+                    elementsHUD.FireStopBlink();
+                }
+                else
+                {
+                    elementsHUD.FireStopBlinkPreSelected();
+                }
             }
             else if (activeElement == Element.Electric)
             {
-                electricMana = 0;
-                elementsHUD.lightningReduce(electricMana);
-                elementsHUD.LightningStopBlink();
-                electricEffect.SetActive(false);
+                if (isSpendingMana)
+                {
+                    electricMana = 0;
+                    elementsHUD.lightningReduce(electricMana);
+                    electricEffect.SetActive(false);
+                    elementsHUD.LightningStopBlink();
+                }
+                else
+                {
+                    elementsHUD.LightningStopBlinkPreSelected();
+                }
             }
             activeElement = element;
+            isSpendingMana = false;
         }
+        else if (!ChangeElementErrorPlayed)
+        {
+            AudioManager.Instance?.Play("ChangeElementError");
+            ChangeElementErrorPlayed = true;
+            Invoke(nameof(ErrorPlayed), 1.5f);
+        }
+    }
+
+    private void ErrorPlayed()
+    {
+        ChangeElementErrorPlayed = false;
     }
 
     //Roll
     public void Roll()
     {
+        gameManager.ExitRollHelp();
         animator.SetTrigger("Roll");
     }
     public void InmunityEnable()
@@ -306,12 +453,35 @@ public class VikingController : MonoBehaviour
     public void ColliderAttackEnable()
     {
         swordCollider.enabled = true;
-        if (activeElement != Element.None)
+    }
+    public void StartSlashAttack()
+    {
+
+        if (activeElement == Element.Earth)
         {
-            Instantiate(slash,swordCollider.transform.position,Quaternion.identity,null);
+            Instantiate(slashEarth, swordCollider.transform.position, Quaternion.identity, null);
+            earthMana -= 35;
+            elementsHUD.earthReduce(earthMana);
+        }
+        else if (activeElement == Element.Water)
+        {
+            Instantiate(slashWater, swordCollider.transform.position, Quaternion.identity, null);
+            waterMana -= 35;
+            elementsHUD.waterReduce(waterMana);
+        }
+        else if (activeElement == Element.Fire)
+        {
+            Instantiate(slashFire, swordCollider.transform.position, Quaternion.identity, null);
+            fireMana -= 35;
+            elementsHUD.fireReduce(fireMana);
+        }
+        else if (activeElement == Element.Electric)
+        {
+            Instantiate(slashElectric, swordCollider.transform.position, Quaternion.identity, null);
+            electricMana -= 35;
+            elementsHUD.lightningReduce(electricMana);
         }
     }
-
     public void ColliderAttackDisable()
     {
         swordCollider.enabled = false;
@@ -321,34 +491,55 @@ public class VikingController : MonoBehaviour
         if (other.CompareTag(Constants.enemy))
         {
             //ResetEnemyDetection(other.GetComponent<Enemy>());
-            int damageDeal;
+            int[] damageDeal;
             if (isBasicAttack)
             {
-                damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
-                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                if (activeElement == Element.None)
+                {
+                    damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, 0, other.GetComponent<Enemy>().activeElement);
+                }
+                else
+                {
+                    damageDeal = gameManager.DamageCalulator(activeElement, basicAttackBasicDamage, basicAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+                }
+                other.GetComponent<Enemy>().HealthTaken(damageDeal, activeElement);
                 Debug.Log("Basic Attack Damage Deal: " + damageDeal);
             }
             else
             {
-                damageDeal = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
-                other.GetComponent<Enemy>().HealthTaken(damageDeal);
+                damageDeal = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, 0, other.GetComponent<Enemy>().activeElement);
+                other.GetComponent<Enemy>().HealthTaken(damageDeal, activeElement);
                 Debug.Log("Heavy Attack Damage Deal: " + damageDeal);
             }
         }
+        //else if (other.CompareTag(Constants.seta))
+        {
+
+        }
+    }
+    public void SlashAttackEnter(Collider other, Element element)
+    {
+        if (other.CompareTag(Constants.enemy))
+        {
+            int[] damageDeal;
+            damageDeal = gameManager.DamageCalulator(element, 0, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
+            other.GetComponent<Enemy>().HealthTaken(damageDeal, element);
+            Debug.Log("Slash Attack Damage Deal: " + damageDeal);
+        }
         else if (other.CompareTag(Constants.tower))
         {
-            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement, activeElement) < 0 && !isBasicAttack)
+            if (gameManager.ElementInteraction(other.GetComponent<Tower>().activeElement, activeElement) < 0)
             {
                 if (activeElement == Element.Earth) earthMana = 0;
                 else if (activeElement == Element.Water) waterMana = 0;
                 else if (activeElement == Element.Fire) fireMana = 0;
                 else if (activeElement == Element.Electric) electricMana = 0;
                 Debug.Log("TowerHit");
-                other.GetComponent<Tower>().HealthTaken(34);
+                other.GetComponent<Tower>().HealthTaken(55);
             }
-            else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None && !isBasicAttack)
+            else if (other.GetComponent<Tower>().activeElement == Element.None && activeElement != Element.None)
             {
-                other.GetComponent<Tower>().HealthTaken(50);
+                other.GetComponent<Tower>().HealthTaken(150);
                 earthMana = 0;
                 elementsHUD.earthReduce(earthMana);
                 elementsHUD.EarthStopBlink();
@@ -363,27 +554,15 @@ public class VikingController : MonoBehaviour
                 elementsHUD.LightningStopBlink();
             }
         }
-        //else if (other.CompareTag(Constants.seta))
-        {
-            
-        }
     }
-    public void SlashAttackEnter(Collider other)
-    {
-        if (other.CompareTag(Constants.enemy))
-        {
-            int damageDeal;
-            damageDeal = gameManager.DamageCalulator(activeElement, 0, heavyAttackMagicDamage, other.GetComponent<Enemy>().activeElement);
-            other.GetComponent<Enemy>().HealthTaken(damageDeal);
-            Debug.Log("Slash Attack Damage Deal: " + damageDeal);
-        }
-    }
-    public void HealthTaken(int healthTaken)
+    public void HealthTaken(int[] healthTaken)
     {
         if (!isRolling)
         {
+            hitParticles.SetActive(false);
+            hitParticles.SetActive(true);
             AudioManager.Instance?.Play("HitMarker");
-            healthPoints -= healthTaken;
+            healthPoints -= healthTaken[0] + healthTaken[1];
             vikingHealthHUD.SetHealth(healthPoints);
         }
     }
@@ -396,7 +575,7 @@ public class VikingController : MonoBehaviour
         pauseMenu.ToggleDeath();
         if (deathParticle != null && deathParticlePosition != null)
         {
-            Instantiate(deathParticle,slashPosition.position,Quaternion.identity,null);
+            Instantiate(deathParticle, deathParticlePosition.position, Quaternion.identity, null);
         }
         healthPoints = 100;
     }
@@ -457,6 +636,7 @@ public class VikingController : MonoBehaviour
                 electricMana = 100;
                 elementsHUD.lightningAdd(electricMana);
             }
+            shineElement = 0;
         }
         else
         {
@@ -466,27 +646,32 @@ public class VikingController : MonoBehaviour
                 earthMana += mana;
                 if (earthMana > 100) earthMana = 100;
                 elementsHUD.earthAdd(earthMana);
-
+                shineElement = 1;
             }
             else if (element == Element.Water && activeElement != Element.Water)
             {
                 waterMana += mana;
                 if (waterMana > 100) waterMana = 100;
                 elementsHUD.waterAdd(waterMana);
+                shineElement = 2;
             }
             else if (element == Element.Fire && activeElement != Element.Fire)
             {
                 fireMana += mana;
                 if (fireMana > 100) fireMana = 100;
                 elementsHUD.fireAdd(fireMana);
+                shineElement = 3;
             }
             else if (element == Element.Electric && activeElement != Element.Electric)
             {
                 electricMana += mana;
                 if (electricMana > 100) electricMana = 100;
                 elementsHUD.lightningAdd(electricMana);
+                shineElement = 4;
             }
         }
+        isShiningUp = true;
+        shineTimer = 0;
     }
     public void CollectLife()
     {
@@ -497,6 +682,9 @@ public class VikingController : MonoBehaviour
         healthPoints += 30;
         if (healthPoints > 100) healthPoints = 100;
         vikingHealthHUD.SetHealth(healthPoints);
+        shineElement = 5;
+        isShiningUp = true;
+        shineTimer = 0;
     }
 
     // Funciones para reproducir sonidos de ataque, se llaman en la animación

@@ -8,10 +8,10 @@ public class MeleeBT : Enemy
 {
     private bool hitted;
     private bool playerInSecurityDistance;
+    private bool playerInMeleeRange;
     [Header("Collider")]
     [SerializeField] protected Collider basicAttackCollider;
     [SerializeField] protected Collider heavyAttackCollider;
-    private bool isAttacking;
     private Vector3 pendingHeavyAttackPosition;
 
     [Header("FireEnemy properties")]
@@ -54,6 +54,7 @@ public class MeleeBT : Enemy
                     //Me acerco
                     //gameObject.GetComponent<NavMeshAgent>().SetDestination(tower.transform.position);
                     TowerChase();
+                    enemyHUD.IconTower(true);
                 }
             }
             else
@@ -133,6 +134,10 @@ public class MeleeBT : Enemy
                                 animator.SetInteger(Constants.state, 2);
                             }
                         }
+                        else if (playerInMeleeRange && !attacking)
+                        {
+                            Utils.RotatePositionToTarget(gameObject.transform, player.transform, 15f);
+                        }
                         else
                         {
                             animator.SetInteger(Constants.state, 0);
@@ -146,6 +151,7 @@ public class MeleeBT : Enemy
                 }
                 else
                 {
+                    enemyHUD.IconTower(false);
                     CheckAgentSpeed();
                     if (towerInRange)
                     {
@@ -232,7 +238,6 @@ public class MeleeBT : Enemy
     }
     private void EndEnemyAttack()
     {
-        isAttacking = false;
         agent.isStopped = false;
     }
 
@@ -240,7 +245,6 @@ public class MeleeBT : Enemy
     {
         //if (player == null) return;
 
-        isAttacking = true;
         agent.isStopped = true;
 
         pendingHeavyAttackPosition = transform.position; //player.transform.position;
@@ -260,7 +264,7 @@ public class MeleeBT : Enemy
     {
         if (playerCollider.TryGetComponent(out VikingController vc))
         {
-            int dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
+            int[] dmg = gameManager.DamageCalulator(activeElement, heavyAttackBasicDamage, heavyAttackElementalDamage, vc.activeElement);
             vc.HealthTaken(dmg);
         }
     }
@@ -282,7 +286,7 @@ public class MeleeBT : Enemy
         }
     }
 
-    public override void HealthTaken(int damageTaken)
+    public override void HealthTaken(int[] damageTaken, Element element)
     {
         if (activeElement == Element.Fire)
         {
@@ -292,7 +296,7 @@ public class MeleeBT : Enemy
         {
             audioEarthHit?.Play();
         }
-        base.HealthTaken(damageTaken);
+        base.HealthTaken(damageTaken, element);
         hitParticle.SetActive(false);
         hitParticle.SetActive(true);
         if (ghost != null) Destroy(ghost);
@@ -300,5 +304,21 @@ public class MeleeBT : Enemy
     public void EarthHeavyAttackSound()
     {
         audioEarthHeavyAttack.Play();
+    }
+
+    public void MeleeRangeTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            playerInMeleeRange = true;
+        }
+    }
+
+    public void MeleeRangeTriggerExit(Collider other)
+    {
+        if (other.CompareTag(Constants.player))
+        {
+            playerInMeleeRange = false;
+        }
     }
 }

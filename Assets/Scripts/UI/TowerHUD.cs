@@ -24,6 +24,9 @@ public class TowerHUD : MonoBehaviour
     public Image healthBar; // Barra de vida
     public Image healthBarGhost; // Barra de vida fantasma
 
+    [Header("Border")]
+    public Image borderElement; // Borde para colorear del color de la clase del enemigo
+
     // VARIABLES PRIVADAS
     public Tower towerScript; // Variable que permite el acceso al script del enemigo
     private float actualHealth; // Vida actual
@@ -33,9 +36,15 @@ public class TowerHUD : MonoBehaviour
     private bool waitingToReduce = false;
     private float maxHealth; // Vida maxima del enemigo
     
+    
     // COLORES
     Color32 healthColor = new Color32(93, 75, 122, 255); //rgb(93, 75, 122)
     Color32 healthGhostColor = new Color32(138, 93, 170, 255); // #6a4f96
+
+    Color32 fireColor = new Color32(194, 83, 83, 255); // #c25353
+    Color32 waterColor = new Color32(62, 124, 178, 255); // #3e7cb2
+    Color32 lightningColor = new Color32(223, 215, 100, 255); // #dfd764
+    Color32 earthColor = new Color32(107, 172, 102, 255); // #6bac66
 
     void Start()
     {
@@ -75,18 +84,30 @@ public class TowerHUD : MonoBehaviour
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             fireIcon.gameObject.SetActive(true);
-        } else if (towerScript.activeElement == Element.Water)
+
+            borderElement.color = fireColor;
+            fireIcon.color = fireColor;
+        }
+        else if (towerScript.activeElement == Element.Water)
         {
             fireIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(true);
-        } else if (towerScript.activeElement == Element.Earth)
+
+            borderElement.color = waterColor;
+            waterIcon.color = waterColor;
+        }
+        else if (towerScript.activeElement == Element.Earth)
         {
             fireIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(true);
+
+
+            borderElement.color = earthColor;
+            earthIcon.color = earthColor;
         }
         else if (towerScript.activeElement == Element.Electric)
         {
@@ -94,6 +115,9 @@ public class TowerHUD : MonoBehaviour
             waterIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(true);
+
+            borderElement.color = lightningColor;
+            lightningIcon.color = lightningColor;
         }
 
         // Asignar vida

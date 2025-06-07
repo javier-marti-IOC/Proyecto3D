@@ -16,6 +16,12 @@ public class EnemyHUD : MonoBehaviour
     public Image lightningIcon; // Icono de Rayo
     public Image waterIcon; // Icono de Agua
     public Image fireIcon; // Icono de fuego
+    [Header("Borders")]
+    public Image borderLevel; // Borde para colorear del color del nivel
+    public Image borderElement; // Borde para colorear del color de la clase del enemigo
+
+    [Header("Icon Tower")]
+    public Image iconTower; // Icono de la torre
 
     [Header("Level")]
     public TextMeshProUGUI levelText; // TextMeshPro del HUD que indica el nivel.
@@ -36,10 +42,19 @@ public class EnemyHUD : MonoBehaviour
     private float ghostDelayTimer = 0f;  // Temporizador para el retraso
     private bool waitingToReduce = false;
     private float maxHealth; // Vida maxima del enemigo
-    
+
     // COLORES
     Color32 healthColor = new Color32(93, 75, 122, 255); //rgb(93, 75, 122)
     Color32 healthGhostColor = new Color32(138, 93, 170, 255); // #6a4f96
+    Color32 fireColor = new Color32(194, 83, 83, 255); // #c25353
+    Color32 waterColor = new Color32(62, 124, 178, 255); // #3e7cb2
+    Color32 lightningColor = new Color32(223, 215, 100, 255); // #dfd764
+    Color32 earthColor = new Color32(107, 172, 102, 255); // #6bac66
+
+    Color32 level1Color = new Color32(255, 216, 168, 255); // #FFD8A8
+    Color32 level2Color = new Color32(255, 179, 71, 255);  // #FFB347
+    Color32 level3Color = new Color32(255, 140, 0, 255);   // #FF8C00
+    Color32 level4Color = new Color32(204, 85, 0, 255);    // #CC5500
 
     void Start()
     {
@@ -51,7 +66,7 @@ public class EnemyHUD : MonoBehaviour
         healthBarGhost.fillAmount = 1f;
         UpdateHUD(); // Se actualiza el hud con los valores del enemigo por defecto.
         hudPanelCanvas.SetActive(false); // Se oculta el HUD por defecto.
-        
+        iconTower.enabled = false; // Por defecto desactivar el componente image del iconTower
     }
 
     // Mostrar el HUD
@@ -69,40 +84,32 @@ public class EnemyHUD : MonoBehaviour
     // Actualizar el HUD del enemigo al completo
     public void UpdateHUD()
     {
-        if (enemyScript != null) {
-
+        if (enemyScript != null)
+        {
+            string enemyLevel = enemyScript.enemyLevel.ToString();
             // Asignar nivel
-            levelText.text = "" + enemyScript.enemyLevel.ToString(); // Texto del nivel
+            levelText.text = "" + enemyLevel; // Texto del nivel
 
-            // Icono del nivel
-            // if(enemyScript.level == 4)
-            // {
-            //     levelFill1.gameObject.SetActive(true);
-            //     levelFill2.gameObject.SetActive(true);
-            //     levelFill3.gameObject.SetActive(true);
-            //     levelFill4.gameObject.SetActive(true);
-
-            // } else if(enemyScript.level == 3)
-            // {
-            //     levelFill1.gameObject.SetActive(true);
-            //     levelFill2.gameObject.SetActive(true);
-            //     levelFill3.gameObject.SetActive(true);
-            //     levelFill4.gameObject.SetActive(false);
-
-            // } else if(enemyScript.level == 2)
-            // {
-            //     levelFill1.gameObject.SetActive(true);
-            //     levelFill2.gameObject.SetActive(true);
-            //     levelFill3.gameObject.SetActive(false);
-            //     levelFill4.gameObject.SetActive(false);
-
-            // } else
-            // {
-            //     levelFill1.gameObject.SetActive(true);
-            //     levelFill2.gameObject.SetActive(false);
-            //     levelFill3.gameObject.SetActive(false);
-            //     levelFill4.gameObject.SetActive(false);
-            // }
+            if (enemyLevel == "1")
+            {
+                borderLevel.color = level1Color;
+                levelText.color = level1Color;
+            }
+            else if (enemyLevel == "2")
+            {
+                borderLevel.color = level2Color;
+                levelText.color = level2Color;
+            }
+            else if (enemyLevel == "3")
+            {
+                borderLevel.color = level3Color;
+                levelText.color = level3Color;
+            }
+            else if (enemyLevel == "4")
+            {
+                borderLevel.color = level4Color;
+                levelText.color = level4Color;
+            }
         }
 
         // Asignar elemento
@@ -112,18 +119,32 @@ public class EnemyHUD : MonoBehaviour
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             fireIcon.gameObject.SetActive(true);
-        } else if (enemyScript.activeElement == Element.Water)
+            
+            iconTower.color = fireColor;
+            borderElement.color = fireColor;
+            fireIcon.color = fireColor;
+        }
+        else if (enemyScript.activeElement == Element.Water)
         {
             fireIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(true);
-        } else if (enemyScript.activeElement == Element.Earth)
+            
+            iconTower.color = waterColor;
+            borderElement.color = waterColor;
+            waterIcon.color = waterColor;
+        }
+        else if (enemyScript.activeElement == Element.Earth)
         {
             fireIcon.gameObject.SetActive(false);
             waterIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(true);
+
+            iconTower.color = earthColor;
+            borderElement.color = earthColor;
+            earthIcon.color = earthColor;
         }
         else if (enemyScript.activeElement == Element.Electric)
         {
@@ -131,12 +152,15 @@ public class EnemyHUD : MonoBehaviour
             waterIcon.gameObject.SetActive(false);
             earthIcon.gameObject.SetActive(false);
             lightningIcon.gameObject.SetActive(true);
+
+            iconTower.color = lightningColor;
+            borderElement.color = lightningColor;
+            lightningIcon.color = lightningColor;
         }
 
         // Asignar vida
         UpdateHealth(enemyScript.healthPoints);
     }
-    
 
     // Actualiza solo la vida del enemigo
     public void UpdateHealth(float newHealth)
@@ -159,7 +183,6 @@ public class EnemyHUD : MonoBehaviour
 
         actualHealth = newHealth;
         healthBar.fillAmount = newFill;
-        
     }
     private void Update()
     {
@@ -178,6 +201,14 @@ public class EnemyHUD : MonoBehaviour
         else if (healthBarGhost.fillAmount > targetFill)
         {
             healthBarGhost.fillAmount = Mathf.Lerp(healthBarGhost.fillAmount, targetFill, Time.deltaTime * reductionSpeed);
+        }
+    }
+
+    public void IconTower(bool activate)
+    {
+        if (iconTower != null)
+        {
+            iconTower.enabled = activate; 
         }
     }
 }

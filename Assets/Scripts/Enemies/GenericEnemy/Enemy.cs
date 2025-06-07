@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,8 @@ public abstract class Enemy : MonoBehaviour
     public GameManager gameManager;
     public GameObject ghostAgent;
     protected GameObject particulas1;
+    public GameObject hitNumberBasic;
+    public GameObject hitNumberElemental;
 
     [Header("Animation ID")]
     private int animIDSpeed;
@@ -195,6 +198,8 @@ public abstract class Enemy : MonoBehaviour
         if (tower != null)
         {
             agent.SetDestination(tower.transform.position);
+            agent.stoppingDistance = 0;
+            animator.SetInteger(Constants.state, 0);
         }
     }
     public void StartAttack()
@@ -206,19 +211,50 @@ public abstract class Enemy : MonoBehaviour
     {
         attacking = false;
     }
-    public virtual void HealthTaken(int damageTaken)
+    public virtual void HealthTaken(int[] damageTaken,Element element)
     {
-        healthPoints -= damageTaken;
+        gameManager.ExitAttackHelp();
+        Debug.Log("Basic damage taken: " + damageTaken[0] + " Elemental damage taken: " + damageTaken[1]);
+        if (damageTaken[0] > 0)
+        {
+            hitNumberBasic.SetActive(false);
+            hitNumberBasic.SetActive(true);
+            hitNumberBasic.GetComponent<TextMeshProUGUI>().text = damageTaken[0] + "";
+        }
+        if (damageTaken[1] > 0)
+        {
+            hitNumberElemental.SetActive(false);
+            hitNumberElemental.SetActive(true);
+            hitNumberElemental.GetComponent<TextMeshProUGUI>().text = damageTaken[1] + "";
+            if (element == Element.Earth)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.green;
+            }
+            else if (element == Element.Water)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.blue;
+            }
+            else if (element == Element.Fire)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.red;
+            }
+            else if (element == Element.Electric)
+            {
+                hitNumberElemental.GetComponent<TextMeshProUGUI>().color = Color.yellow;
+            }
+        }
+        healthPoints -= damageTaken[0] + damageTaken[1];
         enemyHUD.UpdateHealth(healthPoints);
         PlayerDetected();
     }
+
     public virtual void Dying(bool drops)
     {
         if (activeElement == Element.Electric && particulas1 != null)
         {
             Destroy(particulas1);
         }
-        
+
         if (tower != null)
         {
             tower.enemiesInSecondZoneRange.Remove(gameObject);

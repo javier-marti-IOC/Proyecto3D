@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3432906589137936291
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6930527823757047553}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.185089, y: -3.0270796, z: -10.776527}
   m_LocalScale: {x: 0.13674137, y: 0.13674137, z: 0.13674137}
   m_ConstrainProportionsScale: 0
@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6930527823757047553}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -98,10 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbPrefab: {fileID: 8518313805689136268, guid: 0608f8e5e64414f46ac3d5c0126c20cb,
     type: 3}
-  trajectory: 0
+  trajectory: 1
   speed: 5
   angleInDegrees: 70
-  randomSpread: 0.5
+  randomSpread: 6
   gravity: -9.81
   autoSpawn: 1
-  spawnInterval: 5
+  spawnIntervalMinInclusive: 7
+  spawnIntervalMaxExclusive: 15

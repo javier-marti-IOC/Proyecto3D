@@ -25,6 +25,8 @@ public class PauseMenu : MonoBehaviour
 
     private InputAction cancelAction;
     private PlayerInput playerInput;
+    private VolumeSettings volumeSettings;
+
     void Awake()
     {
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
@@ -33,10 +35,11 @@ public class PauseMenu : MonoBehaviour
 
         pauseAction = playerInput.actions["Pause"];
         cancelAction = playerInput.actions["Cancel"];
-        
-        
+
         pauseAction.performed += OnPausePerformed;
         cancelAction.performed += OnCancelPerformed;
+        
+        volumeSettings = FindObjectOfType<VolumeSettings>();
     }
 
     void OnDestroy()
@@ -95,6 +98,7 @@ public class PauseMenu : MonoBehaviour
             if (isPaused)
             {
                 Time.timeScale = 0f;
+                volumeSettings.SetMute(true);
                 pausePanel.SetActive(true);
                 selectedButton.Select();
                 hudPanel.SetActive(false);
@@ -105,6 +109,7 @@ public class PauseMenu : MonoBehaviour
             {
                 playerInput.actions.FindActionMap("UI").Disable();
                 playerInput.actions.FindActionMap("Player").Enable();
+                volumeSettings.SetMute(false);
                 Time.timeScale = 1f;
                 pausePanel.SetActive(false);
                 hudPanel.SetActive(true);
@@ -119,6 +124,7 @@ public class PauseMenu : MonoBehaviour
     {
         playerInput.actions.FindActionMap("UI").Disable();
         playerInput.actions.FindActionMap("Player").Enable();
+        volumeSettings.SetMute(false);
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
@@ -136,7 +142,11 @@ public class PauseMenu : MonoBehaviour
     {
         hudPanel.SetActive(false);
         deathPanel.SetActive(true);
+        playerInput.actions.FindActionMap("Player").Disable();
+        playerInput.actions.FindActionMap("UI").Enable();
         selectedDeathButton.Select();
+        
+        
     }
 
     public void ToggleEndgame()

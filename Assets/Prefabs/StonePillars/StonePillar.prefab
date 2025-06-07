@@ -4963,14 +4963,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529fee7825a3faf4db3be40525d816dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower_id: 4
+  tower_id: 0
   stonePillarPhrases:
-  - "Vas ser ven\xE7ut pel Destructor, Guardi\xE0. Amb la seva vict\xF2ria, va desfermar
-    el caos sense control."
-  - El Destructor va repartir el seu poder en quatre altars per corrompre els elements.
-  - "El m\xF3n es va podrir a la seva ombra. El que abans floria ara \xE9s desolaci\xF3."
-  - "Troba els altars i destrueix-los, restaura el m\xF3n.  "
-  - Destrueix l'altar amb l'element contrari fent un atac carregat.
+  - "Vas ser derrotat pel Destructor, Guardi\xE0. Amb la seva vict\xF2ria, va desencadenar
+    un caos incontrolable."
+  - "El Destructor va distribuir el seu poder en quatre altars amb l\u2019objectiu
+    de corrompre els elements.  "
+  - "El m\xF3n es va degradar sota la seva influ\xE8ncia. All\xF2 que abans prosperava,
+    ara \xE9s nom\xE9s desolaci\xF3."
+  - "Localitza els altars i destrueix-los per restaurar l\u2019equilibri del m\xF3n."
+  - "Enlla\xE7ats per un dest\xED inexorable, el Destructor i el Gu\xE0rdia lluiten
+    eternament per governar els elements."
+  - "El temps i l\u2019origen d\u2019aquesta lluita eterna es perden en la foscor
+    de l\u2019oblit.  "
+  - "Quan els elements troben un nou amo, la batalla entre el Destructor i el Gu\xE0rdia
+    esclata amb una for\xE7a imparable.  "
   textHUD: {fileID: 0}
 --- !u!65 &4126845980547460901
 BoxCollider:

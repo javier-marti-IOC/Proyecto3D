@@ -6,7 +6,10 @@ public class AmbientCavernZoneTrigger : MonoBehaviour
     public Collider playerCollider;  // arrástralo desde el inspector
 
     private bool isPlayerInside = false;
-
+    void Start()
+    {
+        AudioManager.Instance.Play("AmbienceForest");
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (Time.deltaTime == 0f) return;

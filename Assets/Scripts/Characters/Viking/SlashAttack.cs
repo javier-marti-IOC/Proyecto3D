@@ -4,44 +4,31 @@ using UnityEngine;
 
 public class SlashAttack : MonoBehaviour
 {
-    public VikingController vikingController;
+    private VikingController vikingController;
+    private Rigidbody rb;
+    private float lifeTime = 0.5f;
+    private Element element;
 
-    [Header("Slash Growth Settings")]
-    public float maxScale = 3f;
-    public float growthSpeed = 5f;
-
-    private Vector3 initialScale;
-    private bool isGrowing = true;
 
     void Start()
     {
-        initialScale = transform.localScale;
+        vikingController = FindObjectOfType<VikingController>();
+        rb = GetComponent<Rigidbody>();
+        rb.rotation = vikingController.transform.rotation;
+        element = vikingController.activeElement;
     }
-
     void Update()
     {
-        if (isGrowing)
+        rb.velocity = vikingController.transform.forward * 30f;
+        lifeTime -= Time.deltaTime;
+        if (lifeTime < 0)
         {
-            GrowSlash();
-        }
-    }
-
-    void GrowSlash()
-    {
-        // Increase only the scale in X (width) and Z (length), keeping Y (thickness) same or minimal
-        Vector3 targetScale = new Vector3(maxScale, initialScale.y, initialScale.z);
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * growthSpeed);
-
-        // Stop when sufficiently close
-        if (Vector3.Distance(transform.localScale, targetScale) < 0.05f)
-        {
-            transform.localScale = targetScale;
-            isGrowing = false;
+            Destroy(gameObject);
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        vikingController.SlashAttackEnter(other);
+        vikingController.SlashAttackEnter(other, element);
     }
 }

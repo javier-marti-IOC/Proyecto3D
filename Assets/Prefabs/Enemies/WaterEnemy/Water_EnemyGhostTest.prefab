@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeElement: 2
-  normalSpeed: 3.5
-  slowedSpeed: 1.5
+  normalSpeed: 4
+  slowedSpeed: 2.5
   defaultAreaCost: 1
   oppositeAreaCost: 10
 --- !u!114 &4205838495534276664

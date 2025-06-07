@@ -30,6 +30,9 @@ public class HealOrbDropSpawner : MonoBehaviour
     [Header("Coordenadas de spawn")]
     public Transform lifeOrbSpawnPosition;
 
+    [Header("Particulas")]
+    public GameObject hitParticleEffect;
+
     /* [Header("Auto Spawn")]
     public bool autoSpawn = true;
     public float spawnInterval = 5f; // <-- Cada 5 segundos
@@ -50,6 +53,11 @@ public class HealOrbDropSpawner : MonoBehaviour
 
     void Start()
     {
+        if (hitParticleEffect != null)
+        {
+            hitParticleEffect.SetActive(false);
+        }
+
         int num = Random.Range(2, 6);
         life = num;
     }
@@ -57,6 +65,7 @@ public class HealOrbDropSpawner : MonoBehaviour
     {
         if (life <= 0)
         {
+            AudioManager.Instance?.Play("DestroyMushroom");
             Destroy(gameObject);
         }
     }
@@ -105,7 +114,14 @@ public class HealOrbDropSpawner : MonoBehaviour
         if (other.CompareTag(Constants.sword))
         {
             SpawnOrb();
+            hitParticleEffect.SetActive(false);
+
+            hitParticleEffect.SetActive(true);
             life -= damageAmount;
+            if (life != 0)
+            {
+                AudioManager.Instance?.Play("HitMushroom");
+            }
         }
     }
 }

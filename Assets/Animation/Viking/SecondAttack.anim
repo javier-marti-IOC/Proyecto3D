@@ -45462,6 +45462,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.5
+    functionName: StartSlashAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.6666666
     functionName: ColliderAttackDisable
     data: 
@@ -45469,7 +45476,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.1
+  - time: 2.2666667
     functionName: EndAction
     data: 
     objectReferenceParameter: {fileID: 0}

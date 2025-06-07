@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &537838858577771469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 210387118917095071}
+  - component: {fileID: 7013317873210221318}
+  - component: {fileID: 5200008842811404305}
+  m_Layer: 0
+  m_Name: SlopeZoneElectricCave (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &210387118917095071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537838858577771469}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.14441736, z: -0, w: 0.98951685}
+  m_LocalPosition: {x: 13.8, y: 0, z: 147.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2725401319489805645}
+  m_LocalEulerAnglesHint: {x: 0, y: 16.607, z: 0}
+--- !u!114 &7013317873210221318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537838858577771469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576d9166b6dab444fbae409eb8fee93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneSlopeLimit: 45
+--- !u!65 &5200008842811404305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537838858577771469}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 425.35654, y: 78.357056, z: 265.37558}
+  m_Center: {x: -19.90541, y: -35.715515, z: 17.24187}
 --- !u!1 &4933190762820524866
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,8 +199,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 91.52097, y: 78.35705, z: 92.76954}
-  m_Center: {x: -12.517952, y: -35.71552, z: -7.6854706}
+  m_Size: {x: 91.52097, y: 78.35705, z: 164.51346}
+  m_Center: {x: -12.517962, y: -35.71552, z: -43.557407}
 --- !u!1 &8596158563198303091
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,5 +232,6 @@ Transform:
   m_Children:
   - {fileID: 2473709587037059249}
   - {fileID: 68168513746549278}
+  - {fileID: 210387118917095071}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
