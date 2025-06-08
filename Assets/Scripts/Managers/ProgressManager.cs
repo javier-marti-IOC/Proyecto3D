@@ -223,7 +223,7 @@ public class ProgressManager : MonoBehaviour
         }
         string loadProgressData = File.ReadAllText(saveFilePath);
         progressData = JsonUtility.FromJson<ProgressData>(loadProgressData);
-        Debug.Log("DATA GUARDADA: " + loadProgressData);
+        Debug.Log("DATA CARGADA: " + loadProgressData + " Ubication: " + saveFilePath);
         return true;
     }
     public void checkDestroyedTowers()
