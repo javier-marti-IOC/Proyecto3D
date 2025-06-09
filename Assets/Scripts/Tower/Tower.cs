@@ -33,7 +33,9 @@ public class Tower : MonoBehaviour
     public GameObject deathTowerParticles;
     public GameObject[] environmentParticles;
     public GameObject[] trees;
+    public GameObject[] bigTrees;
     public Mesh[] newTrees;
+    public Mesh[] newBigTrees;
     public GameObject[] corruptedClouds;
     public GameObject oppositeOrbSpawnGenerator;
     public GameObject hitTowerParticleEffect;
@@ -73,6 +75,7 @@ public class Tower : MonoBehaviour
             if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
             {
                 Utils.ReplaceTrees(trees, newTrees);
+                Utils.ReplaceTrees(bigTrees, newBigTrees);
                 Debug.Log("--->>>> CAMBIANDO ARBOLES");
             }
             Destroy(transform.parent.gameObject);
