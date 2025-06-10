@@ -75,7 +75,7 @@ public class Tower : MonoBehaviour
             if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
             {
                 Utils.ReplaceTrees(trees, newTrees);
-                Utils.ReplaceTrees(bigTrees, newBigTrees);
+                Utils.ReplaceBigTrees(bigTrees, newBigTrees);
                 Debug.Log("--->>>> CAMBIANDO ARBOLES");
             }
             Destroy(transform.parent.gameObject);

@@ -37,11 +37,20 @@ public static class Utils
             tree.GetComponent<MeshCollider>().sharedMesh = newTrees[randPosition];
         }
     }
+    public static void ReplaceBigTrees(GameObject[] trees, Mesh[] newTrees)
+    {
+        foreach (GameObject tree in trees)
+        {
+            int randPosition = Random.Range(0, newTrees.Length);
+            tree.GetComponent<MeshFilter>().mesh = newTrees[randPosition];
+            tree.GetComponent<MeshCollider>().sharedMesh = newTrees[randPosition];
+        }
+    }
 
     public static void DestroyCorruptedClouds(GameObject[] corruptedClouds)
     {
         if (corruptedClouds.Length > 0)
-        {    
+        {
             foreach (GameObject corruptedCloud in corruptedClouds)
             {
                 corruptedCloud.SetActive(false);
