@@ -116,9 +116,9 @@ public class CreditosPanel : MonoBehaviour
         panelMostrado = true;
     }
     
-    public void backToMenu() // Botón "Volver al menú principal"
-    {
-        SceneManager.LoadScene(0);
-        Debug.Log("Sortir al menú");
-    }
+    // public void backToMenu() // Botón "Volver al menú principal"
+    // {
+    //     SceneManager.LoadScene(0);
+    //     Debug.Log("Sortir al menú");
+    // }
 }

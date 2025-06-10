@@ -181,6 +181,14 @@ public class ProgressManager : MonoBehaviour
             Debug.Log("There is no save files to load!");
         }
     }
+
+    public void exitToMenuFinalScene()
+    {
+        ProgressManager.Instance.Data.continuePlaying = true;
+        SaveGame();
+        LoadData();
+        SceneManager.LoadScene(0);
+    }
     // Funcion para iniciar nueva partida
     public void DeleteSavedFile()
     {

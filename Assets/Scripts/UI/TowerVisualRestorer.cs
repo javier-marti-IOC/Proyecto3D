@@ -24,6 +24,8 @@ public class TowerVisualRestorer : MonoBehaviour
     [Header("Árboles actuales y nuevos")]
     public GameObject[] trees;
     public Mesh[] newTrees;
+    public GameObject[] bigTrees;
+    public Mesh[] newBigTrees;
 
     void Start()
     {
@@ -33,6 +35,7 @@ public class TowerVisualRestorer : MonoBehaviour
             if (activeElement == Element.Earth && trees.Length > 0 && newTrees.Length > 0)
             {
                 Utils.ReplaceTrees(trees, newTrees);
+                Utils.ReplaceBigTrees(bigTrees, newBigTrees);
                 Debug.Log("--->>>> CAMBIANDO ARBOLES");
             }
         }
